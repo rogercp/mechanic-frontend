@@ -15,13 +15,13 @@ import React from 'react';
  * Define component
  */
 
-function Login(props) {
+function Landing(props) {
 
 
     return (
 
         <>
-        <h1>Login</h1>
+        <h1>Landing</h1>
         </>
        )
 }
@@ -30,4 +30,4 @@ function Login(props) {
  * Export component
  */
 
-export default Login;
+export default Landing;

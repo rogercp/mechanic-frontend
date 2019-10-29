@@ -3,6 +3,11 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import { UsersRouter } from './routes/index';
+import {
+  Landing,
+  Login,
+  NoMatch
+} from './views';
 
 function App() {
 
@@ -12,13 +17,11 @@ function App() {
       <BrowserRouter>
         
             <Switch>
-              <Route key={uuid.v4()} exact path='/' render={() => <Redirect to='/cases' />}/>,
               {UsersRouter}
               <Route key={uuid.v4()} component={NoMatch} />
             </Switch>
         
       </BrowserRouter>
-
       </>
     )
   } else {
@@ -26,9 +29,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route key={uuid.v4()} exact path='/' component={Landing} />,
-          <Route key={uuid.v4()} exact path='/auth' component={Login} />,
-          <Route key={uuid.v4()} component={NoMatch} />
-          <Redirect to='/' />
+
         </Switch>
       </BrowserRouter>
     )
