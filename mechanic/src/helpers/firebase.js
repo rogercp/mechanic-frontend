@@ -38,10 +38,11 @@ var uiConfig = {
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: 'auth/callback',
+    signInSuccessUrl: '/auth/callback',
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
 
     ],
     // Terms of service url.
@@ -56,13 +57,13 @@ var uiConfig = {
   }
 
 
-  const storage = firebase.storage();
-  const storageRef = storage.ref();
-  const documentsRef = storageRef.child('documents');
+  // const storage = firebase.storage();
+  // const storageRef = storage.ref();
+  // const documentsRef = storageRef.child('documents');
   
-  export {
-    documentsRef
-  }
+  // export {
+  //   documentsRef
+  // }
   
 
   export default wrappedStart;

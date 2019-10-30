@@ -11,7 +11,6 @@ import {
 
 function App() {
 
-  if (localStorage.getItem('token')) {
     return (
       <>
       <BrowserRouter>
@@ -24,17 +23,9 @@ function App() {
       </BrowserRouter>
       </>
     )
-  } else {
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route key={uuid.v4()} exact path='/' component={Landing} />,
-
-        </Switch>
-      </BrowserRouter>
-    )
   }
-}
+  
+
 
 /**
  * Export component
