@@ -30,11 +30,27 @@ const PrivateRoute = ({ component: Component, errorBoundary: ErrorBoundary, path
             }).catch(err =>{
                 console.log(err)
             });
-
         }
-
-
-
     })
 
+    if (exact) {
+        return <Route key={uuid.v4()} exact path={path} render={props => (
+          <ErrorBoundary>
+            <Component {...props} />
+          </ErrorBoundary>
+        )} />
+      } else {
+        return <Route key={uuid.v4()} path={path} render={props => (
+          <ErrorBoundary>
+            <Component {...props} />
+          </ErrorBoundary>
+        )} />
+      }
+
 }
+
+/**
+ * Export route component
+ */
+
+export default PrivateRoute;
