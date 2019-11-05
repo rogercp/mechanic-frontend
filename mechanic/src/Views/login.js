@@ -7,7 +7,7 @@ import React, { useEffect } from 'react';
 import firebase from '../helpers/firebase'
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col"
+import Card from "react-bootstrap/Card"
 /**
  * Import styles
  */
@@ -31,11 +31,10 @@ function Login(props) {
 
           <Container>
             <Row>
-              
-              <Col xs={12}>
+              <Card style={{  backgroundColor:"rgb(212, 212, 211)",height:"100vh",paddingTop: "50px",}}>
                 <div id='firebaseui-auth-container'></div>
                 <div id='loader'></div>
-              </Col>
+              </Card>
             
             </Row>
           </Container>
