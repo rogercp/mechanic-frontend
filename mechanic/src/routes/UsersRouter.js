@@ -7,7 +7,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import {
-    Login, Landing, NoMatch,
+    Login, Landing,
   } from '../views/index';
 
 /**
@@ -15,13 +15,10 @@ import {
  */
 
 const UsersRouter = [
-  <Route key={uuid.v4()} exact path='/users' render={() => <Redirect to='/' />} />,
-  <Route key={uuid.v4()} path='/login' render={props => <Login {...props} />}/>,
-  <Route key={uuid.v4()} path='/register' render={props => <Login {...props} />}/>,
-  <Route key={uuid.v4()} path='/landing' render={props => <Landing {...props} />}/>,
+  <Route key={uuid.v4()} exact path='/login' render={props => <Login {...props} />}/>,
+  <Route key={uuid.v4()} exact path='/register' render={props => <Login {...props} />}/>,
+  <Route key={uuid.v4()} exact path='/landing' render={props => <Landing {...props} />}/>,
  
-
-  
 ];
 
 /**
