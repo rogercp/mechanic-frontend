@@ -5,24 +5,25 @@
 import uuid from 'uuid';
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { PrivateRoute } from './helpers/index';
 
 import {
-    Login, Landing,
+    Login, Landing,AuthCallBack
   } from '../views/index';
 
 /**
  * Define router
  */
 
-const UsersRouter = [
+const Routes = [
   <Route key={uuid.v4()} exact path='/login' render={props => <Login {...props} />}/>,
   <Route key={uuid.v4()} exact path='/register' render={props => <Login {...props} />}/>,
   <Route key={uuid.v4()} exact path='/landing' render={props => <Landing {...props} />}/>,
- 
+  <PrivateRoute key={uuid.v4()} exact path='/auth/callback' component={AuthCallBack}/>
 ];
 
 /**
  * Export router
  */
 
-export default UsersRouter;
+export default Routes;

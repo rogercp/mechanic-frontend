@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import './App.css';
-import { UsersRouter, loggedInRoutes } from './routes/index';
+import { UserRouter, Routes } from './routes/index';
 import {
   NoMatch
 } from './views';
@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         
             <Switch>
-              {loggedInRoutes}
+              {UserRouter}
               <Route key={uuid.v4()} component={NoMatch} />
             </Switch>
         
@@ -31,7 +31,7 @@ function App() {
       <BrowserRouter>
         
             <Switch>
-              {UsersRouter}
+              {Routes}
               <Route key={uuid.v4()} component={NoMatch} />
             </Switch>
         

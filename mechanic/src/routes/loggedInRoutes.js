@@ -7,6 +7,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { PrivateRoute } from './helpers/index';
 import {
+  Home,
   ErrorBoundary,
   } from '../views/index';
 
@@ -14,10 +15,10 @@ import {
  * Define router
  */
 
-const UsersRouter = [
-    // <PrivateRoute key={uuid.v4()} exact path='/home'
-    // component={}
-    // errorBoundary={ErrorBoundary}/>
+const UserRouter = [
+    <PrivateRoute key={uuid.v4()} exact path='/home'
+    component={Home}
+    />
   
 ];
 
@@ -25,4 +26,4 @@ const UsersRouter = [
  * Export router
  */
 
-export default UsersRouter;
+export default UserRouter;
