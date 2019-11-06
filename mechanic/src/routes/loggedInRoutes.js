@@ -15,10 +15,10 @@ import {
  * Define router
  */
 
-const UsersRouter = [
+const UserRouter = [
     <PrivateRoute key={uuid.v4()} exact path='/home'
     component={Home}
-    errorBoundary={ErrorBoundary}/>
+    />
   
 ];
 
@@ -26,4 +26,4 @@ const UsersRouter = [
  * Export router
  */
 
-export default UsersRouter;
+export default UserRouter;
