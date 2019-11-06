@@ -26,7 +26,7 @@ function AuthCallback(props) {
                 })
                 .catch(err => {
                     console.error(err);
-                    window.location = "/users/login";
+                    window.location = "/login";
                 });
         } else {
             // User is signed out.
