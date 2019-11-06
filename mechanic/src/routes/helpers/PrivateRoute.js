@@ -17,7 +17,16 @@ const PrivateRoute = ({ component: Component, errorBoundary: ErrorBoundary, path
 
         if(user){
             
+
+          let displayName = user.displayName;
+          let email = user.email;
+          let emailVerified = user.emailVerified;
+          let photoURL = user.photoURL;
+          let isAnonymous = user.isAnonymous;
+          let uid = user.uid;
+          let providerData = user.providerData;
     
+
             let token = await user.getIdToken()
 
             localStorage.setItem('token',token)
