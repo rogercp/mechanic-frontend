@@ -39,6 +39,9 @@ const PrivateRoute = ({ component: Component, errorBoundary: ErrorBoundary, path
             }).catch(err =>{
                 console.log(err)
             });
+        }else {
+          // User is signed out.
+          // ...
         }
     })
 

@@ -8,7 +8,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { PrivateRoute } from './helpers/index';
 
 import {
-    Login, Landing,AuthCallBack
+    Login, Landing,AuthCallBack,ErrorBoundary
   } from '../views/index';
 
 /**
