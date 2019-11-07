@@ -10,6 +10,7 @@ import axios from "axios";
 
 function AuthCallBack(props) {
     firebase.auth().onAuthStateChanged(async user => {
+        console.log("Authcallback")
         // User is signed in.
         if (user) {
             let token = await user.getIdToken();

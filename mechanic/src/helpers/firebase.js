@@ -23,6 +23,7 @@ var firebaseConfig = {
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 var uiConfig = {
+
     callbacks: {
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
         // User successfully signed in.
@@ -53,6 +54,7 @@ var uiConfig = {
   
 
   function wrappedStart() {
+    console.log("uiconfig")
     ui.start('#firebaseui-auth-container', uiConfig);
   }
 

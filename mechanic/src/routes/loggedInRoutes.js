@@ -16,7 +16,7 @@ import {
  */
 
 const UserRouter = [
-    <PrivateRoute key={uuid.v4()} exact path='/home'
+    <PrivateRoute key={uuid.v4()}  exact path='/home'
     component={Home}  errorBoundary={ErrorBoundary} />
    
 
