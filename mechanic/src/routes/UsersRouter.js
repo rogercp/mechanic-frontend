@@ -16,6 +16,7 @@ import {
  */
 
 const Routes = [
+  <Route key={uuid.v4()} exact path='/' component={Landing} />,
   <Route key={uuid.v4()} exact path='/login' render={props => <Login {...props} />}/>,
   <Route key={uuid.v4()} exact path='/register' render={props => <Login {...props} />}/>,
   <Route key={uuid.v4()} exact path='/landing' render={props => <Landing {...props} />}/>,
