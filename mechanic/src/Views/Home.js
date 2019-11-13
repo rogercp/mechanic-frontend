@@ -4,6 +4,8 @@
 
 import React from 'react';
 import Button from "react-bootstrap/Button";
+import { NavLink } from 'react-router-dom';
+
 
 /**
  * Import styles
@@ -22,7 +24,9 @@ function Home(props) {
 
         <>
         <h1>Home</h1>
-      <Button>Home</Button>
+      <Button><NavLink to="/settings">Home</NavLink></Button>
+
+
         </>
        )
 }
