@@ -30,27 +30,34 @@ function NavBar(props) {
 
             <Link to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
                 <Button>
-                     Hub
+                     HUB
                 </Button>
                 
             </Link>
             <Link to="/chat" style={{textDecoration:"none"}} data-testid="signup-link">
                 <Button>
-                     chat
+                     CHAT
                 </Button>
                 
             </Link>
             <Link to="/settings" style={{textDecoration:"none"}} data-testid="login-link">
                 <Button>
-                    Settings
+                    SETTINGS
                 </Button>
             </Link>
             
-            <Button onClick={logout}>
-                     logout
-            </Button>
+           
+
+            <Link to="/mycars" style={{textDecoration:"none"}} data-testid="signup-link">
+                <Button>
+                     MY CARS
+                </Button>
                 
-            
+            </Link>
+                
+            <Button onClick={logout}>
+                     LOGOUT
+            </Button>
 
             </div>
         </nav>
