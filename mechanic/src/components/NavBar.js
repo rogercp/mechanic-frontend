@@ -4,7 +4,9 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
+import SettingsIcon from '@material-ui/icons/Settings';
 /**
  *  Import styles
  */
@@ -28,37 +30,27 @@ function NavBar(props) {
             <div className="links">
 
             
-            <NavLink  activeClassName="activeNavButton" to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
-                <button variant="dark" className="link">
-                     HUB
-                </button>
+            <NavLink className="link"  activeClassName="activeNavButton" to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
+                <i>HUB</i>
+
             </NavLink>
 
-            <NavLink activeClassName="activeNavButton" to="/chat" style={{textDecoration:"none"}} data-testid="signup-link">
-                <button variant="dark" className="link">
-                     CHAT
-                </button>
-                
+            <NavLink className="link" activeClassName="activeNavButton" to="/chat" style={{textDecoration:"none"}} data-testid="signup-link">   
+                <i>CHAT</i>
             </NavLink >
-            <NavLink activeClassName="activeNavButton" to="/settings" style={{textDecoration:"none"}} data-testid="login-link">
-                <button variant="dark" className="link">
-                    SETTINGS
-                </button>
+                
+            <NavLink className="link"  activeClassName="activeNavButton" to="/mycars" style={{textDecoration:"none"}} data-testid="signup-link">
+                <DirectionsCarIcon/>
+            </NavLink>
+
+            <NavLink className="link" activeClassName="activeNavButton" to="/settings" style={{textDecoration:"none"}} data-testid="login-link">
+                <SettingsIcon/>
             </NavLink>
             
-           
-
-            <NavLink activeClassName="activeNavButton" to="/mycars" style={{textDecoration:"none"}} data-testid="signup-link">
-                <button variant="none"className="link">
-                     MY CARS
-                </button>
-                
+            <NavLink className="link" activeClassName="activeNavButton" to="/landing" style={{textDecoration:"none"}} data-testid="signup-link"
+            onClick={logout}>
+                <ExitToAppIcon className="icon" />
             </NavLink>
-                
-            <button variant="dark" onClick={logout} className="link">
-                     LOGOUT
-            </button>
-
             </div>
         </nav>
         

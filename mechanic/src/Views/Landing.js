@@ -24,7 +24,8 @@ function Landing(props) {
 
         <>
         <h1>Landing</h1>
-      <Button>Hello</Button>
+        <Button>Hello</Button>
+        
         </>
        )
 }
