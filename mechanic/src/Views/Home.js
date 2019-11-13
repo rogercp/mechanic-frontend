@@ -24,8 +24,7 @@ function Home(props) {
 
         <>
         <h1>Home</h1>
-      <Button><NavLink to="/settings">Home</NavLink></Button>
-
+      <NavLink to="/settings"><Button>Settings</Button></NavLink>
 
         </>
        )
