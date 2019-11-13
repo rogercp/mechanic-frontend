@@ -1,0 +1,40 @@
+
+nav{
+background-color: grey;
+}
+
+button {
+    width: 100;
+    color: "white";
+    background-Color: "#5C90C1";
+    &:hover {
+        backgroundColor: "white";
+        color:"#598EBF";
+    }
+    
+}
+root{
+    minWidth: '100%',
+  }
+  button {
+   
+  }
+  actionsContainer {
+    
+  }
+  resetContainer{
+    
+  }
+  
+  header{
+    display: 'flex';
+    align-Items: 'center';
+    height: 50;
+  }
+  img {
+    height: 350;
+    display: 'block';
+    max-width:  400;
+    overflow: 'hidden';
+    width: '100%';
+  }
