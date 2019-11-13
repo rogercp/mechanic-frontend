@@ -4,8 +4,6 @@
 
 import React from 'react';
 import Button from "react-bootstrap/Button";
-import { NavLink } from 'react-router-dom';
-
 
 /**
  * Import styles
@@ -17,15 +15,12 @@ import { NavLink } from 'react-router-dom';
  * Define component
  */
 
-function Home(props) {
+function UserSettings(props) {
 
 
     return (
-
         <>
-        <h1>Home</h1>
-      <NavLink to="/settings"><Button>Settings</Button></NavLink>
-
+        <h1>Settings</h1>
         </>
        )
 }
@@ -34,4 +29,4 @@ function Home(props) {
  * Export component
  */
 
-export default Home;
+export default UserSettings;

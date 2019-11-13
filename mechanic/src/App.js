@@ -1,7 +1,7 @@
 import uuid from 'uuid';
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
+import { NavBar } from './components';
 import './App.css';
 import { UserRouter, Routes } from './routes/index';
 import {
@@ -14,7 +14,7 @@ function App() {
     return (
       <>
       <BrowserRouter>
-        
+        <NavBar/>
             <Switch>
               {UserRouter}
               <Route key={uuid.v4()} component={NoMatch} />
