@@ -1,13 +1,28 @@
+@import './variables.scss';
 
 nav{
- background-color: grey;
- height: 4rem;
+background-color:$secondary;
+ height: 3rem;
  display: flex;
  justify-content: center;
  align-items: center;
     .links{
-        display: flex;
-        align-items: space-between;
+        
+        .link{
+            margin: .5rem;
+            width: 5rem;
+            background-color:$primary;
+            border:none;
+            font-size: .75rem;
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+                color:$primary;
+                background-color: $third;
+                }
+        }
+    }
+    &:hover{
+        box-shadow: 0 3px 6px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22);
     }
 }
 

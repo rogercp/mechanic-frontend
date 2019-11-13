@@ -28,20 +28,21 @@ function NavBar(props) {
         <nav className="nav" >
             <div className="links">
 
+            
             <Link to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
-                <Button>
+                <Button  className="link">
                      HUB
                 </Button>
                 
             </Link>
             <Link to="/chat" style={{textDecoration:"none"}} data-testid="signup-link">
-                <Button>
+                <Button className="link">
                      CHAT
                 </Button>
                 
             </Link>
             <Link to="/settings" style={{textDecoration:"none"}} data-testid="login-link">
-                <Button>
+                <Button className="link">
                     SETTINGS
                 </Button>
             </Link>
@@ -49,13 +50,13 @@ function NavBar(props) {
            
 
             <Link to="/mycars" style={{textDecoration:"none"}} data-testid="signup-link">
-                <Button>
+                <Button className="link">
                      MY CARS
                 </Button>
                 
             </Link>
                 
-            <Button onClick={logout}>
+            <Button onClick={logout} className="link">
                      LOGOUT
             </Button>
 
