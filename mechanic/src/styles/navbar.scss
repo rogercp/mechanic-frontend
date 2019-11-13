@@ -7,17 +7,21 @@ background-color:$secondary;
  justify-content: center;
  align-items: center;
     .links{
-        
+    
         .link{
+            color:white;
             margin: .5rem;
             width: 5rem;
             background-color:$primary;
             border:none;
             font-size: .75rem;
+            outline:0;
+            border-radius: .2rem;
             &:hover {
                 box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
                 color:$primary;
                 background-color: $third;
+                outline:0;
                 }
         }
     }
@@ -26,4 +30,9 @@ background-color:$secondary;
     }
 }
 
+.activeNavButton{
+    box-shadow: 0 20px 30px rgba(0,0,0,0.6), 0 15px 15px rgba(0,0,0,0.6);
+    background-color: $third;
+    border-radius: .2rem;
+}
 

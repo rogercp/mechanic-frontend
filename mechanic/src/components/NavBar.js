@@ -3,8 +3,7 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Button from "react-bootstrap/Button";
+import { NavLink } from 'react-router-dom';
 
 /**
  *  Import styles
@@ -29,36 +28,36 @@ function NavBar(props) {
             <div className="links">
 
             
-            <Link to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
-                <Button  className="link">
+            <NavLink  activeClassName="activeNavButton" to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
+                <button variant="dark" className="link">
                      HUB
-                </Button>
-                
-            </Link>
-            <Link to="/chat" style={{textDecoration:"none"}} data-testid="signup-link">
-                <Button className="link">
+                </button>
+            </NavLink>
+
+            <NavLink activeClassName="activeNavButton" to="/chat" style={{textDecoration:"none"}} data-testid="signup-link">
+                <button variant="dark" className="link">
                      CHAT
-                </Button>
+                </button>
                 
-            </Link>
-            <Link to="/settings" style={{textDecoration:"none"}} data-testid="login-link">
-                <Button className="link">
+            </NavLink >
+            <NavLink activeClassName="activeNavButton" to="/settings" style={{textDecoration:"none"}} data-testid="login-link">
+                <button variant="dark" className="link">
                     SETTINGS
-                </Button>
-            </Link>
+                </button>
+            </NavLink>
             
            
 
-            <Link to="/mycars" style={{textDecoration:"none"}} data-testid="signup-link">
-                <Button className="link">
+            <NavLink activeClassName="activeNavButton" to="/mycars" style={{textDecoration:"none"}} data-testid="signup-link">
+                <button variant="none"className="link">
                      MY CARS
-                </Button>
+                </button>
                 
-            </Link>
+            </NavLink>
                 
-            <Button onClick={logout} className="link">
+            <button variant="dark" onClick={logout} className="link">
                      LOGOUT
-            </Button>
+            </button>
 
             </div>
         </nav>
