@@ -14,7 +14,7 @@ import React from 'react';
  * Define component
  */
 
-function CarShow(props) {
+function CarMaintenenceForm(props) {
 
   
 
@@ -31,4 +31,4 @@ function CarShow(props) {
  * Export component
  */
 
-export default CarShow;
+export default CarMaintenenceForm;
