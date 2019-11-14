@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Button from "react-bootstrap/Button";
+import Grid from '@material-ui/core/Grid';
 
 /**
  * Import styles
@@ -17,7 +17,24 @@ function UserSettings(props) {
 
     return (
         <>
-        <h1>Cars</h1>
+        <Grid container spacing={0}>
+        <Grid item xs={6}>
+        <div style={{backgroundColor:"red"}}>
+                ok
+        </div>
+        </Grid>
+        
+        <Grid item xs={3}>
+        <div style={{backgroundColor:"red"}}>
+            hello
+        </div>
+
+        </Grid>
+        
+      </Grid>
+        
+       
+
         </>
        )
 }
