@@ -2,6 +2,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
+import CarForm from '../components/CarForm'
+
 
 /**
  * Import styles
@@ -29,7 +31,7 @@ function UserSettings(props) {
         <Grid container spacing={0}>
         <Grid item xs={12} sm={6} >
         <div style={{backgroundColor:"black",height:"100vh"}}>
-                ok
+                <CarForm/>
         </div>
         </Grid>
         
