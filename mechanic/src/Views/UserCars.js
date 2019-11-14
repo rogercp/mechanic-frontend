@@ -1,11 +1,23 @@
 
 import React from 'react';
-import Button from "react-bootstrap/Button";
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import CarForm from '../components/CarForm'
+import { CarShow } from '../components';
+
 
 /**
  * Import styles
  */
 
+
+
+const useStyles = makeStyles(theme => ({
+    root: {
+      flexGrow: 1,
+    },
+    
+  }));
 
 
 /**
@@ -14,10 +26,27 @@ import Button from "react-bootstrap/Button";
 
 function UserSettings(props) {
 
-
+    const classes = useStyles();
     return (
         <>
-        <h1>Cars</h1>
+        <Grid container spacing={0}>
+
+            <Grid item xs={12} sm={6} >
+                <div style={{backgroundColor:"purple",height:"100vh"}}>
+                    <CarForm/>
+                </div>
+            </Grid>
+        
+            <Grid item xs={12} sm={6} >
+                <div style={{backgroundColor:"orange",height:"100vh"}}>
+                    <CarShow/>
+                </div>
+            </Grid>
+        
+      </Grid>
+        
+       
+
         </>
        )
 }

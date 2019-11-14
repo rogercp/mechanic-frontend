@@ -31,7 +31,7 @@ function NavBar(props) {
 
             
             <NavLink className="link"  activeClassName="activeNavButton" to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
-                <i>HUB</i>
+                <i>DASH</i>
 
             </NavLink>
 

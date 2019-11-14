@@ -12,7 +12,7 @@ function App() {
 
   if(localStorage.getItem('token')){
     return (
-      <>
+      <div>
       <BrowserRouter>
         <NavBar/>
             <Switch>
@@ -21,13 +21,13 @@ function App() {
             </Switch>
         
       </BrowserRouter>
-      </>
+      </div>
     )
 
 
   }else{
     return (
-      <>
+      <div>
       <BrowserRouter>
         
             <Switch>
@@ -36,7 +36,7 @@ function App() {
             </Switch>
         
       </BrowserRouter>
-      </>
+      </div>
     )
   }
     
