@@ -6,6 +6,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import TextField from '@material-ui/core/TextField';
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import SettingsIcon from '@material-ui/icons/Settings';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -28,10 +29,19 @@ import  '../styles/navbar.scss'
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    Width: 120,
   },
   selectEmpty: {
-    marginTop: theme.spacing(2),
+    // marginTop: theme.spacing(2),
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 120,
   },
 }));
 
@@ -41,12 +51,14 @@ function CarForm(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     type: '',
+    year: '',
+
   });
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
-    setLabelWidth(inputLabel.current.offsetWidth);
+    // setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
   const handleChange = name => event => {
@@ -62,7 +74,14 @@ function CarForm(props) {
         
         <h1>Car Form</h1>
 
-        <FormControl className={classes.formControl}>
+       
+
+
+
+      <form className={classes.container} noValidate autoComplete="off">
+      
+
+      <FormControl className={classes.formControl}>
         <InputLabel htmlFor="outlined-type-native-simple">Type</InputLabel>
         <Select
           native
@@ -74,6 +93,7 @@ function CarForm(props) {
             id: 'outlined-type-native-simple',
           }}
         >
+          <option value="" />
           <option value={"Sedan"}>Sedan</option>
           <option value={"Coupe"}>Coupe</option>
           <option value={"Van"}>Van</option>
@@ -83,7 +103,46 @@ function CarForm(props) {
           <option value={"Convertible"}>Convertible</option>
         </Select>
       </FormControl>
+      <TextField
+          id="standard-number"
+          label="Year"
+          type="number"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          margin="normal"
+        />
 
+       
+      
+
+      
+        <TextField
+          id="standard-basic"
+          className={classes.textField}
+          label="Make"
+          margin="normal"
+        />
+ 
+ 
+        <TextField
+          id="standard-basic"
+          className={classes.textField}
+          label="Model"
+          margin="normal"
+        />
+
+
+        <TextField
+          id="standard-basic"
+          className={classes.textField}
+          label="Nickname"
+          margin="normal"
+        />
+
+
+</form>
       </>
     );
 };
