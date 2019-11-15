@@ -14,20 +14,14 @@ import React from 'react';
  * Define component
  */
 
+function CarFixForm(props) {
 
-
-
-function CarShow(props) {
-
-    
+  
 
     return (
       <>
         
         <h1>My Cars</h1>
-
-       
-
 
       </>
     );
@@ -37,4 +31,4 @@ function CarShow(props) {
  * Export component
  */
 
-export default CarShow;
+export default CarFixForm;
