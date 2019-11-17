@@ -20,7 +20,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import HomeIcon from '@material-ui/icons/Home';
-
+import { useMediaQuery } from 'react-responsive'
 /**
  *  Import styles
  */
@@ -42,12 +42,19 @@ const useStyles = makeStyles({
  * Define component
  */
 
+
 function NavBar(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     right: false,
   });
-
+  const isPhone = useMediaQuery({
+    query: '(max-device-width: 500px)'
+  })
+  const isNotPhone = useMediaQuery({
+    query: '(min-device-width: 500px)'
+  })
+  
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -66,7 +73,7 @@ function NavBar(props) {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     > 
-      <List className="list">
+      <List className="list" >
 
          <Link className="link_mobile"  activeClassName="activeNavButton" to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
          <div className="mobile_div" ><HomeIcon/>Dash</div></Link>
@@ -79,8 +86,7 @@ function NavBar(props) {
                 <SettingsIcon/> Settings</Link>
           <Link className="link_mobile" activeClassName="activeNavButton" to="/landing" style={{textDecoration:"none"}} data-testid="signup-link"
             onClick={logout}><ExitToAppIcon className="icon" /> Logout</Link>
-            
-      
+  
       </List>
       
     </div>
@@ -95,39 +101,51 @@ function NavBar(props) {
 
     return (
       <>
+        
+        {isNotPhone &&
         <nav className="nav" >
             <div className="links">
 
-            
-            <NavLink className="link"  activeClassName="activeNavButton" to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
-                <i>DASH</i>
+              <NavLink className="link"  activeClassName="activeNavButton" to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
+                  <i>DASH</i>
+              </NavLink>
 
-            </NavLink>
+              <NavLink className="link" activeClassName="activeNavButton" to="/chat" style={{textDecoration:"none"}} data-testid="signup-link">   
+                  <i>CHAT</i>
+              </NavLink >
+                  
+              <NavLink className="link"  activeClassName="activeNavButton" to="/mycars" style={{textDecoration:"none"}} data-testid="signup-link">
+                  <DirectionsCarIcon/>
+              </NavLink>
 
-            <NavLink className="link" activeClassName="activeNavButton" to="/chat" style={{textDecoration:"none"}} data-testid="signup-link">   
-                <i>CHAT</i>
-            </NavLink >
-                
-            <NavLink className="link"  activeClassName="activeNavButton" to="/mycars" style={{textDecoration:"none"}} data-testid="signup-link">
-                <DirectionsCarIcon/>
-            </NavLink>
+              <NavLink className="link" activeClassName="activeNavButton" to="/settings" style={{textDecoration:"none"}} data-testid="login-link">
+                  <SettingsIcon/>
+              </NavLink>
+              
+              <NavLink className="link" activeClassName="activeNavButton" to="/landing" style={{textDecoration:"none"}} data-testid="signup-link"
+              onClick={logout}>
+                  <ExitToAppIcon className="icon" />
+              </NavLink>
 
-            <NavLink className="link" activeClassName="activeNavButton" to="/settings" style={{textDecoration:"none"}} data-testid="login-link">
-                <SettingsIcon/>
-            </NavLink>
-            
-            <NavLink className="link" activeClassName="activeNavButton" to="/landing" style={{textDecoration:"none"}} data-testid="signup-link"
-            onClick={logout}>
-                <ExitToAppIcon className="icon" />
-            </NavLink>
-
-            <Button onClick={toggleDrawer('right', true)}><MoreVertIcon /></Button>
-            <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
-                {sideList('right')}
-
-            </Drawer>
             </div>
-        </nav>
+            </nav>
+            }
+        {isPhone &&
+        
+            <>
+              <Button style={{float:"right"}} onClick={toggleDrawer('right', true)}><MoreVertIcon /></Button>
+              <Drawer   anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
+                  {sideList ('right')}
+
+              </Drawer>
+            </>
+           
+            
+                     
+        }
+        
+            
+        
         
 
       </>
