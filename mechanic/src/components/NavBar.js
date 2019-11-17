@@ -21,6 +21,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import HomeIcon from '@material-ui/icons/Home';
 import { useMediaQuery } from 'react-responsive'
+import MenuIcon from '@material-ui/icons/Menu';
 /**
  *  Import styles
  */
@@ -133,7 +134,7 @@ function NavBar(props) {
         {isPhone &&
         
             <>
-              <Button style={{float:"right"}} onClick={toggleDrawer('right', true)}><MoreVertIcon /></Button>
+              <Button style={{float:"right"}} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
               <Drawer   anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
                   {sideList ('right')}
 
