@@ -55,6 +55,9 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1),
     width: 200,
   },
+  button: {
+    margin: theme.spacing(1),
+  },
 }));
 
 /**
@@ -64,8 +67,7 @@ const useStyles = makeStyles(theme => ({
 function CarMaintenenceForm(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
+    isaFix: false,
   });
   const [values, setValues] = React.useState({
     amount: '',
@@ -75,9 +77,9 @@ function CarMaintenenceForm(props) {
     showPassword: false,
   });
 
-  // const handleChange = name => event => {
-  //   setState({ ...state, [name]: event.target.checked });
-  // };
+  const handleChange2 = name => event => {
+    setState({ ...state, [name]: event.target.checked });
+  };
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
@@ -91,16 +93,22 @@ function CarMaintenenceForm(props) {
 
     return (
       <>
-      <h1>Car CarMaintenence Form</h1>
+      <h1> CarMaintenence </h1>
        <div className={classes.root}> 
        
       <form className={classes.container} noValidate autoComplete="off"> 
     
       <FormControl fullWidth className={classes.margin}>
+      <p>{state.isaFix === false ? "maintence" : "repair" }</p>
+        <Switch
+        onChange={handleChange2('isaFix')}
+        value="isaFix"
+        color="default"
+        inputProps={{ 'aria-label': 'checkbox with default color' }}
+        />
       <TextField
           id="outlined-textarea"
-          label="Multiline Placeholder"
-          placeholder="Placeholder"
+          placeholder={state.isaFix === false ? "maintence" : "repair"}
           multiline
           className={classes.textField}
           margin="normal"
@@ -108,20 +116,14 @@ function CarMaintenenceForm(props) {
         />
         <TextField
           id="outlined-multiline-static"
-          label="Multiline"
           multiline
           rows="4"
-          defaultValue="Default Value"
+          placeholder="Description"
           className={classes.textField}
           margin="normal"
           variant="outlined"
         />
-          <Switch
-        defaultChecked
-        value="checkedF"
-        color="default"
-        inputProps={{ 'aria-label': 'checkbox with default color' }}
-        />
+        
 
       <TextField
           label="Total Cost"
@@ -146,7 +148,7 @@ function CarMaintenenceForm(props) {
             />
           </MuiPickersUtilsProvider>
 
-          <Button
+        <Button
         variant="contained"
         color="default"
         className={classes.button}

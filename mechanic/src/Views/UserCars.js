@@ -35,7 +35,7 @@ function UserSettings(props) {
 
             <Grid item xs={12} sm={6} >
                 <div style={{backgroundColor:"",height:"100vh"}}>
-                    {/* <CarForm/> */}
+                    <CarForm/>
                     <CarMaintenceForm/>
                 </div>
             </Grid>

@@ -41,3 +41,25 @@ i{
     font-size: 1rem;
 }
 
+.list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+
+.link_mobile{
+        margin:20px;
+        color:white;
+        margin: .5rem;
+        width: 100%;
+        background-color:$primary;
+        border:none;
+        padding: .3rem;
+        outline:0;
+        border-radius: .2rem;
+}
+
+

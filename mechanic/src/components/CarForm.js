@@ -34,7 +34,7 @@ import  '../styles/navbar.scss'
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
-    Width: 120,
+    Width: 200,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 120,
+    width: 200,
   },
   button: {
     margin: theme.spacing(1),
