@@ -14,6 +14,11 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import Icon from '@material-ui/core/Icon';
+import SaveIcon from '@material-ui/icons/Save';
+import Button from '@material-ui/core/Button';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+
 
 /**
  *  Import styles
@@ -29,10 +34,10 @@ import  '../styles/navbar.scss'
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
-    Width: 120,
+    Width: 200,
   },
   selectEmpty: {
-    // marginTop: theme.spacing(2),
+    marginTop: theme.spacing(2),
   },
   container: {
     display: 'flex',
@@ -41,7 +46,10 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 120,
+    width: 200,
+  },
+  button: {
+    margin: theme.spacing(1),
   },
 }));
 
@@ -73,21 +81,18 @@ function CarForm(props) {
       <>
         
         <h1>Car Form</h1>
-
-       
-
-
-
-      <form className={classes.container} noValidate autoComplete="off">
       
 
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="outlined-type-native-simple">Type</InputLabel>
+      
+
+      <FormControl className={classes.formControl} noValidate autoComplete="off">
+
+        <InputLabel id="demo-simple-select-label">Type</InputLabel>
         <Select
           native
+          className={classes.textField}
           value={state.type}
           onChange={handleChange('type')}
-          labelWidth={labelWidth}
           inputProps={{
             name: 'type',
             id: 'outlined-type-native-simple',
@@ -102,21 +107,15 @@ function CarForm(props) {
           <option value={"Wagon"}>Wagon</option>
           <option value={"Convertible"}>Convertible</option>
         </Select>
-      </FormControl>
-      <TextField
-          id="standard-number"
-          label="Year"
-          type="number"
+     
+      
+        <TextField
+          id="standard-basic"
           className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
+          label="Year"
           margin="normal"
         />
-
        
-      
-
       
         <TextField
           id="standard-basic"
@@ -141,8 +140,27 @@ function CarForm(props) {
           margin="normal"
         />
 
+      
+        <Button
+        variant="contained"
+        color="default"
+        className={classes.button}
+        startIcon={<CloudUploadIcon />}
+        >
+        Picture
+        </Button>
 
-</form>
+        <Button
+        variant="contained"
+        color="primary"
+        size="large"
+        className={classes.button}
+        >
+        Enter
+        </Button>
+
+ </FormControl>
+
       </>
     );
 };

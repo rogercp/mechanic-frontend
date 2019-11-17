@@ -41,3 +41,30 @@ i{
     font-size: 1rem;
 }
 
+.list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.link_mobile{
+        margin:20px;
+        color:white;
+        margin: .5rem;
+        width: 100%;
+        background-color:$primary;
+        border:none;
+        padding: .3rem;
+        outline:0;
+        border-radius: .2rem;
+        &:hover {
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            color:$primary;
+            background-color: $third;
+            outline:0;
+            }
+}
+
+
