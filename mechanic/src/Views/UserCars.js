@@ -41,7 +41,7 @@ function UserSettings(props) {
             </Grid> */}
         
             <Grid item xs={12} sm={12} >
-                <div style={{backgroundColor:"orange",height:"100vh"}}>
+                <div style={{backgroundColor:"orange"}}>
                     <CarShow/>
                 </div>
             </Grid>
