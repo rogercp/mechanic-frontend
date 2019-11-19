@@ -80,10 +80,7 @@ function CarForm(props) {
     return (
       <>
         
-        <h1>Car Form</h1>
-      
-
-      
+    
 
       <FormControl className={classes.formControl} noValidate autoComplete="off">
 

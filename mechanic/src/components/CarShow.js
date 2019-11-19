@@ -97,16 +97,16 @@ function CarShow(props) {
         <CarAddModal
           open={open}
           onClose={handleClose}
-          titleText={"Invoice created"}
+          titleText={"Car Form"}
           bodyText={""}
-          redirect={"/mediator-cases"}
-          redirectText={"Mediator Cases"}
-            />
+          redirect={"/mycars"}
+          redirectText={"cars"}
+          />
 
         <CarAddModal
           open={errorOpen}
           onClose={handleErrorClose}
-          titleText={"Error creating invoice"}
+          titleText={"Error creating car"}
           bodyText={"Please try again"}
           redirect={""}
           redirectText={""}

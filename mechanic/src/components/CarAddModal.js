@@ -8,6 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Button } from "@material-ui/core";
 import { withRouter } from 'react-router-dom';
+import CarForm from './CarForm'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 /**
  * Define styles
@@ -15,7 +17,7 @@ import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     dialog: {
-        width: '400px',
+        width: '500px',
         margin: '0 auto',
     },
     paper: {
@@ -59,7 +61,8 @@ function CarAddModal(props) {
                 <div className={classes.paper}>
                     <Typography className={classes.title} variant="h6">{titleText}</Typography>
                     <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
-                    <Button onClick={handleClose} variant="outlined"> Return to form </Button>
+                    <CarForm/>
+                    
                 </div>
             </Dialog>
         )
@@ -69,7 +72,7 @@ function CarAddModal(props) {
                 <div className={classes.paper}>
                     <Typography className={classes.title} variant="h6">{titleText}</Typography>
                     <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
-                    <Button onClick={handleClick} variant="outlined"> Return to {redirectText} </Button>
+                    <CarForm/>
                 </div>
             </Dialog>
         )
