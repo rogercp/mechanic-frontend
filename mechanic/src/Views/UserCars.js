@@ -31,7 +31,7 @@ function UserSettings(props) {
     const classes = useStyles();
     return (
         <>
-        <Grid container spacing={0}>
+       
 
             {/* <Grid item xs={12} sm={6} >
                 <div style={{backgroundColor:"",height:"100vh"}}>
@@ -40,14 +40,13 @@ function UserSettings(props) {
                 </div>
             </Grid> */}
         
-            <Grid item xs={12} sm={12} >
-                <div style={{backgroundColor:"orange"}}>
+           
+                <div style={{}}>
                     <CarShow/>
                 </div>
-            </Grid>
+            
         
-      </Grid>
-        
+     
        
 
         </>

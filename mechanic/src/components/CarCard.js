@@ -51,10 +51,16 @@ const useStyles = makeStyles(theme => ({
   
     card: {
         maxWidth: 345,
+        '&:hover':{
+            animation: 'anim 0.5s 1',
+            transform: 'translateZ(30px)',
+            cursor: 'pointer',
+          },
       },
+      
       media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
+       
+        
       },
       expand: {
         transform: 'rotate(0deg)',
@@ -89,8 +95,8 @@ const MediatorCard = (props) => {
     axiosWithAuth()
         .delete(`${process.env.REACT_APP_API_URL}/cars/${props.car.id}`)
         .then(res => {
-            props.fetchCars();
             window.location.reload();
+            props.fetchCars();
         })
         .catch(error => {
             console.error(error);
@@ -109,7 +115,7 @@ const MediatorCard = (props) => {
                     <DeleteIcon />
             </IconButton> 
             </div>
-              <img style={{maxWidth:"300px"}} src='https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=blue-bmw-sedan-near-green-lawn-grass-170811.jpg&fm=jpg' />
+              <img style={{height:"50%",width:"90%"}} src='https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=blue-bmw-sedan-near-green-lawn-grass-170811.jpg&fm=jpg' />
               <p className="case-label">Car Type: {props.car.car_type}</p> 
               <p className="case-label">Car Make: {props.car.car_make}</p> 
               <p className="case-label">Car Model: {props.car.car_model}</p>
