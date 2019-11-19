@@ -8,7 +8,7 @@ import axios from 'axios';
  * Define helper
  */
 
-const axioswithAuth = () => {
+const axiosWithAuth = () => {
   const token = localStorage.getItem('token');
 
   return axios.create({
@@ -23,4 +23,4 @@ const axioswithAuth = () => {
  * Export helper
  */
 
-export default axioswithAuth;
+export default axiosWithAuth;

@@ -3,6 +3,8 @@
  */
 
 import React from 'react';
+import { imagesRef } from '../helpers/firebase';
+
 
 /**
  *  Import styles
@@ -14,14 +16,12 @@ import React from 'react';
  * Define component
  */
 
-function CarFixForm(props) {
-
-  
+function UserImages(props) {
 
     return (
       <>
         
-        <h1>My Cars</h1>
+        
 
       </>
     );
@@ -31,4 +31,4 @@ function CarFixForm(props) {
  * Export component
  */
 
-export default CarFixForm;
+export default UserImages;

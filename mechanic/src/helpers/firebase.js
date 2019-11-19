@@ -59,13 +59,13 @@ var uiConfig = {
   }
 
 
-  // const storage = firebase.storage();
-  // const storageRef = storage.ref();
-  // const documentsRef = storageRef.child('documents');
+  const storage = firebase.storage();
+  const storageRef = storage.ref();
+  const imagesRef = storageRef.child('images');
   
-  // export {
-  //   documentsRef
-  // }
+  export {
+    imagesRef
+  }
   
 
   export default wrappedStart;
