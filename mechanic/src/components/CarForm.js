@@ -79,8 +79,6 @@ function CarForm(props) {
 
     return (
       <>
-        
-    
 
       <FormControl className={classes.formControl} noValidate autoComplete="off">
 

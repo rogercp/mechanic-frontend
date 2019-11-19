@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -18,6 +18,7 @@ import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { green, red } from '@material-ui/core/colors';
 import Box from '@material-ui/core/Box';
 import CarAddModal from './CarAddModal';
+import { axiosWithAuth } from '../helpers/index';
 /**
  *  Import styles
  */
@@ -56,8 +57,10 @@ const useStyles = makeStyles(theme => ({
 function CarShow(props) {
   const classes = useStyles();
 
+  const [cars,setCars] = useState([])
   const [open, setOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
+
   /**
    * Dialog Methods
    */
@@ -75,12 +78,22 @@ function CarShow(props) {
       setErrorOpen(false);
   }
   
-
   const onOpen = async e => {
     e.preventDefault();
     handleOpen();
-       
-};
+     
+  };
+
+  useEffect(() => {
+    async function fetchCars() {
+        const res = await axiosWithAuth().get(`${process.env.REACT_APP_API_URL}/cars`); 
+        setCars(res.data);
+        console.log(res)
+    }
+    fetchCars()
+    
+}, []);
+
 
 
     return (

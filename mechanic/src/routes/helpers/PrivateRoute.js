@@ -14,7 +14,6 @@ import axios from 'axios';
 const PrivateRoute = ({ component: Component, errorBoundary: ErrorBoundary, path, exact }) => {
 
     firebase.auth().onAuthStateChanged(async (user)=>{
-        console.log("privaterun")
         if(user){
             
 
