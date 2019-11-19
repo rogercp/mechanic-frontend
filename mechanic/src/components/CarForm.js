@@ -58,9 +58,11 @@ function CarForm(props) {
   
   const classes = useStyles();
   const [state, setState] = React.useState({
-    type: '',
-    year: '',
-
+    car_type: '',
+    car_make: '',
+    car_model:'',
+    car_nickname:'',
+    car_year:''
   });
 
   const inputLabel = React.useRef(null);
@@ -86,7 +88,7 @@ function CarForm(props) {
         <Select
           native
           className={classes.textField}
-          value={state.type}
+          value={state.car_type}
           onChange={handleChange('type')}
           inputProps={{
             name: 'type',
@@ -109,6 +111,7 @@ function CarForm(props) {
           className={classes.textField}
           label="Year"
           margin="normal"
+          value={state.car_year}
         />
        
       
@@ -117,6 +120,7 @@ function CarForm(props) {
           className={classes.textField}
           label="Make"
           margin="normal"
+          value={state.car_make}
         />
  
  
@@ -125,6 +129,7 @@ function CarForm(props) {
           className={classes.textField}
           label="Model"
           margin="normal"
+          value={state.car_model}
         />
 
 
@@ -133,6 +138,7 @@ function CarForm(props) {
           className={classes.textField}
           label="Nickname"
           margin="normal"
+          value={state.car_nickname}
         />
 
       

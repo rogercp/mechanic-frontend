@@ -19,6 +19,7 @@ import { green, red } from '@material-ui/core/colors';
 import Box from '@material-ui/core/Box';
 import CarAddModal from './CarAddModal';
 import { axiosWithAuth } from '../helpers/index';
+import CarCard from './CarCard'
 /**
  *  Import styles
  */
@@ -125,7 +126,13 @@ function CarShow(props) {
           redirectText={""}
         />
 
-
+          {cars.map(car => {
+                return (
+                    <>
+                    <CarCard car={car} numCars={cars.length}  key={car.uid} />
+                    </>
+                 );
+            })}
       </>
     );
 };
