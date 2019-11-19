@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "space-between",
     alignItems: "center",
     '&:hover':{
-       
+        boxShadow: "0 1px 2px rgba(0,0,0,0.25), 0 1px 1px rgba(0,0,0,0.22)"
       },
     [theme.breakpoints.down('md')]: {
         width: '100%',
