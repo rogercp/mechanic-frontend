@@ -11,16 +11,8 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import HomeIcon from '@material-ui/icons/Home';
-import { useMediaQuery } from 'react-responsive'
 import MenuIcon from '@material-ui/icons/Menu';
 /**
  *  Import styles
@@ -49,12 +41,6 @@ function NavBar(props) {
   const [state, setState] = React.useState({
     right: false,
   });
-  const isPhone = useMediaQuery({
-    query: '(max-device-width: 500px)'
-  })
-  const isNotPhone = useMediaQuery({
-    query: '(min-device-width: 500px)'
-  })
   
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -66,6 +52,10 @@ function NavBar(props) {
 
 
    
+  function logout() {
+    localStorage.clear()
+    window.location = '/'
+  }
 
   const sideList = side => (
     <div
@@ -95,16 +85,12 @@ function NavBar(props) {
   
 
 
-  function logout() {
-    localStorage.clear()
-    window.location = '/'
-  }
 
     return (
       <>
         
-        {isNotPhone &&
-        <nav className="nav" >
+      
+        <div className="nav" >
             <div className="links">
 
               <NavLink className="link"  activeClassName="activeNavButton" to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
@@ -129,21 +115,20 @@ function NavBar(props) {
               </NavLink>
 
             </div>
-            </nav>
-            }
-        {isPhone &&
-        
-            <>
-              <Button style={{float:"right"}} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
+            </div>
+          
+            
+            <div className="mobile">
+              <Button style={{float:"right", marginTop: "10px" }} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
               <Drawer   anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
                   {sideList ('right')}
 
               </Drawer>
-            </>
-           
+              </div>
+          
             
                      
-        }
+        
         
             
         

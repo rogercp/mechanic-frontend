@@ -48,6 +48,10 @@ const useStyles = makeStyles(theme => ({
   },
   margin: {
     margin: theme.spacing(1),
+    boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
+    '&:hover':{
+        boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
+      },
   },
 }));
 /**
@@ -104,7 +108,7 @@ function CarShow(props) {
         
         <h1>My Cars</h1>
 
-        <Fab color="primary" aria-label="add" className={classes.margin}>
+        <Fab color="none" aria-label="add"  style={{color:"darkcyan",  outline:'0'}} className={classes.margin}>
           <AddIcon
            onClick={onOpen}
            />
@@ -131,15 +135,16 @@ function CarShow(props) {
 
           {cars.length < 1 ? <div>You have no Cars</div> :
               <Grid 
+      
               item xs={12}
               sm={cars.length === 1 ? 12 : 12}
               md={cars.length === 1 ? 12 : 12}
               lg={cars.length === 1 ? 12 : 12} 
-              container spacing={3} direction="row" justify="space-evenly">
+              container direction="row" justify="space-evenly">
                   {cars.map(c => {
                       return (
                         <>
-                        <CarCard car={c}  key={caches.uid} fetchCars={c.fetchCars} />
+                        <CarCard  car={c}  key={caches.uid} fetchCars={c.fetchCars} />
                         </>
                      );
                   })}
