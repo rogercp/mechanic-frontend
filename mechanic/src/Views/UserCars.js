@@ -14,36 +14,19 @@ import { CarShow } from '../components';
 
 
 
-const useStyles = makeStyles(theme => ({
-    root: {
-      flexGrow: 1,
-    },
-    
-  }));
-
-
 /**
  * Define component
  */
 
 function UserSettings(props) {
 
-    const classes = useStyles();
+   
     return (
         <>
-       
-
-            {/* <Grid item xs={12} sm={6} >
-                <div style={{backgroundColor:"",height:"100vh"}}>
-                    <CarForm/>
-                    <CarMaintenceForm/>
-                </div>
-            </Grid> */}
-        
            
-                <div >
-                    <CarShow/>
-                </div>
+            <div style={{backgroundColor:"grey"}}>
+                <CarShow/>
+            </div>
             
         
      

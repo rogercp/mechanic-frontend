@@ -12,6 +12,9 @@ import CardMedia from '@material-ui/core/CardMedia'
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { axiosWithAuth } from '../helpers/index';
+import EditIcon from '@material-ui/icons/Edit';
+import AllOutIcon from '@material-ui/icons/AllOut';
+import InfoIcon from '@material-ui/icons/Info';
 
 /**
  * Define styles
@@ -42,8 +45,9 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
+    boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
     '&:hover':{
-        boxShadow: "0 1px 2px rgba(0,0,0,0.25), 0 1px 1px rgba(0,0,0,0.22)"
+        boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
       },
     [theme.breakpoints.down('md')]: {
         width: '100%',
@@ -71,7 +75,8 @@ const useStyles = makeStyles(theme => ({
         alignItems:'center',
       },
       margin:{
-          color:'red'
+          color:'red',
+            outline:'0',
       }
       
 }))
@@ -105,7 +110,7 @@ const MediatorCard = (props) => {
             <div className={classes.top}>
             <h5 className='card-name'> {props.car.car_nickname}</h5> 
             <IconButton aria-label="delete" className={classes.margin} onClick={handleDelete}>
-                    <DeleteIcon />
+                    <DeleteIcon style={{outline:0}} />
             </IconButton> 
             </div>
               <img style={{height:"50%",width:"90%"}} src='https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=blue-bmw-sedan-near-green-lawn-grass-170811.jpg&fm=jpg' />
@@ -115,6 +120,10 @@ const MediatorCard = (props) => {
               <p className="case-label">Nick Name: {props.car.car_nickname}</p>
               <p className="case-label">Year: {props.car.car_year}</p>   
           </CardContent>
+
+          <EditIcon style={{marginRight:"10px"}} />
+
+          <AllOutIcon  style={{marginLeft:"10px"}}  />
 
         </Card>
       
