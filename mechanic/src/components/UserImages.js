@@ -17,7 +17,7 @@ import { imagesRef } from '../helpers/firebase';
  */
 
 function UserImages(props) {
-
+    const fileRef = documentsRef.child(`images/${props.document.file_name}`);
 
     return (
       <>
