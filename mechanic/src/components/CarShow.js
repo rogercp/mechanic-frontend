@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import React from 'react';
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -17,6 +17,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { green, red } from '@material-ui/core/colors';
 import Box from '@material-ui/core/Box';
+import CarAddModal from './CarAddModal';
 /**
  *  Import styles
  */
@@ -54,7 +55,33 @@ const useStyles = makeStyles(theme => ({
 
 function CarShow(props) {
   const classes = useStyles();
-    
+
+  const [open, setOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
+  /**
+   * Dialog Methods
+   */
+
+  function handleOpen() {
+      setOpen(true);
+  }
+  function handleErrorOpen() {
+      setErrorOpen(true);
+  }
+  function handleClose() {
+      setOpen(false);
+  }
+  function handleErrorClose() {
+      setErrorOpen(false);
+  }
+  
+
+  const onOpen = async e => {
+    e.preventDefault();
+    handleOpen();
+       
+};
+
 
     return (
       <>
@@ -62,8 +89,28 @@ function CarShow(props) {
         <h1>My Cars</h1>
 
         <Fab color="primary" aria-label="add" className={classes.margin}>
-          <AddIcon />
+          <AddIcon
+           onClick={onOpen}
+           />
         </Fab>
+
+        <CarAddModal
+          open={open}
+          onClose={handleClose}
+          titleText={"Invoice created"}
+          bodyText={""}
+          redirect={"/mediator-cases"}
+          redirectText={"Mediator Cases"}
+            />
+
+        <CarAddModal
+          open={errorOpen}
+          onClose={handleErrorClose}
+          titleText={"Error creating invoice"}
+          bodyText={"Please try again"}
+          redirect={""}
+          redirectText={""}
+        />
 
 
       </>

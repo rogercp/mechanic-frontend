@@ -33,12 +33,12 @@ function UserSettings(props) {
         <>
         <Grid container spacing={0}>
 
-            <Grid item xs={12} sm={6} >
+            {/* <Grid item xs={12} sm={6} >
                 <div style={{backgroundColor:"",height:"100vh"}}>
                     <CarForm/>
                     <CarMaintenceForm/>
                 </div>
-            </Grid>
+            </Grid> */}
         
             <Grid item xs={12} sm={6} >
                 <div style={{backgroundColor:"orange",height:"100vh"}}>
