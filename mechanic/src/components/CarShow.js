@@ -131,15 +131,16 @@ function CarShow(props) {
 
           {cars.length < 1 ? <div>You have no Cars</div> :
               <Grid 
+      
               item xs={12}
               sm={cars.length === 1 ? 12 : 12}
               md={cars.length === 1 ? 12 : 12}
               lg={cars.length === 1 ? 12 : 12} 
-              container spacing={3} direction="row" justify="space-evenly">
+              container direction="row" justify="space-evenly">
                   {cars.map(c => {
                       return (
                         <>
-                        <CarCard car={c}  key={caches.uid} fetchCars={c.fetchCars} />
+                        <CarCard  car={c}  key={caches.uid} fetchCars={c.fetchCars} />
                         </>
                      );
                   })}

@@ -41,7 +41,7 @@ function UserSettings(props) {
             </Grid> */}
         
            
-                <div style={{}}>
+                <div >
                     <CarShow/>
                 </div>
             

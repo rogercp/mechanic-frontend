@@ -1,6 +1,6 @@
 @import './variables.scss';
 
-nav{
+.nav{
 background-color:$secondary;
  height: 3.5rem;
  display: flex;
@@ -59,6 +59,7 @@ i{
         padding: .3rem;
         outline:0;
         border-radius: .2rem;
+        
         &:hover {
             box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
             color:$primary;
@@ -67,4 +68,22 @@ i{
             }
 }
 
+// queries for navbar
 
+@media screen and (max-width: 500px) {
+    .nav{
+        z-index:-50;
+        visibility: hidden;
+        overflow-x: hidden;
+        height:0;
+        width:0;
+        overflow:hidden;
+    }
+    
+  }
+@media screen and (min-width: 500px) {
+    .mobile{
+        display:none;
+      
+    }
+  }

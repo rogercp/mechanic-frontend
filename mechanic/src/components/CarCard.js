@@ -16,6 +16,10 @@ import { axiosWithAuth } from '../helpers/index';
 /**
  * Define styles
  */
+import  '../styles/carshow.scss'
+
+
+
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -34,10 +38,13 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 2),
     outline: 'none',
-    margin:'.5%',
+    margin:'1%',
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
+    '&:hover':{
+       
+      },
     [theme.breakpoints.down('md')]: {
         width: '100%',
         height: '100%',
@@ -48,20 +55,6 @@ const useStyles = makeStyles(theme => ({
         height: '100%',
     },
   },
-  
-    card: {
-        maxWidth: 345,
-        '&:hover':{
-            animation: 'anim 0.5s 1',
-            transform: 'translateZ(30px)',
-            cursor: 'pointer',
-          },
-      },
-      
-      media: {
-       
-        
-      },
       expand: {
         transform: 'rotate(0deg)',
         marginLeft: 'auto',
@@ -106,7 +99,7 @@ const MediatorCard = (props) => {
   return (
     <>
         
-        <Card className={classes.paper} style={{border:"black",maxWidth:"400px"}}>
+        <Card className={classes.paper}  style={{border:"black",maxWidth:"400px"}}>
             
           <CardContent>
             <div className={classes.top}>

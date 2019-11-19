@@ -14,7 +14,7 @@ function App() {
     return (
       <div>
       <BrowserRouter>
-        <NavBar/>
+        <NavBar className="navbar"/>
             <Switch>
               {UserRouter}
               <Route key={uuid.v4()} component={NoMatch} />
@@ -29,7 +29,6 @@ function App() {
     return (
       <div>
       <BrowserRouter>
-        
             <Switch>
               {Routes}
               <Route key={uuid.v4()} component={NoMatch} />
