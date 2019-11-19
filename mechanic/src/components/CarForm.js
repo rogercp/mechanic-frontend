@@ -18,6 +18,7 @@ import Icon from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { axiosWithAuth } from '../helpers/index';
 
 
 /**
@@ -78,18 +79,31 @@ function CarForm(props) {
     });
   };
 
+  const onSubmitHandler = e => {
+    e.preventDefault();
+    axiosWithAuth()
+        .post(`/cars`, state)
+        .then(res => {  
+            window.location.reload();
+        })
+        .catch(err => {      
+        });
+};
+
+
 
     return (
       <>
 
-      <FormControl className={classes.formControl} noValidate autoComplete="off">
+      <FormControl className={classes.formControl} noValidate autoComplete="off" onSubmit={onSubmitHandler}>
 
         <InputLabel id="demo-simple-select-label">Type</InputLabel>
         <Select
           native
+          name="car_type"
           className={classes.textField}
           value={state.car_type}
-          onChange={handleChange('type')}
+          onChange={handleChange('car_type')}
           inputProps={{
             name: 'type',
             id: 'outlined-type-native-simple',
@@ -108,45 +122,56 @@ function CarForm(props) {
       
         <TextField
           id="standard-basic"
+          name="car_year"
           className={classes.textField}
           label="Year"
           margin="normal"
           value={state.car_year}
+          name="car_make"
+          onChange={handleChange('car_year')}
         />
        
       
         <TextField
           id="standard-basic"
+          name="car_make"
           className={classes.textField}
           label="Make"
           margin="normal"
           value={state.car_make}
+          onChange={handleChange('car_make')}
         />
  
  
         <TextField
           id="standard-basic"
+          name="car_model"
           className={classes.textField}
           label="Model"
           margin="normal"
           value={state.car_model}
+          onChange={handleChange('car_model')}
         />
 
 
         <TextField
           id="standard-basic"
+          name="car_nickname"
           className={classes.textField}
           label="Nickname"
           margin="normal"
           value={state.car_nickname}
+          onChange={handleChange('car_nickname')}
         />
 
       
         <Button
         variant="contained"
+        name="car_type"
         color="default"
         className={classes.button}
         startIcon={<CloudUploadIcon />}
+        onChange={handleChange('car_type')}
         >
         Picture
         </Button>
@@ -156,6 +181,7 @@ function CarForm(props) {
         color="primary"
         size="large"
         className={classes.button}
+        onClick={onSubmitHandler}
         >
         Enter
         </Button>
