@@ -21,6 +21,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@material-ui/core/Button";
 
 
 /**
@@ -145,12 +147,13 @@ const MediatorCard = (props) => {
           <CardContent>
 
             <div className={classes.top}>
-            <h5 className='card-name'> {props.car.car_nickname}</h5> 
-           
-
-            <IconButton aria-label="delete" className={classes.margin} onClick={handleDelete}>
-                <DeleteIcon style={{outline:0}} />    
-            </IconButton> 
+            <h3 className='card-name'> {props.car.car_nickname}</h3> 
+            <Button
+            style={{color:"darkcyan",  outline:'0'}}
+                    onClick={handlefullOpen}
+                    >
+            <AllOutIcon  />
+            </Button>
             </div>
 
               <img style={{height:"50%",width:"100%",margin:"0 auto"}} src='https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=blue-bmw-sedan-near-green-lawn-grass-170811.jpg&fm=jpg' />
@@ -168,16 +171,26 @@ const MediatorCard = (props) => {
                 <h4>Details</h4>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                <Typography style={{display:"flex",flexDirection:"row",alignItems:"spaceAround"}}>
+                
+                <div style={{display:"flex",flexDirection:"column"}}>
                     <div>
-                    <p className="case-label">Car Type: {props.car.car_type}</p> 
-                    <p className="case-label">{props.car.car_year} {props.car.car_make} {props.car.car_model} </p> 
+                        <p className="case-label">Car Type: {props.car.car_type}</p> 
+                        <p className="case-label">{props.car.car_year} {props.car.car_make} {props.car.car_model} </p> 
                     </div>
-                    <div style={{display:"flex"}}>
-                    <AllOutIcon  style={{marginLeft:"10px"}} onClick={handlefullOpen} />
-                    <EditIcon style={{marginRight:"10px"}} />
-                    </div>
-                </Typography>
+                    <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >
+                        <Button
+                            id="edit"
+                        >
+                            <EditIcon />
+                        </Button>
+                        
+                        
+                    <IconButton id="del"  aria-label="delete"  className={classes.margin} onClick={handleDelete}>
+                            <DeleteIcon  />    
+                        </IconButton> 
+                    
+                    </Toolbar>
+               </div>
                 </ExpansionPanelDetails>
             </ExpansionPanel>
                 </div>
@@ -194,6 +207,7 @@ const MediatorCard = (props) => {
     </>
   );
 };
+
 
 /**
  * Export component
