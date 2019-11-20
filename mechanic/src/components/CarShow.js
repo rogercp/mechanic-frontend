@@ -59,8 +59,6 @@ const useStyles = makeStyles(theme => ({
  */
 
 
-
-
 function CarShow(props) {
   const classes = useStyles();
 
@@ -69,7 +67,7 @@ function CarShow(props) {
   const [errorOpen, setErrorOpen] = useState(false);
 
   /**
-   * Dialog Methods
+   * Modal Methods
    */
 
   function handleOpen() {
@@ -85,12 +83,7 @@ function CarShow(props) {
       setErrorOpen(false);
   }
   
-  const onOpen = async e => {
-    e.preventDefault();
-    handleOpen();
-     
-  };
-
+  
   useEffect(() => {
     async function fetchCars() {
         const res = await axiosWithAuth().get(`${process.env.REACT_APP_API_URL}/cars`); 
@@ -110,7 +103,7 @@ function CarShow(props) {
 
         <Fab color="none" aria-label="add"  style={{color:"darkcyan",  outline:'0'}} className={classes.margin}>
           <AddIcon
-           onClick={onOpen}
+           onClick={handleOpen}
            />
         </Fab>
 
@@ -123,15 +116,16 @@ function CarShow(props) {
           redirectText={"cars"}
           />
 
-        <CarAddModal
+        {/* <CarAddModal
           open={errorOpen}
           onClose={handleErrorClose}
           titleText={"Error creating car"}
           bodyText={"Please try again"}
           redirect={""}
           redirectText={""}
-        />
+        /> */}
 
+          
 
           {cars.length < 1 ? <div>You have no Cars</div> :
               <Grid 

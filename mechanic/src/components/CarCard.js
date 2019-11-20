@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -15,6 +15,15 @@ import { axiosWithAuth } from '../helpers/index';
 import EditIcon from '@material-ui/icons/Edit';
 import AllOutIcon from '@material-ui/icons/AllOut';
 import InfoIcon from '@material-ui/icons/Info';
+import CarModalExpand from './CarModalExpand'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@material-ui/core/Button";
+
 
 /**
  * Define styles
@@ -39,7 +48,7 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 2),
+    padding: theme.spacing(0, 0, 0),
     outline: 'none',
     margin:'1%',
     flexDirection: "column",
@@ -54,7 +63,7 @@ const useStyles = makeStyles(theme => ({
         height: '100%',
     },
     [theme.breakpoints.down('sm')]: {
-        padding: theme.spacing(1,2,2),
+        padding: theme.spacing(0,0,0),
         width:'100%',
         height: '100%',
     },
@@ -77,7 +86,10 @@ const useStyles = makeStyles(theme => ({
       margin:{
           color:'red',
             outline:'0',
-      }
+      },
+      root: {
+        width: '100%',
+      },
       
 }))
 
@@ -85,9 +97,13 @@ const useStyles = makeStyles(theme => ({
  * Define component
  */
 
+function getModalStyle() {}
+
 const MediatorCard = (props) => {
   const classes = useStyles();
-
+    const [modalStyle] = useState(getModalStyle);
+    const [fullopen, setFullOpen] = useState(false);
+    const [errorOpen, setErrorOpen] = useState(false);
 
   function handleDelete() {
     axiosWithAuth()
@@ -101,35 +117,97 @@ const MediatorCard = (props) => {
         });
 }
 
+
+
+/**
+     * Modal functions
+     */
+
+   
+    const handlefullOpen = () => {
+        setFullOpen(true);
+    };
+    const handlefullClose = () => {
+        setFullOpen(false);
+    };
+
+    function handleErrorClose() {
+        setErrorOpen(false);
+    }
+    
+    function handleErrorOpen() {
+        setErrorOpen(true);
+    }
+
   return (
     <>
         
         <Card className={classes.paper}  style={{border:"black",maxWidth:"400px"}}>
             
           <CardContent>
+
             <div className={classes.top}>
-            <h5 className='card-name'> {props.car.car_nickname}</h5> 
-            <IconButton aria-label="delete" className={classes.margin} onClick={handleDelete}>
-                    <DeleteIcon style={{outline:0}} />
-            </IconButton> 
+            <h3 className='card-name'> {props.car.car_nickname}</h3> 
+            <Button
+            style={{color:"darkcyan",  outline:'0'}}
+                    onClick={handlefullOpen}
+                    >
+            <AllOutIcon  />
+            </Button>
             </div>
-              <img style={{height:"50%",width:"90%"}} src='https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=blue-bmw-sedan-near-green-lawn-grass-170811.jpg&fm=jpg' />
-              <p className="case-label">Car Type: {props.car.car_type}</p> 
-              <p className="case-label">Car Make: {props.car.car_make}</p> 
-              <p className="case-label">Car Model: {props.car.car_model}</p>
-              <p className="case-label">Nick Name: {props.car.car_nickname}</p>
-              <p className="case-label">Year: {props.car.car_year}</p>   
+
+              <img style={{height:"50%",width:"100%",margin:"0 auto"}} src='https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=blue-bmw-sedan-near-green-lawn-grass-170811.jpg&fm=jpg' />
+             
+
+              <div className={classes.root} style={{width:"100%"}}>
+              <ExpansionPanel>
+
+                  
+                <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                >
+                <h4>Details</h4>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                
+                <div style={{display:"flex",flexDirection:"column"}}>
+                    <div>
+                        <p className="case-label">Car Type: {props.car.car_type}</p> 
+                        <p className="case-label">{props.car.car_year} {props.car.car_make} {props.car.car_model} </p> 
+                    </div>
+                    <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >
+                        <Button
+                            id="edit"
+                        >
+                            <EditIcon />
+                        </Button>
+                        
+                        
+                    <IconButton id="del"  aria-label="delete"  className={classes.margin} onClick={handleDelete}>
+                            <DeleteIcon  />    
+                        </IconButton> 
+                    
+                    </Toolbar>
+               </div>
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
+                </div>
           </CardContent>
 
-          <EditIcon style={{marginRight:"10px"}} />
-
-          <AllOutIcon  style={{marginLeft:"10px"}}  />
-
         </Card>
+        <CarModalExpand
+                open={fullopen}
+                handleClose={handlefullClose}
+                onClose={handlefullClose}
+                car={props.car}
+            />
       
     </>
   );
 };
+
 
 /**
  * Export component
