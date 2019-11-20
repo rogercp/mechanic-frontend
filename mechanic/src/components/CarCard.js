@@ -16,6 +16,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import AllOutIcon from '@material-ui/icons/AllOut';
 import InfoIcon from '@material-ui/icons/Info';
 import CarModalExpand from './CarModalExpand'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 /**
@@ -41,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 2),
+    padding: theme.spacing(0, 0, 0),
     outline: 'none',
     margin:'1%',
     flexDirection: "column",
@@ -56,7 +61,7 @@ const useStyles = makeStyles(theme => ({
         height: '100%',
     },
     [theme.breakpoints.down('sm')]: {
-        padding: theme.spacing(1,2,2),
+        padding: theme.spacing(0,0,0),
         width:'100%',
         height: '100%',
     },
@@ -79,7 +84,10 @@ const useStyles = makeStyles(theme => ({
       margin:{
           color:'red',
             outline:'0',
-      }
+      },
+      root: {
+        width: '100%',
+      },
       
 }))
 
@@ -91,12 +99,9 @@ function getModalStyle() {}
 
 const MediatorCard = (props) => {
   const classes = useStyles();
-    const [open, setOpen] = useState(false);
     const [modalStyle] = useState(getModalStyle);
     const [fullopen, setFullOpen] = useState(false);
-    const [completeopen, setCompleteOpen] = useState(false);
-    const [textState, setText] = useState("");
-   
+    const [errorOpen, setErrorOpen] = useState(false);
 
   function handleDelete() {
     axiosWithAuth()
@@ -116,13 +121,7 @@ const MediatorCard = (props) => {
      * Modal functions
      */
 
-    const handleOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-
+   
     const handlefullOpen = () => {
         setFullOpen(true);
     };
@@ -130,15 +129,13 @@ const MediatorCard = (props) => {
         setFullOpen(false);
     };
 
-    const handlecompleteClose = () => {
-        setCompleteOpen(false);
-    };
-
-    const handlecompleteOpen = () => {
-        setCompleteOpen(true);
-    };
+    function handleErrorClose() {
+        setErrorOpen(false);
+    }
     
-    
+    function handleErrorOpen() {
+        setErrorOpen(true);
+    }
 
   return (
     <>
@@ -146,32 +143,53 @@ const MediatorCard = (props) => {
         <Card className={classes.paper}  style={{border:"black",maxWidth:"400px"}}>
             
           <CardContent>
+
             <div className={classes.top}>
             <h5 className='card-name'> {props.car.car_nickname}</h5> 
+           
+
             <IconButton aria-label="delete" className={classes.margin} onClick={handleDelete}>
-                    <DeleteIcon style={{outline:0}} />
+                <DeleteIcon style={{outline:0}} />    
             </IconButton> 
             </div>
-              <img style={{height:"50%",width:"90%"}} src='https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=blue-bmw-sedan-near-green-lawn-grass-170811.jpg&fm=jpg' />
-              <p className="case-label">Car Type: {props.car.car_type}</p> 
-              <p className="case-label">Car Make: {props.car.car_make}</p> 
-              <p className="case-label">Car Model: {props.car.car_model}</p>
-              <p className="case-label">Nick Name: {props.car.car_nickname}</p>
-              <p className="case-label">Year: {props.car.car_year}</p>   
+
+              <img style={{height:"50%",width:"100%",margin:"0 auto"}} src='https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=blue-bmw-sedan-near-green-lawn-grass-170811.jpg&fm=jpg' />
+             
+
+              <div className={classes.root} style={{width:"100%"}}>
+              <ExpansionPanel>
+
+                  
+                <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                >
+                <h4>Details</h4>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                <Typography style={{display:"flex",flexDirection:"row",alignItems:"spaceAround"}}>
+                    <div>
+                    <p className="case-label">Car Type: {props.car.car_type}</p> 
+                    <p className="case-label">{props.car.car_year} {props.car.car_make} {props.car.car_model} </p> 
+                    </div>
+                    <div style={{display:"flex"}}>
+                    <AllOutIcon  style={{marginLeft:"10px"}} onClick={handlefullOpen} />
+                    <EditIcon style={{marginRight:"10px"}} />
+                    </div>
+                </Typography>
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
+                </div>
           </CardContent>
 
-          <CarModalExpand
-                open={completeopen}
-                handleClose={handlefullClose}
-                onClose={handlecompleteClose}
-                carId={props.car.id}
-            />
-
-          <EditIcon style={{marginRight:"10px"}} />
-
-          <AllOutIcon  style={{marginLeft:"10px"}} onClick={handlecompleteOpen} />
-
         </Card>
+        <CarModalExpand
+                open={fullopen}
+                handleClose={handlefullClose}
+                onClose={handlefullClose}
+                car={props.car}
+            />
       
     </>
   );
