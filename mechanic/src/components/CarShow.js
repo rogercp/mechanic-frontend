@@ -59,8 +59,6 @@ const useStyles = makeStyles(theme => ({
  */
 
 
-
-
 function CarShow(props) {
   const classes = useStyles();
 
@@ -69,7 +67,7 @@ function CarShow(props) {
   const [errorOpen, setErrorOpen] = useState(false);
 
   /**
-   * Dialog Methods
+   * Modal Methods
    */
 
   function handleOpen() {
@@ -132,6 +130,7 @@ function CarShow(props) {
           redirectText={""}
         />
 
+          
 
           {cars.length < 1 ? <div>You have no Cars</div> :
               <Grid 

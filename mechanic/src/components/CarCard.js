@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -15,6 +15,8 @@ import { axiosWithAuth } from '../helpers/index';
 import EditIcon from '@material-ui/icons/Edit';
 import AllOutIcon from '@material-ui/icons/AllOut';
 import InfoIcon from '@material-ui/icons/Info';
+import CarModalExpand from './CarModalExpand'
+
 
 /**
  * Define styles
@@ -85,9 +87,16 @@ const useStyles = makeStyles(theme => ({
  * Define component
  */
 
+function getModalStyle() {}
+
 const MediatorCard = (props) => {
   const classes = useStyles();
-
+    const [open, setOpen] = useState(false);
+    const [modalStyle] = useState(getModalStyle);
+    const [fullopen, setFullOpen] = useState(false);
+    const [completeopen, setCompleteOpen] = useState(false);
+    const [textState, setText] = useState("");
+   
 
   function handleDelete() {
     axiosWithAuth()
@@ -100,6 +109,36 @@ const MediatorCard = (props) => {
             console.error(error);
         });
 }
+
+
+
+/**
+     * Modal functions
+     */
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handlefullOpen = () => {
+        setFullOpen(true);
+    };
+    const handlefullClose = () => {
+        setFullOpen(false);
+    };
+
+    const handlecompleteClose = () => {
+        setCompleteOpen(false);
+    };
+
+    const handlecompleteOpen = () => {
+        setCompleteOpen(true);
+    };
+    
+    
 
   return (
     <>
@@ -121,9 +160,16 @@ const MediatorCard = (props) => {
               <p className="case-label">Year: {props.car.car_year}</p>   
           </CardContent>
 
+          <CarModalExpand
+                open={completeopen}
+                handleClose={handlefullClose}
+                onClose={handlecompleteClose}
+                carId={props.car.id}
+            />
+
           <EditIcon style={{marginRight:"10px"}} />
 
-          <AllOutIcon  style={{marginLeft:"10px"}}  />
+          <AllOutIcon  style={{marginLeft:"10px"}} onClick={handlecompleteOpen} />
 
         </Card>
       
