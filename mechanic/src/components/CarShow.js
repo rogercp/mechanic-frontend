@@ -88,7 +88,6 @@ function CarShow(props) {
     async function fetchCars() {
         const res = await axiosWithAuth().get(`${process.env.REACT_APP_API_URL}/cars`); 
         setCars(res.data);
-        console.log(res)
     }
     fetchCars()
     

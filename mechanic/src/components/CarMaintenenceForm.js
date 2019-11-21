@@ -64,16 +64,22 @@ const useStyles = makeStyles(theme => ({
  * Define component
  */
 
+
+// fix_date: (new Date())
+
 function CarMaintenenceForm(props) {
   const classes = useStyles();
-  
   const [values, setValues] = React.useState({
     fix_not_maintenence: false,
     fix:'',
     fix_price: '',
     fix_description: '',
-    fix_date: (new Date())
+    fix_date: new Date()
   });
+
+  // const dateToString =  values.fix_date.toString()
+
+  // console.log({dateToString},"dateToString")
 
   const handleChange2 = name => event => {
     setValues({ ...values, [name]: event.target.checked });
@@ -83,12 +89,18 @@ function CarMaintenenceForm(props) {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  // const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const [selectedDate, setSelectedDate] = React.useState(
+    new Date()
+    );
+
+  // const handleDateChange = date => {
+  //   setValues.fix_date = date;
+  //   console.log(typeof values.fix_date)
+  // };
 
   const handleDateChange = date => {
-    setValues.selectedDate = date;
+    setSelectedDate(date)
   };
-
     return (
       <>
       <h1> CarMaintenence </h1>
@@ -106,7 +118,9 @@ function CarMaintenenceForm(props) {
         />
       <TextField
           id="outlined-textarea"
-          placeholder={values.fix_not_maintenence === false ? "maintence" : "repair"}
+          onChange={handleChange('fix')}
+          value={values.fix}
+          placeholder={values.fix_not_maintenence === false ? "Maintence" : "Repair"}
           multiline
           className={classes.textField}
           margin="normal"
@@ -115,6 +129,7 @@ function CarMaintenenceForm(props) {
         <TextField
           id="outlined-multiline-static"
           multiline
+          value={values.fix_description}
           onChange={handleChange('fix_description')}
           rows="4"
           placeholder="Description"
@@ -126,6 +141,7 @@ function CarMaintenenceForm(props) {
 
       <TextField
           label="Total Cost"
+          value={values.fix_price}
           id="standard-start-adornment"
           onChange={handleChange('fix_price')}
           className={clsx(classes.margin, classes.textField)}
@@ -140,8 +156,8 @@ function CarMaintenenceForm(props) {
           id="date-picker-dialog"
           label="Task Completed"
           format="MM/dd/yyyy"
-          value={values.fix_date}
-          onChange={handleChange('fix_date')}
+          value={selectedDate}
+          onChange={handleDateChange}
           KeyboardButtonProps={{
               'aria-label': 'change date',
             }}
