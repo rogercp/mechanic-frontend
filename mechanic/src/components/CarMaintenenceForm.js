@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import React from 'react';
+import React, {useEffect}from 'react';
 import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
@@ -26,6 +26,8 @@ import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { axiosWithAuth } from '../helpers/index';
+
 
 /**
  *  Import styles
@@ -74,13 +76,11 @@ function CarMaintenenceForm(props) {
     fix:'',
     fix_price: '',
     fix_description: '',
-    fix_date: new Date()
+    fix_date: new Date().toLocaleString()
   });
 
-  // const dateToString =  values.fix_date.toString()
 
-  // console.log({dateToString},"dateToString")
-
+  console.log(values,"values")
   const handleChange2 = name => event => {
     setValues({ ...values, [name]: event.target.checked });
   };
@@ -89,18 +89,29 @@ function CarMaintenenceForm(props) {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date()
-    );
-
-  // const handleDateChange = date => {
-  //   setValues.fix_date = date;
-  //   console.log(typeof values.fix_date)
-  // };
-
+  
   const handleDateChange = date => {
-    setSelectedDate(date)
+    setValues({fix_date : date})
   };
+
+
+//   const onSubmitHandler = e => {
+//     e.preventDefault();
+
+
+//     axiosWithAuth()
+//         .post(`/`, state)
+//         .then(res => {  
+//             window.location.reload();
+//         })
+//         .catch(err => {      
+//         });
+// };
+
+
+
+
+  
     return (
       <>
       <h1> CarMaintenence </h1>
@@ -156,7 +167,7 @@ function CarMaintenenceForm(props) {
           id="date-picker-dialog"
           label="Task Completed"
           format="MM/dd/yyyy"
-          value={selectedDate}
+          value={values.fix_date}
           onChange={handleDateChange}
           KeyboardButtonProps={{
               'aria-label': 'change date',
