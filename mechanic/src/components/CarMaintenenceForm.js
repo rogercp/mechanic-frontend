@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import React from 'react';
+import React, {useEffect}from 'react';
 import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
@@ -26,6 +26,8 @@ import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { axiosWithAuth } from '../helpers/index';
+
 
 /**
  *  Import styles
@@ -64,33 +66,52 @@ const useStyles = makeStyles(theme => ({
  * Define component
  */
 
+
+// fix_date: (new Date())
+
 function CarMaintenenceForm(props) {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    isaFix: false,
-  });
   const [values, setValues] = React.useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
-    showPassword: false,
+    fix_not_maintenence: false,
+    fix:'',
+    fix_price: '',
+    fix_description: '',
+    fix_date: new Date().toLocaleString()
   });
 
+
+  console.log(values,"values")
   const handleChange2 = name => event => {
-    setState({ ...state, [name]: event.target.checked });
+    setValues({ ...values, [name]: event.target.checked });
   };
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
-
+  
   const handleDateChange = date => {
-    setSelectedDate(date);
+    setValues({fix_date : date})
   };
 
+
+//   const onSubmitHandler = e => {
+//     e.preventDefault();
+
+
+//     axiosWithAuth()
+//         .post(`/`, state)
+//         .then(res => {  
+//             window.location.reload();
+//         })
+//         .catch(err => {      
+//         });
+// };
+
+
+
+
+  
     return (
       <>
       <h1> CarMaintenence </h1>
@@ -99,16 +120,18 @@ function CarMaintenenceForm(props) {
       <form className={classes.container} noValidate autoComplete="off"> 
     
       <FormControl fullWidth className={classes.margin}>
-      <p>{state.isaFix === false ? "maintence" : "repair" }</p>
+      <p>{values.fix_not_maintenence === false ? "maintence" : "repair" }</p>
         <Switch
-        onChange={handleChange2('isaFix')}
-        value="isaFix"
+        onChange={handleChange2('fix_not_maintenence')}
+        value="fix_not_maintenence"
         color="default"
         inputProps={{ 'aria-label': 'checkbox with default color' }}
         />
       <TextField
           id="outlined-textarea"
-          placeholder={state.isaFix === false ? "maintence" : "repair"}
+          onChange={handleChange('fix')}
+          value={values.fix}
+          placeholder={values.fix_not_maintenence === false ? "Maintence" : "Repair"}
           multiline
           className={classes.textField}
           margin="normal"
@@ -117,6 +140,8 @@ function CarMaintenenceForm(props) {
         <TextField
           id="outlined-multiline-static"
           multiline
+          value={values.fix_description}
+          onChange={handleChange('fix_description')}
           rows="4"
           placeholder="Description"
           className={classes.textField}
@@ -127,7 +152,9 @@ function CarMaintenenceForm(props) {
 
       <TextField
           label="Total Cost"
+          value={values.fix_price}
           id="standard-start-adornment"
+          onChange={handleChange('fix_price')}
           className={clsx(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
@@ -140,7 +167,7 @@ function CarMaintenenceForm(props) {
           id="date-picker-dialog"
           label="Task Completed"
           format="MM/dd/yyyy"
-          value={selectedDate}
+          value={values.fix_date}
           onChange={handleDateChange}
           KeyboardButtonProps={{
               'aria-label': 'change date',

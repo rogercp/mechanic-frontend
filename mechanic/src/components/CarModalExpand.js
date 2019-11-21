@@ -10,7 +10,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import CloseIcon from "@material-ui/icons/Close";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
-import CarMaintenceForm from './CarMaintenenceForm'
+import CarMaintenceForm from './CarMaintenenceForm';
+import CarMaintenceShow from './CarMaintenenceShow';
 import { axiosWithAuth } from '../helpers/index';
 
 /**
@@ -26,8 +27,7 @@ const useStyles = makeStyles(theme => ({
  */
 
 function CarModalExpand(props) {
-    const [sureOpen, setSureOpen] = useState(false);
-    const classes = useStyles();
+   
     
 
     return (
@@ -44,7 +44,7 @@ function CarModalExpand(props) {
                     </IconButton>
             </Toolbar>
             <CarMaintenceForm/>
-                
+            <CarMaintenceShow/>
             </Dialog>
            
         </>
