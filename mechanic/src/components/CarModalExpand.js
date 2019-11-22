@@ -44,7 +44,7 @@ function CarModalExpand(props) {
                     </IconButton>
             </Toolbar>
             <CarMaintenceForm car={props.car}/>
-            <CarMaintenceShow/>
+            <CarMaintenceShow car={props.car}/>
             </Dialog>
            
         </>

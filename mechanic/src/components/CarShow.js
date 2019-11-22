@@ -86,7 +86,7 @@ function CarShow(props) {
   
   useEffect(() => {
     async function fetchCars() {
-        const res = await axiosWithAuth().get(`${process.env.REACT_APP_API_URL}/cars`); 
+        const res = await axiosWithAuth().get(`/cars`); 
         setCars(res.data);
     }
     fetchCars()

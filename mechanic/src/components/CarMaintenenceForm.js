@@ -76,7 +76,7 @@ function CarMaintenenceForm(props) {
     fix:'',
     fix_price: '',
     fix_description: '',
-    fix_date: new Date().toLocaleString()
+    // fix_date: new Date().toLocaleString()
   });
 
 
@@ -97,10 +97,12 @@ function CarMaintenenceForm(props) {
 
   const onSubmitHandler = e => {
     e.preventDefault();
+    console.log(values,"values")
+    console.log(props.car.id,"props")
     axiosWithAuth()
         .post(`/car_fix/${props.car.id}`, values)
         .then(res => {
-            console.log(res);    
+            console.log(res.data);    
         })
         .catch(err => {
             console.error(err);
