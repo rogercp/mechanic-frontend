@@ -80,7 +80,7 @@ function CarMaintenenceForm(props) {
   });
 
 
-  console.log(values,"values")
+  // console.log(values,"values")
   const handleChange2 = name => event => {
     setValues({ ...values, [name]: event.target.checked });
   };
@@ -95,19 +95,17 @@ function CarMaintenenceForm(props) {
   };
 
 
-//   const onSubmitHandler = e => {
-//     e.preventDefault();
-
-
-//     axiosWithAuth()
-//         .post(`/`, state)
-//         .then(res => {  
-//             window.location.reload();
-//         })
-//         .catch(err => {      
-//         });
-// };
-
+  const onSubmitHandler = e => {
+    e.preventDefault();
+    axiosWithAuth()
+        .post(`/car_fix/${props.car.id}`, values)
+        .then(res => {
+            console.log(res);    
+        })
+        .catch(err => {
+            console.error(err);
+        });
+};
 
 
 
@@ -117,9 +115,9 @@ function CarMaintenenceForm(props) {
       <h1> CarMaintenence </h1>
        <div className={classes.root}> 
        
-      <form className={classes.container} noValidate autoComplete="off"> 
+      <form className={classes.container} noValidate autoComplete="off" > 
     
-      <FormControl fullWidth className={classes.margin}>
+      <FormControl fullWidth className={classes.margin} onSubmit={onSubmitHandler}>
       <p>{values.fix_not_maintenence === false ? "maintence" : "repair" }</p>
         <Switch
         onChange={handleChange2('fix_not_maintenence')}
@@ -190,6 +188,7 @@ function CarMaintenenceForm(props) {
         color="primary"
         size="large"
         className={classes.button}
+        onClick={onSubmitHandler}
         >
         Enter
         </Button>
