@@ -43,8 +43,8 @@ function CarModalExpand(props) {
                         <CloseIcon />
                     </IconButton>
             </Toolbar>
-            <CarMaintenceForm/>
-            <CarMaintenceShow/>
+            <CarMaintenceForm car={props.car}/>
+            <CarMaintenceShow car={props.car}/>
             </Dialog>
            
         </>

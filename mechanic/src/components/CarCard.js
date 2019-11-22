@@ -152,7 +152,7 @@ const MediatorCard = (props) => {
             style={{color:"darkcyan",  outline:'0'}}
                     onClick={handlefullOpen}
                     >
-            <AllOutIcon  />
+            <AllOutIcon/>
             </Button>
             </div>
 
