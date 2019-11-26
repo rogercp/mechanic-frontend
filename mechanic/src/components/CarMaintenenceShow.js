@@ -5,6 +5,8 @@
 import React, { useState, useEffect} from "react";
 import { axiosWithAuth } from '../helpers/index';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import CarFixCard from './CarFixCard'
 
 /**
  *  Import styles
@@ -31,9 +33,24 @@ function CarMaintenceShow(props) {
     }, []);
     return (
       <>
-        
-      <h1>MaintenenceShow</h1>
-      <p>{carFixes.fix_description} </p>
+      
+      {carFixes.length < 1 ? <div>You have no Cars</div> :
+              <Grid 
+      
+              item xs={12}
+              sm={carFixes.length === 1 ? 12 : 12}
+              md={carFixes.length === 1 ? 12 : 12}
+              lg={carFixes.length === 1 ? 12 : 12} 
+              container direction="row" justify="space-evenly">
+                  {carFixes.map(c => {
+                      return (
+                        <>
+                        <CarFixCard carFix={c} key={caches.uid}  />
+                        </>
+                     );
+                  })}
+              </Grid>
+            }
       </>
     );
 };

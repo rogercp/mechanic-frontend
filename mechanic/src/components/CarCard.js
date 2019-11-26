@@ -123,7 +123,7 @@ const MediatorCard = (props) => {
      * Modal functions
      */
 
-   
+    
     const handlefullOpen = () => {
         setFullOpen(true);
     };
