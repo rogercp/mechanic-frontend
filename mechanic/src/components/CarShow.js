@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: green[600],
     },
-  },
+  }, 
   margin: {
     margin: theme.spacing(1),
     boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
@@ -53,6 +53,7 @@ const useStyles = makeStyles(theme => ({
         boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
       },
   },
+ 
 }));
 /**
  * Define component
