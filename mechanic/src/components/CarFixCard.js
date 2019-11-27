@@ -21,7 +21,6 @@ function CarFixCard(props) {
    
     return (
       <>
-
         {props.carFix.id}///
       </>
     );
