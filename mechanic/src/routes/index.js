@@ -4,6 +4,6 @@
  */
 
  
-export { default as Routes } from './UsersRouter';
+export { default as UsersRouter } from './UsersRouter';
 
-export { default as UserRouter } from './LoggedInRoutes';
+export { default as loggedInRoutes } from './loggedInRoutes';

@@ -8,7 +8,7 @@ import axios from "axios";
  * Define 
  */
 
-function AuthCallBack(props) {
+function AuthCallback(props) {
     firebase.auth().onAuthStateChanged(async user => {
         console.log("Authcallback")
         // User is signed in.
@@ -43,4 +43,4 @@ function AuthCallBack(props) {
  * Export view
  */
 
-export default AuthCallBack;
+export default AuthCallback;

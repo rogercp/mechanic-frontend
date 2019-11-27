@@ -1,9 +1,8 @@
 /**
  * Dependencies
  */
-
-import uuid from 'uuid';
 import React from 'react';
+import uuid from 'uuid';
 import { Route, Redirect } from 'react-router-dom';
 import { PrivateRoute } from './helpers/index';
 import {
@@ -15,7 +14,7 @@ import {
  * Define router
  */
 
-const UserRouter = [
+const loggedInRoutes = [
     <PrivateRoute key={uuid.v4()}  exact path='/home'
     component={Home}  errorBoundary={ErrorBoundary} />,
     <PrivateRoute key={uuid.v4()}  exact path='/settings'
@@ -29,4 +28,4 @@ const UserRouter = [
  * Export router
  */
 
-export default UserRouter;
+export default loggedInRoutes;

@@ -8,23 +8,23 @@ import { Route, Redirect } from 'react-router-dom';
 import { PrivateRoute } from './helpers/index';
 
 import {
-    Login, Landing,AuthCallBack,ErrorBoundary
+    Login, Landing,AuthCallback,ErrorBoundary
   } from '../views/index';
 
 /**
  * Define router
  */
 
-const Routes = [
+const UsersRouter = [
   <Route key={uuid.v4()} exact path='/' component={Landing} />,
   <Route key={uuid.v4()} exact path='/login' render={props => <Login {...props} />}/>,
   <Route key={uuid.v4()} exact path='/register' render={props => <Login {...props} />}/>,
   <Route key={uuid.v4()} exact path='/landing' render={props => <Landing {...props} />}/>,
-  <PrivateRoute key={uuid.v4()}  path='/auth/callback' component={AuthCallBack} errorBoundary={ErrorBoundary}/>
+  <PrivateRoute key={uuid.v4()}  path='/auth/callback' component={AuthCallback} errorBoundary={ErrorBoundary}/>
 ];
 
 /**
  * Export router
  */
 
-export default Routes;
+export default UsersRouter;
