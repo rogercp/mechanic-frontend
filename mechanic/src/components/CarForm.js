@@ -19,7 +19,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { axiosWithAuth } from '../helpers/index';
-
+import CarImgUpload from './CarImgUpload';
 
 /**
  *  Import styles
@@ -164,18 +164,8 @@ function CarForm(props) {
           onChange={handleChange('car_nickname')}
         />
 
-      
-        <Button
-        variant="contained"
-        name="car_type"
-        color="default"
-        className={classes.button}
-        startIcon={<CloudUploadIcon />}
-        onChange={handleChange('car_type')}
-        >
-        Picture
-        </Button>
-
+      <CarImgUpload />
+        
         <Button
         variant="contained"
         color="primary"
