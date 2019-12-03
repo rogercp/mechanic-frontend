@@ -165,17 +165,7 @@ function CarForm(props) {
         />
 
       <CarImgUpload />
-        {/* <Button
-        variant="contained"
-        name="car_type"
-        color="default"
-        className={classes.button}
-        startIcon={<CloudUploadIcon />}
-        onChange={handleChange('car_type')}
-        >
-        Picture
-        </Button> */}
-
+        
         <Button
         variant="contained"
         color="primary"

@@ -6,12 +6,24 @@ import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { imagesRef } from '../helpers/firebase';
 import axiosWithAuth from '../helpers/axiosWithAuth';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
+
+const useStyles = makeStyles(theme => ({
+    button: {
+      margin: theme.spacing(1),
+    },
+  }));
 /**
  * Define component
  */
 
 function CarImgUpload(props) {
+
+    const classes = useStyles();
+
     const [file, setFile] = useState({});
 
     function handleInputChanges(e) {
@@ -52,8 +64,19 @@ function CarImgUpload(props) {
             <>
 
                 <form onSubmit={handleSubmitUploader}>
+                
+
                     <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
-                    <button type="submit">Upload</button>
+                    <Button
+                    variant="contained"
+                    name="car_type"
+                    color="default"
+                    className={classes.button}
+                    startIcon={<CloudUploadIcon />}
+                    type ="submit"
+                    >
+                    Upload
+                </Button>
                 </form>
             </>
         )
