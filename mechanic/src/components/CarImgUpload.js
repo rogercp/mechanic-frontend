@@ -65,7 +65,6 @@ function CarImgUpload(props) {
 
                 <form onSubmit={handleSubmitUploader}>
                 
-
                     <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
                     <Button
                     variant="contained"
