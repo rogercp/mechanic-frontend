@@ -67,7 +67,8 @@ function CarImgUpload(props) {
             axiosWithAuth().post(`/cars/${props.car.id}/images`, { file_name: file.name })
                 .then(res => {
                     console.log("success")
-                })
+                    window.location.reload();               
+                 })
                 .catch(error => {
                     console.error(error);
                 })

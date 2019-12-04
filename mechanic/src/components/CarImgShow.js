@@ -19,9 +19,12 @@ function CarImgShow(props) {
     const fileRef = imagesRef.child(`${props.car.id}/${props.image.file_name}`);
 
 
-    function handleClick(e) {
-        e.preventDefault();
+    useEffect(() => {
+        handleClick()
+    }, []);
 
+    function handleClick() {
+        
         fileRef.getMetadata().then((metadata) => {
           fileRef.getDownloadURL().then(url => {
             let img = document.getElementById('reg-image');
@@ -43,7 +46,7 @@ function CarImgShow(props) {
 
     return(
         <>
-          <Button id="view-button" onClick={handleClick} variant="outlined" className="my-1">View</Button> {props.car.file_name}
+         {props.car.file_name}
 
         </>
     )
