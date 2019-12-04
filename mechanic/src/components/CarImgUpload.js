@@ -43,13 +43,14 @@ function CarImgUpload(props) {
     function handleSubmitUploader(e) {
         e.preventDefault()
         console.log(props.car.id,"carid")
+        
         // Create file ref (Example: /documents/:car_id/:file_name)
         const fileRef = imagesRef.child(`${props.car.id}/${file.name}`)
 
         // Upload file
         fileRef.put(file).then((snapshot) => {
             console.log('Upload success!', snapshot.constructor, snapshot);
-            axiosWithAuth().post(`/cars/${props.car.id}`, { file_name: file.name })
+            axiosWithAuth().post(`/cars/${props.car.id}/images`, { file_name: file.name })
                 .then(res => {
                     console.log("success")
                 })
