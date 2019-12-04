@@ -18,7 +18,6 @@ function CarImgShow(props) {
 
     const fileRef = imagesRef.child(`${props.car.id}/${props.image.file_name}`);
 
-
     useEffect(() => {
         handleClick()
     }, []);
@@ -46,7 +45,7 @@ function CarImgShow(props) {
 
     return(
         <>
-         {props.car.file_name}
+        {props.car.file_name}
 
         </>
     )

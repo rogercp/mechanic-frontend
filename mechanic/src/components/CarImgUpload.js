@@ -27,12 +27,11 @@ function CarImgUpload(props) {
     const [images, setImages] = useState([]);
     const [file, setFile] = useState({});
 
-
-
-
+console.log(images,"images")
+console.log(file,"file")
     useEffect(() => {
         fetchDocuments();
-    },[file]);
+    },[]);
 
     async function fetchDocuments() {
         let images = await axiosWithAuth().get(`/cars/${props.car.id}/images`)
@@ -83,7 +82,7 @@ function CarImgUpload(props) {
                         return <CarImgShow key={index} car={props.car} image={image}/>
                     })}
                 </ul>
-
+                
                 <div id="div-pdf"></div>
                 <img id="reg-image" height="200px"></img>
         </>
