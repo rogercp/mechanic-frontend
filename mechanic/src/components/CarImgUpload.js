@@ -9,6 +9,7 @@ import axiosWithAuth from '../helpers/axiosWithAuth';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import CarImgShow from './CarImgShow';
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,8 +24,21 @@ const useStyles = makeStyles(theme => ({
 function CarImgUpload(props) {
 
     const classes = useStyles();
-
+    const [images, setImages] = useState([]);
     const [file, setFile] = useState({});
+
+
+
+
+    useEffect(() => {
+        fetchDocuments();
+    },[file]);
+
+    async function fetchDocuments() {
+        let images = await axiosWithAuth().get(`/cars/${props.car.id}/images`)
+        setImages(images.data);
+        return images;
+    }
 
     function handleInputChanges(e) {
         e.preventDefault();
@@ -43,7 +57,7 @@ function CarImgUpload(props) {
     function handleSubmitUploader(e) {
         e.preventDefault()
         console.log(props.car.id,"carid")
-        
+
         // Create file ref (Example: /documents/:car_id/:file_name)
         const fileRef = imagesRef.child(`${props.car.id}/${file.name}`)
 
@@ -60,7 +74,20 @@ function CarImgUpload(props) {
         })
     }
 
-   
+    if(images.length > 0 ){
+        return (
+        <>
+                <ul>
+                    {images.map((image, index) => {
+                        return <CarImgShow key={index} car={props.car} image={image}/>
+                    })}
+                </ul>
+
+                <div id="div-pdf"></div>
+                <img id="reg-image" height="200px"></img>
+        </>
+        )
+    }else{
         return (
             <>
 
@@ -78,8 +105,12 @@ function CarImgUpload(props) {
                     Upload
                 </Button>
                 </form>
+                
             </>
         )
+    }
+   
+        
     
 }
 
