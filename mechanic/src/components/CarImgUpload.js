@@ -42,9 +42,9 @@ function CarImgUpload(props) {
 
     function handleSubmitUploader(e) {
         e.preventDefault()
-
+        console.log(props.car.id,"carid")
         // Create file ref (Example: /documents/:car_id/:file_name)
-        const fileRef = imagesRef.child(`${props.case.id}/${file.name}`)
+        const fileRef = imagesRef.child(`${props.car.id}/${file.name}`)
 
         // Upload file
         fileRef.put(file).then((snapshot) => {

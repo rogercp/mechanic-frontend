@@ -23,6 +23,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
+import CarImgUpload from './CarImgUpload';
 
 
 /**
@@ -156,8 +157,8 @@ const MediatorCard = (props) => {
             </Button>
             </div>
 
-              <img style={{height:"50%",width:"100%",margin:"0 auto"}} src='https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=blue-bmw-sedan-near-green-lawn-grass-170811.jpg&fm=jpg' />
-             
+              {/* <img style={{height:"50%",width:"100%",margin:"0 auto"}} src='https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=blue-bmw-sedan-near-green-lawn-grass-170811.jpg&fm=jpg' /> */}
+              <CarImgUpload car={props.car}/>
 
               <div className={classes.root} style={{width:"100%"}}>
               <ExpansionPanel>
