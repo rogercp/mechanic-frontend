@@ -66,12 +66,7 @@ function CarForm(props) {
     car_year:''
   });
 
-  const inputLabel = React.useRef(null);
-  const [labelWidth, setLabelWidth] = React.useState(0);
-  React.useEffect(() => {
-    // setLabelWidth(inputLabel.current.offsetWidth);
-  }, []);
-
+  
   const handleChange = name => event => {
     setState({
       ...state,
@@ -164,7 +159,7 @@ function CarForm(props) {
           onChange={handleChange('car_nickname')}
         />
 
-      <CarImgUpload />
+     
         
         <Button
         variant="contained"

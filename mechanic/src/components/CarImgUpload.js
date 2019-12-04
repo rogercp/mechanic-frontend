@@ -9,6 +9,7 @@ import axiosWithAuth from '../helpers/axiosWithAuth';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import CarImgShow from './CarImgShow';
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,8 +24,20 @@ const useStyles = makeStyles(theme => ({
 function CarImgUpload(props) {
 
     const classes = useStyles();
-
+    const [images, setImages] = useState([]);
     const [file, setFile] = useState({});
+
+console.log(images,"images")
+console.log(file,"file")
+    useEffect(() => {
+        fetchDocuments();
+    },[]);
+
+    async function fetchDocuments() {
+        let images = await axiosWithAuth().get(`/cars/${props.car.id}/images`)
+        setImages(images.data);
+        return images;
+    }
 
     function handleInputChanges(e) {
         e.preventDefault();
@@ -42,24 +55,39 @@ function CarImgUpload(props) {
 
     function handleSubmitUploader(e) {
         e.preventDefault()
+        console.log(props.car.id,"carid")
 
         // Create file ref (Example: /documents/:car_id/:file_name)
-        const fileRef = imagesRef.child(`${props.case.id}/${file.name}`)
+        const fileRef = imagesRef.child(`${props.car.id}/${file.name}`)
 
         // Upload file
         fileRef.put(file).then((snapshot) => {
             console.log('Upload success!', snapshot.constructor, snapshot);
-            axiosWithAuth().post(`/cars/${props.car.id}`, { file_name: file.name })
+            axiosWithAuth().post(`/cars/${props.car.id}/images`, { file_name: file.name })
                 .then(res => {
                     console.log("success")
-                })
+                    window.location.reload();               
+                 })
                 .catch(error => {
                     console.error(error);
                 })
         })
     }
 
-   
+    if(images.length > 0 ){
+        return (
+        <>
+                <ul>
+                    {images.map((image, index) => {
+                        return <CarImgShow key={index} car={props.car} image={image}/>
+                    })}
+                </ul>
+                
+                <div id="div-pdf"></div>
+                <img id="reg-image" height="200px"></img>
+        </>
+        )
+    }else{
         return (
             <>
 
@@ -77,8 +105,12 @@ function CarImgUpload(props) {
                     Upload
                 </Button>
                 </form>
+                
             </>
         )
+    }
+   
+        
     
 }
 
