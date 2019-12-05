@@ -34,7 +34,7 @@ function CarMaintenceShow(props) {
     return (
       <>
       
-      {carFixes.length < 1 ? <div>You have no Cars</div> :
+      {carFixes.length < 1 ? <div>You have no fixes</div> :
               <Grid 
       
               item xs={12}
