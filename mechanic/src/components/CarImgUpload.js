@@ -3,7 +3,6 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import Typography from '@material-ui/core/Typography';
 import { imagesRef } from '../helpers/firebase';
 import axiosWithAuth from '../helpers/axiosWithAuth';
 import Button from '@material-ui/core/Button';
@@ -27,7 +26,6 @@ function CarImgUpload(props) {
     const [images, setImages] = useState([]);
     const [file, setFile] = useState({});
 
-console.log(images,"images")
     useEffect(() => {
         fetchDocuments();
     }, [file]);
@@ -71,8 +69,11 @@ console.log(images,"images")
                 .catch(error => {
                     console.error(error);
                 })
-        })
+        }).catch(err => {
+            console.error(err)
+        });
     }
+    
 
     if(images.length > 0 ){
         return (
@@ -83,8 +84,7 @@ console.log(images,"images")
                     })}
                
                 
-                <div id="div-pdf"></div>
-                <img id="reg-image" height="200px"></img>
+               
         </>
         )
     }else{

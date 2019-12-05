@@ -23,7 +23,6 @@ function CarImgShow(props) {
     }, []);
 
     function handleClick() {
-        
         fileRef.getMetadata().then((metadata) => {
           fileRef.getDownloadURL().then(url => {
             let img = document.getElementById('reg-image');
@@ -45,7 +44,9 @@ function CarImgShow(props) {
 
     return(
         <>
-        {props.image.file_name}
+            <div id="div-pdf"></div>
+            <img id="reg-image" height="200px"></img>
+            {props.image.file_name}
 
         </>
     )
