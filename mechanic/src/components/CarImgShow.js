@@ -45,7 +45,7 @@ function CarImgShow(props) {
 
     return(
         <>
-        {props.car.file_name}
+        {props.image.file_name}
 
         </>
     )
