@@ -3,7 +3,6 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import Typography from '@material-ui/core/Typography';
 import { imagesRef } from '../helpers/firebase';
 import axiosWithAuth from '../helpers/axiosWithAuth';
 import Button from '@material-ui/core/Button';
@@ -27,11 +26,9 @@ function CarImgUpload(props) {
     const [images, setImages] = useState([]);
     const [file, setFile] = useState({});
 
-console.log(images,"images")
-console.log(file,"file")
     useEffect(() => {
         fetchDocuments();
-    },[]);
+    }, [file]);
 
     async function fetchDocuments() {
         let images = await axiosWithAuth().get(`/cars/${props.car.id}/images`)
@@ -65,26 +62,29 @@ console.log(file,"file")
             console.log('Upload success!', snapshot.constructor, snapshot);
             axiosWithAuth().post(`/cars/${props.car.id}/images`, { file_name: file.name })
                 .then(res => {
+                    fetchDocuments();
                     console.log("success")
                     window.location.reload();               
                  })
                 .catch(error => {
                     console.error(error);
                 })
-        })
+        }).catch(err => {
+            console.error(err)
+        });
     }
+    
 
     if(images.length > 0 ){
         return (
         <>
-                <ul>
+                
                     {images.map((image, index) => {
                         return <CarImgShow key={index} car={props.car} image={image}/>
                     })}
-                </ul>
+               
                 
-                <div id="div-pdf"></div>
-                <img id="reg-image" height="200px"></img>
+               
         </>
         )
     }else{

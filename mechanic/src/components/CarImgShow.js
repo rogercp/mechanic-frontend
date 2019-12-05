@@ -16,6 +16,8 @@ import axiosWithAuth from '../helpers/axiosWithAuth';
 
 function CarImgShow(props) {
 
+    const [thisImage,setThisimage]= useState('')
+    
     const fileRef = imagesRef.child(`${props.car.id}/${props.image.file_name}`);
 
     useEffect(() => {
@@ -23,17 +25,20 @@ function CarImgShow(props) {
     }, []);
 
     function handleClick() {
-        
         fileRef.getMetadata().then((metadata) => {
           fileRef.getDownloadURL().then(url => {
-            let img = document.getElementById('reg-image');
 
-            if (metadata.contentType === 'application/pdf') {
-              img.src = '';
-              // TODO handle PDFs
-            } else {
-              img.src = url;
-            }
+            // let img = document.getElementById('reg-image');
+
+            // if (metadata.contentType === 'application/pdf') {
+            //   img.src = '';
+            //   // TODO handle PDFs
+            // } else {
+            //   img.src = url;
+            // }
+            console.log(url,"url")
+            setThisimage(url)
+
           })
           .catch(err => {
             console.error(err);
@@ -45,7 +50,10 @@ function CarImgShow(props) {
 
     return(
         <>
-        {props.car.file_name}
+            <div id="div-pdf"></div>
+            <img id="reg-image" height="200px" src={`${thisImage}`}></img>
+            
+            {props.image.file_name}
 
         </>
     )
