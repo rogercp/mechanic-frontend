@@ -144,7 +144,7 @@ const MediatorCard = (props) => {
   return (
     <>
         
-        <Card className={classes.paper}  style={{border:"black",maxWidth:"400px"}}>
+        <Card className={classes.paper}  style={{border:"black",minWidth:"350px",minHeight:"350px",maxWidth:"350px"}}>
             
           <CardContent>
 
