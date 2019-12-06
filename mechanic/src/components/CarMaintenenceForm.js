@@ -85,8 +85,9 @@ function CarMaintenenceForm(props) {
     setValues({ ...values, [name]: event.target.checked });
   };
 
-  const handleChange = prop => event => {
-    setValues({ ...values, [prop]: event.target.value });
+
+  const handleChange = name => event => {
+    setValues({ ...values, [name]: event.target.value });
   };
 
   
@@ -97,13 +98,13 @@ function CarMaintenenceForm(props) {
 
   const onSubmitHandler = e => {
     e.preventDefault();
+    
     axiosWithAuth()
         .post(`/car_fix/${props.car.id}`, values)
         .then(res => {
-            console.log(res.data);    
+          
         })
         .catch(err => {
-            console.error(err);
         });
 };
 
@@ -125,6 +126,7 @@ function CarMaintenenceForm(props) {
       <TextField
           id="outlined-textarea"
           onChange={handleChange('fix')}
+          name="fix"
           value={values.fix}
           placeholder={values.fix_not_maintenence === false ? "Maintence" : "Repair"}
           multiline
@@ -135,6 +137,7 @@ function CarMaintenenceForm(props) {
         <TextField
           id="outlined-multiline-static"
           multiline
+          name="fix_description"
           value={values.fix_description}
           onChange={handleChange('fix_description')}
           rows="4"
@@ -148,6 +151,7 @@ function CarMaintenenceForm(props) {
       <TextField
           label="Total Cost"
           value={values.fix_price}
+          name="fix_price"
           id="standard-start-adornment"
           onChange={handleChange('fix_price')}
           className={clsx(classes.margin, classes.textField)}

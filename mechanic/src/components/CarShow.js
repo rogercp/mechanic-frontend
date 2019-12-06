@@ -94,7 +94,6 @@ function CarShow(props) {
     
 }, []);
 
-console.log(cars,"cars")
 
 
     return (
