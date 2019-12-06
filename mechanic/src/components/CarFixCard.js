@@ -21,7 +21,14 @@ function CarFixCard(props) {
    
     return (
       <>
-        {props.carFix.id}///
+      <div style={{width:"200px",height:"200px"}}>
+      {props.carFix.fix_not_maintenence ? <p>fix</p> : <p>maintence</p>}
+       <p>{props.carFix.fix}</p> 
+       <p>{props.carFix.fix_description}</p>
+       <p>{props.carFix.fix_date}</p>
+       <p>${props.carFix.fix_price}</p>
+
+       </div>
       </>
     );
 };

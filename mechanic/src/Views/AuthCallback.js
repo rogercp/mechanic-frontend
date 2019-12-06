@@ -10,7 +10,7 @@ import axios from "axios";
 
 function AuthCallback(props) {
     firebase.auth().onAuthStateChanged(async user => {
-        console.log("Authcallback")
+        // console.log("Authcallback")
         // User is signed in.
         if (user) {
             let token = await user.getIdToken();
@@ -22,12 +22,12 @@ function AuthCallback(props) {
                     token: token
                 })
                 .then(res => {
-                    console.log(res.data,  "data")
+                    // console.log(res.data,  "data")
                     localStorage.setItem("id", res.data.id);
                     window.location = "/home";
                 })
                 .catch(err => {
-                    console.error(err);
+                    // console.error(err);
                     window.location = "/login";
                 });
         } else {

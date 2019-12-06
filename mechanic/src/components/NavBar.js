@@ -90,26 +90,26 @@ function NavBar(props) {
       <>
         
       
-        <div className="nav" >
+        <div className="nav" style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px"}}>
             <div className="links">
 
-              <NavLink className="link"  activeClassName="activeNavButton" to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
+              <NavLink id="link" to="/home" activeClassName="active"  style={{textDecoration:"none"}} data-testid="signup-link">
                   <i>DASH</i>
               </NavLink>
 
-              <NavLink className="link" activeClassName="activeNavButton" to="/chat" style={{textDecoration:"none"}} data-testid="signup-link">   
+              <NavLink id="link" to="/chat" activeClassName="active"  style={{textDecoration:"none"}} data-testid="signup-link">   
                   <i>CHAT</i>
               </NavLink >
                   
-              <NavLink className="link"  activeClassName="activeNavButton" to="/mycars" style={{textDecoration:"none"}} data-testid="signup-link">
+              <NavLink id="link"  to="/mycars" activeClassName="active"  style={{textDecoration:"none"}} data-testid="signup-link">
                   <DirectionsCarIcon/>
               </NavLink>
 
-              <NavLink className="link" activeClassName="activeNavButton" to="/settings" style={{textDecoration:"none"}} data-testid="login-link">
+              <NavLink id="link" to="/settings" activeClassName="active"  style={{textDecoration:"none"}} data-testid="login-link">
                   <SettingsIcon/>
               </NavLink>
               
-              <NavLink className="link" activeClassName="activeNavButton" to="/landing" style={{textDecoration:"none"}} data-testid="signup-link"
+              <NavLink id="link" to="/landing" activeClassName="active"  style={{textDecoration:"none"}} data-testid="signup-link"
               onClick={logout}>
                   <ExitToAppIcon className="icon" />
               </NavLink>

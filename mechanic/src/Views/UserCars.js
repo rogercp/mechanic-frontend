@@ -24,7 +24,7 @@ function UserSettings(props) {
     return (
         <>
            
-            <div style={{backgroundColor:"grey"}}>
+            <div style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px",paddingBottom:"300px"}}>
                 <CarShow/>
             </div>
             
