@@ -18,6 +18,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
 import { borderRight } from "@material-ui/system";
 
+import  '../styles/fullscreenmodal.scss'
 
 /**
  * Define styles
@@ -57,24 +58,26 @@ function CarModalExpand(props) {
     return (
         <>
         <Dialog fullScreen open={props.open} onClose={props.handleClose}>
-            <Toolbar>
-                    
+            <Toolbar className="toolBar">
+                        <PurpleSwitch
+                            onChange={handleChange2('formNotView')}
+                            value="formNotView"
+                            color="default"
+                            inputProps={{ 'aria-label': 'checkbox with default color' }}
+                            id="toggleView"
+                        />
                         <IconButton
                             id="exitButton"
                             edge="end"
                             onClick={props.handleClose}
-                            style={{float: 'right !important'}}
+                            
                         >
-                            <CloseIcon />
+                            <CloseIcon  />
                         </IconButton>
             </Toolbar>
 
-            <PurpleSwitch
-                onChange={handleChange2('formNotView')}
-                value="formNotView"
-                color="default"
-                inputProps={{ 'aria-label': 'checkbox with default color' }}
-            />
+
+           
                 
            {formNotView.formNotView === false ? <CarMaintenceShow car={props.car}/>: <CarMaintenceForm car={props.car}/>}
             

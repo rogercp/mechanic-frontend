@@ -142,13 +142,13 @@ function CarMaintenenceForm(props) {
 
     return (
       <>
-      <h1> CarMaintenence </h1>
+     
        <div className={classes.root}> 
        
       <form className={classes.container} noValidate autoComplete="off" > 
     
       <FormControl fullWidth className={classes.margin} onSubmit={onSubmitHandler}>
-      <p>{values.fix_not_maintenence === false ? "maintence" : "repair" }</p>
+      <p>{values.fix_not_maintenence === false ? "Maintence" : "Repair" }</p>
         <AntSwitch
         onChange={handleChange2('fix_not_maintenence')}
         value="fix_not_maintenence"
