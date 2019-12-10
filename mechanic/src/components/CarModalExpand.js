@@ -57,8 +57,8 @@ function CarModalExpand(props) {
       
     return (
         <>
-        <Dialog fullScreen open={props.open} onClose={props.handleClose}>
-            <div className="toolBar">
+        <Dialog fullScreen open={props.open} onClose={props.handleClose} >
+            <div className="toolBar" style={{backgroundColor:"rgb(210, 210, 211)"}}>
                         <Switch
                             id="toggleButton"
                             onChange={handleChange2('toggled')}
@@ -79,7 +79,7 @@ function CarModalExpand(props) {
 
            
                 
-           {formNotView.toggled === false ? <CarMaintenceShow car={props.car}/>: <CarMaintenceForm car={props.car}/>}
+           {formNotView.toggled === false ? <CarMaintenceShow style={{backgroundColor:"rgb(210, 210, 211)"}} car={props.car}/>: <CarMaintenceForm style={{backgroundColor:"rgb(210, 210, 211)"}} car={props.car}/>}
             
            
         </Dialog>
