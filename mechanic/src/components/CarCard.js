@@ -24,6 +24,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import CarImgUpload from './CarImgUpload';
+import Switch from '@material-ui/core/Switch';
 
 
 
@@ -107,6 +108,16 @@ const MediatorCard = (props) => {
     const [fullopen, setFullOpen] = useState(false);
     const [errorOpen, setErrorOpen] = useState(false);
 
+    const [flip,setFlip ] = useState({
+      toggled:false
+  });
+
+
+  const handleChange2 = name => event => {
+      setFlip({ ...flip, [name]: event.target.checked });
+    };
+  
+
   function handleDelete() {
     axiosWithAuth()
         .delete(`${process.env.REACT_APP_API_URL}/cars/${props.car.id}`)
@@ -141,47 +152,34 @@ const MediatorCard = (props) => {
         setErrorOpen(true);
     }
 
+   
+
+  console.log(flip,"flip")
+
   return (
     <>
         
-        <Card className={classes.paper}  style={{border:"black",minWidth:"350px",minHeight:"350px",maxWidth:"350px"}}>
+        <Card className={classes.paper}  style={{border:"black",minWidth:"350px",minHeight:"325px",maxWidth:"350px"}}>
             
           <CardContent>
-
-            <div className={classes.top}>
-            <h3 className='card-name'> {props.car.car_nickname}</h3> 
-            <Button
-            style={{color:"darkcyan",  outline:'0'}}
-                    onClick={handlefullOpen}
-                    >
-            <AllOutIcon/>
-            </Button>
-            </div>
-                  
-
-              {/* <img style={{height:"50%",width:"100%",margin:"0 auto"}} src='https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=blue-bmw-sedan-near-green-lawn-grass-170811.jpg&fm=jpg' /> */}
+          {flip.toggled === false ? 
+          <>
+           <div className={classes.top}>
+           <h3 className='card-name'> {props.car.car_nickname}</h3> 
+           <Button
+           style={{color:"darkcyan",  outline:'0'}}
+                   onClick={handlefullOpen}
+                   >
+           <AllOutIcon/>
+           </Button>
+           </div>
+             <CarImgUpload car={props.car}/>
+            
+             </>
+          : 
               
-              <CarImgUpload car={props.car}/>
-
-              <div className={classes.root} style={{width:"100%"}}>
-              <ExpansionPanel>
-
-                  
-                <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-                >
-                <h4>Details</h4>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                
                 <div style={{display:"flex",flexDirection:"column"}}>
-                    <div>
-                        <p className="case-label">Car Type: {props.car.car_type}</p> 
-                        <p className="case-label">{props.car.car_year} {props.car.car_make} {props.car.car_model} </p> 
-                    </div>
-                    <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >
+                <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >
                         <Button
                             id="edit"
                         >
@@ -194,12 +192,24 @@ const MediatorCard = (props) => {
                         </IconButton> 
                     
                     </Toolbar>
+                    <div>
+                        <p className="case-label">Car Type: {props.car.car_type}</p> 
+                        <p className="case-label">{props.car.car_year} {props.car.car_make} {props.car.car_model} </p> 
+                    </div>
+                    
                </div>
-                </ExpansionPanelDetails>
-            </ExpansionPanel>
-                </div>
-          </CardContent>
+             
+               
 
+          }
+          </CardContent>
+          <Switch
+            onChange={handleChange2('toggled')}
+            value="toggled"
+            color="primary"
+            inputProps={{ 'aria-label': 'checkbox with default color' }}
+                  />
+          
         </Card>
         <CarModalExpand
                 open={fullopen}
