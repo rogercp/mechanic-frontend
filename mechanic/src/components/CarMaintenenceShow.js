@@ -147,7 +147,7 @@ function CarMaintenceShow(props) {
                       return (
                         <div style={{display:"block",textAlign:"center",width:'80%',maxWidth:"1300px"}}>
 
-                        <ExpansionPanel style={{width:"100%"}}>
+                        <ExpansionPanel style={{width:"100%",margin:"1rem"}}>
             
                         <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}

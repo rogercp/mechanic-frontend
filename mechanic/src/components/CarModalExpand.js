@@ -76,8 +76,6 @@ function CarModalExpand(props) {
                         </IconButton>
             </div>
 
-
-           
             <div style={{backgroundColor:"rgb(210, 210, 211)",margin:"0",height:'100%'}}> 
             {formNotView.toggled === false ? <CarMaintenceShow  car={props.car}/>: <CarMaintenceForm car={props.car}/>}
             </div>    
