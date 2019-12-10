@@ -27,7 +27,6 @@ function CarMaintenceShow(props) {
         async function fetchCars() {
             const res = await axiosWithAuth().get(`/car_fix/${props.car.id}`); 
             setCarFixes(res.data);
-            console.log(res.data)
         }
         fetchCars()
     }, []);

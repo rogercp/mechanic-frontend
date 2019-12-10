@@ -25,19 +25,19 @@ import  '../styles/fullscreenmodal.scss'
  */
 
 
-const PurpleSwitch = withStyles({
-    switchBase: {
-      color: purple[300],
-      '&$checked': {
-        color: purple[500],
-      },
-      '&$checked + $track': {
-        backgroundColor: purple[500],
-      },
-    },
-    checked: {},
-    track: {},
-  })(Switch);
+// const PurpleSwitch = withStyles({
+//     switchBase: {
+//       color: purple[300],
+//       '&$checked': {
+//         color: purple[500],
+//       },
+//       '&$checked + $track': {
+//         backgroundColor: purple[500],
+//       },
+//     },
+//     checked: {},
+//     track: {},
+//   })(Switch);
 
 /**
  * Define modal
@@ -46,7 +46,7 @@ const PurpleSwitch = withStyles({
 function CarModalExpand(props) {
    
     const [formNotView,setFormNotView ] = useState({
-        formNotView:false
+        toggled:false
     });
 
 
@@ -59,12 +59,11 @@ function CarModalExpand(props) {
         <>
         <Dialog fullScreen open={props.open} onClose={props.handleClose}>
             <Toolbar className="toolBar">
-                        <PurpleSwitch
-                            onChange={handleChange2('formNotView')}
-                            value="formNotView"
-                            color="default"
+                        <Switch
+                            onChange={handleChange2('toggled')}
+                            value="toggled"
+                            color="primary"
                             inputProps={{ 'aria-label': 'checkbox with default color' }}
-                            id="toggleView"
                         />
                         <IconButton
                             id="exitButton"
@@ -79,7 +78,7 @@ function CarModalExpand(props) {
 
            
                 
-           {formNotView.formNotView === false ? <CarMaintenceShow car={props.car}/>: <CarMaintenceForm car={props.car}/>}
+           {formNotView.toggled === false ? <CarMaintenceShow car={props.car}/>: <CarMaintenceForm car={props.car}/>}
             
            
         </Dialog>
