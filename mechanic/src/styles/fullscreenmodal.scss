@@ -2,16 +2,11 @@
 
 
 .toolBar{
-    display: flex;
+    width: 100% !important;
 }
-
-#toggleView
-{
-    position: absolute !important;
-    left: -400px !important;
-    
+#toggleButton{
+   margin-right: 50% !important;
 }
 #exitButton{
-    
-    
+    margin-left: 50% !important;
 }

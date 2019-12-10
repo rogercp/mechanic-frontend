@@ -58,8 +58,9 @@ function CarModalExpand(props) {
     return (
         <>
         <Dialog fullScreen open={props.open} onClose={props.handleClose}>
-            <Toolbar className="toolBar">
+            <div className="toolBar">
                         <Switch
+                            id="toggleButton"
                             onChange={handleChange2('toggled')}
                             value="toggled"
                             color="primary"
@@ -73,7 +74,7 @@ function CarModalExpand(props) {
                         >
                             <CloseIcon  />
                         </IconButton>
-            </Toolbar>
+            </div>
 
 
            
