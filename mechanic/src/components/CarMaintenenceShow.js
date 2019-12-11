@@ -31,7 +31,7 @@ import CarMaintenceCard from './CarMaintenenceCard';
  *  Import styles
  */
 
-import  '../styles/navbar.scss'
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
       },
       [theme.breakpoints.down('sm')]: {
           padding: theme.spacing(0,0,0),
-          width:'90%',
+          width:'100%',
           height: '100%',
       },
     },
