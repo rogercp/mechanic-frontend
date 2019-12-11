@@ -202,7 +202,7 @@ const MediatorCard = (props) => {
 
           }
           </CardContent>
-          <div style={{display:"block", position: 'absolute',width:"100%",paddingRight:"375px"}}>
+          <div style={{display:"block",width:"100%"}}>
           <Switch
             onChange={handleChange2('toggled')}
             value="toggled"
