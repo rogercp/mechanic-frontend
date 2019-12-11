@@ -2,10 +2,9 @@
  * Dependencies
  */
 
-import React, { useState, useEffect} from "react";
-import { axiosWithAuth } from '../helpers/index';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import { axiosWithAuth } from '../helpers/index';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -24,14 +23,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import CarImgUpload from './CarImgUpload';
-import CarMaintenceCard from './CarMaintenenceCard';
-
+import { makeStyles } from '@material-ui/core/styles';
 
 /**
- *  Import styles
+ * Import styles
  */
-
-import  '../styles/navbar.scss'
 
 
 const useStyles = makeStyles(theme => ({
@@ -97,74 +93,78 @@ const useStyles = makeStyles(theme => ({
 
 
 
-
-
-
 /**
  * Define component
  */
-function getModalStyle() {}
 
-function CarMaintenceShow(props) {
+function CarMaintenceCard(props) {
+
+    const classes = useStyles();
 
 
-    const [carFixes,setCarFixes] = useState([])
-    const [modalStyle] = useState(getModalStyle);
-    const [fullopen, setFullOpen] = useState(false);
-    const [errorOpen, setErrorOpen] = useState(false);
-
-    const handlefullOpen = () => {
-        setFullOpen(true);
-    };
-    const handlefullClose = () => {
-        setFullOpen(false);
-    };
-
-    function handleErrorClose() {
-        setErrorOpen(false);
+    function handleDelete2() {
+        axiosWithAuth()
+            .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.carFix.id}`)
+            .then(res => {
+                props.fetchCarFixes()
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
     
-    function handleErrorOpen() {
-        setErrorOpen(true);
-    }
 
-   
-    useEffect(() => {
-        fetchCarFixes()
-    }, []);
-
-    async function fetchCarFixes() {
-        const res = await axiosWithAuth().get(`/car_fix/${props.car.id}`); 
-        setCarFixes(res.data);
-    }
 
     return (
-    
-      <>
-      {carFixes.length < 1 ? <div>You have no fixes</div> :
-              <>
-                  {carFixes.map(c => {
-                      return (
+        <>
+        <div style={{display:"block",textAlign:"center",width:'80%',maxWidth:"1300px"}}>
 
-                        <CarMaintenceCard carFix={c} car={props.car} fetchCarFixes={fetchCarFixes} />
-                        
-                        
-                     );
-                  })}
-                  </>
-              
-            }
-      </>
-    );
-};
+            <ExpansionPanel style={{width:"100%",margin:"1rem"}}>
+
+            <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            >
+            <h4>Details</h4>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+
+            <div style={{display:"flex",flexDirection:"column"}}>
+            <div style={{width:"200px",height:"200px"}}>
+                {props.carFix.fix_not_maintenence ? <p>fix</p> : <p>maintence</p>}
+                <p>{props.carFix.fix}</p> 
+                <p>{props.carFix.fix_description}</p>
+                <p>{props.carFix.fix_date}</p>
+                <p>${props.carFix.fix_price}</p>
+            </div>
+
+                <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >
+
+                    <Button
+                        id="edit"
+                    >
+                        <EditIcon />
+                    </Button>
+                    
+                    
+            <IconButton id="del"  aria-label="delete"  className={classes.margin} onClick={handleDelete2}>
+                <DeleteIcon  />    
+            </IconButton> 
+
+                
+                </Toolbar>
+            </div>
+            </ExpansionPanelDetails>
+            </ExpansionPanel>
+
+        </div>
+        </>
+       )
+}
 
 /**
  * Export component
  */
 
-export default CarMaintenceShow;
-
-
-
-
-
+export default CarMaintenceCard;
