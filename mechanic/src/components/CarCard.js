@@ -154,7 +154,6 @@ const MediatorCard = (props) => {
 
    
 
-  console.log(flip,"flip")
 
   return (
     <>

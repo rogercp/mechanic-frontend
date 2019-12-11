@@ -35,65 +35,65 @@ import CarImgUpload from './CarImgUpload';
 import  '../styles/navbar.scss'
 
 
-// const useStyles = makeStyles(theme => ({
-//     button: {
-//         margin: theme.spacing(1)
-//     },
-//     submitbutton: {
-//         justifyContent: 'center',
-//     },
-//     modal: {
-//         position: 'absolute',
-//         margin: '0 auto',
-//     },
-//     paper: {
-//       height: '50px',
-//       backgroundColor: theme.palette.background.paper,
-//       boxShadow: theme.shadows[5],
-//       padding: theme.spacing(0, 0, 0),
-//       outline: 'none',
-//       margin:'1%',
-//       flexDirection: "column",
-//       justifyContent: "space-between",
-//       alignItems: "center",
-//       boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
-//       '&:hover':{
-//           boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
-//         },
-//       [theme.breakpoints.down('md')]: {
-//           width: '100%',
-//           height: '100%',
-//       },
-//       [theme.breakpoints.down('sm')]: {
-//           padding: theme.spacing(0,0,0),
-//           width:'90%',
-//           height: '100%',
-//       },
-//     },
-//         expand: {
-//           transform: 'rotate(0deg)',
-//           marginLeft: 'auto',
-//           transition: theme.transitions.create('transform', {
-//             duration: theme.transitions.duration.shortest,
-//           }),
-//         },
-//         expandOpen: {
-//           transform: 'rotate(180deg)',
-//         },
-//         top:{
-//           display:'flex',
-//           flexDirection:'row',
-//           alignItems:'center',
-//         },
-//         margin:{
-//             color:'red',
-//               outline:'0',
-//         },
-//         root: {
-//           width: '100%',
-//         },
+const useStyles = makeStyles(theme => ({
+    button: {
+        margin: theme.spacing(1)
+    },
+    submitbutton: {
+        justifyContent: 'center',
+    },
+    modal: {
+        position: 'absolute',
+        margin: '0 auto',
+    },
+    paper: {
+      height: '50px',
+      backgroundColor: theme.palette.background.paper,
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(0, 0, 0),
+      outline: 'none',
+      margin:'1%',
+      flexDirection: "column",
+      justifyContent: "space-between",
+      alignItems: "center",
+      boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
+      '&:hover':{
+          boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
+        },
+      [theme.breakpoints.down('md')]: {
+          width: '100%',
+          height: '100%',
+      },
+      [theme.breakpoints.down('sm')]: {
+          padding: theme.spacing(0,0,0),
+          width:'90%',
+          height: '100%',
+      },
+    },
+        expand: {
+          transform: 'rotate(0deg)',
+          marginLeft: 'auto',
+          transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+          }),
+        },
+        expandOpen: {
+          transform: 'rotate(180deg)',
+        },
+        top:{
+          display:'flex',
+          flexDirection:'row',
+          alignItems:'center',
+        },
+        margin:{
+            color:'red',
+              outline:'0',
+        },
+        root: {
+          width: '100%',
+        },
         
-//   }))
+  }))
   
 
 
@@ -107,6 +107,7 @@ import  '../styles/navbar.scss'
 function getModalStyle() {}
 
 function CarMaintenceShow(props) {
+    const classes = useStyles();
 
 
     const [carFixes,setCarFixes] = useState([])
@@ -129,14 +130,25 @@ function CarMaintenceShow(props) {
         setErrorOpen(true);
     }
 
-
+    function handleDelete2(id) {
+        console.log(id,"function id")
+        axiosWithAuth()
+            .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.car.id}/${id}`)
+            .then(res => {
+                // window.location.reload();
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+    
 
     useEffect(() => {
-        async function fetchCars() {
+        async function fetchCarFixes() {
             const res = await axiosWithAuth().get(`/car_fix/${props.car.id}`); 
             setCarFixes(res.data);
         }
-        fetchCars()
+        fetchCarFixes()
     }, []);
     return (
     
@@ -170,9 +182,10 @@ function CarMaintenceShow(props) {
                                 </Button>
                                 
                                 
-                            <IconButton id="del"  aria-label="delete"   >
-                                    <DeleteIcon  />    
-                                </IconButton> 
+                        <IconButton id="del"  aria-label="delete"  className={classes.margin} onClick={handleDelete2(c.id)}>
+                            <DeleteIcon  />    
+                        </IconButton> 
+                        
                             
                             </Toolbar>
                         </div>
