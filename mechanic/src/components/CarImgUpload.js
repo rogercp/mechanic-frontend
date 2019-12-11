@@ -88,10 +88,10 @@ function CarImgUpload(props) {
     }else{
         return (
             <>
-
+                <div style={{height:"200px"}}>
                 <form onSubmit={handleSubmitUploader}>
                 
-                    <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
+                <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
                     <Button
                     variant="contained"
                     name="car_type"
@@ -103,6 +103,7 @@ function CarImgUpload(props) {
                     Upload
                 </Button>
                 </form>
+                </div>
                 
             </>
         )
