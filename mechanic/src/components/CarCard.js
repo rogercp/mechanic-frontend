@@ -154,7 +154,6 @@ const MediatorCard = (props) => {
 
    
 
-  console.log(flip,"flip")
 
   return (
     <>
@@ -177,9 +176,13 @@ const MediatorCard = (props) => {
             
              </>
           : 
-              
-                <div style={{display:"flex",flexDirection:"column"}}>
-                <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >
+          <div className={classes.top}>
+                <div style={{display:"flex",flexDirection:"column",minHeight:'241px'}}>
+                
+               
+                        <p className="case-label">Car Type: {props.car.car_type}</p> 
+                        <p className="case-label">{props.car.car_year} {props.car.car_make} {props.car.car_model} </p> 
+                        <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >
                         <Button
                             id="edit"
                         >
@@ -192,23 +195,22 @@ const MediatorCard = (props) => {
                         </IconButton> 
                     
                     </Toolbar>
-                    <div>
-                        <p className="case-label">Car Type: {props.car.car_type}</p> 
-                        <p className="case-label">{props.car.car_year} {props.car.car_make} {props.car.car_model} </p> 
                     </div>
                     
                </div>
              
-               
 
           }
           </CardContent>
+          <div style={{display:"block",width:"100%"}}>
           <Switch
             onChange={handleChange2('toggled')}
             value="toggled"
             color="primary"
             inputProps={{ 'aria-label': 'checkbox with default color' }}
+
                   />
+           </div>
           
         </Card>
         <CarModalExpand

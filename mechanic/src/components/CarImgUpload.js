@@ -9,7 +9,8 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CarImgShow from './CarImgShow';
-
+import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import { flexbox } from '@material-ui/system';
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -88,10 +89,16 @@ function CarImgUpload(props) {
     }else{
         return (
             <>
+                <div style={{height:"200px"}}>
 
-                <form onSubmit={handleSubmitUploader}>
+                <DriveEtaIcon style={{fontSize:"100px"}}/>
+
+               
                 
-                    <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
+                <div style={{display:'flex',flexDirection:"column"}}>
+                <form onSubmit={handleSubmitUploader}>
+                <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
+                
                     <Button
                     variant="contained"
                     name="car_type"
@@ -103,6 +110,8 @@ function CarImgUpload(props) {
                     Upload
                 </Button>
                 </form>
+                </div>
+                </div>
                 
             </>
         )
