@@ -1,7 +1,7 @@
 [build]
     base = "mechanic/"
     publish = "mechanic/build/"
-    command = "NODE_ENV =master npm run build"
+    command = "NODE_ENV =staging npm run build"
 
 [[redirects]]
     from = "/*"
