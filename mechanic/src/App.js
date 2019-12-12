@@ -5,7 +5,8 @@ import { NavBar } from './components';
 import './App.css';
 import { loggedInRoutes, UsersRouter } from './routes/index';
 import {
-  NoMatch
+  NoMatch,
+  Landing
 } from './views';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       <div>
       <BrowserRouter>
             <Switch>
+            <Route key={uuid.v4()} exact path='/' component={Landing} />,
               {UsersRouter}
               <Route key={uuid.v4()} component={NoMatch} />
             </Switch>
