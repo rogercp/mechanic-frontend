@@ -25,6 +25,8 @@ import Button from "@material-ui/core/Button";
 import CarImgUpload from './CarImgUpload';
 import { makeStyles } from '@material-ui/core/styles';
 
+
+import  '../styles/fullscreenmodal.scss'
 /**
  * Import styles
  */
@@ -126,16 +128,15 @@ function CarMaintenceCard(props) {
             aria-controls="panel1a-content"
             id="panel1a-header"
             >
-            <h4>Details</h4>
+            <p>{props.carFix.fix}</p> 
+            <p>{props.carFix.fix_date}</p>
+            {props.carFix.fix_not_maintenence ? <p>fix</p> : <p>maintence</p>}
             </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
+            <ExpansionPanelDetails id="panelbody">
 
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{width:"200px",height:"200px"}}>
-                {props.carFix.fix_not_maintenence ? <p>fix</p> : <p>maintence</p>}
-                <p>{props.carFix.fix}</p> 
                 <p>{props.carFix.fix_description}</p>
-                <p>{props.carFix.fix_date}</p>
                 <p>${props.carFix.fix_price}</p>
             </div>
 
