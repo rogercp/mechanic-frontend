@@ -27,6 +27,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import BuildIcon from '@material-ui/icons/Build';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 import ImageCarousel from './ImageCarousel';
+import DescriptionIcon from '@material-ui/icons/Description';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+
 
 import  '../styles/fullscreenmodal.scss'
 /**
@@ -155,7 +158,7 @@ function CarMaintenceCard(props) {
             <ExpansionPanelDetails id="panelbody">
 
             <div style={{display:"flex",flexDirection:"column",justifyContent:"spaceBetween"}}>
-            <div style={{width:"70%",minHeight:"300px",textAlign:"left !important"}}>
+            <div style={{width:"70%",textAlign:"left !important"}}>
                 <p style={{textAlign:"left!important"}}>${props.carFix.fix_price}</p>
                 <p>{props.carFix.fix_description}</p>
 
@@ -170,8 +173,7 @@ function CarMaintenceCard(props) {
            style={{color:"darkcyan",  outline:'0'}}
                    onClick={handlefullOpen}
                    >
-           <AllOutIcon/>
-
+           <DescriptionIcon/>
            </Button>
 
             <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >

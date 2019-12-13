@@ -75,9 +75,8 @@ export default function ImageCarousel(props) {
   };
 
   return (
-    <Dialog fullScreen open={props.open} onClose={props.handleClose}   >
-    <div style={{height:"90vh",width:'90vw'}}>
-  
+    <Dialog fullScreen open={props.open} onClose={props.handleClose} style={{height:"90vh",width:'90vw',textAlign:"center",marginBottom:"10",marginTop:"10px"}} >
+    <div style={{textAlign:"center",height:"90%"}}>
       <img
         className={classes.img}
         src={tutorialSteps[activeStep].imgPath}
