@@ -24,7 +24,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import CarImgUpload from './CarImgUpload';
 import { makeStyles } from '@material-ui/core/styles';
-
+import BuildIcon from '@material-ui/icons/Build';
+import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 
 import  '../styles/fullscreenmodal.scss'
 /**
@@ -119,42 +120,50 @@ function CarMaintenceCard(props) {
 
     return (
         <>
-        <div style={{display:"block",textAlign:"center",width:'80%',maxWidth:"1300px"}}>
+        <div style={{width:'80%',maxWidth:"1300px"}}>
 
-            <ExpansionPanel style={{width:"100%",margin:"1rem"}}>
+            <ExpansionPanel style={{width:"100%",margin:"1rem",overFlow:"auto"}}>
 
             <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
             >
-            <p>{props.carFix.fix}</p> 
             <p>{props.carFix.fix_date}</p>
-            {props.carFix.fix_not_maintenence ? <p>fix</p> : <p>maintence</p>}
+            <p>{props.carFix.fix}</p> 
+            {props.carFix.fix_not_maintenence ? <BuildIcon/>: <AlarmOnIcon/>}
             </ExpansionPanelSummary>
             <ExpansionPanelDetails id="panelbody">
 
-            <div style={{display:"flex",flexDirection:"column"}}>
-            <div style={{width:"200px",height:"200px"}}>
+            <div style={{display:"flex",flexDirection:"column",justifyContent:"spaceBetween"}}>
+            <div style={{width:"70%",minHeight:"300px",textAlign:"left !important"}}>
+                <p style={{textAlign:"left!important"}}>${props.carFix.fix_price}</p>
                 <p>{props.carFix.fix_description}</p>
-                <p>${props.carFix.fix_price}</p>
-            </div>
-
-                <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >
-
-                    <Button
-                        id="edit"
-                    >
-                        <EditIcon />
-                    </Button>
-                    
-                    
-            <IconButton id="del"  aria-label="delete"  className={classes.margin} onClick={handleDelete2}>
-                <DeleteIcon  />    
-            </IconButton> 
 
                 
-                </Toolbar>
+            
+               
+            </div>
+
+            <CarImgUpload car={props.car}/>
+               
+           
+
+            <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >
+
+                <Button
+                    id="edit"
+                >
+                    <EditIcon />
+                </Button>
+
+
+                <IconButton id="del"  aria-label="delete"  className={classes.margin} onClick={handleDelete2}>
+                <DeleteIcon  />    
+                </IconButton> 
+
+
+            </Toolbar>
             </div>
             </ExpansionPanelDetails>
             </ExpansionPanel>
