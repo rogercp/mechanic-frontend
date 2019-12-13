@@ -6,10 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
-
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const tutorialSteps = [
   {
@@ -53,14 +49,14 @@ const useStyles = makeStyles(theme => ({
   },
   img: {
     height: 255,
-    display: 'block',
     maxWidth: 400,
     overflow: 'hidden',
+    display: 'block',
     width: '100%',
   },
 }));
 
-function SwipeableTextMobileStepper() {
+export default function ImageCarousel() {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -74,29 +70,16 @@ function SwipeableTextMobileStepper() {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
-  const handleStepChange = step => {
-    setActiveStep(step);
-  };
-
   return (
     <div className={classes.root}>
       <Paper square elevation={0} className={classes.header}>
         <Typography>{tutorialSteps[activeStep].label}</Typography>
       </Paper>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
-        {tutorialSteps.map((step, index) => (
-          <div key={step.label}>
-            {Math.abs(activeStep - index) <= 2 ? (
-              <img className={classes.img} src={step.imgPath} alt={step.label} />
-            ) : null}
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
+      <img
+        className={classes.img}
+        src={tutorialSteps[activeStep].imgPath}
+        alt={tutorialSteps[activeStep].label}
+      />
       <MobileStepper
         steps={maxSteps}
         position="static"
@@ -118,5 +101,3 @@ function SwipeableTextMobileStepper() {
     </div>
   );
 }
-
-export default SwipeableTextMobileStepper;

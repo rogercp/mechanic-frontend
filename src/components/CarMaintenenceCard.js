@@ -26,7 +26,7 @@ import CarImgUpload from './CarImgUpload';
 import { makeStyles } from '@material-ui/core/styles';
 import BuildIcon from '@material-ui/icons/Build';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
-
+import ImageCarousel from './ImageCarousel';
 import  '../styles/fullscreenmodal.scss'
 /**
  * Import styles
@@ -145,7 +145,7 @@ function CarMaintenceCard(props) {
                
             </div>
 
-            <CarImgUpload car={props.car}/>
+            <ImageCarousel/>
                
            
 
