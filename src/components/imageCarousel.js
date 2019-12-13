@@ -6,6 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import Dialog from "@material-ui/core/Dialog";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+
 
 const tutorialSteps = [
   {
@@ -56,7 +60,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ImageCarousel() {
+export default function ImageCarousel(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -71,14 +75,12 @@ export default function ImageCarousel() {
   };
 
   return (
-    <div className={classes.root}>
-      <Paper square elevation={0} className={classes.header}>
-        <Typography>{tutorialSteps[activeStep].label}</Typography>
-      </Paper>
+    <Dialog fullScreen open={props.open} onClose={props.handleClose}   >
+    <div style={{height:"90vh",width:'90vw'}}>
+  
       <img
         className={classes.img}
         src={tutorialSteps[activeStep].imgPath}
-        alt={tutorialSteps[activeStep].label}
       />
       <MobileStepper
         steps={maxSteps}
@@ -99,5 +101,6 @@ export default function ImageCarousel() {
         }
       />
     </div>
+    </Dialog>
   );
 }

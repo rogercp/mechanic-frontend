@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import { axiosWithAuth } from '../helpers/index';
 import Card from '@material-ui/core/Card';
@@ -27,6 +27,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BuildIcon from '@material-ui/icons/Build';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 import ImageCarousel from './ImageCarousel';
+
 import  '../styles/fullscreenmodal.scss'
 /**
  * Import styles
@@ -103,6 +104,8 @@ const useStyles = makeStyles(theme => ({
 function CarMaintenceCard(props) {
 
     const classes = useStyles();
+    const [fullopen, setFullOpen] = useState(false);
+    const [errorOpen, setErrorOpen] = useState(false);
 
 
     function handleDelete2() {
@@ -116,6 +119,22 @@ function CarMaintenceCard(props) {
             });
     }
     
+
+    const handlefullOpen = () => {
+        setFullOpen(true);
+    };
+    const handlefullClose = () => {
+        setFullOpen(false);
+    };
+
+    function handleErrorClose() {
+        setErrorOpen(false);
+    }
+    
+    function handleErrorOpen() {
+        setErrorOpen(true);
+    }
+
 
 
     return (
@@ -145,9 +164,15 @@ function CarMaintenceCard(props) {
                
             </div>
 
-            <ImageCarousel/>
+            
                
-           
+            <Button
+           style={{color:"darkcyan",  outline:'0'}}
+                   onClick={handlefullOpen}
+                   >
+           <AllOutIcon/>
+
+           </Button>
 
             <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >
 
@@ -165,10 +190,18 @@ function CarMaintenceCard(props) {
 
             </Toolbar>
             </div>
+            <ImageCarousel
+                open={fullopen}
+                handleClose={handlefullClose}
+                onClose={handlefullClose}
+                car={props.car}
+            />
             </ExpansionPanelDetails>
             </ExpansionPanel>
 
         </div>
+        
+      
         </>
        )
 }
