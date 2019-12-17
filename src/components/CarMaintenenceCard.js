@@ -3,32 +3,21 @@
  */
 
 import React, {useState} from 'react';
-import Grid from '@material-ui/core/Grid';
 import { axiosWithAuth } from '../helpers/index';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia'
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import AllOutIcon from '@material-ui/icons/AllOut';
-import InfoIcon from '@material-ui/icons/Info';
-import CarModalExpand from './CarModalExpand'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import CarImgUpload from './CarImgUpload';
 import { makeStyles } from '@material-ui/core/styles';
 import BuildIcon from '@material-ui/icons/Build';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 import ImageCarousel from './ImageCarousel';
 import DescriptionIcon from '@material-ui/icons/Description';
-import PostAddIcon from '@material-ui/icons/PostAdd';
 
 
 import  '../styles/fullscreenmodal.scss'
