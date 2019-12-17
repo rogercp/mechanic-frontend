@@ -10,7 +10,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CarImgShow from './CarImgShow';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
-import { flexbox } from '@material-ui/system';
 
 const useStyles = makeStyles(theme => ({
     button: {

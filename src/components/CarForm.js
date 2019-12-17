@@ -4,22 +4,13 @@
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { NavLink } from 'react-router-dom';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import TextField from '@material-ui/core/TextField';
-import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
-import SettingsIcon from '@material-ui/icons/Settings';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Icon from '@material-ui/core/Icon';
-import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { axiosWithAuth } from '../helpers/index';
-import CarImgUpload from './CarImgUpload';
+
 
 /**
  *  Import styles

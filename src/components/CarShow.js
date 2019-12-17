@@ -3,20 +3,10 @@
  */
 
 import React, { useState, useEffect} from "react";
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Zoom from '@material-ui/core/Zoom';
+import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import UpIcon from '@material-ui/icons/KeyboardArrowUp';
-import { green, red } from '@material-ui/core/colors';
-import Box from '@material-ui/core/Box';
+import { green } from '@material-ui/core/colors';
 import CarAddModal from './CarAddModal';
 import { axiosWithAuth } from '../helpers/index';
 import CarCard from './CarCard'

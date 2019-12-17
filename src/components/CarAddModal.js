@@ -6,10 +6,8 @@ import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { Button } from "@material-ui/core";
 import { withRouter } from 'react-router-dom';
 import CarForm from './CarForm'
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 /**
  * Define styles
