@@ -16,7 +16,7 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from '@material-ui/core/styles';
 import BuildIcon from '@material-ui/icons/Build';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
-import ImageCarousel from './ImageCarousel';
+// import ImageCarousel from './ImageCarousel';
 import DescriptionIcon from '@material-ui/icons/Description';
 
 
@@ -181,12 +181,12 @@ function CarMaintenceCard(props) {
 
             </Toolbar>
             </div>
-            <ImageCarousel
+            {/* <ImageCarousel
                 open={fullopen}
                 handleClose={handlefullClose}
                 onClose={handlefullClose}
                 car={props.car}
-            />
+            /> */}
             </ExpansionPanelDetails>
             </ExpansionPanel>
 
