@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ImageCarousel(props) {
+function ImageCarousel(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -101,3 +101,5 @@ export default function ImageCarousel(props) {
     </Dialog>
   );
 }
+
+export default ImageCarousel;
