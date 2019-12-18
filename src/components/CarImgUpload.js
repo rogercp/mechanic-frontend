@@ -23,7 +23,6 @@ const useStyles = makeStyles(theme => ({
 
 function CarImgUpload(props) {
 
-    console.log(props,'this is props')
 
     const classes = useStyles();
     const [carImages, setCarImages] = useState([]);
@@ -33,7 +32,7 @@ function CarImgUpload(props) {
     useEffect(() => {
         if(props.car){
         fetchCarImages();
-        }else if(props.carFix){
+        }if(props.carFix){
         fetchFixDocuments();
         }
     }, [file]);
@@ -90,7 +89,7 @@ function CarImgUpload(props) {
         // Upload file
         fileRef.put(file).then((snapshot) => {
             // console.log('Upload success!', snapshot.constructor, snapshot);
-            axiosWithAuth().post(`/car_fixe/${props.carFix.id}/images`, { file_name: file.name })
+            axiosWithAuth().post(`/car_fix/${props.carFix.id}/images`, { file_name: file.name })
                 .then(res => {
                     fetchFixDocuments();
                     window.location.reload();               
