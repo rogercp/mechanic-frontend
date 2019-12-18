@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CarImgShow from './CarImgShow';
+import CarImageFixShow from './CarImageFixShow';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 
 const useStyles = makeStyles(theme => ({
@@ -22,18 +23,30 @@ const useStyles = makeStyles(theme => ({
 
 function CarImgUpload(props) {
 
+
     const classes = useStyles();
-    const [images, setImages] = useState([]);
+    const [carImages, setCarImages] = useState([]);
+    const [carFixImages, setCarFixImages] = useState([]);
     const [file, setFile] = useState({});
 
     useEffect(() => {
-        fetchDocuments();
+        if(props.car){
+        fetchCarImages();
+        }if(props.carFix){
+        fetchFixDocuments();
+        }
     }, [file]);
 
-    async function fetchDocuments() {
+    async function fetchCarImages() {
         let images = await axiosWithAuth().get(`/cars/${props.car.id}/images`)
-        setImages(images.data);
+        setCarImages(images.data);
         return images;
+    }
+
+    async function fetchFixDocuments() {
+        let fixImages = await axiosWithAuth().get(`/car_fix/${props.carFix.id}/images`)
+        setCarFixImages(fixImages.data);
+        return fixImages;
     }
 
     function handleInputChanges(e) {
@@ -52,16 +65,33 @@ function CarImgUpload(props) {
 
     function handleSubmitUploader(e) {
         e.preventDefault()
-
         // Create file ref (Example: /documents/:car_id/:file_name)
         const fileRef = imagesRef.child(`${props.car.id}/${file.name}`)
-
         // Upload file
         fileRef.put(file).then((snapshot) => {
             // console.log('Upload success!', snapshot.constructor, snapshot);
             axiosWithAuth().post(`/cars/${props.car.id}/images`, { file_name: file.name })
                 .then(res => {
-                    fetchDocuments();
+                    fetchCarImages();
+                    window.location.reload();               
+                 })
+                .catch(error => {
+                    console.error(error);
+                })
+        }).catch(err => {
+            console.error(err)
+        });
+    }
+    function handleSubmitUploaderFixDocuments(e) {
+        e.preventDefault()
+        // Create file ref (Example: /documents/:car_id/:file_name)
+        const fileRef = imagesRef.child(`${props.carFix.id}/${file.name}`)
+        // Upload file
+        fileRef.put(file).then((snapshot) => {
+            // console.log('Upload success!', snapshot.constructor, snapshot);
+            axiosWithAuth().post(`/car_fix/${props.carFix.id}/images`, { file_name: file.name })
+                .then(res => {
+                    fetchFixDocuments();
                     window.location.reload();               
                  })
                 .catch(error => {
@@ -73,32 +103,31 @@ function CarImgUpload(props) {
     }
     
 
-    if(images.length > 0 ){
+
+    if(carImages.length > 0 ){
         return (
         <>
-                
-                    {images.map((image, index) => {
+                    {carImages.map((image, index) => {
                         return <CarImgShow key={index} car={props.car} image={image}/>
-                    })}
-               
-                
-               
+                    })} 
+        </>
+        )
+    } else if(carFixImages.length > 0 ){
+        return (
+        <>
+                    {carFixImages.map((image, index) => {
+                        return <CarImageFixShow  key={index}  carFix={props.carFix} image={image}/>
+                    })} 
         </>
         )
     }else{
         return (
             <>
                 <div style={{height:"200px"}}>
-                
-
-                <DriveEtaIcon style={{fontSize:"100px"}}/>
-
-               
-                
+                {(props.car ? <DriveEtaIcon style={{fontSize:"100px"}}/> : null)} 
                 <div style={{display:'flex',flexDirection:"column"}}>
-                <form onSubmit={handleSubmitUploader}>
+                 <form onSubmit={(props.car ? handleSubmitUploader : handleSubmitUploaderFixDocuments)}> 
                 <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
-                
                     <Button
                     variant="contained"
                     name="car_type"

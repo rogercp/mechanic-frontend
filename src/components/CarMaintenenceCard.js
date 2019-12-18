@@ -16,8 +16,9 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from '@material-ui/core/styles';
 import BuildIcon from '@material-ui/icons/Build';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
-// import ImageCarousel from './ImageCarousel';
+import ImageCarousel from './ImageCarousel';
 import DescriptionIcon from '@material-ui/icons/Description';
+import CarImgUpload from './CarImgUpload';
 
 
 import  '../styles/fullscreenmodal.scss'
@@ -165,6 +166,8 @@ function CarMaintenceCard(props) {
            <DescriptionIcon/>
            </Button>
 
+           <CarImgUpload carFix={props.carFix}/>
+
             <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >
 
                 <Button
@@ -178,15 +181,14 @@ function CarMaintenceCard(props) {
                 <DeleteIcon  />    
                 </IconButton> 
 
-
             </Toolbar>
             </div>
-            {/* <ImageCarousel
+            <ImageCarousel
                 open={fullopen}
                 handleClose={handlefullClose}
                 onClose={handlefullClose}
                 car={props.car}
-            /> */}
+            />
             </ExpansionPanelDetails>
             </ExpansionPanel>
 
