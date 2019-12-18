@@ -10,11 +10,11 @@ import { imagesRef } from '../helpers/firebase';
  * Define component
  */
 
-function CarImgShow(props) {
+function CarImageFixShow(props) {
 
     const [thisImage,setThisimage]= useState('')
     
-      const fileRef = imagesRef.child(`${props.car.id}/${props.image.file_name}`);
+      const fileRef = imagesRef.child(`${props.carFix.id}/${props.image.file_name}`);
 
 
     useEffect(() => {
@@ -27,13 +27,6 @@ function CarImgShow(props) {
 
             setThisimage(url)
 
-            // let img = document.getElementById('document-image');
-            // if (metadata.contentType === 'application/pdf') {
-            //     img.src = '';
-            //     // TODO handle PDFs
-            //   } else {
-            //     img.src = url;
-            //   }
           })
           .catch(err => {
             console.error(err);
@@ -57,4 +50,4 @@ function CarImgShow(props) {
  * Export component
  */
 
-export default CarImgShow;
+export default CarImageFixShow;

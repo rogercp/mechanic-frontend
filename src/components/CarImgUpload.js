@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CarImgShow from './CarImgShow';
+import CarImageFixShow from './CarImageFixShow';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 
 const useStyles = makeStyles(theme => ({
@@ -116,7 +117,7 @@ function CarImgUpload(props) {
         return (
         <>
                     {carFixImages.map((image, index) => {
-                        return <CarImgShow  image={image}/>
+                        return <CarImageFixShow  key={index}  carFix={props.carFix} image={image}/>
                     })} 
         </>
         )
