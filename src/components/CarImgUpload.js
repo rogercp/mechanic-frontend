@@ -112,15 +112,22 @@ function CarImgUpload(props) {
                     })} 
         </>
         )
+    } else if(carFixImages.length > 0 ){
+        return (
+        <>
+                    {carFixImages.map((image, index) => {
+                        return <CarImgShow  image={image}/>
+                    })} 
+        </>
+        )
     }else{
         return (
             <>
                 <div style={{height:"200px"}}>
-                <DriveEtaIcon style={{fontSize:"100px"}}/>   
+                {(props.car ? <DriveEtaIcon style={{fontSize:"100px"}}/> : null)} 
                 <div style={{display:'flex',flexDirection:"column"}}>
-                <form onSubmit={handleSubmitUploader}>
+                 <form onSubmit={(props.car ? handleSubmitUploader : handleSubmitUploaderFixDocuments)}> 
                 <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
-
                     <Button
                     variant="contained"
                     name="car_type"
