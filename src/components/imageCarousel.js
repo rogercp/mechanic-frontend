@@ -69,7 +69,7 @@ function ImageCarousel(props) {
   };
 
   return (
-    <Dialog  open={props.open} onClose={props.handleClose} style={{height:"90%",width:'90%',textAlign:"center",marginBottom:"10",marginTop:"10px"}} >
+    <Dialog open={props.open} onClose={props.handleClose} >
     {/* <div style={{textAlign:"center",height:"90%"}}>
       
       <MobileStepper
@@ -96,12 +96,13 @@ function ImageCarousel(props) {
       />
     </div> */}
 <Carousel
-style={{height:"90%",width:'90%',textAlign:"center",marginBottom:"10",marginTop:"10px"}}
+
 >
   <Carousel.Item>
     <img
+    style={{width:"90vw"}}
       className="d-block w-100"
-      src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80"
+      src="https://images.unsplash.com/photo-1500021804447-2ca2eaaaabeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
       alt="First slide"
     />
     <Carousel.Caption>
@@ -111,11 +112,27 @@ style={{height:"90%",width:'90%',textAlign:"center",marginBottom:"10",marginTop:
   </Carousel.Item>
   <Carousel.Item>
     <img
+        style={{width:"90vw"}}
+
       className="d-block w-100"
-      src='https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60'
+      src= 'https://picsum.photos/id/237/200/300'
       alt="Third slide"
     />
     </Carousel.Item>
+
+    <Carousel.Item>
+    <img
+        style={{width:"90vw"}}
+
+      className="d-block w-100"
+      src="https://images.unsplash.com/photo-1562408590-e32931084e23?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+      alt="First slide"
+    />
+    <Carousel.Caption>
+      <h3>First slide label</h3>
+      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
 </Carousel>
    
     </Dialog>
