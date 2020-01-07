@@ -114,9 +114,10 @@ function CarModalExpand(props) {
                         </IconButton>
             </div>
             
-
-        <CarFixAddModal
+            <div style={{backgroundColor:"rgb(210, 210, 211)",margin:"0",paddingBottom:"300px"}}>
+            <CarFixAddModal
             open={open}
+            car={props.car}
             onClose={handleClose}
             titleText={"Maintence Form"}
             bodyText={""}
@@ -127,9 +128,7 @@ function CarModalExpand(props) {
                 <AddIcon
             onClick={handleOpen}
            />
-            </Fab>
-
-            <div style={{backgroundColor:"rgb(210, 210, 211)",margin:"0",paddingBottom:"300px"}}> 
+            </Fab> 
             {formNotView.toggled === false ? <CarMaintenceShow  car={props.car}/>: <CarMaintenceForm car={props.car}/>}
             </div>    
           

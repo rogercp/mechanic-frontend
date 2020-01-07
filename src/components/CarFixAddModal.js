@@ -58,7 +58,7 @@ function CarFixAddModal(props) {
             <Dialog open={open} onClose={handleClose} className={classes.dialog}>
                 <div className={classes.paper}>
                     <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
-                    <CarMaintenenceForm/>
+                    <CarMaintenenceForm car={props.car}/>
                     
                 </div>
             </Dialog>
@@ -68,7 +68,7 @@ function CarFixAddModal(props) {
             <Dialog open={open} onClose={handleClose} className={classes.dialog}>
                 <div className={classes.paper}>
                     <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
-                    <CarMaintenenceForm/>
+                    <CarMaintenenceForm car={props.car}/>
                 </div>
             </Dialog>
         )
