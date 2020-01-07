@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Dialog from "@material-ui/core/Dialog";
-import { Carousel } from 'react-bootstrap';
+import { Carousel,Image } from 'react-bootstrap';
 
 const tutorialSteps = [
   {
@@ -69,7 +69,7 @@ function ImageCarousel(props) {
   };
 
   return (
-    <Dialog open={props.open} onClose={props.handleClose} >
+    <Dialog  open={props.open} onClose={props.handleClose} >
     {/* <div style={{textAlign:"center",height:"90%"}}>
       
       <MobileStepper
@@ -96,14 +96,14 @@ function ImageCarousel(props) {
       />
     </div> */}
 <Carousel
-
 >
-  <Carousel.Item>
+  <Carousel.Item >
     <img
-    style={{width:"90vw"}}
+    
       className="d-block w-100"
       src="https://images.unsplash.com/photo-1500021804447-2ca2eaaaabeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
       alt="First slide"
+     
     />
     <Carousel.Caption>
       <h3>First slide label</h3>
@@ -112,7 +112,7 @@ function ImageCarousel(props) {
   </Carousel.Item>
   <Carousel.Item>
     <img
-        style={{width:"90vw"}}
+       
 
       className="d-block w-100"
       src= 'https://picsum.photos/id/237/200/300'
@@ -122,7 +122,7 @@ function ImageCarousel(props) {
 
     <Carousel.Item>
     <img
-        style={{width:"90vw"}}
+        
 
       className="d-block w-100"
       src="https://images.unsplash.com/photo-1562408590-e32931084e23?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
