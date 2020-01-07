@@ -18,7 +18,7 @@ import { CarShow } from '../components';
  * Define component
  */
 
-function UserSettings(props) {
+function UserCars(props) {
 
    
     return (
@@ -40,4 +40,4 @@ function UserSettings(props) {
  * Export component
  */
 
-export default UserSettings;
+export default UserCars;
