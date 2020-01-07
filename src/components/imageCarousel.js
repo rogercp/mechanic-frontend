@@ -6,8 +6,7 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Dialog from "@material-ui/core/Dialog";
-
-
+import { Carousel } from 'react-bootstrap';
 
 const tutorialSteps = [
   {
@@ -50,11 +49,8 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
   },
   img: {
-    height: 255,
-    maxWidth: 400,
-    overflow: 'hidden',
+    overflow: 'scroll',
     display: 'block',
-    width: '100%',
   },
 }));
 
@@ -73,12 +69,9 @@ function ImageCarousel(props) {
   };
 
   return (
-    <Dialog fullScreen open={props.open} onClose={props.handleClose} style={{height:"90vh",width:'90vw',textAlign:"center",marginBottom:"10",marginTop:"10px"}} >
-    <div style={{textAlign:"center",height:"90%"}}>
-      <img
-        className={classes.img}
-        src={tutorialSteps[activeStep].imgPath}
-      />
+    <Dialog  open={props.open} onClose={props.handleClose} style={{height:"90%",width:'90%',textAlign:"center",marginBottom:"10",marginTop:"10px"}} >
+    {/* <div style={{textAlign:"center",height:"90%"}}>
+      
       <MobileStepper
         steps={maxSteps}
         position="static"
@@ -97,7 +90,34 @@ function ImageCarousel(props) {
           </Button>
         }
       />
-    </div>
+      <img
+        className={classes.img}
+        src={tutorialSteps[activeStep].imgPath}
+      />
+    </div> */}
+<Carousel
+style={{height:"90%",width:'90%',textAlign:"center",marginBottom:"10",marginTop:"10px"}}
+>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80"
+      alt="First slide"
+    />
+    <Carousel.Caption>
+      <h3>First slide label</h3>
+      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src='https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60'
+      alt="Third slide"
+    />
+    </Carousel.Item>
+</Carousel>
+   
     </Dialog>
   );
 }
