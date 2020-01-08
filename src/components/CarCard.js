@@ -16,8 +16,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import CarImgUpload from './CarImgUpload';
 import Switch from '@material-ui/core/Switch';
-
-
+import Paper from '@material-ui/core/Paper';
+import Collapse from '@material-ui/core/Collapse';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 /**
  * Define styles
@@ -84,6 +85,7 @@ const useStyles = makeStyles(theme => ({
       root: {
         width: '100%',
       },
+
       
 }))
 
@@ -103,6 +105,14 @@ const MediatorCard = (props) => {
       toggled:false
   });
 
+
+  // 
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = () => {
+    setChecked(prev => !prev);
+  };
+// 
 
   const handleChange2 = name => event => {
       setFlip({ ...flip, [name]: event.target.checked });
@@ -150,9 +160,10 @@ const MediatorCard = (props) => {
         
         <Card className={classes.paper}  style={{border:"black",minWidth:"350px",minHeight:"325px",maxWidth:"350px"}}>
             
+       
+
           <CardContent>
-          {flip.toggled === false ? 
-          <>
+          
            <div className={classes.top}>
            <h3 className='card-name'> {props.car.car_nickname}</h3> 
            <Button
@@ -164,8 +175,20 @@ const MediatorCard = (props) => {
            </div>
              <CarImgUpload car={props.car}/>
             
-             </>
-          : 
+             
+          
+          </CardContent>
+          <div style={{display:"block",width:"100%"}}>
+        
+           </div>
+
+    <FormControlLabel
+        control={<Switch checked={checked}  color="primary" onChange={handleChange} />}
+        label="Details"
+      />
+      <div className={classes.container}>
+        <Collapse in={checked}>
+          <Paper elevation={4} className={classes.paper}>
           <div className={classes.top}>
                 <div style={{display:"flex",flexDirection:"column",minHeight:'241px'}}>
                 
@@ -188,19 +211,11 @@ const MediatorCard = (props) => {
                     </div>
                     
                </div>
-             
+          </Paper>
+        </Collapse>
 
-          }
-          </CardContent>
-          <div style={{display:"block",width:"100%"}}>
-          <Switch
-            onChange={handleChange2('toggled')}
-            value="toggled"
-            color="primary"
-            inputProps={{ 'aria-label': 'checkbox with default color' }}
+</div>
 
-                  />
-           </div>
           
         </Card>
         <CarModalExpand
@@ -210,6 +225,9 @@ const MediatorCard = (props) => {
                 car={props.car}
             />
       
+
+     
+
     </>
   );
 };
