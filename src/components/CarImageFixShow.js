@@ -16,6 +16,9 @@ function CarImageFixShow(props) {
     
       const fileRef = imagesRef.child(`${props.carFix.id}/${props.image.file_name}`);
 
+      
+      console.log(props.carFix,"carFix")
+
 
     useEffect(() => {
         getImg()

@@ -18,7 +18,7 @@ import BuildIcon from '@material-ui/icons/Build';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 import ImageCarousel from './ImageCarousel';
 import DescriptionIcon from '@material-ui/icons/Description';
-import CarImgUpload from './CarImgUpload';
+import CarFixImgUpload from './CarFixImgUpload';
 
 
 import  '../styles/fullscreenmodal.scss'
@@ -112,6 +112,7 @@ function CarMaintenceCard(props) {
             });
     }
     
+   
 
     const handlefullOpen = () => {
         setFullOpen(true);
@@ -166,7 +167,7 @@ function CarMaintenceCard(props) {
            <DescriptionIcon/>
            </Button>
 
-           <CarImgUpload carFix={props.carFix}/>
+           <CarFixImgUpload carFix={props.carFix}/>
 
             <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >
 

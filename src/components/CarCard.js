@@ -190,7 +190,7 @@ const MediatorCard = (props) => {
         <Collapse in={checked}>
           <Paper elevation={4} className={classes.paper}>
           <div className={classes.top}>
-                <div style={{display:"flex",flexDirection:"column",minHeight:'241px'}}>
+                <div style={{display:"flex",flexDirection:"column",minHeight:'150px'}}>
                 
                
                         <p className="case-label">Car Type: {props.car.car_type}</p> 
