@@ -91,8 +91,10 @@ function NavBar(props) {
         
       
         <div className="nav" style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px"}}>
-            <div className="links">
+        <h2 >Mech</h2>
 
+            <div className="links">
+           
               <NavLink id="link" to="/home" activeClassName="active"  style={{textDecoration:"none"}} data-testid="signup-link">
                   <i>DASH</i>
               </NavLink>

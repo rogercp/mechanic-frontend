@@ -5,6 +5,8 @@
 import React from 'react';
 import Button from "react-bootstrap/Button";
 import { NavLink } from 'react-router-dom';
+import { DashSideNav } from '../components';
+import { Posts } from '../components';
 
 
 /**
@@ -23,7 +25,14 @@ function Home(props) {
     return (
 
         <>
-        <h1>Home</h1>
+        <div>
+        <div>
+        <DashSideNav/>  
+        </div> 
+        <Posts/>
+         </div>
+
+
         </>
        )
 }
