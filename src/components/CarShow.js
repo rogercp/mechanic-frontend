@@ -76,13 +76,15 @@ function CarShow(props) {
   
   
   useEffect(() => {
-    async function fetchCars() {
-        const res = await axiosWithAuth().get(`/cars`); 
-        setCars(res.data);
-    }
+   
     fetchCars()
     
 }, []);
+
+async function fetchCars() {
+  const res = await axiosWithAuth().get(`/cars`); 
+  setCars(res.data);
+}
 
 
 
@@ -128,7 +130,7 @@ function CarShow(props) {
                   {cars.map(c => {
                       return (
                         <>
-                        <CarCard  car={c}  key={caches.uid} fetchCars={c.fetchCars} />
+                        <CarCard  fetchCarsFunction={fetchCars} car={c}  key={caches.uid} fetchCars={c.fetchCars} />
                         </>
                      );
                   })}

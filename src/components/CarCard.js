@@ -113,8 +113,7 @@ const MediatorCard = (props) => {
     axiosWithAuth()
         .delete(`${process.env.REACT_APP_API_URL}/cars/${props.car.id}`)
         .then(res => {
-            window.location.reload();
-            props.fetchCars();
+            props.fetchCarsFunction();
         })
         .catch(error => {
             console.error(error);
