@@ -29,7 +29,7 @@ function Home(props) {
         
         <div>
 
-        <div style={{display:"flex", flexDirection:"row",alignItems:"space-between",padding:"10px 0"}}>
+        <div style={{display:"flex", flexDirection:"row",padding:"10px 0"}}>
         <div>
         <Question/> 
         </div>
@@ -43,15 +43,12 @@ function Home(props) {
         </div>
          </div>
 
-        <div style={{display:"flex", flexDirection:"row",alignItems:"space-between"}}>
         <div>
                 <DashSideNav/>  
-                </div>
-
-                <div>
-                <Posts/>
-                </div>
+                
         </div>
+
+
        
 
 

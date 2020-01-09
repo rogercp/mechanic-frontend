@@ -21,11 +21,17 @@ function Posts(props) {
 
     return (
       <>
-        <div style={{backgroundColor:"red", height:"400px",width:"400px" }}>
+        <div style={{backgroundColor:"red", height:"400px",width:"20rem" }}>
 
             this is a mock post 
 
         </div>
+
+
+
+
+
+
  
       </>
     );

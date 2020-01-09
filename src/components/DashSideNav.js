@@ -14,6 +14,7 @@ import List from '@material-ui/core/List';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
+import Posts from './Posts';
 /**
  *  Import styles
  */
@@ -35,7 +36,7 @@ function DashSideNav(props) {
 
     return (
       <>
-        <div className="mobile2" >
+        <div className="mobile2" style={{width: '100%'}}>
             <div className="wrapper" >
             
             <section class="horizontal-scroll">
@@ -65,6 +66,8 @@ function DashSideNav(props) {
         </div>
            
 
+
+<div style={{display:"flex", flexDirection:"row"}}>
             <div className="sideNav" style={{width:"200px",backgroundColor:"green"}}>
            <section style={{display:"flex", flexDirection:"column"}}>
            <p class="item">Item</p>
@@ -84,11 +87,17 @@ function DashSideNav(props) {
            <p class="item">Item</p>
    
            </section>
+
+         
    
    
    
    
            </div>
+           
+           <Posts/>
+
+    </div>
           
 
       </>
