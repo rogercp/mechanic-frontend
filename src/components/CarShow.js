@@ -86,8 +86,6 @@ async function fetchCars() {
   setCars(res.data);
 }
 
-
-
     return (
       <>
         

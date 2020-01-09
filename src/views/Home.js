@@ -25,21 +25,37 @@ function Home(props) {
 
     return (
 
-        <>
-        <DashSideNav/>  
-        <div style={{marginTop:"100px"}}>
+        <div style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px",paddingBottom:"300px"}}>
+        
         <div>
-        </div> 
-        <div style={{}}>
-        <Question/>
-        <Search/>
+
+        <div style={{display:"flex", flexDirection:"row",alignItems:"space-between",padding:"10px 0"}}>
+        <div>
+        <Question/> 
         </div>
-      
-        <Posts/>
+
+        <div>
+            <Search/>
+        </div>
+
+       
+
+        </div>
          </div>
 
+        <div style={{display:"flex", flexDirection:"row",alignItems:"space-between"}}>
+        <div>
+                <DashSideNav/>  
+                </div>
 
-        </>
+                <div>
+                <Posts/>
+                </div>
+        </div>
+       
+
+
+        </div>
        )
 }
 

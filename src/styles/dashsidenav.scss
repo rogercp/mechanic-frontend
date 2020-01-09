@@ -3,8 +3,10 @@
 
 .wrapper {
     max-width: 1300px;
-    height: 10px;
-    margin: auto;
+    position: fixed; 
+    bottom: 0;
+    width: 100%;
+    z-index: 12; 
   }
 
   .horizontal-scroll {
@@ -13,11 +15,31 @@
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    padding: 30px 0;
+    padding: 15px 0;
   }
   .item {
     display: inline-block;
     text-align: center;
-    margin: 0 10px;
+    margin: 0 15px;
     font-size: 20px;
+  }
+
+  @media screen and (max-width: 500px) {
+    .sideNav{
+        z-index:-50;
+        visibility: hidden;
+        overflow-x: hidden;
+        height:0;
+        width:0;
+        overflow:hidden;
+    }
+    
+  }
+
+
+  @media screen and (min-width: 501px) {
+    .mobile2{
+        display:none;
+      
+    }
   }

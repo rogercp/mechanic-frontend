@@ -35,31 +35,60 @@ function DashSideNav(props) {
 
     return (
       <>
-        
-        <div className="wrapper" >
-           
-        <section class="horizontal-scroll">
-        <p class="item">Item1</p>
-        <p class="item">Item2</p>
-        <p class="item">Item3</p>
-        <p class="item">Item4</p>
-        <p class="item">Item5</p>
-        <p class="item">Item1</p>
-        <p class="item">Item2</p>
-        <p class="item">Item3</p>
-        <p class="item">Item4</p>
-        <p class="item">Item5</p>
-        <p class="item">Item1</p>
-        <p class="item">Item2</p>
-        <p class="item">Item3</p>
-        <p class="item">Item4</p>
-        <p class="item">Item5</p>
+        <div className="mobile2" >
+            <div className="wrapper" >
+            
+            <section class="horizontal-scroll">
+            <p class="item">Item1</p>
+            <p class="item">Item2</p>
+            <p class="item">Item3</p>
+            <p class="item">Item4</p>
+            <p class="item">Item5</p>
+            <p class="item">Item1</p>
+            <p class="item">Item2</p>
+            <p class="item">Item3</p>
+            <p class="item">Item4</p>
+            <p class="item">Item5</p>
+            <p class="item">Item1</p>
+            <p class="item">Item2</p>
+            <p class="item">Item3</p>
+            <p class="item">Item4</p>
+            <p class="item">Item5</p>
 
-        </section>
+            </section>
 
+
+
+
+            </div>
 
         </div>
-          
+           
+
+            <div className="sideNav" style={{width:"200px",backgroundColor:"green"}}>
+           <section style={{display:"flex", flexDirection:"column"}}>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+           <p class="item">Item</p>
+   
+           </section>
+   
+   
+   
+   
+           </div>
           
 
       </>
