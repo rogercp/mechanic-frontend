@@ -20,17 +20,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import  '../styles/dashsidenav.scss'
 
-const useStyles = makeStyles({
-  list: {
-    width: 150,
-    margin: '20px',
-   
-  },
-  fullList: {
-    width: 'auto',
-    
-  },
-});
+
 /**
  * Define component
  */
@@ -46,40 +36,29 @@ function DashSideNav(props) {
     return (
       <>
         
-        <div className="nav" style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px"}}>
+        <div className="wrapper" >
            
+        <section class="horizontal-scroll">
+        <p class="item">Item1</p>
+        <p class="item">Item2</p>
+        <p class="item">Item3</p>
+        <p class="item">Item4</p>
+        <p class="item">Item5</p>
+        <p class="item">Item1</p>
+        <p class="item">Item2</p>
+        <p class="item">Item3</p>
+        <p class="item">Item4</p>
+        <p class="item">Item5</p>
+        <p class="item">Item1</p>
+        <p class="item">Item2</p>
+        <p class="item">Item3</p>
+        <p class="item">Item4</p>
+        <p class="item">Item5</p>
 
-              <h3>
-                  <i>Maintence</i>
-              </h3>
-
-              <h3>
-                  <i>something</i>
-              </h3>
-
-                  
-              <h3>
-                  <i>other</i>
-              </h3>
-
-
-              <h3>
-                  <i>onething</i>
-              </h3>
-
-              <h3>
-                  <i>calm</i>
-              </h3>
-              <h3>
-                  <i>catt</i>
-              </h3>
-              <h3>
-                  <i>ayyyy</i>
-              </h3>
+        </section>
 
 
-
-            </div>
+        </div>
           
           
 

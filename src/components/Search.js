@@ -24,12 +24,15 @@ const useStyles = makeStyles(theme => ({
  */
 
 
-function Question(props) {
+function Search(props) {
   
     const classes = useStyles();
     return (
       <>
-        <h1>button for Question</h1>
+        <form className={classes.root} noValidate autoComplete="off">
+          <TextField label="Search" variant="filled" />
+        </form>
+ 
       </>
     );
 };
@@ -38,4 +41,4 @@ function Question(props) {
  * Export component
  */
 
-export default Question;
+export default Search;

@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   list: {
     width: 150,
     margin: '20px',
-   
+   display: 'block',
   },
   fullList: {
     width: 'auto',
@@ -92,7 +92,6 @@ function NavBar(props) {
       
         <div className="nav" style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px"}}>
         <h2 >Mech</h2>
-
             <div className="links">
            
               <NavLink id="link" to="/home" activeClassName="active"  style={{textDecoration:"none"}} data-testid="signup-link">
@@ -121,7 +120,8 @@ function NavBar(props) {
           
             
             <div className="mobile">
-              <Button style={{float:"right", marginTop: "10px" }} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
+            <h2>Mech</h2>
+              <Button style={{float:"right", marginTop: "10px",}} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
               <Drawer   anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
                   {sideList ('right')}
 

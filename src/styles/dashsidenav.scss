@@ -1,1 +1,23 @@
 @import './variables.scss';
+
+
+.wrapper {
+    max-width: 1300px;
+    height: 10px;
+    margin: auto;
+  }
+
+  .horizontal-scroll {
+    background-color: #A9A9A9;
+    overflow: hidden;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 30px 0;
+  }
+  .item {
+    display: inline-block;
+    text-align: center;
+    margin: 0 10px;
+    font-size: 20px;
+  }

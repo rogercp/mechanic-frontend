@@ -6,7 +6,8 @@ import React from 'react';
 import Button from "react-bootstrap/Button";
 import { NavLink } from 'react-router-dom';
 import { DashSideNav } from '../components';
-import { Posts } from '../components';
+import { Posts, Question, Search} from '../components';
+
 
 
 /**
@@ -25,10 +26,15 @@ function Home(props) {
     return (
 
         <>
-        <div>
-        <div>
         <DashSideNav/>  
+        <div style={{marginTop:"100px"}}>
+        <div>
         </div> 
+        <div style={{}}>
+        <Question/>
+        <Search/>
+        </div>
+      
         <Posts/>
          </div>
 
