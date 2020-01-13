@@ -50,11 +50,8 @@ function CarForm(props) {
   
   const classes = useStyles();
   const [state, setState] = React.useState({
-    car_type: '',
-    car_make: '',
-    car_model:'',
-    car_nickname:'',
-    car_year:''
+    category : '',
+    post_text:'',
   });
 
   
@@ -88,7 +85,7 @@ function CarForm(props) {
           native
           name="car_type"
           className={classes.textField}
-          value={state.car_type}
+          value={state.category}
           onChange={handleChange('car_type')}
           inputProps={{
             name: 'type',
@@ -105,22 +102,20 @@ function CarForm(props) {
           <option value={"Convertible"}>blank</option>
         </Select>
      
-      
         <TextField
-          id="standard-basic"
-          name="car_year"
+          id="outlined-multiline-static"
+          multiline
+          name="post_text"
+          value={state.post_text}
+          onChange={handleChange('post_text')}
+        //   rows="4"
+          placeholder="Description"
           className={classes.textField}
-          label="Year"
           margin="normal"
-          value={state.car_year}
-          name="car_make"
-          onChange={handleChange('car_year')}
+          variant="outlined"
         />
        
-    
-       
 
-     
         
         <Button
         variant="contained"

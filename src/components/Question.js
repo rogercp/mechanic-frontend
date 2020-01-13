@@ -78,7 +78,7 @@ function Question(props) {
         <PostAddModal
           open={open}
           onClose={handleClose}
-          titleText={"Car Form"}
+          titleText={"Post Form"}
           bodyText={""}
           redirect={"/mycars"}
           redirectText={"cars"}
