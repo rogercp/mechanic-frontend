@@ -68,7 +68,7 @@ function DashSideNav(props) {
 
 
 <div style={{display:"flex", flexDirection:"row"}}>
-            <div className="sideNav" style={{width:"200px",backgroundColor:"green"}}>
+            <div className="sideNav" style={{width:"200px",height:"500px",backgroundColor:"green"}}>
            <section style={{display:"flex", flexDirection:"column"}}>
            <p class="item">Item</p>
            <p class="item">Item</p>
@@ -94,7 +94,7 @@ function DashSideNav(props) {
    
    
            </div>
-           
+
            <Posts/>
 
     </div>
