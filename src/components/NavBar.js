@@ -120,7 +120,7 @@ function NavBar(props) {
           
             
             <div className="mobile">
-              <Button style={{float:"right", marginTop: "10px",}} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
+              <Button style={{float:"right", marginTop: "20px",}} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
               <Drawer   anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
                   {sideList ('right')}
 

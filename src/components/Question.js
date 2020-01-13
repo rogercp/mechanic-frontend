@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Add';
+import PostAddModal from './PostAddModal';
 
 /**
  *  Import styles
@@ -40,15 +41,48 @@ const useStyles = makeStyles(theme => ({
 
 
 function Question(props) {
+
+ const classes = useStyles();
+
+  const [cars,setCars] = useState([])
+  const [open, setOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
+
+  /**
+   * Modal Methods
+   */
+
+  function handleOpen() {
+      setOpen(true);
+  }
+  function handleErrorOpen() {
+      setErrorOpen(true);
+  }
+  function handleClose() {
+      setOpen(false);
+  }
+  function handleErrorClose() {
+      setErrorOpen(false);
+  }
   
-    const classes = useStyles();
+  
     return (
       <>
         <Fab color="none" aria-label="add" style={{color:"darkcyan",  outline:'0'}} className={classes.margin}>
-          <EditIcon />
+          <EditIcon 
+          onClick={handleOpen}
+          />
            
         </Fab>
 
+        <PostAddModal
+          open={open}
+          onClose={handleClose}
+          titleText={"Car Form"}
+          bodyText={""}
+          redirect={"/mycars"}
+          redirectText={"cars"}
+          />
 
       </>
     );

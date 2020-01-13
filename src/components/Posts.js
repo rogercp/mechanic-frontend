@@ -21,6 +21,9 @@ function Posts(props) {
 
     return (
       <>
+      <div style={{display:"flex", flexDirection:"column"}}>
+
+      
         <div style={{backgroundColor:"red", height:"400px",width:"20rem" }}>
 
             this is a mock post 
@@ -28,8 +31,32 @@ function Posts(props) {
         </div>
 
 
+        <div style={{backgroundColor:"red", height:"400px",width:"20rem" }}>
+
+this is a mock post 
+
+</div>
+
+<div style={{backgroundColor:"red", height:"400px",width:"20rem" }}>
+
+            this is a mock post 
+
+        </div>
+
+        <div style={{backgroundColor:"red", height:"400px",width:"20rem" }}>
+
+            this is a mock post 
+
+        </div>
+
+        <div style={{backgroundColor:"red", height:"400px",width:"20rem" }}>
+
+            this is a mock post 
+
+        </div>
 
 
+        </div>
 
 
  
