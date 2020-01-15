@@ -3,7 +3,7 @@
  */
 
 import React, { useState, useEffect} from "react";
-
+import DashSideNav from './DashSideNav';
 
 /**
  *  Import styles
@@ -21,6 +21,9 @@ function Posts(props) {
 
     return (
       <>
+
+    
+
       <div style={{display:"flex", flexDirection:"column"}}>
 
       

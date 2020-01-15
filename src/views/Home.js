@@ -14,6 +14,7 @@ import { Posts, Question, Search} from '../components';
  * Import styles
  */
 
+import  '../styles/home.scss'
 
 
 /**
@@ -43,14 +44,25 @@ function Home(props) {
         </div>
          </div>
 
+
+        <div className="web" style={{display:"flex", flexDirection:"row"}}>
+        <div >
+        <DashSideNav/> 
+        </div>
         <div>
-                <DashSideNav/>  
-                
+        <Posts/>
+        </div>
         </div>
 
+        <div className="mobile">
+        <div >
+        <DashSideNav/> 
+        </div>
+        <div>
+        <Posts/>
+        </div>
 
-       
-
+        </div>
 
         </div>
        )
