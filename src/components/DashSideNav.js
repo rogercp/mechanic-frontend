@@ -95,7 +95,7 @@ function DashSideNav(props) {
    
            </div>
 
-           <Posts/>
+           
 
     </div>
           
