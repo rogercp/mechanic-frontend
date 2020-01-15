@@ -61,18 +61,18 @@ function CarForm(props) {
       [name]: event.target.value,
     });
   };
-
+  console.log(state, "state")
   const onSubmitHandler = e => {
     e.preventDefault();
+    
     axiosWithAuth()
-        .post(`/cars`, state)
+        .post(`/post`, state)
         .then(res => {  
             window.location.reload();
         })
         .catch(err => {      
         });
 };
-
 
 
     return (
