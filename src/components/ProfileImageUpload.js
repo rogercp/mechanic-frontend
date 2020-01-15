@@ -8,8 +8,7 @@ import axiosWithAuth from '../helpers/axiosWithAuth';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import CarImgShow from './CarImgShow';
-import CarImageFixShow from './CarImageFixShow';
+import ProfileImageShow from './ProfileImageShow';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 
 const useStyles = makeStyles(theme => ({
@@ -23,21 +22,23 @@ const useStyles = makeStyles(theme => ({
 
 function ProfileImageUpload(props) {
 
-    
     const classes = useStyles();
-    const [carFixImages, setCarFixImages] = useState([]);
+
+    const userId = localStorage.getItem('id');
+    
+    const [userImage, setUserImage] = useState({});
     const [file, setFile] = useState({});
 
     useEffect(() => {
     
-        fetchFixDocuments();
+        fetchProfileImage();
         
     }, [file]);
 
     async function fetchProfileImage() {
-        let fixImages = await axiosWithAuth().get(`/car_fix/${props.carFix.id}/car_fix_images`)
-        setCarFixImages(fixImages.data);
-        return fixImages;
+        let userImages = await axiosWithAuth().get(`/users/image/${userId}`)
+        setUserImage(userImages.data);
+        return userImages;
     }
 
     function handleInputChanges(e) {
@@ -58,11 +59,11 @@ function ProfileImageUpload(props) {
     function handleSubmitUploaderProfilePicture(e) {
         e.preventDefault()
         // Create file ref (Example: /documents/:car_id/:file_name)
-        const fileRef = imagesRef.child(`${props.carFix.id}/${file.name}`)
+        const fileRef = imagesRef.child(`${userId}/${file.name}`)
         // Upload file
         fileRef.put(file).then((snapshot) => {
             // console.log('Upload success!', snapshot.constructor, snapshot);
-            axiosWithAuth().post(`/car_fix/${props.carFix.id}/car_fix_images`, { file_name: file.name })
+            axiosWithAuth().post(`/users/image/${userId}`, { file_name: file.name })
                 .then(res => {
                     fetchProfileImage();
                     window.location.reload();               
@@ -76,8 +77,15 @@ function ProfileImageUpload(props) {
     }
     
 
-
-  
+    if(userImage){
+        return (
+        <>
+                   
+         <ProfileImageShow  userId={userId} userImage={userImage}/>
+                
+        </>
+        )
+    } else{
         return (
             <>
                 <div style={{height:"200px"}}>
@@ -101,7 +109,11 @@ function ProfileImageUpload(props) {
                 
             </>
         )
+
     }
+  
+        
+    
    
         
     
@@ -111,4 +123,4 @@ function ProfileImageUpload(props) {
  *  Export component
  */
 
-export default CarFixImgUpload;
+export default ProfileImageUpload;
