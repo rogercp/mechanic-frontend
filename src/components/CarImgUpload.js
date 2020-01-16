@@ -23,12 +23,10 @@ const useStyles = makeStyles(theme => ({
 
 function CarImgUpload(props) {
 
-
     const classes = useStyles();
     const [carImages, setCarImages] = useState([]);
     const [carFixImages, setCarFixImages] = useState([]);
     const [file, setFile] = useState({});
-    console.log(carImages,"")
 
     useEffect(() => {
         if(props.car){

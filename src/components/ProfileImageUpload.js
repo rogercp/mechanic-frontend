@@ -77,15 +77,27 @@ function ProfileImageUpload(props) {
     }
     
 
-    if(userImage){
+    // if(userImage.length > 0){
+    //     return (
+    //     <>
+                   
+    //      <ProfileImageShow  userId={userId} userImage={userImage}/>
+                
+    //     </>
+    //     )   
+    // } 
+
+    if(userImage.length > 0 ){
         return (
         <>
-                   
-         <ProfileImageShow  userId={userId} userImage={userImage}/>
-                
+                    {userImage.map((image, index) => {
+                        return <ProfileImageShow key={index} userId={userId} image={image}/>
+                    })} 
         </>
         )
-    } else{
+    }
+      
+    else{
         return (
             <>
                 <div style={{height:"200px"}}>
@@ -105,8 +117,7 @@ function ProfileImageUpload(props) {
                 </Button>
                 </form>
                 </div>
-                </div>
-                
+                </div>                
             </>
         )
 
