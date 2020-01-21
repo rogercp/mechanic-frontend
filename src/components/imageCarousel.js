@@ -7,6 +7,9 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Dialog from "@material-ui/core/Dialog";
 import { Carousel,Image } from 'react-bootstrap';
+import CarImageFixShow from './CarImageFixShow';
+
+
 
 const tutorialSteps = [
   {
@@ -95,6 +98,29 @@ function ImageCarousel(props) {
         src={tutorialSteps[activeStep].imgPath}
       />
     </div> */}
+
+
+              {props.carFixImages.map((image, index) => {
+              
+                return <Carousel
+                >
+                  <Carousel.Item >
+                  <CarImageFixShow  key={index}  carFix={props.carFix} image={props.image}/>
+                    <Carousel.Caption>
+                      <h3>First slide label</h3>
+                      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                         
+
+                  </Carousel>
+              
+                    })} 
+
+
+
+
+
 <Carousel
 >
   <Carousel.Item >
@@ -110,6 +136,8 @@ function ImageCarousel(props) {
       <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
     </Carousel.Caption>
   </Carousel.Item>
+
+
   <Carousel.Item>
     <img
        

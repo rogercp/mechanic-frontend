@@ -150,13 +150,14 @@ function CarMaintenceCard(props) {
             </div>
 
             
-               
-            <Button
+            {/* opens carousel */}
+            {/* <Button
            style={{color:"darkcyan",  outline:'0'}}
                    onClick={handlefullOpen}
                    >
+
            <DescriptionIcon/>
-           </Button>
+           </Button> */}
 
            <CarFixImgUpload carFix={props.carFix}/>
 
@@ -175,12 +176,14 @@ function CarMaintenceCard(props) {
 
             </Toolbar>
             </div>
+{/* 
             <ImageCarousel
                 open={fullopen}
                 handleClose={handlefullClose}
                 onClose={handlefullClose}
                 car={props.car}
-            />
+
+            /> */}
             </ExpansionPanelDetails>
             </ExpansionPanel>
 

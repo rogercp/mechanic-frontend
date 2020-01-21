@@ -9,6 +9,8 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CarImgShow from './CarImgShow';
 import CarImageFixShow from './CarImageFixShow';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import ImageCarousel from './ImageCarousel';
+import DescriptionIcon from '@material-ui/icons/Description';
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -22,6 +24,26 @@ function CarFixImgUpload(props) {
     const classes = useStyles();
     const [carFixImages, setCarFixImages] = useState([]);
     const [file, setFile] = useState({});
+
+    const [fullopen, setFullOpen] = useState(false);
+    const [errorOpen, setErrorOpen] = useState(false);
+
+
+    const handlefullOpen = () => {
+        setFullOpen(true);
+    };
+    const handlefullClose = () => {
+        setFullOpen(false);
+    };
+
+    function handleErrorClose() {
+        setErrorOpen(false);
+    }
+    
+    function handleErrorOpen() {
+        setErrorOpen(true);
+    }
+
 
     useEffect(() => {
     
@@ -75,9 +97,27 @@ function CarFixImgUpload(props) {
    if(carFixImages.length > 0 ){
         return (
         <>
-                    {carFixImages.map((image, index) => {
+
+                <Button
+                    style={{color:"darkcyan",  outline:'0'}}
+                            onClick={handlefullOpen}
+                        >
+
+                <DescriptionIcon/>
+                    </Button>
+
+                <ImageCarousel
+                open={fullopen}
+                handleClose={handlefullClose}
+                onClose={handlefullClose}
+                carFixImages= {carFixImages}
+                carFix = {props.CarFix}
+                />
+
+
+                    {/* {carFixImages.map((image, index) => {
                         return <CarImageFixShow  key={index}  carFix={props.carFix} image={image}/>
-                    })} 
+                    })}  */}
         </>
         )
     }else{
