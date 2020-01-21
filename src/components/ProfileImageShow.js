@@ -14,7 +14,7 @@ function ProfileImageShow(props) {
 
     const [thisImage,setThisimage]= useState('')
     
-      const fileRef = imagesRef.child(`${props.userId}/${props.userImage.file_name}`);
+      const fileRef = imagesRef.child(`${props.userId}/${props.image.file_name}`);
 
 
     useEffect(() => {
