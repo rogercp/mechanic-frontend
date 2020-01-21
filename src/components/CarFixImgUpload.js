@@ -111,7 +111,7 @@ function CarFixImgUpload(props) {
                 handleClose={handlefullClose}
                 onClose={handlefullClose}
                 carFixImages= {carFixImages}
-                carFix = {props.CarFix}
+                carFix = {props.carFix}
                 />
 
 

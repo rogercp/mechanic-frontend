@@ -143,9 +143,6 @@ function CarMaintenceCard(props) {
             <div style={{width:"70%",textAlign:"left !important"}}>
                 <p style={{textAlign:"left!important"}}>${props.carFix.fix_price}</p>
                 <p>{props.carFix.fix_description}</p>
-
-                
-            
                
             </div>
 

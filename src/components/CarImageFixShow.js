@@ -7,7 +7,9 @@ import { imagesRef } from '../helpers/firebase';
 function CarImageFixShow(props) {
 
     const [thisImage,setThisimage]= useState('')
+
     
+
       const fileRef = imagesRef.child(`${props.carFix.id}/${props.image.file_name}`);
 
       
