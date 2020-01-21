@@ -1,6 +1,3 @@
-/**
- * Dependencies
- */
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,9 +11,7 @@ import List from '@material-ui/core/List';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
-/**
- *  Import styles
- */
+
 
 import  '../styles/navbar.scss'
 
@@ -31,9 +26,7 @@ const useStyles = makeStyles({
     
   },
 });
-/**
- * Define component
- */
+
 
 
 function NavBar(props) {
@@ -139,8 +132,5 @@ function NavBar(props) {
     );
 };
 
-/**
- * Export component
- */
 
 export default NavBar;

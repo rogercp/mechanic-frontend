@@ -1,6 +1,3 @@
-/**
- * Dependencies
- */
 
 import React from 'react';
 import { Route } from 'react-router-dom';
@@ -8,9 +5,7 @@ import firebase from 'firebase';
 import uuid from 'uuid';
 import axios from 'axios';
 
-/**
- * Define route component
- */
+
 const PrivateRoute = ({ component: Component, errorBoundary: ErrorBoundary, path, exact }) => {
 
     firebase.auth().onAuthStateChanged(async (user)=>{
@@ -60,8 +55,6 @@ const PrivateRoute = ({ component: Component, errorBoundary: ErrorBoundary, path
 
 }
 
-/**
- * Export route component
- */
+
 
 export default PrivateRoute;

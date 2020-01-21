@@ -1,6 +1,4 @@
-/**
- * Dependencies
- */
+
 
 import React from 'react';
 import Switch from '@material-ui/core/Switch';
@@ -86,12 +84,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-/**
- * Define component
- */
 
 
-// fix_date: (new Date())
+
 
 function CarMaintenenceForm(props) {
   const classes = useStyles();
@@ -223,8 +218,6 @@ function CarMaintenenceForm(props) {
     );
 };
 
-/**
- * Export component
- */
+
 
 export default CarMaintenenceForm;

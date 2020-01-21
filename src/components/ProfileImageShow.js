@@ -1,14 +1,10 @@
-/**
- * Dependencies
- */
+
 
 import React, { useEffect, useState } from 'react';
 import { imagesRef } from '../helpers/firebase';
 
 
-/**
- * Define component
- */
+
 
 function ProfileImageShow(props) {
 
@@ -53,8 +49,6 @@ function ProfileImageShow(props) {
     )
 }
 
-/**
- * Export component
- */
+
 
 export default ProfileImageShow;

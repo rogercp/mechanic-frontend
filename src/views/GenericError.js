@@ -1,13 +1,7 @@
-/**
- * Dependencies
- */
 
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-/**
- * Define view
- */
 
 function GenericError() {
   return (
@@ -25,8 +19,6 @@ function GenericError() {
   )
 };
 
-/**
- * Export view
- */
+
 
 export default GenericError;

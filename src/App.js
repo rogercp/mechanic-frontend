@@ -45,9 +45,6 @@ function App() {
   
 
 
-/**
- * Export component
- */
 
 
 export default App;

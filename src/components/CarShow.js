@@ -1,6 +1,3 @@
-/**
- * Dependencies
- */
 
 import React, { useState, useEffect} from "react";
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,9 +9,6 @@ import { axiosWithAuth } from '../helpers/index';
 import CarCard from './CarCard'
 import Grid from '@material-ui/core/Grid';
 
-/**
- *  Import styles
- */
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,9 +39,6 @@ const useStyles = makeStyles(theme => ({
   },
  
 }));
-/**
- * Define component
- */
 
 
 function CarShow(props) {
@@ -139,8 +130,6 @@ async function fetchCars() {
     );
 };
 
-/**
- * Export component
- */
+
 
 export default CarShow;

@@ -1,6 +1,4 @@
-/**
- * Dependencies
- */
+
 
 import uuid from 'uuid';
 import React from 'react';
@@ -11,9 +9,7 @@ import {
     Login, Landing,AuthCallback,ErrorBoundary
   } from '../views/index';
 
-/**
- * Define router
- */
+
 
 const UsersRouter = [
   <Route key={uuid.v4()} exact path='/login' render={props => <Login {...props} />}/>,
@@ -22,8 +18,5 @@ const UsersRouter = [
   <PrivateRoute key={uuid.v4()}  path='/auth/callback' component={AuthCallback} errorBoundary={ErrorBoundary}/>
 ];
 
-/**
- * Export router
- */
 
 export default UsersRouter;

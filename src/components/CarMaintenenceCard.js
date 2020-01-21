@@ -1,6 +1,3 @@
-/**
- * Dependencies
- */
 
 import React, {useState} from 'react';
 import { axiosWithAuth } from '../helpers/index';
@@ -22,9 +19,6 @@ import CarFixImgUpload from './CarFixImgUpload';
 
 
 import  '../styles/fullscreenmodal.scss'
-/**
- * Import styles
- */
 
 
 const useStyles = makeStyles(theme => ({
@@ -90,9 +84,6 @@ const useStyles = makeStyles(theme => ({
 
 
 
-/**
- * Define component
- */
 
 function CarMaintenceCard(props) {
 
@@ -200,8 +191,5 @@ function CarMaintenceCard(props) {
        )
 }
 
-/**
- * Export component
- */
 
 export default CarMaintenceCard;

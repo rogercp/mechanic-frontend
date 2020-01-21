@@ -1,14 +1,8 @@
-/**
- * Dependencies
- */
 
 import React, { useEffect, useState } from 'react';
 import { imagesRef } from '../helpers/firebase';
 
 
-/**
- * Define component
- */
 
 function CarImageFixShow(props) {
 
@@ -17,7 +11,6 @@ function CarImageFixShow(props) {
       const fileRef = imagesRef.child(`${props.carFix.id}/${props.image.file_name}`);
 
       
-      console.log(props.carFix,"carFix")
 
 
     useEffect(() => {
@@ -49,8 +42,5 @@ function CarImageFixShow(props) {
     )
 }
 
-/**
- * Export component
- */
 
 export default CarImageFixShow;

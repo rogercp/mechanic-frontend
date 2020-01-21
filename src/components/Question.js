@@ -1,6 +1,4 @@
-/**
- * Dependencies
- */
+
 
 import React, { useState, useEffect} from "react";
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,9 +7,7 @@ import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Add';
 import PostAddModal from './PostAddModal';
 
-/**
- *  Import styles
- */
+
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: theme.palette.background.paper,
@@ -35,9 +31,6 @@ const useStyles = makeStyles(theme => ({
   }));
 
 
-/**
- * Define component
- */
 
 
 function Question(props) {
@@ -88,8 +81,6 @@ function Question(props) {
     );
 };
 
-/**
- * Export component
- */
+
 
 export default Question;

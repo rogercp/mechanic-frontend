@@ -1,6 +1,3 @@
-/**
- * Dependencies
- */
 
 import React, { useEffect, useState } from 'react';
 import { imagesRef } from '../helpers/firebase';
@@ -17,9 +14,7 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1),
     },
   }));
-/**
- * Define component
- */
+
 
 function CarImgUpload(props) {
 
@@ -149,8 +144,6 @@ function CarImgUpload(props) {
     
 }
 
-/**
- *  Export component
- */
+
 
 export default CarImgUpload;

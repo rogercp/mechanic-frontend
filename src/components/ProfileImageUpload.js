@@ -1,6 +1,3 @@
-/**
- * Dependencies
- */
 
 import React, { useEffect, useState } from 'react';
 import { imagesRef } from '../helpers/firebase';
@@ -16,9 +13,6 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1),
     },
   }));
-/**
- * Define component
- */
 
 function ProfileImageUpload(props) {
 
@@ -130,8 +124,5 @@ function ProfileImageUpload(props) {
     
 }
 
-/**
- *  Export component
- */
 
 export default ProfileImageUpload;

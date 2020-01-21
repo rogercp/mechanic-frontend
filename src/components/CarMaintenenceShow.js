@@ -1,16 +1,9 @@
-/**
- * Dependencies
- */
 
 import React, { useState, useEffect} from "react";
 import { axiosWithAuth } from '../helpers/index';
 import { makeStyles } from '@material-ui/core/styles';
 import CarMaintenceCard from './CarMaintenenceCard';
 
-
-/**
- *  Import styles
- */
 
 
 
@@ -81,9 +74,6 @@ const useStyles = makeStyles(theme => ({
 
 
 
-/**
- * Define component
- */
 function getModalStyle() {}
 
 function CarMaintenceShow(props) {
@@ -139,9 +129,7 @@ function CarMaintenceShow(props) {
     );
 };
 
-/**
- * Export component
- */
+
 
 export default CarMaintenceShow;
 
