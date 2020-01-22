@@ -104,7 +104,7 @@ function CarFixImgUpload(props) {
                         >
 
                 <DescriptionIcon/>
-                    </Button>
+                </Button>
 
                 <ImageCarousel
                 open={fullopen}
@@ -114,10 +114,24 @@ function CarFixImgUpload(props) {
                 carFix = {props.carFix}
                 />
 
-
-                    {/* {carFixImages.map((image, index) => {
-                        return <CarImageFixShow  key={index}  carFix={props.carFix} image={image}/>
-                    })}  */}
+                <div style={{height:"200px"}}>
+                <div style={{display:'flex',flexDirection:"column"}}>
+                 <form onSubmit={handleSubmitUploaderFixDocuments}> 
+                <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
+                    <Button
+                    variant="contained"
+                    name="car_type"
+                    color="default"
+                    className={classes.button}
+                    startIcon={<CloudUploadIcon />}
+                    type ="submit"
+                    >
+                    Upload
+                </Button>
+                </form>
+                </div>
+                </div>
+            
         </>
         )
     }else{
