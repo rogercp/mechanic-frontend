@@ -45,13 +45,13 @@ function ImageCarousel(props) {
 
 
   return (
-    <Dialog open={props.open} onClose={props.handleClose} >
-        <Carousel >
+    <Dialog style={{backgroundColor:"black"}} open={props.open} onClose={props.handleClose} >
+        <Carousel  style={{backgroundColor:"black"}}>
               {props.carFixImages.map((image, index) => {
 
                return (
                 <Carousel.Item style={{overflow:"auto"}} >
-                <CarImageFixShow  key={index}  carFix={props.carFix} image={image}/>
+                <CarImageFixShow style={{backgroundColor:"black"}}  key={index}  carFix={props.carFix} image={image}/>
                   <Carousel.Caption>
                     {/* <h3>First slide label</h3> */}
                   </Carousel.Caption>
