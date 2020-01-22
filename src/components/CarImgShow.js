@@ -1,14 +1,8 @@
-/**
- * Dependencies
- */
 
 import React, { useEffect, useState } from 'react';
 import { imagesRef } from '../helpers/firebase';
 
 
-/**
- * Define component
- */
 
 function CarImgShow(props) {
 
@@ -53,8 +47,6 @@ function CarImgShow(props) {
     )
 }
 
-/**
- * Export component
- */
+
 
 export default CarImgShow;

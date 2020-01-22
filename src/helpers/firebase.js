@@ -54,7 +54,6 @@ var uiConfig = {
   
 
   function wrappedStart() {
-    console.log("uiconfig")
     ui.start('#firebaseui-auth-container', uiConfig);
   }
 

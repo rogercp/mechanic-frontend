@@ -1,6 +1,4 @@
-/**
- * Dependencies
- */
+
 
 import React, { useState } from 'react';
 import {Image,roundedCircle} from 'react-bootstrap';
@@ -8,15 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import ProfileImageUpload from '../components/ProfileImageUpload'
 
-/**
- * Import styles
- */
 
-
-
-/**
- * Define component
- */
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -48,7 +38,5 @@ const useStyles = makeStyles(theme => ({
     </div>
   );
  }
-/**
- * Export component
- */
+
 export default UserSettings;

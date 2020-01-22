@@ -7,6 +7,9 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Dialog from "@material-ui/core/Dialog";
 import { Carousel,Image } from 'react-bootstrap';
+import CarImageFixShow from './CarImageFixShow';
+
+
 
 const tutorialSteps = [
   {
@@ -68,9 +71,39 @@ function ImageCarousel(props) {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
+
+
   return (
     <Dialog  open={props.open} onClose={props.handleClose} >
-    {/* <div style={{textAlign:"center",height:"90%"}}>
+
+    
+
+
+
+              {props.carFixImages.map((image, index) => {
+
+               return (
+               <Carousel>
+                <Carousel.Item >
+                <CarImageFixShow  key={index}  carFix={props.carFix} image={image}/>
+                  <Carousel.Caption>
+                    {/* <h3>First slide label</h3> */}
+                  </Carousel.Caption>
+                </Carousel.Item>
+                </Carousel>
+                ) 
+                
+                    })}
+
+    </Dialog>
+  );
+}
+
+export default ImageCarousel;
+
+
+
+ {/* <div style={{textAlign:"center",height:"90%"}}>
       
       <MobileStepper
         steps={maxSteps}
@@ -94,8 +127,12 @@ function ImageCarousel(props) {
         className={classes.img}
         src={tutorialSteps[activeStep].imgPath}
       />
-    </div> */}
-<Carousel
+    </div>  */}
+
+
+
+
+    {/* <Carousel
 >
   <Carousel.Item >
     <img
@@ -110,6 +147,8 @@ function ImageCarousel(props) {
       <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
     </Carousel.Caption>
   </Carousel.Item>
+
+
   <Carousel.Item>
     <img
        
@@ -134,9 +173,4 @@ function ImageCarousel(props) {
     </Carousel.Caption>
   </Carousel.Item>
 </Carousel>
-   
-    </Dialog>
-  );
-}
-
-export default ImageCarousel;
+    */}

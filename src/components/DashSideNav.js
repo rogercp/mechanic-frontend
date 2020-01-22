@@ -1,6 +1,3 @@
-/**
- * Dependencies
- */
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,16 +12,11 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import Posts from './Posts';
-/**
- *  Import styles
- */
+
 
 import  '../styles/dashsidenav.scss'
 
 
-/**
- * Define component
- */
 
 
 function DashSideNav(props) {
@@ -104,8 +96,6 @@ function DashSideNav(props) {
     );
 };
 
-/**
- * Export component
- */
+
 
 export default DashSideNav;

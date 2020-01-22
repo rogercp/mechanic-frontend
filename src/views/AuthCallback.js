@@ -4,13 +4,9 @@ import firebase from "firebase";
 import axios from "axios";
 
 
-/**
- * Define 
- */
 
 function AuthCallback(props) {
     firebase.auth().onAuthStateChanged(async user => {
-        // console.log("Authcallback")
         // User is signed in.
         if (user) {
             let token = await user.getIdToken();
@@ -22,7 +18,6 @@ function AuthCallback(props) {
                     token: token
                 })
                 .then(res => {
-                    // console.log(res.data,  "data")
                     localStorage.setItem("id", res.data.id);
                     window.location = "/home";
                 })
@@ -39,8 +34,5 @@ function AuthCallback(props) {
     return <div className="login" />;
 }
 
-/**
- * Export view
- */
 
 export default AuthCallback;

@@ -1,6 +1,4 @@
-/**
- * Dependencies
- */
+
 
 import React, { useState, useEffect} from "react";
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,9 +16,6 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { Form } from 'react-bootstrap';
 
 
-/**
- *  Import styles
- */
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -44,9 +39,6 @@ const useStyles = makeStyles(theme => ({
   
   
     }));
-/**
- * Define component
- */
 
 
 function Search(props) {
@@ -65,8 +57,6 @@ function Search(props) {
     );
 };
 
-/**
- * Export component
- */
+
 
 export default Search;

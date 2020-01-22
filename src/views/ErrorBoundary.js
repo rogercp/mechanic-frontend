@@ -1,13 +1,9 @@
-/**
- * Dependencies
- */
+
 
 import React, { Component } from 'react';
 import GenericError from './GenericError';
 
-/**
- * Define view
- */
+
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -32,8 +28,6 @@ class ErrorBoundary extends Component {
   }
 }
 
-/**
- * Export view
- */
+
 
 export default ErrorBoundary

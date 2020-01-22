@@ -1,20 +1,12 @@
-/**
- * Dependencies
- */
+
 
 import React, { useState, useEffect} from "react";
 import DashSideNav from './DashSideNav';
 import { axiosWithAuth } from '../helpers/index';
 import IndividualPost from './IndividualPost'
-/**
- *  Import styles
- */
 
 
 
-/**
- * Define component
- */
 
 
 function Posts(props) {
@@ -32,7 +24,6 @@ function Posts(props) {
     async function fetchPosts() {
       const res = await axiosWithAuth().get(`/post/all`); 
       setPosts(res.data);
-      console.log(res.data , "data")
     }
 
     return (
@@ -59,8 +50,5 @@ function Posts(props) {
     );
 };
 
-/**
- * Export component
- */
 
 export default Posts;

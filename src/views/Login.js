@@ -1,6 +1,4 @@
-/**
- * Dependencies
- */
+
 
 
 import React, { useEffect } from 'react';
@@ -8,15 +6,10 @@ import firebase from '../helpers/firebase'
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card"
-/**
- * Import styles
- */
 
 
 
-/**
- * Define component
- */
+
 
 function Login(props) {
 
@@ -43,8 +36,6 @@ function Login(props) {
        )
 }
 
-/**
- * Export component
- */
+
 
 export default Login;

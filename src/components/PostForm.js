@@ -1,6 +1,3 @@
-/**
- * Dependencies
- */
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,15 +9,9 @@ import Button from '@material-ui/core/Button';
 import { axiosWithAuth } from '../helpers/index';
 
 
-/**
- *  Import styles
- */
 
 import  '../styles/navbar.scss'
 
-/**
- * Define component
- */
 
 
 const useStyles = makeStyles(theme => ({
@@ -61,7 +52,6 @@ function CarForm(props) {
       [name]: event.target.value,
     });
   };
-  console.log(state, "state")
   const onSubmitHandler = e => {
     e.preventDefault();
     
@@ -133,8 +123,5 @@ function CarForm(props) {
     );
 };
 
-/**
- * Export component
- */
 
 export default CarForm;

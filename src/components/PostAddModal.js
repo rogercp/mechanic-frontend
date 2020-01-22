@@ -1,6 +1,3 @@
-/**
- * Dependencies
- */
 
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,9 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { withRouter } from 'react-router-dom';
 import PostForm from './PostForm'
 
-/**
- * Define styles
- */
+
 
 const useStyles = makeStyles(theme => ({
     dialog: {
@@ -37,9 +32,6 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-/**
- * Define modal
- */
 
 function CarAddModal(props) {
     const classes = useStyles();
@@ -77,8 +69,6 @@ function CarAddModal(props) {
     }
 }
 
-/**
- * Export modal
- */
+
 
 export default withRouter(CarAddModal);

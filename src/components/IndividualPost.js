@@ -33,8 +33,6 @@ const IndividualPost = (props) => {
   };
   
   
-  /**
-   * Export component
-   */
+ 
   
   export default IndividualPost;

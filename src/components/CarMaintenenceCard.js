@@ -1,6 +1,3 @@
-/**
- * Dependencies
- */
 
 import React, {useState} from 'react';
 import { axiosWithAuth } from '../helpers/index';
@@ -22,9 +19,6 @@ import CarFixImgUpload from './CarFixImgUpload';
 
 
 import  '../styles/fullscreenmodal.scss'
-/**
- * Import styles
- */
 
 
 const useStyles = makeStyles(theme => ({
@@ -90,9 +84,6 @@ const useStyles = makeStyles(theme => ({
 
 
 
-/**
- * Define component
- */
 
 function CarMaintenceCard(props) {
 
@@ -152,20 +143,18 @@ function CarMaintenceCard(props) {
             <div style={{width:"70%",textAlign:"left !important"}}>
                 <p style={{textAlign:"left!important"}}>${props.carFix.fix_price}</p>
                 <p>{props.carFix.fix_description}</p>
-
-                
-            
                
             </div>
 
             
-               
-            <Button
+            {/* opens carousel */}
+            {/* <Button
            style={{color:"darkcyan",  outline:'0'}}
                    onClick={handlefullOpen}
                    >
+
            <DescriptionIcon/>
-           </Button>
+           </Button> */}
 
            <CarFixImgUpload carFix={props.carFix}/>
 
@@ -184,12 +173,14 @@ function CarMaintenceCard(props) {
 
             </Toolbar>
             </div>
+{/* 
             <ImageCarousel
                 open={fullopen}
                 handleClose={handlefullClose}
                 onClose={handlefullClose}
                 car={props.car}
-            />
+
+            /> */}
             </ExpansionPanelDetails>
             </ExpansionPanel>
 
@@ -200,8 +191,5 @@ function CarMaintenceCard(props) {
        )
 }
 
-/**
- * Export component
- */
 
 export default CarMaintenceCard;

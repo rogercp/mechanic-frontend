@@ -1,19 +1,9 @@
-/**
- * Dependencies
- */
 
 import React from 'react';
 
 
-/**
- * Import styles
- */
 
 
-
-/**
- * Define component
- */
 
 function NoMatch(props) {
 
@@ -26,8 +16,6 @@ function NoMatch(props) {
        )
 }
 
-/**
- * Export component
- */
+
 
 export default NoMatch;

@@ -1,6 +1,4 @@
-/**
- * Dependencies
- */
+
 
 import React from 'react';
 import Button from "react-bootstrap/Button";
@@ -10,16 +8,10 @@ import { Posts, Question, Search} from '../components';
 
 
 
-/**
- * Import styles
- */
 
 import  '../styles/home.scss'
 
 
-/**
- * Define component
- */
 
 function Home(props) {
 
@@ -68,8 +60,5 @@ function Home(props) {
        )
 }
 
-/**
- * Export component
- */
 
 export default Home;

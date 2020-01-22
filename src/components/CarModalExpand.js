@@ -1,6 +1,3 @@
-/**
- * Dependencies
- */
 
 import React, { useState } from "react";
 import Dialog from "@material-ui/core/Dialog";
@@ -20,9 +17,7 @@ import Grid from '@material-ui/core/Grid';
 
 import  '../styles/fullscreenmodal.scss'
 
-/**
- * Define styles
- */
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -55,9 +50,7 @@ const useStyles = makeStyles(theme => ({
   }));
 
 
-/**
- * Define modal
- */
+
 
 function CarModalExpand(props) {
     const classes = useStyles();
@@ -69,9 +62,7 @@ function CarModalExpand(props) {
     const [open, setOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
 
-  /**
-   * Modal Methods
-   */
+ 
 
   function handleOpen() {
       setOpen(true);
@@ -140,8 +131,5 @@ function CarModalExpand(props) {
     )
 }
 
-/**
- * Export modal
- */
 
  export default CarModalExpand;

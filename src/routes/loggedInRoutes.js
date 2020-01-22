@@ -1,6 +1,4 @@
-/**
- * Dependencies
- */
+
 import React from 'react';
 import uuid from 'uuid';
 import { Route, Redirect } from 'react-router-dom';
@@ -10,9 +8,7 @@ import {
   UserSettings,ErrorBoundary,UserCars
   } from '../views/index';
 
-/**
- * Define router
- */
+
 
 const loggedInRoutes = [
     <PrivateRoute key={uuid.v4()}  exact path='/home'
@@ -24,8 +20,5 @@ const loggedInRoutes = [
 
 ];
 
-/**
- * Export router
- */
 
 export default loggedInRoutes;

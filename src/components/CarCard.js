@@ -1,6 +1,3 @@
-/**
- * Dependencies
- */
 
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -20,9 +17,7 @@ import Paper from '@material-ui/core/Paper';
 import Collapse from '@material-ui/core/Collapse';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-/**
- * Define styles
- */
+
 import  '../styles/carshow.scss'
 
 
@@ -89,9 +84,7 @@ const useStyles = makeStyles(theme => ({
       
 }))
 
-/**
- * Define component
- */
+
 
 function getModalStyle() {}
 
@@ -233,8 +226,5 @@ const MediatorCard = (props) => {
 };
 
 
-/**
- * Export component
- */
 
 export default MediatorCard;

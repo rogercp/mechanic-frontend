@@ -1,12 +1,6 @@
-/**
- * Dependencies
- */
 
 import axios from 'axios';
 
-/**
- * Define helper
- */
 
 const axiosWithAuth = () => {
   const token = localStorage.getItem('token');
@@ -19,8 +13,5 @@ const axiosWithAuth = () => {
   });
 }
 
-/**
- * Export helper
- */
 
 export default axiosWithAuth;
