@@ -104,7 +104,7 @@ function CarFixImgUpload(props) {
                         >
 
                 <DescriptionIcon/>
-                    </Button>
+                </Button>
 
                 <ImageCarousel
                 open={fullopen}
