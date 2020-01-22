@@ -75,25 +75,21 @@ function ImageCarousel(props) {
 
   return (
     <Dialog  open={props.open} onClose={props.handleClose} >
-
-    
-
-
-
+        <Carousel>
               {props.carFixImages.map((image, index) => {
 
                return (
-               <Carousel>
+              
                 <Carousel.Item >
                 <CarImageFixShow  key={index}  carFix={props.carFix} image={image}/>
                   <Carousel.Caption>
                     {/* <h3>First slide label</h3> */}
                   </Carousel.Caption>
                 </Carousel.Item>
-                </Carousel>
                 ) 
                 
                     })}
+        </Carousel>
 
     </Dialog>
   );
