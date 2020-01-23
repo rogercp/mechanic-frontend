@@ -1,28 +1,30 @@
 import {
-    // USER_UNAUTHORIZED,
+    ADD_TODO,
     
   } from '../actions/mechActions';
 
 
   const initialState = {
-    // loggedIn: false,
+    todos:[
+        {
+            id:0,
+            text:'throw out trash',
+            completed:false,
+            
+        }
+    ],
 
 }
 
 
-const rootReducer = (state = initialState, action) => {
+const mechReducers = (state = initialState, action) => {
 
     switch (action.type) {
-    // case LOGIN_START:
-    //   return {
-    //     ...state,
-    //     error: null,
-    //     loggingIn: true,
-    //     loggedIn:false,
-        
-    //   };
-
-    }
+            case ADD_TODO:
+            return Object.assign({},state,{todos:[...state.todos,action.payload]})
+            default:
+            return state
+        }
   };
   
-export default rootReducer;
+export default mechReducers;
