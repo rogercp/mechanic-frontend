@@ -16,9 +16,7 @@ function Posts(props) {
 
 
     useEffect(() => {
-   
         fetchPosts()
-        
     }, []);
     
     async function fetchPosts() {
@@ -31,8 +29,6 @@ function Posts(props) {
 
       <div style={{display:"flex", flexDirection:"column"}}>
 
-
-        
         {posts.map(p => {
             return (
                 <>
