@@ -31,8 +31,6 @@ function Posts(props) {
 
       <div style={{display:"flex", flexDirection:"column"}}>
 
-
-        
         {posts.map(p => {
             return (
                 <>
