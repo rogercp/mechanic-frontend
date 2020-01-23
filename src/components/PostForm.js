@@ -6,8 +6,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-import { axiosWithAuth } from '../helpers/index';
-
+import { connect } from 'react-redux';
+import { addPost } from "../store/actions/postActions";
 
 
 import  '../styles/navbar.scss'
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CarForm(props) {
+function PostForm(props) {
 
   
   const classes = useStyles();
@@ -52,16 +52,12 @@ function CarForm(props) {
       [name]: event.target.value,
     });
   };
+
+
   const onSubmitHandler = e => {
     e.preventDefault();
-    
-    axiosWithAuth()
-        .post(`/post`, state)
-        .then(res => {  
-            window.location.reload();
-        })
-        .catch(err => {      
-        });
+    props.addPost(state)
+
 };
 
 
@@ -124,4 +120,12 @@ function CarForm(props) {
 };
 
 
-export default CarForm;
+const mapStateToProps = ({ state }) => ({
+  
+});
+
+export default connect(
+  mapStateToProps,
+  { addPost }
+)(PostForm);
+

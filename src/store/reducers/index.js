@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
-import mechReducers from './mechReducers';
+import postReducer from './postReducer';
 
 export default combineReducers({
-    mech : mechReducers
+    post : postReducer
 })
 
