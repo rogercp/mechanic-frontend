@@ -4,6 +4,8 @@ import React, { useState, useEffect} from "react";
 import DashSideNav from './DashSideNav';
 import { axiosWithAuth } from '../helpers/index';
 import IndividualPost from './IndividualPost'
+import { connect } from 'react-redux';
+import { fetchPosts } from "../store/actions/postActions";
 
 
 
@@ -12,16 +14,12 @@ import IndividualPost from './IndividualPost'
 function Posts(props) {
   
 
-    const [posts,setPosts] = useState([])
-
-
     useEffect(() => {
-        fetchPosts()
+      fetchPostsCall()
     }, []);
     
-    async function fetchPosts() {
-      const res = await axiosWithAuth().get(`/post/all`); 
-      setPosts(res.data);
+    async function fetchPostsCall() {
+      props.fetchPosts()
     }
 
     return (
@@ -29,22 +27,25 @@ function Posts(props) {
 
       <div style={{display:"flex", flexDirection:"column"}}>
 
-        {posts.map(p => {
+        {props.posts.map(p => {
             return (
                 <>
-                <IndividualPost  fetchPosts={fetchPosts} post={p}  key={caches.uid} fetchPosts={p.fetchPosts} />
+                <IndividualPost  fetchPosts={fetchPostsCall} post={p}  key={caches.uid} fetchPosts={p.fetchPosts} />
                 </>
             );
         })}
         
 
         </div>
-
-
- 
       </>
     );
 };
 
 
-export default Posts;
+const mapStateToProps = state => ({
+  posts: state.posts,
+});
+export default connect(
+  mapStateToProps,
+  {fetchPosts}
+)(Posts);
