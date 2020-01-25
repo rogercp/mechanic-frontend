@@ -29,6 +29,7 @@ export const fetchPosts = () => dispatch => {
   return axiosWithAuth()
     .get(`/post/all`) 
     .then(res => {
+      console.log(res.data, "data")
       dispatch({ type: FETCH_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {

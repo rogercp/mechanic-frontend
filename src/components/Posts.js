@@ -19,9 +19,11 @@ function Posts(props) {
     }, []);
     
     async function fetchPostsCall() {
-      props.fetchPosts()
+      await props.fetchPosts()
     }
 
+
+    
     return (
       <>
 
