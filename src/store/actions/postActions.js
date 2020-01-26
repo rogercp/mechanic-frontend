@@ -26,7 +26,7 @@ export const FETCH_POST_FAILURE = 'FETCH_POST_FAILURE';
 
 export const fetchPosts = () => dispatch => {
   dispatch({ type: FETCH_POST_START });
-  return axiosWithAuth()
+ axiosWithAuth()
     .get(`/post/all`) 
     .then(res => {
       console.log(res.data, "data")

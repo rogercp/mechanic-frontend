@@ -15,37 +15,37 @@ function Posts(props) {
   
 
     useEffect(() => {
-      fetchPostsCall()
+      props.fetchPosts()
     }, []);
     
-    async function fetchPostsCall() {
-      await props.fetchPosts()
-    }
+    // async function fetchPostsCall() {
+    //   props.fetchPosts()
+    // }
 
-
+  
     
     return (
       <>
-
+ 
       <div style={{display:"flex", flexDirection:"column"}}>
 
-        {props.posts.map(p => {
+        {props.myposts.map(p => {
             return (
                 <>
-                <IndividualPost  fetchPosts={fetchPostsCall} post={p}  key={caches.uid} fetchPosts={p.fetchPosts} />
+                <IndividualPost   post={p}  key={caches.uid} fetchPosts={p.fetchPosts} />
                 </>
             );
         })}
         
 
-        </div>
+        </div> 
       </>
     );
 };
 
 
 const mapStateToProps = state => ({
-  posts: state.posts,
+  myposts: state.post.posts,
 });
 export default connect(
   mapStateToProps,
