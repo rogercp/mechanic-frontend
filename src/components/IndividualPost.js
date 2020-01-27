@@ -15,14 +15,12 @@ const IndividualPost = (props) => {
 //               console.error(error);
 //           });
 //   }
-  
-    
+     
   
     return (
       <>
       
-       
-        <div style={{backgroundColor:"red", height:"400px",width:"20rem" }}>
+        <div style={{backgroundColor:"red", minHeight:"400px", width:"98%" ,margin:"5px"}}>
             <h3>{props.post.category}</h3>
             <p>{props.post.post_text}</p>
 

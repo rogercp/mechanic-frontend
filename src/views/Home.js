@@ -37,11 +37,11 @@ function Home(props) {
          </div>
 
 
-        <div className="web" style={{display:"flex", flexDirection:"row"}}>
-        <div >
+        <div className="web" style={{display:"flex", flexDirection:"row",width:"100%"}}>
+        <div style={{minWidth:"30%"}}>
         <DashSideNav/> 
         </div>
-        <div>
+        <div style={{minWidth:"70%"}}>
         <Posts/>
         </div>
         </div>
@@ -50,7 +50,7 @@ function Home(props) {
         <div >
         <DashSideNav/> 
         </div>
-        <div>
+        <div style={{margin:"0 auto"}} >
         <Posts/>
         </div>
 

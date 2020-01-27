@@ -18,11 +18,6 @@ function Posts(props) {
       props.fetchPosts()
     }, []);
     
-    // async function fetchPostsCall() {
-    //   props.fetchPosts()
-    // }
-
-  
     
     return (
       <>
