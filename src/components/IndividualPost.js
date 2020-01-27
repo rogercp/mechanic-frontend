@@ -4,6 +4,7 @@ import {Image,roundedCircle} from 'react-bootstrap';
 
 
 import  '../styles/postsIndividual.scss'
+import { HTML5_FMT } from 'moment';
 
 
 const IndividualPost = (props) => {
@@ -30,12 +31,14 @@ const IndividualPost = (props) => {
            <p>username</p>
         </section>
         
-            <p>Dec 14 2009</p>
+            <p>{props.post.post_date}</p>
+            <p>datetime</p>
             </div>
-            <h3>{props.post.category}</h3>
-            <p>{props.post.post_text}</p>
-
-
+            <h4>{props.post.post_text}</h4>
+            <a href="https://www.w3schools.com/html/" target="_blank">links</a>
+            <p>images</p>
+            <img style={{width:"50%",height:"50%",}} src="https://source.unsplash.com/random"/>
+            
         </div> 
             
       </>

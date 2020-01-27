@@ -17,8 +17,9 @@ function Posts(props) {
     useEffect(() => {
       props.fetchPosts()
     }, []);
-    
-    
+
+
+
     return (
       <>
  

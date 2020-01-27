@@ -1,5 +1,6 @@
 
 import { axiosWithAuth } from '../../helpers/index';
+import axios from 'axios';
 
 export const ADD_POST_START = 'ADD_POST_START';
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
@@ -26,8 +27,8 @@ export const FETCH_POST_FAILURE = 'FETCH_POST_FAILURE';
 
 export const fetchPosts = () => dispatch => {
   dispatch({ type: FETCH_POST_START });
- axiosWithAuth()
-    .get(`/post/all`) 
+ axios
+    .get(`${process.env.REACT_APP_API_URL}/post/all`) 
     .then(res => {
       console.log(res.data, "data")
       dispatch({ type: FETCH_POST_SUCCESS, payload: res.data });

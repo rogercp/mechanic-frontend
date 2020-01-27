@@ -24,11 +24,11 @@ function Home(props) {
 
         <div style={{display:"flex", flexDirection:"row",padding:"10px 0"}}>
         <div>
-        <Question/> 
+       
         </div>
 
         <div>
-            <Search/>
+            
         </div>
 
        
@@ -39,9 +39,11 @@ function Home(props) {
 
         <div className="web" style={{display:"flex", flexDirection:"row",width:"100%"}}>
         <div style={{minWidth:"30%"}}>
-        <DashSideNav/> 
+        <Question/> 
+        <DashSideNav /> 
         </div>
         <div style={{minWidth:"70%"}}>
+        <Search/>
         <Posts/>
         </div>
         </div>
@@ -51,6 +53,8 @@ function Home(props) {
         <DashSideNav/> 
         </div>
         <div style={{margin:"0 auto"}} >
+        <Search />
+        <Question/> 
         <Posts/>
         </div>
 

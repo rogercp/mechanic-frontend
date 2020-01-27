@@ -8,9 +8,9 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { addPost } from "../store/actions/postActions";
+import moment from 'moment'
 
-
-import  '../styles/navbar.scss'
+import  '../styles/navbar.scss';
 
 
 
@@ -38,11 +38,13 @@ const useStyles = makeStyles(theme => ({
 
 function PostForm(props) {
 
-  
+  const time = moment().format("MMMM Do YYYY, h:mma")
+
   const classes = useStyles();
   const [state, setState] = React.useState({
     category : '',
     post_text:'',
+    post_date: time,
   });
 
   
@@ -57,8 +59,12 @@ function PostForm(props) {
   const onSubmitHandler = e => {
     e.preventDefault();
     props.addPost(state)
+    
 
 };
+     
+    
+
 
 
     return (

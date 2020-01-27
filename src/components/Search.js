@@ -48,7 +48,7 @@ function Search(props) {
     return (
       <>
         <div>
-      <div>
+      <div style={{width:"80%"}}>
       <Form.Control size="lg" type="text" placeholder="Search" className={classes.margin}/>
 
           </div>
