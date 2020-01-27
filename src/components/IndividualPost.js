@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 // import { makeStyles } from '@material-ui/core/styles';
+import {Image,roundedCircle} from 'react-bootstrap';
+
+
+import  '../styles/postsIndividual.scss'
 
 
 const IndividualPost = (props) => {
@@ -19,13 +23,21 @@ const IndividualPost = (props) => {
   
     return (
       <>
-      
-        <div style={{backgroundColor:"red", minHeight:"400px", width:"98%" ,margin:"5px"}}>
+        <div className ="singlePost" style={{ width:"98%",marginBottom:"5px"}}>
+        <div style={{display:"flex", flexDirection:"row"}}>
+        <section style={{display:"flex", flexDirection:"row"}}>
+        <Image style={{width:"40px",height:"40px",paddingRight:"2px"}} src="https://source.unsplash.com/random" roundedCircle />
+           <p>username</p>
+        </section>
+        
+            <p>Dec 14 2009</p>
+            </div>
             <h3>{props.post.category}</h3>
             <p>{props.post.post_text}</p>
 
-        </div>      
-  
+
+        </div> 
+            
       </>
     );
   };
