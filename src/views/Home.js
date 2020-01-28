@@ -22,26 +22,17 @@ function Home(props) {
         
         <div>
 
-        <div style={{display:"flex", flexDirection:"row",padding:"10px 0"}}>
-        <div>
-        <Question/> 
-        </div>
-
-        <div>
-            <Search/>
-        </div>
-
-       
-
-        </div>
+        
          </div>
 
 
-        <div className="web" style={{display:"flex", flexDirection:"row"}}>
-        <div >
-        <DashSideNav/> 
+        <div className="web" style={{display:"flex", flexDirection:"row",width:"100%"}}>
+        <div style={{minWidth:"30%"}}>
+        <Question/> 
+        <DashSideNav /> 
         </div>
-        <div>
+        <div style={{minWidth:"70%"}}>
+        <Search/>
         <Posts/>
         </div>
         </div>
@@ -50,7 +41,9 @@ function Home(props) {
         <div >
         <DashSideNav/> 
         </div>
-        <div>
+        <div style={{margin:"0 auto"}} >
+        <Question/> 
+        <Search />
         <Posts/>
         </div>
 

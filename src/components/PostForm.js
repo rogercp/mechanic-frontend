@@ -8,9 +8,9 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { addPost } from "../store/actions/postActions";
+import moment from 'moment'
 
-
-import  '../styles/navbar.scss'
+import  '../styles/navbar.scss';
 
 
 
@@ -38,11 +38,13 @@ const useStyles = makeStyles(theme => ({
 
 function PostForm(props) {
 
-  
+  const time = moment().format("MMMM Do YYYY, h:mma")
+
   const classes = useStyles();
   const [state, setState] = React.useState({
     category : '',
     post_text:'',
+    post_date: time,
   });
 
   
@@ -57,8 +59,10 @@ function PostForm(props) {
   const onSubmitHandler = e => {
     e.preventDefault();
     props.addPost(state)
-
 };
+     
+    
+
 
 
     return (
@@ -69,23 +73,23 @@ function PostForm(props) {
         <InputLabel id="demo-simple-select-label">Category</InputLabel>
         <Select
           native
-          name="car_type"
+          name="category"
           className={classes.textField}
           value={state.category}
-          onChange={handleChange('car_type')}
+          onChange={handleChange('category')}
           inputProps={{
             name: 'type',
             id: 'outlined-type-native-simple',
           }}
         >
           <option value="" />
-          <option value={"Sedan"}>blank</option>
-          <option value={"Coupe"}>blank</option>
-          <option value={"Van"}>blank</option>
-          <option value={"SUV"}>blank</option>
-          <option value={"Truck"}>blank</option>
-          <option value={"Wagon"}>blank</option>
-          <option value={"Convertible"}>blank</option>
+          <option value={"Sedan"}>category</option>
+          <option value={"Coupe"}>category</option>
+          <option value={"Van"}>category</option>
+          <option value={"SUV"}>category</option>
+          <option value={"Truck"}>category</option>
+          <option value={"Wagon"}>category</option>
+          <option value={"Convertible"}>category</option>
         </Select>
      
         <TextField

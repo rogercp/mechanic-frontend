@@ -13,7 +13,7 @@ function App() {
 
   if(localStorage.getItem('token')){
     return (
-      <div>
+      <div className="outerapp">
       <BrowserRouter>
         <NavBar className="navbar"/>
             <Switch>
@@ -28,7 +28,7 @@ function App() {
 
   }else{
     return (
-      <div>
+      <div className="outerapp">
       <BrowserRouter>
             <Switch>
             <Route key={uuid.v4()} exact path='/' component={Landing} />,

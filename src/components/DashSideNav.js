@@ -31,22 +31,22 @@ function DashSideNav(props) {
         <div className="mobile2" style={{width: '100%'}}>
             <div className="wrapper" >
             
-            <section class="horizontal-scroll">
-            <p class="item">Item1</p>
-            <p class="item">Item2</p>
-            <p class="item">Item3</p>
-            <p class="item">Item4</p>
-            <p class="item">Item5</p>
-            <p class="item">Item1</p>
-            <p class="item">Item2</p>
-            <p class="item">Item3</p>
-            <p class="item">Item4</p>
-            <p class="item">Item5</p>
-            <p class="item">Item1</p>
-            <p class="item">Item2</p>
-            <p class="item">Item3</p>
-            <p class="item">Item4</p>
-            <p class="item">Item5</p>
+            <section className="horizontal-scroll">
+            <p className="item">Item1</p>
+            <p className="item">Item2</p>
+            <p className="item">Item3</p>
+            <p className="item">Item4</p>
+            <p className="item">Item5</p>
+            <p className="item">Item1</p>
+            <p className="item">Item2</p>
+            <p className="item">Item3</p>
+            <p className="item">Item4</p>
+            <p className="item">Item5</p>
+            <p className="item">Item1</p>
+            <p className="item">Item2</p>
+            <p className="item">Item3</p>
+            <p className="item">Item4</p>
+            <p className="item">Item5</p>
 
             </section>
 
@@ -60,23 +60,23 @@ function DashSideNav(props) {
 
 
 <div style={{display:"flex", flexDirection:"row"}}>
-            <div className="sideNav" style={{width:"200px",height:"500px",backgroundColor:"green"}}>
+            <div className="sideNav" style={{width:"200px",height:"500px",}}>
            <section style={{display:"flex", flexDirection:"column"}}>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
-           <p class="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
+           <p className="item">Item</p>
    
            </section>
 

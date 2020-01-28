@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 // import { makeStyles } from '@material-ui/core/styles';
+import {Image,roundedCircle} from 'react-bootstrap';
+
+
+import  '../styles/postsIndividual.scss'
+import { HTML5_FMT } from 'moment';
 
 
 const IndividualPost = (props) => {
@@ -15,19 +20,27 @@ const IndividualPost = (props) => {
 //               console.error(error);
 //           });
 //   }
-  
-    
+     
   
     return (
       <>
-      
-       
-        <div style={{backgroundColor:"red", height:"400px",width:"20rem" }}>
-            <h3>{props.post.category}</h3>
-            <p>{props.post.post_text}</p>
-
-        </div>      
-  
+        <div className ="singlePost" style={{ width:"98%",marginBottom:"5px"}}>
+        <div style={{display:"flex", flexDirection:"row"}}>
+        <section style={{display:"flex", flexDirection:"row"}}>
+        <Image style={{width:"40px",height:"40px",paddingRight:"2px"}} src="https://source.unsplash.com/random" roundedCircle />
+           <p>username</p>
+        </section>
+        
+            <p>{props.post.post_date}</p>
+            <p>datetime</p>
+            </div>
+            <h4>{props.post.post_text}</h4>
+            <a href="https://www.w3schools.com/html/" target="_blank">links</a>
+            <p>images</p>
+            <img style={{width:"50%",height:"50%"}} src="https://source.unsplash.com/random"/>
+            
+        </div> 
+            
       </>
     );
   };
