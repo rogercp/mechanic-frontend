@@ -37,7 +37,7 @@ const IndividualPost = (props) => {
             <h4>{props.post.post_text}</h4>
             <a href="https://www.w3schools.com/html/" target="_blank">links</a>
             <p>images</p>
-            <img style={{width:"50%",height:"50%",}} src="https://source.unsplash.com/random"/>
+            <img style={{width:"50%",height:"50%"}} src="https://source.unsplash.com/random"/>
             
         </div> 
             

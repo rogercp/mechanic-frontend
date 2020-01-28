@@ -7,6 +7,7 @@ export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 export const ADD_POST_FAILURE = 'ADD_POST_FAILURE';
 
 export const addPost= post => dispatch => {
+  console.log(post,"post")
   dispatch({ type: ADD_POST_START });
   return axiosWithAuth()
     .post('/post', post)

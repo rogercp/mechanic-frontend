@@ -59,8 +59,6 @@ function PostForm(props) {
   const onSubmitHandler = e => {
     e.preventDefault();
     props.addPost(state)
-    
-
 };
      
     
@@ -75,23 +73,23 @@ function PostForm(props) {
         <InputLabel id="demo-simple-select-label">Category</InputLabel>
         <Select
           native
-          name="car_type"
+          name="category"
           className={classes.textField}
           value={state.category}
-          onChange={handleChange('car_type')}
+          onChange={handleChange('category')}
           inputProps={{
             name: 'type',
             id: 'outlined-type-native-simple',
           }}
         >
           <option value="" />
-          <option value={"Sedan"}>blank</option>
-          <option value={"Coupe"}>blank</option>
-          <option value={"Van"}>blank</option>
-          <option value={"SUV"}>blank</option>
-          <option value={"Truck"}>blank</option>
-          <option value={"Wagon"}>blank</option>
-          <option value={"Convertible"}>blank</option>
+          <option value={"Sedan"}>category</option>
+          <option value={"Coupe"}>category</option>
+          <option value={"Van"}>category</option>
+          <option value={"SUV"}>category</option>
+          <option value={"Truck"}>category</option>
+          <option value={"Wagon"}>category</option>
+          <option value={"Convertible"}>category</option>
         </Select>
      
         <TextField

@@ -22,18 +22,7 @@ function Home(props) {
         
         <div>
 
-        <div style={{display:"flex", flexDirection:"row",padding:"10px 0"}}>
-        <div>
-       
-        </div>
-
-        <div>
-            
-        </div>
-
-       
-
-        </div>
+        
          </div>
 
 
@@ -53,8 +42,8 @@ function Home(props) {
         <DashSideNav/> 
         </div>
         <div style={{margin:"0 auto"}} >
-        <Search />
         <Question/> 
+        <Search />
         <Posts/>
         </div>
 

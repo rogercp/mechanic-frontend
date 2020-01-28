@@ -155,7 +155,7 @@ const MediatorCard = (props) => {
             
        
 
-          <CardContent>
+          <CardContent >
           
            <div className={classes.top}>
            <h3 className='card-name'> {props.car.car_nickname}</h3> 
