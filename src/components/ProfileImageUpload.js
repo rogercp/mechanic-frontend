@@ -81,7 +81,7 @@ function ProfileImageUpload(props) {
     //     )   
     // } 
 
-    if(userImage.length > 0 ){
+    if(userImage.length >0 ){
         return (
         <>
                     {userImage.map((image, index) => {
