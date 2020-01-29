@@ -32,7 +32,6 @@ const IndividualPost = (props) => {
         </section>
         
             <p>{props.post.post_date}</p>
-            <p>datetime</p>
             </div>
             <h4>{props.post.post_text}</h4>
             <a href="https://www.w3schools.com/html/" target="_blank">links</a>
