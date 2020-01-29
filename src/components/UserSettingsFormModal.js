@@ -5,42 +5,54 @@ import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { axiosWithAuth } from '../helpers/index';
+import Dialog from '@material-ui/core/Dialog';
+
 
 
 const useStyles = makeStyles(theme => ({
-    formControl: {
-      margin: theme.spacing(1),
-      Width: 200,
+    dialog: {
+        width: '500px',
+        margin: '0 auto',
     },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
+    paper: {
+        backgroundColor: theme.palette.background.paper,
+        border: '1px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2),
+        outline: 'none',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent:'center',
+        alignItems: 'center',
     },
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
+    title: {
+        paddingBottom: '10px',
     },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: 200,
+    body: {
+        paddingBottom: '20px',
     },
-    button: {
-      margin: theme.spacing(1),
-    },
-  }));
+}))
 
 
 function UserSettingsFormModal(props) {
   
+
     const classes = useStyles();
-
-
+    const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
     const [state, setState] = React.useState({
         car_type: '',
         
       });
+      
+      function handleClose() {
+          onClose();
+      }
+  
+      function handleClick() {
+          props.history.push(redirect);
+      }
     
-      const handleChange = name => event => {
+    const handleChange = name => event => {
         setState({
           ...state,
           [name]: event.target.value,
@@ -60,36 +72,36 @@ function UserSettingsFormModal(props) {
     };
 
 
-    const onSubmitDeleteAccount = e => {
-        e.preventDefault();
-        axiosWithAuth()
-            .post(``, state)
-            .then(res => {  
-                window.location.reload();
-            })
-            .catch(err => {      
-            });
-    };
+  
 
 
     return (
       <>
-        <div >
-        <ProfileImageUpload/>
-
-        <div style={{maxWidth:"100px"}}>
-        <TextField
-          id="standard-basic"
-          name="car_make"
-          className={classes.textField}
-          label="username"
-          margin="normal"
-          value={state.car_make}
-          onChange={handleChange('car_make')}
-        /></div>
         
 
-        </div>
+
+
+        <Dialog open={open} onClose={handleClose} className={classes.dialog}>
+            <div >
+
+            <ProfileImageUpload/>
+
+                <div style={{maxWidth:"100px"}}>
+                <TextField
+                id="standard-basic"
+                name="car_make"
+                className={classes.textField}
+                label="username"
+                margin="normal"
+                value={state.car_make}
+                onChange={handleChange('car_make')}
+                /></div>
+
+
+                </div>
+            </Dialog>
+
+
       </>
     );
 };
