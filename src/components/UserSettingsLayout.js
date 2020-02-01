@@ -11,7 +11,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import EditIcon from '@material-ui/icons/Edit';
 import UserSettingsFormModal from './UserSettingsFormModal'
 import Fab from '@material-ui/core/Fab';
-
+import ImageIcon from '@material-ui/icons/Image';
 
 
 
@@ -72,8 +72,9 @@ function UserSettingsLayout(props) {
                     <Button
                      variant="danger"
                         onClick={() => {
+                            const body = localStorage.getItem('id');
                             axiosWithAuth()
-                            .post(`/users/deactivate`)
+                            .put(`/users/deactivate`,{id:body})
                             .then(res => {  
                                 onClose();
                             })
@@ -97,12 +98,14 @@ function UserSettingsLayout(props) {
 
     return (
       <>
-        <div style={{display:"flex",flexWrap:"wrap"}}>
+        <div style={{display:"flex",flexWrap:"wrap",marginLeft:"64px",marginRight:"-32px"}}>
 
-        <div> <p>userName</p><p>exampleusername{}</p>
-        <ProfileImageUpload/></div>
-    
         <div>
+        {/* <ProfileImageUpload/> */}
+        <ImageIcon style={{fontSize:"200px"}}/>
+        <p>userName</p><p>exampleusername{}</p></div>
+    
+        <div style={{marginTop:"15px"}}>
         <UserSettingsFormModal
             open={open}
             onClose={handleClose}
@@ -111,26 +114,24 @@ function UserSettingsLayout(props) {
             redirect={"/settings"}
             redirectText={"cars"}
           />
-          <p>Edit Info</p>
+          
           <Fab color="none" aria-label="add"  style={{color:"darkcyan",  outline:'0'}} className={classes.margin} >
                 <EditIcon
             onClick={handleOpen}
            />
             </Fab>
-            <p>Delete Account</p>
+            <p>Edit Info</p>
+          
             <Button  className={classes.margin} onClick={submit} variant="danger">
             Delete
             </Button>
+            <p>Delete Account</p>
             </div>
             
 
         </div>
 
-        <div>
-
-
-
-        </div>
+        
       </>
     );
 };
