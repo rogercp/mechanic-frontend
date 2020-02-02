@@ -13,7 +13,7 @@ import UserSettingsLayout from '../components/UserSettingsLayout'
  
 
   return (
-      <div style={{height:"100vh",textAlign:"center"}}>
+      <div style={{textAlign:"center",maxWidth:"1300px"}}>
    <h2>User Settings</h2>
 
    <UserSettingsLayout/>
