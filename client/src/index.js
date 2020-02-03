@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const initialState = {}
 
 let store = createStore(combineReducers,initialState,compose(
-    applyMiddleware(thunk),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+    applyMiddleware(thunk))
 )
 
 ReactDOM.render(
