@@ -11,7 +11,6 @@ const PrivateRoute = ({ component: Component, errorBoundary: ErrorBoundary, path
     firebase.auth().onAuthStateChanged(async (user)=>{
         if(user){
             
-
           let displayName = user.displayName;
           let email = user.email;
           let emailVerified = user.emailVerified;

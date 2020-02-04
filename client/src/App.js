@@ -10,6 +10,7 @@ import {
 } from './views';
 
 function App() {
+console.log(process.env)
 
   if(localStorage.getItem('token')){
     return (
