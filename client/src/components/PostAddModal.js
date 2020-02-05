@@ -10,8 +10,7 @@ import PostForm from './PostForm'
 
 const useStyles = makeStyles(theme => ({
     dialog: {
-        width: '500px',
-        margin: '0 auto',
+       
     },
     paper: {
         backgroundColor: theme.palette.background.paper,

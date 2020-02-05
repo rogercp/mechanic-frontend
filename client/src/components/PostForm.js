@@ -17,7 +17,7 @@ import  '../styles/navbar.scss';
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
-    Width: 200,
+    width: 200,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -63,12 +63,9 @@ function PostForm(props) {
      
     
 
-
-
     return (
       <>
-
-      <FormControl className={classes.formControl} noValidate autoComplete="off" onSubmit={onSubmitHandler}>
+      <FormControl className={classes.formControl} style={{display:'flex',alignItems:'center',justifyContent:'center'}} noValidate autoComplete="off" onSubmit={onSubmitHandler}>
 
         <InputLabel id="demo-simple-select-label">Category</InputLabel>
         <Select
@@ -118,7 +115,6 @@ function PostForm(props) {
         </Button>
 
  </FormControl>
-
       </>
     );
 };

@@ -101,8 +101,9 @@ function UserSettingsLayout(props) {
         <div style={{display:"flex",flexWrap:"wrap",marginLeft:"64px",marginRight:"-32px"}}>
 
         <div>
-        {/* <ProfileImageUpload/> */}
-        <ImageIcon style={{fontSize:"200px"}}/>
+
+        <ProfileImageUpload/>
+        {/* <ImageIcon style={{fontSize:"200px"}}/> */}
         <p>userName</p><p>exampleusername{}</p></div>
     
         <div style={{marginTop:"15px"}}>

@@ -11,7 +11,6 @@ import Dialog from '@material-ui/core/Dialog';
 
 const useStyles = makeStyles(theme => ({
     dialog: {
-        width: '500px',
         margin: '0 auto',
     },
     paper: {
