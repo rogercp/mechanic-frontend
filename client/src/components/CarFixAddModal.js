@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -34,10 +34,16 @@ const useStyles = makeStyles(theme => ({
 function CarFixAddModal(props) {
     const classes = useStyles();
     const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
+    const [fullopen, setFullOpen] = useState(false);
 
     function handleClose() {
         onClose();
     }
+
+    const handlefullClose = () => {
+        setFullOpen(false);
+    };
+
 
     function handleClick() {
         props.history.push(redirect);
@@ -48,7 +54,7 @@ function CarFixAddModal(props) {
             <Dialog open={open} onClose={handleClose} className={classes.dialog}>
                 <div className={classes.paper}>
                     <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
-                    <CarMaintenenceForm car={props.car}/>
+                    <CarMaintenenceForm handleClose={handleClose} car={props.car}/>
                     
                 </div>
             </Dialog>
@@ -58,7 +64,7 @@ function CarFixAddModal(props) {
             <Dialog open={open} onClose={handleClose} className={classes.dialog}>
                 <div className={classes.paper}>
                     <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
-                    <CarMaintenenceForm car={props.car}/>
+                    <CarMaintenenceForm handleClose={handleClose} car={props.car}/>
                 </div>
             </Dialog>
         )

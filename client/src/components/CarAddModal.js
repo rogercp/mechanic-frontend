@@ -49,7 +49,7 @@ function CarAddModal(props) {
                 <div className={classes.paper}>
                     <Typography className={classes.title} variant="h6">{titleText}</Typography>
                     <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
-                    <CarForm/>
+                    <CarForm  fetchCars={props.fetchCars} onClose={props.onClose} />
                     
                 </div>
             </Dialog>
@@ -60,7 +60,7 @@ function CarAddModal(props) {
                 <div className={classes.paper}>
                     <Typography className={classes.title} variant="h6">{titleText}</Typography>
                     <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
-                    <CarForm/>
+                    <CarForm fetchCars={props.fetchCars} onClose={props.onClose}/>
                 </div>
             </Dialog>
         )

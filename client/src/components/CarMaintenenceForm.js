@@ -16,7 +16,8 @@ import TextField from '@material-ui/core/TextField';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { axiosWithAuth } from '../helpers/index';
 import { withStyles } from '@material-ui/core/styles';
-
+import { fetchFixes } from "../store/actions/carMaintenenceActions";
+import { connect } from 'react-redux';
 
 const AntSwitch = withStyles(theme => ({
   root: {
@@ -119,6 +120,8 @@ function CarMaintenenceForm(props) {
     axiosWithAuth()
         .post(`/car_fix/${props.car.id}`, values)
         .then(res => {
+          props.fetchFixes(props.car.id);
+          props.handleClose();
           
         })
         .catch(err => {
@@ -220,4 +223,11 @@ function CarMaintenenceForm(props) {
 
 
 
-export default CarMaintenenceForm;
+
+const mapStateToProps = state => ({
+});
+export default connect(
+  mapStateToProps,
+  {fetchFixes}
+)(CarMaintenenceForm);
+

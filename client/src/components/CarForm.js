@@ -62,7 +62,8 @@ function CarForm(props) {
     axiosWithAuth()
         .post(`/cars`, state)
         .then(res => {  
-            window.location.reload();
+            props.fetchCars();
+            props.onClose();
         })
         .catch(err => {      
         });

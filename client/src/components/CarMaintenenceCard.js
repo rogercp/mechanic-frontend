@@ -16,7 +16,8 @@ import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 import ImageCarousel from './ImageCarousel';
 import DescriptionIcon from '@material-ui/icons/Description';
 import CarFixImgUpload from './CarFixImgUpload';
-
+import { fetchFixes } from "../store/actions/carMaintenenceActions";
+import { connect } from 'react-redux';
 
 import  '../styles/fullscreenmodal.scss'
 
@@ -94,14 +95,13 @@ function CarMaintenceCard(props) {
         axiosWithAuth()
             .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.carFix.id}`)
             .then(res => {
-                props.fetchCarFixes()
+                props.fetchFixes(props.car.id)
             })
             .catch(error => {
                 console.error(error);
             });
     }
     
-   
 
     const handlefullOpen = () => {
         setFullOpen(true);
@@ -144,15 +144,6 @@ function CarMaintenceCard(props) {
                
             </div>
 
-            
-            {/* opens carousel */}
-            {/* <Button
-           style={{color:"darkcyan",  outline:'0'}}
-                   onClick={handlefullOpen}
-                   >
-
-           <DescriptionIcon/>
-           </Button> */}
 
            <CarFixImgUpload carFix={props.carFix}/>
 
@@ -171,14 +162,7 @@ function CarMaintenceCard(props) {
 
             </Toolbar>
             </div>
-{/* 
-            <ImageCarousel
-                open={fullopen}
-                handleClose={handlefullClose}
-                onClose={handlefullClose}
-                car={props.car}
 
-            /> */}
             </ExpansionPanelDetails>
             </ExpansionPanel>
 
@@ -190,4 +174,10 @@ function CarMaintenceCard(props) {
 }
 
 
-export default CarMaintenceCard;
+const mapStateToProps = state => ({
+  });
+  export default connect(
+    mapStateToProps,
+    {fetchFixes}
+  )(CarMaintenceCard);
+  

@@ -21,8 +21,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import  '../styles/carshow.scss'
 
 
-
-
 const useStyles = makeStyles(theme => ({
   button: {
       margin: theme.spacing(1)
@@ -124,7 +122,6 @@ const MediatorCard = (props) => {
 }
 
 
-
 /**
      * Modal functions
      */
@@ -146,7 +143,6 @@ const MediatorCard = (props) => {
     }
 
    
-
 
   return (
     <>

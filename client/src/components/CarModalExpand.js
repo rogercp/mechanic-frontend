@@ -55,9 +55,9 @@ const useStyles = makeStyles(theme => ({
 function CarModalExpand(props) {
     const classes = useStyles();
 
-    const [formNotView,setFormNotView ] = useState({
-        toggled:false
-    });
+    // const [formNotView,setFormNotView ] = useState({
+    //     toggled:false
+    // });
 
     const [open, setOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
@@ -79,9 +79,9 @@ function CarModalExpand(props) {
   
 
 
-    const handleChange2 = name => event => {
-        setFormNotView({ ...formNotView, [name]: event.target.checked });
-      };
+    // const handleChange2 = name => event => {
+    //     setFormNotView({ ...formNotView, [name]: event.target.checked });
+    //   };
     
       
     return (
@@ -121,7 +121,8 @@ function CarModalExpand(props) {
            />
             </Fab> 
 
-            {/* {formNotView.toggled === false ? <CarMaintenceShow  car={props.car}/>: <CarMaintenceForm car={props.car}/>} */}
+
+<CarMaintenceShow  car={props.car}/>
             
             </div>    
           
