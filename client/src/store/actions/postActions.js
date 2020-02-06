@@ -13,7 +13,6 @@ export const addPost= post => dispatch => {
     .post('/post', post)
     .then(res => {
       dispatch({ type: ADD_POST_SUCCESS, payload: res.data });
-      window.location.reload();
     })
     .catch(err => {
         dispatch({ type: ADD_POST_FAILURE, payload: err.response });
@@ -31,7 +30,6 @@ export const fetchPosts = () => dispatch => {
  axios
     .get(`${process.env.REACT_APP_API_URL}/post/all`) 
     .then(res => {
-      console.log(res.data, "data")
       dispatch({ type: FETCH_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {

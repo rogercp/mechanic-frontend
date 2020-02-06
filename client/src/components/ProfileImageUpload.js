@@ -7,6 +7,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import ProfileImageShow from './ProfileImageShow';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import { connect } from 'react-redux';
+
+
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -18,22 +21,25 @@ function ProfileImageUpload(props) {
 
     const classes = useStyles();
 
-    const userId = localStorage.getItem('id');
     
-    const [userImage, setUserImage] = useState({});
+    // const [userImage, setUserImage] = useState({});
     const [file, setFile] = useState({});
 
-    useEffect(() => {
-    
-        fetchProfileImage();
-        
-    }, [file]);
 
-    async function fetchProfileImage() {
-        let userImages = await axiosWithAuth().get(`/users/image/${userId}`)
-        setUserImage(userImages.data);
-        return userImages;
-    }
+    const userId = localStorage.getItem('id');
+
+    // useEffect(() => {
+
+    //     props.fetchProfileImage(userId);
+        
+    // }, [file]);
+
+
+    // async function fetchProfileImage() {
+    //     let userImages = await axiosWithAuth().get(`/users/image/${userId}`)
+    //     setUserImage(userImages.data);
+    //     return userImages;
+    // }
 
     function handleInputChanges(e) {
         e.preventDefault();
@@ -59,7 +65,7 @@ function ProfileImageUpload(props) {
             // console.log('Upload success!', snapshot.constructor, snapshot);
             axiosWithAuth().post(`/users/image/${userId}`, { file_name: file.name })
                 .then(res => {
-                    fetchProfileImage();
+                    // props.fetchProfileImage(userId);
                     window.location.reload();               
                  })
                 .catch(error => {
@@ -69,29 +75,8 @@ function ProfileImageUpload(props) {
             console.error(err)
         });
     }
-    
 
-    // if(userImage.length > 0){
-    //     return (
-    //     <>
-                   
-    //      <ProfileImageShow  userId={userId} userImage={userImage}/>
-                
-    //     </>
-    //     )   
-    // } 
 
-    if(userImage.length >0 ){
-        return (
-        <>
-                    {userImage.map((image, index) => {
-                        return <ProfileImageShow key={index} userId={userId} image={image}/>
-                    })} 
-        </>
-        )
-    }
-      
-    else{
         return (
             <>
                 <div style={{height:"200px"}}>
@@ -114,15 +99,16 @@ function ProfileImageUpload(props) {
                 </div>                
             </>
         )
-
-    }
   
-        
-    
-   
-        
     
 }
 
 
-export default ProfileImageUpload;
+const mapStateToProps = state => ({
+    userImage : state.setting.userImage
+  });
+  export default connect(
+    mapStateToProps,
+    {}
+  )(ProfileImageUpload);
+  

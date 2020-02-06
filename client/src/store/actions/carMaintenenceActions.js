@@ -8,12 +8,10 @@ export const FETCH_FIX_FAILURE = 'FETCH_FIX_FAILURE';
 
 
 export const fetchFixes = (id) => dispatch => {
-    console.log(id)
   dispatch({ type: FETCH_FIX_START });
   return axiosWithAuth()
     .get(`/car_fix/${id}`) 
     .then(res => {
-        console.log(res.data, "data")
         dispatch({ type: FETCH_FIX_SUCCESS, payload: res.data });
     })
     .catch(err => {

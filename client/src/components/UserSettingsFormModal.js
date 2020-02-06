@@ -39,8 +39,8 @@ function UserSettingsFormModal(props) {
     const classes = useStyles();
     const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
     const [state, setState] = React.useState({
-        car_type: '',
-        
+        user_name: '',
+
       });
       
       function handleClose() {
@@ -76,8 +76,6 @@ function UserSettingsFormModal(props) {
     return (
       <>
         
-
-
 
         <Dialog open={open} onClose={handleClose} className={classes.dialog}>
             <div >

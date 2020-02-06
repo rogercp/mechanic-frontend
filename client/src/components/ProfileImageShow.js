@@ -3,16 +3,19 @@
 import React, { useEffect, useState } from 'react';
 import { imagesRef } from '../helpers/firebase';
 import { Image } from 'react-bootstrap';
-
+import { connect } from 'react-redux';
 
 
 
 function ProfileImageShow(props) {
 
     const [thisImage,setThisimage]= useState('')
-    
-      const fileRef = imagesRef.child(`${props.userId}/${props.image.file_name}`);
 
+    const userId = localStorage.getItem('id');
+
+    const fileRef = imagesRef.child(`${userId}/${props.userImage.file_name}`);
+
+    console.log(props.userImage,"file")
 
     useEffect(() => {
         getImg()
@@ -52,4 +55,11 @@ function ProfileImageShow(props) {
 
 
 
-export default ProfileImageShow;
+
+const mapStateToProps = state => ({
+  userImage : state.setting.userImage
+});
+export default connect(
+  mapStateToProps,
+  {}
+)(ProfileImageShow);

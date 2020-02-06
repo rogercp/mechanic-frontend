@@ -8,6 +8,8 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { addPost } from "../store/actions/postActions";
+import { fetchPosts } from "../store/actions/postActions";
+
 import moment from 'moment'
 
 import  '../styles/navbar.scss';
@@ -58,7 +60,10 @@ function PostForm(props) {
 
   const onSubmitHandler = e => {
     e.preventDefault();
-    props.addPost(state)
+    props.addPost(state);
+    props.fetchPosts();
+    props.onClose();
+
 };
      
     
@@ -126,6 +131,6 @@ const mapStateToProps = ({ state }) => ({
 
 export default connect(
   mapStateToProps,
-  { addPost }
+  { addPost,fetchPosts }
 )(PostForm);
 
