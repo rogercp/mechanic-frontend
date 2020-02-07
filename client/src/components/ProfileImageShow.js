@@ -6,19 +6,23 @@ import { Image } from 'react-bootstrap';
 
 
 
-
 function ProfileImageShow(props) {
 
     const [thisImage,setThisimage]= useState('')
+  
+
+    const userId = localStorage.getItem('id');
+
+    const fileRef = imagesRef.child(`${userId}/${props.image.file_name}`);
+
     
-      const fileRef = imagesRef.child(`${props.userId}/${props.image.file_name}`);
-
-
     useEffect(() => {
-        getImg()
+      getImg()
     }, []);
+   
 
-    function getImg() {
+          
+      function getImg() {
         fileRef.getMetadata().then((metadata) => {
           fileRef.getDownloadURL().then(url => {
 
@@ -38,7 +42,9 @@ function ProfileImageShow(props) {
         }).catch((err) => {
           console.error(err);
         });
-    }
+}
+
+  
 
     return(
         <>
@@ -49,6 +55,7 @@ function ProfileImageShow(props) {
         </>
     )
 }
+
 
 
 

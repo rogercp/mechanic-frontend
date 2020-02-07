@@ -11,7 +11,6 @@ import Dialog from '@material-ui/core/Dialog';
 
 const useStyles = makeStyles(theme => ({
     dialog: {
-        width: '500px',
         margin: '0 auto',
     },
     paper: {
@@ -40,8 +39,8 @@ function UserSettingsFormModal(props) {
     const classes = useStyles();
     const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
     const [state, setState] = React.useState({
-        car_type: '',
-        
+        user_name: '',
+
       });
       
       function handleClose() {
@@ -72,14 +71,11 @@ function UserSettingsFormModal(props) {
     };
 
 
-  
 
 
     return (
       <>
         
-
-
 
         <Dialog open={open} onClose={handleClose} className={classes.dialog}>
             <div >

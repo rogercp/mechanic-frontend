@@ -9,8 +9,7 @@ import CarForm from './CarForm'
 
 const useStyles = makeStyles(theme => ({
     dialog: {
-        width: '500px',
-        margin: '0 auto',
+        
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
@@ -50,7 +49,7 @@ function CarAddModal(props) {
                 <div className={classes.paper}>
                     <Typography className={classes.title} variant="h6">{titleText}</Typography>
                     <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
-                    <CarForm/>
+                    <CarForm  fetchCars={props.fetchCars} onClose={props.onClose} />
                     
                 </div>
             </Dialog>
@@ -61,7 +60,7 @@ function CarAddModal(props) {
                 <div className={classes.paper}>
                     <Typography className={classes.title} variant="h6">{titleText}</Typography>
                     <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
-                    <CarForm/>
+                    <CarForm fetchCars={props.fetchCars} onClose={props.onClose}/>
                 </div>
             </Dialog>
         )

@@ -1,4 +1,4 @@
-import ProfileImageUpload from './ProfileImageUpload';
+
 import React, { useState, useEffect} from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -12,7 +12,9 @@ import EditIcon from '@material-ui/icons/Edit';
 import UserSettingsFormModal from './UserSettingsFormModal'
 import Fab from '@material-ui/core/Fab';
 import ImageIcon from '@material-ui/icons/Image';
-
+import { connect } from 'react-redux';
+import ProfileImageShow from './ProfileImageShow';
+import { fetchProfileImage } from "../store/actions/settingsActions";
 
 
 const useStyles = makeStyles(theme => ({
@@ -59,7 +61,8 @@ function UserSettingsLayout(props) {
         setErrorOpen(false);
     }
   
-    
+ 
+  
 
     const submit = (e) => {
         e.preventDefault();
@@ -91,18 +94,34 @@ function UserSettingsLayout(props) {
             });    
       };
     
+      const userId = localStorage.getItem('id');
+      useEffect(() => {
 
-     
-    
+        props.fetchProfileImage(userId)
+      
+      }, []);
    
-
+      
     return (
       <>
         <div style={{display:"flex",flexWrap:"wrap",marginLeft:"64px",marginRight:"-32px"}}>
 
         <div>
-        {/* <ProfileImageUpload/> */}
-        <ImageIcon style={{fontSize:"200px"}}/>
+        
+        {props.userImage  ?  
+        (
+            <>
+            {props.userImage.map((image, index) => {
+                            return <ProfileImageShow image={image}  key={index} />
+                })} 
+            </>
+            )
+        : <ImageIcon style={{fontSize:"200px"}}/>}
+       
+       
+
+       
+
         <p>userName</p><p>exampleusername{}</p></div>
     
         <div style={{marginTop:"15px"}}>
@@ -131,11 +150,19 @@ function UserSettingsLayout(props) {
 
         </div>
 
-        
       </>
     );
+    
 };
 
 
 
-export default UserSettingsLayout;
+
+const mapStateToProps = state => ({
+    userImage : state.setting.userImage
+  });
+  export default connect(
+    mapStateToProps,
+    {fetchProfileImage}
+  )(UserSettingsLayout);
+  

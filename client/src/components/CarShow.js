@@ -79,7 +79,6 @@ async function fetchCars() {
 
     return (
       <>
-        
         <h1>My Cars</h1>
 
         <Fab color="none" aria-label="add"  style={{color:"darkcyan",  outline:'0'}} className={classes.margin}>
@@ -89,6 +88,7 @@ async function fetchCars() {
         </Fab>
 
         <CarAddModal
+         fetchCars={fetchCars} 
           open={open}
           onClose={handleClose}
           titleText={"Car Form"}
@@ -97,15 +97,7 @@ async function fetchCars() {
           redirectText={"cars"}
           />
 
-        {/* <CarAddModal
-          open={errorOpen}
-          onClose={handleErrorClose}
-          titleText={"Error creating car"}
-          bodyText={"Please try again"}
-          redirect={""}
-          redirectText={""}
-        /> */}
-
+      
           
 
           {cars.length < 1 ? <div>You have no Cars</div> :

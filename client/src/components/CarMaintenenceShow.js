@@ -3,9 +3,8 @@ import React, { useState, useEffect} from "react";
 import { axiosWithAuth } from '../helpers/index';
 import { makeStyles } from '@material-ui/core/styles';
 import CarMaintenceCard from './CarMaintenenceCard';
-
-
-
+import { fetchFixes } from "../store/actions/carMaintenenceActions";
+import { connect } from 'react-redux';
 
 
 const useStyles = makeStyles(theme => ({
@@ -69,11 +68,6 @@ const useStyles = makeStyles(theme => ({
   }))
   
 
-
-
-
-
-
 function getModalStyle() {}
 
 function CarMaintenceShow(props) {
@@ -99,26 +93,22 @@ function CarMaintenceShow(props) {
         setErrorOpen(true);
     }
 
-   
     useEffect(() => {
-        fetchCarFixes()
+      props.fetchFixes(props.car.id)
     }, []);
 
-    async function fetchCarFixes() {
-        const res = await axiosWithAuth().get(`/car_fix/${props.car.id}`); 
-        setCarFixes(res.data);
-    }
+
+
 
     return (
     
       <>
-      {carFixes.length < 1 ? <div>You have no fixes</div> :
+      {props.myFixes.length < 1 ? <div>You have no fixes</div> :
               <>
-                  {carFixes.map(c => {
+                  {props.myFixes.map(c => {
                       return (
 
-                        <CarMaintenceCard carFix={c} car={props.car} fetchCarFixes={fetchCarFixes} />
-                        
+                        <CarMaintenceCard carFix={c} car={props.car}  />
                         
                      );
                   })}
@@ -131,7 +121,13 @@ function CarMaintenceShow(props) {
 
 
 
-export default CarMaintenceShow;
+const mapStateToProps = state => ({
+  myFixes: state.maintenence.fixes,
+});
+export default connect(
+  mapStateToProps,
+  {fetchFixes}
+)(CarMaintenceShow);
 
 
 
