@@ -8,6 +8,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import ProfileImageShow from './ProfileImageShow';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import { connect } from 'react-redux';
+import { fetchProfileImage } from "../store/actions/settingsActions";
 
 
 
@@ -66,8 +67,8 @@ function ProfileImageUpload(props) {
             // console.log('Upload success!', snapshot.constructor, snapshot);
             axiosWithAuth().post(`/users/image/${userId}`, { file_name: file.name })
                 .then(res => {
-                    // props.fetchProfileImage(userId);
-                    window.location.reload();               
+                    props.fetchProfileImage(userId);  
+                    props.onClose()       
                  })
                 .catch(error => {
                     console.error(error);
@@ -110,6 +111,6 @@ const mapStateToProps = state => ({
   });
   export default connect(
     mapStateToProps,
-    {}
+    {fetchProfileImage}
   )(ProfileImageUpload);
   

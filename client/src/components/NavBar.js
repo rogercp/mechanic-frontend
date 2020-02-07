@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink, Link } from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -11,6 +11,10 @@ import List from '@material-ui/core/List';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
+import { connect } from 'react-redux';
+import ProfileImageShow from './ProfileImageShow';
+import { fetchProfileImage } from "../store/actions/settingsActions";
+import ImageIcon from '@material-ui/icons/Image';
 
 
 import  '../styles/navbar.scss'
@@ -33,6 +37,7 @@ function NavBar(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     right: false,
+    isCirclePic : true 
   });
   
   const toggleDrawer = (side, open) => event => {
@@ -58,7 +63,15 @@ function NavBar(props) {
       onKeyDown={toggleDrawer(side, false)}
     > 
       <List className="list" >
-
+      {props.userImage && props.userImage.length> 0 ?  
+        (
+            <div style={{width:"10px"}}>
+            {props.userImage.map((image, index) => {
+                            return <ProfileImageShow isCirclePic={state.isCirclePic} image={image}  key={index} />
+                })} 
+            </div>
+            )
+        : <ImageIcon style={{fontSize:"50px"}}/>}
          <Link className="link_mobile"  activeClassName="activeNavButton" to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
          <div className="mobile_div" ><HomeIcon/>Dash</div></Link>
                
@@ -76,7 +89,13 @@ function NavBar(props) {
     </div>
   );
   
+  const userId = localStorage.getItem('id');
 
+  useEffect(() => {
+
+    props.fetchProfileImage(userId)
+  
+  }, []);
 
 
     return (
@@ -84,8 +103,20 @@ function NavBar(props) {
         
       
         <div className="nav" style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px"}}>
-        <h2 >Mech</h2>
-            <div className="links">
+
+      <div>
+        {props.userImage && props.userImage.length> 0 ?  
+        (
+            <div style={{width:"10px"}}>
+            {props.userImage.map((image, index) => {
+                            return <ProfileImageShow isCirclePic={state.isCirclePic} image={image}  key={index} />
+                })} 
+            </div>
+            )
+        : <ImageIcon style={{fontSize:"50px"}}/>}
+        </div>
+
+            <div className="links" >
            
               <NavLink id="link" to="/home" activeClassName="active"  style={{textDecoration:"none"}} data-testid="signup-link">
                   <i>DASH</i>
@@ -109,6 +140,7 @@ function NavBar(props) {
               </NavLink>
 
             </div>
+
             </div>
           
             
@@ -133,4 +165,10 @@ function NavBar(props) {
 };
 
 
-export default NavBar;
+const mapStateToProps = state => ({
+  userImage : state.setting.userImage
+});
+export default connect(
+  mapStateToProps,
+  {fetchProfileImage}
+)(NavBar);

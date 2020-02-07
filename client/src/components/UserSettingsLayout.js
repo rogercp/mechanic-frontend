@@ -95,6 +95,7 @@ function UserSettingsLayout(props) {
       };
     
       const userId = localStorage.getItem('id');
+
       useEffect(() => {
 
         props.fetchProfileImage(userId)
@@ -108,13 +109,13 @@ function UserSettingsLayout(props) {
 
         <div>
         
-        {props.userImage  ?  
+        {props.userImage && props.userImage.length> 0  ?  
         (
-            <>
+            <div style={{ width:"200px"}}>
             {props.userImage.map((image, index) => {
                             return <ProfileImageShow image={image}  key={index} />
                 })} 
-            </>
+            </div>
             )
         : <ImageIcon style={{fontSize:"200px"}}/>}
        
@@ -136,6 +137,7 @@ function UserSettingsLayout(props) {
           
           <Fab color="none" aria-label="add"  style={{color:"darkcyan",  outline:'0'}} className={classes.margin} >
                 <EditIcon
+           
             onClick={handleOpen}
            />
             </Fab>
