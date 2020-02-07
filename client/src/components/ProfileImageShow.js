@@ -3,8 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { imagesRef } from '../helpers/firebase';
 import { Image } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { fetchProfileImage } from "../store/actions/settingsActions";
 
 
 
@@ -61,10 +59,4 @@ function ProfileImageShow(props) {
 
 
 
-const mapStateToProps = state => ({
-  
-});
-export default connect(
-  mapStateToProps,
-  {}
-)(ProfileImageShow);
+export default ProfileImageShow;
