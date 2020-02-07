@@ -7,11 +7,13 @@ export const GET_IMG_SUCCESS = 'GET_IMG_SUCCESS';
 export const GET_IMG_FAILURE = 'GET_IMG_FAILURE';
 
 export const fetchProfileImage= userid => dispatch => {
-   console.log(userid)
+  
   dispatch({ type: GET_IMG_START });
   return axiosWithAuth()
     .get(`/users/image/${userid}`)
     .then(res => {
+      console.log(res.data,"data")
+
       dispatch({ type: GET_IMG_SUCCESS, payload: res.data });
     })
     .catch(err => {

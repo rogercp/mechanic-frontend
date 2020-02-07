@@ -31,6 +31,8 @@ function CarImgUpload(props) {
         }
     }, [file]);
 
+    console.log(carImages,"carImages")
+    
     async function fetchCarImages() {
         let images = await axiosWithAuth().get(`/cars/${props.car.id}/images`)
         setCarImages(images.data);

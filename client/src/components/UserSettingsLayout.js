@@ -13,7 +13,6 @@ import UserSettingsFormModal from './UserSettingsFormModal'
 import Fab from '@material-ui/core/Fab';
 import ImageIcon from '@material-ui/icons/Image';
 import { connect } from 'react-redux';
-import { fetchProfileImage } from "../store/actions/settingsActions";
 import ProfileImageShow from './ProfileImageShow';
 
 
@@ -62,9 +61,7 @@ function UserSettingsLayout(props) {
     }
   
     const userId = localStorage.getItem('id');
-    useEffect(() => {
-        props.fetchProfileImage(userId)
-      }, []);
+  
   
 
     const submit = (e) => {
@@ -99,15 +96,15 @@ function UserSettingsLayout(props) {
     
 
      
-    //   if(props.userImage.length > 0 ){
-    //     return (
-    //     <>
-    //                 {props.userImage((image, index) => {
-    //                     return <ProfileImageShow key={index} />
-    //                 })} 
-    //     </>
-    //     )
-    // } else{
+// if(props.userImage){
+//         return (
+//         <>
+//                     {props.userImage.map((image, index) => {
+//                         return <ProfileImageShow key={index} image={image}/>
+//                     })} 
+//         </>
+//         )
+//     } else{
 
     return (
       <>
@@ -126,6 +123,8 @@ function UserSettingsLayout(props) {
         : <ImageIcon style={{fontSize:"200px"}}/>} */}
        
        <ProfileImageShow />
+
+       
 
         <p>userName</p><p>exampleusername{}</p></div>
     
@@ -162,11 +161,12 @@ function UserSettingsLayout(props) {
 
 
 
+
 const mapStateToProps = state => ({
     userImage : state.setting.userImage
   });
   export default connect(
     mapStateToProps,
-    {fetchProfileImage}
+    {}
   )(UserSettingsLayout);
   

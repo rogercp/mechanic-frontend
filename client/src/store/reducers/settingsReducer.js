@@ -6,7 +6,7 @@ GET_IMG_FAILURE ,
 
 const initialState = {
 
-    userImage:{},
+    userImage:null,
 
 }
 
