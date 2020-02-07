@@ -14,6 +14,7 @@ import Fab from '@material-ui/core/Fab';
 import ImageIcon from '@material-ui/icons/Image';
 import { connect } from 'react-redux';
 import ProfileImageShow from './ProfileImageShow';
+import { fetchProfileImage } from "../store/actions/settingsActions";
 
 
 const useStyles = makeStyles(theme => ({
@@ -60,8 +61,7 @@ function UserSettingsLayout(props) {
         setErrorOpen(false);
     }
   
-    const userId = localStorage.getItem('id');
-  
+ 
   
 
     const submit = (e) => {
@@ -94,35 +94,31 @@ function UserSettingsLayout(props) {
             });    
       };
     
+      const userId = localStorage.getItem('id');
+      useEffect(() => {
 
-     
-// if(props.userImage){
-//         return (
-//         <>
-//                     {props.userImage.map((image, index) => {
-//                         return <ProfileImageShow key={index} image={image}/>
-//                     })} 
-//         </>
-//         )
-//     } else{
-
+        props.fetchProfileImage(userId)
+      
+      }, []);
+   
+      
     return (
       <>
         <div style={{display:"flex",flexWrap:"wrap",marginLeft:"64px",marginRight:"-32px"}}>
 
         <div>
         
-        {/* {props.userImage.length >0 ?  
+        {props.userImage  ?  
         (
             <>
             {props.userImage.map((image, index) => {
-                            return <ProfileImageShow />
+                            return <ProfileImageShow image={image}  key={index} />
                 })} 
             </>
             )
-        : <ImageIcon style={{fontSize:"200px"}}/>} */}
+        : <ImageIcon style={{fontSize:"200px"}}/>}
        
-       <ProfileImageShow />
+       
 
        
 
@@ -167,6 +163,6 @@ const mapStateToProps = state => ({
   });
   export default connect(
     mapStateToProps,
-    {}
+    {fetchProfileImage}
   )(UserSettingsLayout);
   

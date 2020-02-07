@@ -11,30 +11,20 @@ import { fetchProfileImage } from "../store/actions/settingsActions";
 function ProfileImageShow(props) {
 
     const [thisImage,setThisimage]= useState('')
-    // const [imagine,setImagine] = useState()
-    const [fileState,setFileState] = useState()
+  
 
     const userId = localStorage.getItem('id');
 
+    const fileRef = imagesRef.child(`${userId}/${props.image.file_name}`);
 
-    // let fileRef = null
-
-    // console.log(props.userImage,"image")
-
+    
     useEffect(() => {
-
-      props.fetchProfileImage(userId)
-      console.log(props.userImage,"userimg")
-      const fileRef = imagesRef.child(`${userId}/${props.userImage && props.userImage.file_name}`);
-      setFileState(fileRef)
-      getImg(fileState)
-      // console.log(props.userImage,"image") 
- 
+      getImg()
     }, []);
    
 
           
-      function getImg(fileRef) {
+      function getImg() {
         fileRef.getMetadata().then((metadata) => {
           fileRef.getDownloadURL().then(url => {
 
@@ -56,52 +46,7 @@ function ProfileImageShow(props) {
         });
 }
 
-    if(fileState){
-      getImg()
-    }
-
   
-//   props.fetchProfileImage(userId)
-
-// if(props.userImage){
-//   setImagine(props.userImage)
-// }
-
-//   const fileRef = imagesRef.child(`${userId}/${props.userImage ? props.userImage.file_name : "0"}`);
-  
-//   if(fileRef){
-    
-//     getImg(fileRef)    
-//   }
-   
-//     function getImg(fileRef) {
-      
-//         fileRef.getMetadata().then((metadata) => {
-//           fileRef.getDownloadURL().then(url => {
-  
-//             setThisimage(url)
-  
-//             // let img = document.getElementById('document-image');
-//             // if (metadata.contentType === 'application/pdf') {
-//             //     img.src = '';
-//             //     // TODO handle PDFs
-//             //   } else {
-//             //     img.src = url;
-//             //   }
-//           })
-//           .catch(err => {
-//             console.error(err);
-//           })
-//         }).catch((err) => {
-//           console.error(err);
-//         });
-//       }
-    
-  
-
-
-
-
 
     return(
         <>
@@ -117,9 +62,9 @@ function ProfileImageShow(props) {
 
 
 const mapStateToProps = state => ({
-  userImage : state.setting.userImage
+  
 });
 export default connect(
   mapStateToProps,
-  {fetchProfileImage}
+  {}
 )(ProfileImageShow);
