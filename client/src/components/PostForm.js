@@ -41,6 +41,7 @@ const useStyles = makeStyles(theme => ({
 function PostForm(props) {
 
   const time = moment().format("MMMM Do YYYY, h:mma")
+  const userId = localStorage.getItem('id');
 
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -126,7 +127,7 @@ function PostForm(props) {
 
 
 const mapStateToProps = ({ state }) => ({
-  
+  userImage : state.setting.userImage
 });
 
 export default connect(
