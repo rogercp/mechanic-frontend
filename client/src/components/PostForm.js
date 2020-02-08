@@ -127,7 +127,7 @@ function PostForm(props) {
 
 
 const mapStateToProps = ({ state }) => ({
-  userImage : state.setting.userImage
+ 
 });
 
 export default connect(
