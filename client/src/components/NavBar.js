@@ -18,6 +18,7 @@ import ImageIcon from '@material-ui/icons/Image';
 
 
 import  '../styles/navbar.scss'
+import { flexbox } from '@material-ui/system';
 
 const useStyles = makeStyles({
   list: {
@@ -63,15 +64,21 @@ function NavBar(props) {
       onKeyDown={toggleDrawer(side, false)}
     > 
       <List className="list" >
-      {props.userImage && props.userImage.length> 0 ?  
-        (
+      <div>
+        {props.userImage && props.userImage.length> 0 ? 
             <div style={{width:"10px"}}>
             {props.userImage.map((image, index) => {
-                            return <ProfileImageShow isCirclePic={state.isCirclePic} image={image}  key={index} />
+                  return <ProfileImageShow isCirclePic={state.isCirclePic} image={image}  key={index} />
                 })} 
             </div>
-            )
-        : <ImageIcon style={{fontSize:"50px"}}/>}
+            
+        : 
+        <div style={{display:'flex', flexDirection:"column"}}>
+        <ImageIcon style={{fontSize:"50px"}}/> 
+        {username}
+        </div>
+        }
+        </div>
          <Link className="link_mobile"  activeClassName="activeNavButton" to="/home" style={{textDecoration:"none"}} data-testid="signup-link">
          <div className="mobile_div" ><HomeIcon/>Dash</div></Link>
                
@@ -90,12 +97,14 @@ function NavBar(props) {
   );
   
   const userId = localStorage.getItem('id');
+  const username = localStorage.getItem("username");
 
   useEffect(() => {
 
     props.fetchProfileImage(userId)
   
   }, []);
+
 
 
     return (
@@ -105,17 +114,21 @@ function NavBar(props) {
         <div className="nav" style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px"}}>
 
       <div>
-        {props.userImage && props.userImage.length> 0 ?  
-        (
+        {props.userImage && props.userImage.length> 0 ? 
             <div style={{width:"10px"}}>
             {props.userImage.map((image, index) => {
-                            return <ProfileImageShow isCirclePic={state.isCirclePic} image={image}  key={index} />
+                  return <ProfileImageShow isCirclePic={state.isCirclePic} image={image}  key={index} />
                 })} 
             </div>
-            )
-        : <ImageIcon style={{fontSize:"50px"}}/>}
+            
+        : 
+        <div>
+        <ImageIcon style={{fontSize:"50px"}}/> 
+        {username}
         </div>
-
+        }
+        </div>
+       
             <div className="links" >
            
               <NavLink id="link" to="/home" activeClassName="active"  style={{textDecoration:"none"}} data-testid="signup-link">

@@ -77,11 +77,14 @@ function ProfileImageShow(props) {
     })
 }
 
+const username = localStorage.getItem("username");
   if(props.isCirclePic){
     return (
-
+      
+      <div style={{display:"flex", alignItems:"center"}}>
       <Avatar alt="Remy Sharp" src={`${thisImage}`} />
-
+        <h5 style={{marginLeft:"5px"}}>{username}</h5>
+        </div>
     )
   }else{
     return(

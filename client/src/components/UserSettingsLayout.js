@@ -95,6 +95,7 @@ function UserSettingsLayout(props) {
       };
     
       const userId = localStorage.getItem('id');
+      const username = localStorage.getItem("username");
 
       useEffect(() => {
 
@@ -123,7 +124,7 @@ function UserSettingsLayout(props) {
 
        
 
-        <p>userName</p><p>exampleusername{}</p></div>
+        <p>userName:{username}</p></div>
     
         <div style={{marginTop:"15px"}}>
         <UserSettingsFormModal
