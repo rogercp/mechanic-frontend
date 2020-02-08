@@ -80,8 +80,8 @@ function UserSettingsFormModal(props) {
         <Dialog open={open} onClose={handleClose} className={classes.dialog}>
             <div >
 
-            <ProfileImageUpload/>
-
+            <ProfileImageUpload  onClose={props.onClose}/>
+               
                 <div style={{maxWidth:"100px"}}>
                 <TextField
                 id="standard-basic"

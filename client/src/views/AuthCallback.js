@@ -9,6 +9,8 @@ function AuthCallback(props) {
     firebase.auth().onAuthStateChanged(async user => {
         // User is signed in.
         if (user) {
+           
+
             let token = await user.getIdToken();
             localStorage.setItem("token", token);
 
@@ -16,8 +18,11 @@ function AuthCallback(props) {
                 .post(`${process.env.REACT_APP_API_URL}/users/auth`, {
                     user: user,
                     token: token
-                })
+                }).then(
+                    localStorage.setItem("username", user.displayName.substr(0,user.displayName.indexOf(' ')))
+                )
                 .then(res => {
+                   
                     localStorage.setItem("id", res.data.id);
                     window.location = "/home";
                 })

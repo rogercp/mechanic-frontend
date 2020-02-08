@@ -95,6 +95,8 @@ function UserSettingsLayout(props) {
       };
     
       const userId = localStorage.getItem('id');
+      const username = localStorage.getItem("username");
+
       useEffect(() => {
 
         props.fetchProfileImage(userId)
@@ -108,13 +110,13 @@ function UserSettingsLayout(props) {
 
         <div>
         
-        {props.userImage  ?  
+        {props.userImage && props.userImage.length> 0  ?  
         (
-            <>
+            <div style={{ width:"200px"}}>
             {props.userImage.map((image, index) => {
                             return <ProfileImageShow image={image}  key={index} />
                 })} 
-            </>
+            </div>
             )
         : <ImageIcon style={{fontSize:"200px"}}/>}
        
@@ -122,7 +124,7 @@ function UserSettingsLayout(props) {
 
        
 
-        <p>userName</p><p>exampleusername{}</p></div>
+        <p>userName:{username}</p></div>
     
         <div style={{marginTop:"15px"}}>
         <UserSettingsFormModal
@@ -136,6 +138,7 @@ function UserSettingsLayout(props) {
           
           <Fab color="none" aria-label="add"  style={{color:"darkcyan",  outline:'0'}} className={classes.margin} >
                 <EditIcon
+           
             onClick={handleOpen}
            />
             </Fab>
