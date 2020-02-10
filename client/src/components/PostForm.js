@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React,{useEffect}from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { addPost } from "../store/actions/postActions";
 import { fetchPosts } from "../store/actions/postActions";
-
+import { fetchProfileImage } from "../store/actions/settingsActions";
 import moment from 'moment'
 
 import  '../styles/navbar.scss';
@@ -41,16 +41,23 @@ const useStyles = makeStyles(theme => ({
 function PostForm(props) {
 
   const time = moment().format("MMMM Do YYYY, h:mma")
+
   const userId = localStorage.getItem('id');
+  const username = localStorage.getItem('username');  
+  
+  
 
   const classes = useStyles();
   const [state, setState] = React.useState({
+    user_id: userId,
     category : '',
     post_text:'',
     post_date: time,
   });
 
-  
+
+
+
   const handleChange = name => event => {
     setState({
       ...state,
@@ -67,7 +74,12 @@ function PostForm(props) {
 
 };
      
-    
+useEffect(() => {
+
+  props.fetchProfileImage(userId)
+
+}, []);
+
 
     return (
       <>
@@ -108,8 +120,6 @@ function PostForm(props) {
           variant="outlined"
         />
        
-
-        
         <Button
         variant="contained"
         color="primary"
@@ -126,12 +136,13 @@ function PostForm(props) {
 };
 
 
-const mapStateToProps = ({ state }) => ({
- 
+const mapStateToProps = ( state ) => ({
+  userImage : state.setting.userImage
+
 });
 
 export default connect(
   mapStateToProps,
-  { addPost,fetchPosts }
+  { addPost,fetchPosts,fetchProfileImage }
 )(PostForm);
 

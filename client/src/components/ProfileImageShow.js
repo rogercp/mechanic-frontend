@@ -28,7 +28,10 @@ function ProfileImageShow(props) {
   
     const userId = localStorage.getItem('id');
 
-    const fileRef = imagesRef.child(`${userId}/${props.image.file_name}`);
+    console.log(userId,"userId")
+    console.log(props.image.file)
+
+    const fileRef = imagesRef.child(`${userId||props.userId}/${props.image.file_name||props.image}`);
 
     
 
@@ -83,7 +86,7 @@ const username = localStorage.getItem("username");
       
       <div style={{display:"flex", alignItems:"center"}}>
       <Avatar alt="Remy Sharp" src={`${thisImage}`} />
-        <h5 style={{marginLeft:"5px"}}>{username}</h5>
+        <h5 style={{marginLeft:"5px"}}>{username || props.post.username}</h5>
         </div>
     )
   }else{
