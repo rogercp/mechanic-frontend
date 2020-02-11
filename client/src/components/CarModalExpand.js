@@ -86,15 +86,9 @@ function CarModalExpand(props) {
       
     return (
         <>
-        <Dialog fullScreen open={props.open} onClose={props.handleClose}   >
+        <Dialog fullScreen open={props.open} onClose={props.handleClose}  >
             <div className="toolBar" style={{backgroundColor:"rgb(210, 210, 211)"}}>
-                        {/* <Switch
-                            id="toggleButton"
-                            onChange={handleChange2('toggled')}
-                            value="toggled"
-                            color="primary"
-                            inputProps={{ 'aria-label': 'checkbox with default color' }}
-                        /> */}
+                        
                         <IconButton
                             id="exitButton"
                             edge="end"
@@ -120,10 +114,12 @@ function CarModalExpand(props) {
             onClick={handleOpen}
            />
             </Fab> 
-
-
-<CarMaintenceShow  car={props.car}/>
+           
+              <div style={{maxWidth:"800px"}} >
+              <CarMaintenceShow car={props.car}/>
+              </div>
             
+              
             </div>    
           
             

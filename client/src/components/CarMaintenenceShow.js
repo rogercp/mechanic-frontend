@@ -102,7 +102,7 @@ function CarMaintenceShow(props) {
 
     return (
     
-      <>
+      <div >
       {props.myFixes.length < 1 ? <div>You have no fixes</div> :
               <>
                   {props.myFixes.map(c => {
@@ -115,7 +115,7 @@ function CarMaintenceShow(props) {
                   </>
               
             }
-      </>
+      </div>
     );
 };
 

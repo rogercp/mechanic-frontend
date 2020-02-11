@@ -91,7 +91,7 @@ const username = localStorage.getItem("username");
       
       <div style={{display:"flex", alignItems:"center"}}>
       <Avatar alt="Remy Sharp" src={`${thisImage}`} />
-        <h5 style={{marginLeft:"5px"}}>{props.isPost ? props.post.user_name : username}</h5>
+        <p style={{marginLeft:"5px"}}>{props.isPost ? props.post.user_name : username}</p>
         </div>
     )
   }else{
@@ -99,8 +99,6 @@ const username = localStorage.getItem("username");
       <>
           
           {/* {(metadata.contentType === 'application/pdf')? <div id="div-pdf" src={`${thisImage}`}></div> :  <img id="reg-image" height="200px" src={`${thisImage}`}></img>} */}
-          
-         
 
         <button onClick={deleteImage}>del</button>
           <Image src="holder.js/171x180" rounded id="reg-image"  style={{maxWidth: "100%"}} src={`${thisImage}`}/>

@@ -78,15 +78,13 @@ async function fetchCars() {
 }
 
     return (
-      <>
-        <h1>My Cars</h1>
-
-        <Fab color="none" aria-label="add"  style={{color:"darkcyan",  outline:'0'}} className={classes.margin}>
+        <div style={{display:'block'}}>
+        <Fab color="none" aria-label="add"  style={{color:"darkcyan", outline:'0'}} className={classes.margin}>
           <AddIcon
            onClick={handleOpen}
            />
         </Fab>
-
+       
         <CarAddModal
          fetchCars={fetchCars} 
           open={open}
@@ -97,9 +95,7 @@ async function fetchCars() {
           redirectText={"cars"}
           />
 
-      
-          
-
+   
           {cars.length < 1 ? <div>You have no Cars</div> :
               <Grid 
       
@@ -117,8 +113,9 @@ async function fetchCars() {
                   })}
               </Grid>
             }
-          
-      </>
+           
+          </div>
+      
     );
 };
 
