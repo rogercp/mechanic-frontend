@@ -9,7 +9,8 @@ import ProfileImageShow from './ProfileImageShow';
 const IndividualPost = (props) => {
     // const classes = useStyles();
     const [state, setState] = React.useState({
-      isCirclePic : true 
+      isCirclePic : true,
+      isPost:true  
     });
 
 //     function handleDelete() {
@@ -30,13 +31,13 @@ const IndividualPost = (props) => {
         <div style={{display:"flex", flexDirection:"row"}}>
         <section style={{display:"flex", flexDirection:"row"}}>
 
-           <ProfileImageShow style={{width:"40px",height:"40px",paddingRight:"2px"}} userId={props.post.userId} isCirclePic={state.isCirclePic} image={props.post.file_name} />
+           <ProfileImageShow style={{width:"40px",height:"40px",paddingRight:"2px"}} isPost={state.isPost} userId={props.post.userId} isCirclePic={state.isCirclePic} image={props.post.file_name} post={props.post} />
 
         </section>
         
             <p>{props.post.post_date}</p>
             </div>
-            <h4>{props.post.post_text}</h4>
+            <p>{props.post.post_text}</p>
             <a href="https://www.w3schools.com/html/" target="_blank">links</a>
             <p>images</p>
             <img style={{width:"50%",height:"50%"}} src="https://source.unsplash.com/random"/>

@@ -86,7 +86,7 @@ const username = localStorage.getItem("username");
       
       <div style={{display:"flex", alignItems:"center"}}>
       <Avatar alt="Remy Sharp" src={`${thisImage}`} />
-        <h5 style={{marginLeft:"5px"}}>{username || props.post.username}</h5>
+        <h5 style={{marginLeft:"5px"}}>{props.isPost ? props.post.user_name : username}</h5>
         </div>
     )
   }else{
