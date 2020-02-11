@@ -28,13 +28,17 @@ function ProfileImageShow(props) {
   
     const userId = localStorage.getItem('id');
 
-    console.log(userId,"userId")
-    console.log(props.image.file)
+    // console.log(userId,"userId")
+    // console.log(props.image.file)
 
-    const fileRef = imagesRef.child(`${userId||props.userId}/${props.image.file_name||props.image}`);
+  var fileRef = null
 
+  if(props.isPost ){
+    fileRef = imagesRef.child(`${props.post.user_id}/${props.post.file_name}`);
+  }else{
+    fileRef = imagesRef.child(`${userId}/${props.image.file_name}`);
+  }
     
-
 
     useEffect(() => {
       getImg()
@@ -81,6 +85,7 @@ function ProfileImageShow(props) {
 }
 
 const username = localStorage.getItem("username");
+
   if(props.isCirclePic){
     return (
       

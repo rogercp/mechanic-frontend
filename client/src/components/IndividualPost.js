@@ -30,8 +30,11 @@ const IndividualPost = (props) => {
         <div className ="singlePost" style={{ width:"98%",marginBottom:"5px"}}>
         <div style={{display:"flex", flexDirection:"row"}}>
         <section style={{display:"flex", flexDirection:"row"}}>
-
-           <ProfileImageShow style={{width:"40px",height:"40px",paddingRight:"2px"}} isPost={state.isPost} userId={props.post.userId} isCirclePic={state.isCirclePic} image={props.post.file_name} post={props.post} />
+      {props.post.file_name ?
+        <ProfileImageShow style={{width:"40px",height:"40px",paddingRight:"2px"}} isPost={state.isPost} userId={props.post.userId} isCirclePic={state.isCirclePic} image={props.post.file_name} post={props.post} />
+          :
+          <p>{props.post.user_name}</p>
+        }
 
         </section>
         
