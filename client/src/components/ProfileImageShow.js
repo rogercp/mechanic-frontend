@@ -89,8 +89,8 @@ const username = localStorage.getItem("username");
   if(props.isCirclePic){
     return (
       
-      <div style={{display:"flex", alignItems:"center"}}>
-      <Avatar alt="Remy Sharp" src={`${thisImage}`} />
+      <div style={{display:"flex", alignItems:"center",justifyContent:"center"}}>
+      <Avatar alt="Remy Sharp" src={`${thisImage}`}  />
         <p style={{marginLeft:"5px"}}>{props.isPost ? props.post.user_name : username}</p>
         </div>
     )
