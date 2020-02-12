@@ -35,13 +35,9 @@ function App() {
       <div className="outerapp">
       
       <BrowserRouter>
-      <div className="nav" style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px"}}>
-      <NavLink id="link" to="/login" activeClassName="active"  style={{textDecoration:"none"}} data-testid="signup-link">   
-                  <i>Login</i>
-        </NavLink >
-      </div>
+      <NavBar className="navbar"/>
             <Switch>
-            <Route key={uuid.v4()} exact path='/' component={Home} />,
+            <Route key={uuid.v4()} exact path='/landing' component={Home} />,
               {UsersRouter}
               <Route key={uuid.v4()} component={NoMatch} />
             </Switch>

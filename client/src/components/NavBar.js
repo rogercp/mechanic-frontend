@@ -106,7 +106,15 @@ function NavBar(props) {
   }, []);
 
 
-
+  if(!localStorage.getItem("token")){
+    return (
+      <div className="nav" style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px"}}>
+      <NavLink id="link" to="/login" activeClassName="active"   data-testid="signup-link">   
+          <i style={{float:"right"}}>Login</i>
+        </NavLink >
+      </div>
+    )
+  }else{
     return (
       <>
         
@@ -178,7 +186,7 @@ function NavBar(props) {
         
 
       </>
-    );
+    )}
 };
 
 
