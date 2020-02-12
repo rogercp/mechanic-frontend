@@ -20,12 +20,7 @@ function Home(props) {
 
         <div style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px",paddingBottom:"700px"}}>
         
-        <div>
-
-        
-         </div>
-
-
+      
         <div className="web" style={{display:"flex", flexDirection:"row",width:"100%"}}>
         <div style={{minWidth:"30%"}}>
         <Question/> 

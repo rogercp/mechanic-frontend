@@ -105,8 +105,8 @@ function UserSettingsLayout(props) {
    
       
     return (
-      <>
-        <div style={{display:"flex",flexWrap:"wrap",marginLeft:"64px",marginRight:"-32px"}}>
+   
+        <div style={{display:"flex",flexWrap:"wrap"}}>
 
         <div>
         
@@ -119,9 +119,6 @@ function UserSettingsLayout(props) {
             </div>
             )
         : <ImageIcon style={{fontSize:"200px"}}/>}
-       
-       
-
        
 
         <p>userName:{username}</p></div>
@@ -153,7 +150,7 @@ function UserSettingsLayout(props) {
 
         </div>
 
-      </>
+      
     );
     
 };

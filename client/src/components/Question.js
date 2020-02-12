@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect} from "react";
 import { makeStyles } from '@material-ui/core/styles';
+import { Route, withRouter} from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Add';
 import PostAddModal from './PostAddModal';
-
+import { browserHistory } from 'react-router';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -45,9 +46,18 @@ function Question(props) {
    * Modal Methods
    */
 
+
+
   function handleOpen() {
+   
+    if(localStorage.getItem("token") === null){
+      props.history.push('/login')
+    }
       setOpen(true);
+     
   }
+      
+
   function handleErrorOpen() {
       setErrorOpen(true);
   }
@@ -58,29 +68,31 @@ function Question(props) {
       setErrorOpen(false);
   }
   
-  
+
     return (
       <>
         <Fab color="none" aria-label="add" style={{color:"darkcyan",  outline:'0'}} className={classes.margin}>
           <EditIcon 
-          onClick={handleOpen}
+          onClick={handleOpen} 
           />
            
         </Fab>
-
-        <PostAddModal
+   
+   
+  <PostAddModal
           open={open}
           onClose={handleClose}
           titleText={"Post Form"}
           bodyText={""}
           redirect={"/mycars"}
           redirectText={"cars"}
-          />
+          /> 
+        
 
       </>
     );
-};
+    };
 
 
 
-export default Question;
+export default withRouter(Question);

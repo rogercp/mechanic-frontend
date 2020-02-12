@@ -22,7 +22,7 @@ import { flexbox } from '@material-ui/system';
 
 const useStyles = makeStyles({
   list: {
-    width: 150,
+    width: 200,
     margin: '20px',
    display: 'block',
   },
@@ -106,7 +106,15 @@ function NavBar(props) {
   }, []);
 
 
-
+  if(!localStorage.getItem("token")){
+    return (
+      <div className="nav" style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px"}}>
+      <NavLink id="link" to="/login" activeClassName="active"   data-testid="signup-link">   
+          <i style={{float:"right"}}>Login</i>
+        </NavLink >
+      </div>
+    )
+  }else{
     return (
       <>
         
@@ -157,8 +165,12 @@ function NavBar(props) {
             </div>
           
             
-            <div className="mobile">
-              <Button style={{float:"right", marginTop: "20px",}} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
+            <div className="mobile" >
+          
+          <div style={{width:"100%",position:"fixed"}}>
+          {/* display:inline-block  --- this will work for a non-sticky navbar */}
+              <Button style={{float:"right", marginTop: "20px",display:"block"}} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
+            </div>
               <Drawer   anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
                   {sideList ('right')}
 
@@ -174,7 +186,7 @@ function NavBar(props) {
         
 
       </>
-    );
+    )}
 };
 
 

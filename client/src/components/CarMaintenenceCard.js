@@ -121,10 +121,8 @@ function CarMaintenceCard(props) {
 
 
     return (
-        <>
-        <div style={{width:'80%',maxWidth:"1300px"}}>
 
-            <ExpansionPanel style={{width:"100%",margin:"1rem",overFlow:"auto"}}>
+            <ExpansionPanel >
 
             <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
@@ -135,6 +133,7 @@ function CarMaintenceCard(props) {
             <p>{props.carFix.fix}</p> 
             {props.carFix.fix_not_maintenence ? <BuildIcon/>: <AlarmOnIcon/>}
             </ExpansionPanelSummary>
+
             <ExpansionPanelDetails id="panelbody">
 
             <div style={{display:"flex",flexDirection:"column",justifyContent:"spaceBetween"}}>
@@ -164,12 +163,13 @@ function CarMaintenceCard(props) {
             </div>
 
             </ExpansionPanelDetails>
+            
             </ExpansionPanel>
 
-        </div>
+      
         
       
-        </>
+        
        )
 }
 
