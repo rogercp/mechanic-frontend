@@ -16,7 +16,6 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { Form } from 'react-bootstrap';
 
 
-
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: theme.palette.background.paper,
@@ -50,8 +49,9 @@ function Search(props) {
         <div>
       <div style={{width:"80%",marginBottom:"15.65px"}}>
       <Form.Control size="lg" type="text" placeholder="Search" className={classes.margin}/>
-
-          </div>
+     
+      </div>
+        
           </div>
       </>
     );
