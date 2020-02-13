@@ -15,7 +15,7 @@ import {
 const UsersRouter = [
   <Route key={uuid.v4()} exact path='/login' render={props => <Login {...props} />}/>,
   <Route key={uuid.v4()} exact path='/register' render={props => <Login {...props} />}/>,
-  <Route  key={uuid.v4()}  exact path='/landing'
+  <Route  key={uuid.v4()}  exact path='/'
   component={Home}  errorBoundary={ErrorBoundary}/>,
   <PrivateRoute key={uuid.v4()}  path='/auth/callback' component={AuthCallback} errorBoundary={ErrorBoundary}/>
 ];
