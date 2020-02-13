@@ -10,7 +10,6 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from '@material-ui/core/styles';
 import BuildIcon from '@material-ui/icons/Build';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 import ImageCarousel from './ImageCarousel';
@@ -18,7 +17,21 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import CarFixImgUpload from './CarFixImgUpload';
 import { fetchFixes } from "../store/actions/carMaintenenceActions";
 import { connect } from 'react-redux';
-
+import {Image,roundedCircle} from 'react-bootstrap';
+import  '../styles/postsIndividual.scss'
+import { HTML5_FMT } from 'moment';
+import ProfileImageShow from './ProfileImageShow';
+import { makeStyles } from '@material-ui/core/styles';
+import { Route, withRouter} from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
+import Fab from '@material-ui/core/Fab';
+import PostAddModal from './PostAddModal';
+import { browserHistory } from 'react-router';
+import { Form } from 'react-bootstrap';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import ThumbDownIcon from '@material-ui/icons/ThumbDown';
+import CommentIcon from '@material-ui/icons/Comment';
+import SendIcon from '@material-ui/icons/Send';
 
 import  '../styles/fullscreenmodal.scss'
 
@@ -74,7 +87,6 @@ const useStyles = makeStyles(theme => ({
           alignItems:'center',
         },
         margin:{
-            color:'red',
               outline:'0',
         },
         root: {
@@ -88,69 +100,69 @@ const useStyles = makeStyles(theme => ({
 function Comment(props) {
 
     const classes = useStyles();
-    const [fullopen, setFullOpen] = useState(false);
-    const [errorOpen, setErrorOpen] = useState(false);
 
-
-    // function handleDelete2() {
-    //     axiosWithAuth()
-    //         .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.carFix.id}`)
-    //         .then(res => {
-    //             props.fetchFixes(props.car.id)
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //         });
-    // }
     
-
-    const handlefullOpen = () => {
-        setFullOpen(true);
-    };
-    const handlefullClose = () => {
-        setFullOpen(false);
-    };
-
-    function handleErrorClose() {
-        setErrorOpen(false);
-    }
-    
-    function handleErrorOpen() {
-        setErrorOpen(true);
-    }
 
 
 
     return (
 
-            // <ExpansionPanel >
+<>
+         
+            <div style={{display:"block",marginBottom:"40px"}}>
+                    <p style={{textAlign:"left"}}>carlos</p>
+                    <p  style={{textAlign:"left"}}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                    <div style={{display:"block",backgroundColor:"orange"}}>
+  
 
-            // <ExpansionPanelSummary
-            // expandIcon={<ExpandMoreIcon />}
-            // aria-controls="panel1a-content"
-            // id="panel1a-header"
-            // >
-             
-            // </ExpansionPanelSummary>
-
-            // <ExpansionPanelDetails id="panelbody">
-
-            // {/* <div style={{display:"flex",flexDirection:"column",justifyContent:"spaceBetween"}}>
-            // <div style={{width:"70%",textAlign:"left !important"}}>
-                
-            // </div>
-
-            // </div> */}
-
-            // </ExpansionPanelDetails>
-            
-            // </ExpansionPanel>
-
-            <div>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                <div style={{float:"right",display:"flex",justifyContent:"space-between",alignItems:"space-between",marginTop:"-23px"}}> 
+                <ThumbUpIcon style={{borderRadius:"50%"}} className={classes.margin}/> <p>63</p>
+                <ThumbDownIcon style={{borderRadius:"50%"}} className={classes.margin} /><p >2</p>
+                </div>
+  
+                </div>
             </div>
-      
-        
+
+            <div style={{display:"block",marginBottom:"40px"}}>
+                    <p style={{textAlign:"left"}}>carlos</p>
+                    <p  style={{textAlign:"left"}}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                    <div style={{display:"block",backgroundColor:"orange"}}>
+  
+
+                <div style={{float:"right",display:"flex",justifyContent:"space-between",alignItems:"space-between",marginTop:"-23px"}}> 
+                <ThumbUpIcon style={{borderRadius:"50%"}} className={classes.margin}/> <p>63</p>
+                <ThumbDownIcon style={{borderRadius:"50%"}} className={classes.margin} /><p >2</p>
+                </div>
+  
+                </div>
+            </div>
+            <div style={{display:"block",marginBottom:"40px"}}>
+                    <p style={{textAlign:"left"}}>carlos</p>
+                    <p  style={{textAlign:"left"}}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                    <div style={{display:"block",backgroundColor:"orange"}}>
+  
+
+                <div style={{float:"right",display:"flex",justifyContent:"space-between",alignItems:"space-between",marginTop:"-23px"}}> 
+                <ThumbUpIcon style={{borderRadius:"50%"}} className={classes.margin}/> <p>63</p>
+                <ThumbDownIcon style={{borderRadius:"50%"}} className={classes.margin} /><p >2</p>
+                </div>
+  
+                </div>
+            </div>
+            <div style={{display:"block",marginBottom:"40px"}}>
+                    <p style={{textAlign:"left"}}>carlos</p>
+                    <p  style={{textAlign:"left"}}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                    <div style={{display:"block",backgroundColor:"orange"}}>
+  
+
+                <div style={{float:"right",display:"flex",justifyContent:"space-between",alignItems:"space-between",marginTop:"-23px"}}> 
+                <ThumbUpIcon style={{borderRadius:"50%"}} className={classes.margin}/> <p>63</p>
+                <ThumbDownIcon style={{borderRadius:"50%"}} className={classes.margin} /><p >2</p>
+                </div>
+  
+                </div>
+            </div>
+        </>
         
        )
 }

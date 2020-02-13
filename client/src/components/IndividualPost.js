@@ -16,6 +16,10 @@ import { Form } from 'react-bootstrap';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import CommentIcon from '@material-ui/icons/Comment';
+import SendIcon from '@material-ui/icons/Send';
+import Button from '@material-ui/core/Button';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -41,6 +45,10 @@ const useStyles = makeStyles(theme => ({
       buttons: {
        margin:'5px 10px'
       },
+      button: {
+        margin: theme.spacing(1),
+      },
+  
      
   }));
 
@@ -51,17 +59,19 @@ const IndividualPost = (props) => {
       isPost:true,  
     });
     const [commentsAreOpen, setCommentsAreOpen]=useState(false)
+    const [commentState, setCommentState] = React.useState({
+      comment:''
+     });
+   
+     
+     const handleChange = name => event => {
+      setCommentState({
+         ...commentState,
+         [name]: event.target.value,
+       });
+     };
 
-//     function handleDelete() {
-//       axiosWithAuth()
-//           .delete(`${process.env.REACT_APP_API_URL}/cars/${props.post.id}`)
-//           .then(res => {
-//               props.fetchCarsFunction();
-//           })
-//           .catch(error => {
-//               console.error(error);
-//           });
-//   }
+     
      
 console.log(commentsAreOpen,"commetns")
 const toggleComments = (e) =>{
@@ -74,10 +84,7 @@ const toggleComments = (e) =>{
    setCommentsAreOpen(true)
  }
     
-
 }
-
-  
     return (
       <>
         <div className ="singlePost" style={{ width:"98%",marginBottom:"5px"}}>
@@ -100,36 +107,58 @@ const toggleComments = (e) =>{
            
           </div>
 
-
-            <p>{props.post.post_text}</p>
-            <a href="https://www.w3schools.com/html/" target="_blank">links</a>
-            <p>images</p>
-            <img style={{width:"50%",height:"50%"}} src="https://source.unsplash.com/random"/>
-            <div style={{display:"block",backgroundColor:"orange"}}>
+            <div style={{display:"block",marginTop:"45px"}}><p style={{textAlign:"left"}}>{props.post.post_text}</p></div>
             
-           
-            <div style={{float:"left",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",margin:"5px 0"}}>
-            <CommentIcon className={classes.margin} onClick={toggleComments} /> <p>23</p>
+{/* 
+            <a href="https://www.w3schools.com/html/" target="_blank">links</a> */}
+            <img style={{width:"30%",height:"30%"}} src="https://source.unsplash.com/random"/>
+
+
+            <div style={{display:"block",backgroundColor:"orange"}}>
+  
+            <div style={{float:"left",display:"flex",flexDirection:"row"}}>
+            <CommentIcon className={classes.margin} onClick={toggleComments} /> <p style={{marginTop:"8px"}}>23</p>
             </div>
 
             <div style={{float:"right",display:"flex",justifyContent:"space-between",alignItems:"space-between"}}> 
-            <p>63</p> <ThumbUpIcon className={classes.margin}/>
-            <p>2</p> <ThumbDownIcon className={classes.margin} />
+            <ThumbUpIcon style={{borderRadius:"50%"}} className={classes.margin}/> <p style={{marginTop:"8px"}}>63</p>
+             <ThumbDownIcon style={{borderRadius:"50%"}} className={classes.margin} /><p style={{marginTop:"8px"}}>2</p>
             </div>
             
             </div>
 
-           
+           <div style={{border:"2px !important"}}>
 
-          {commentsAreOpen ? <div style={{width:"100%"}}>
-          <Form.Control size="md" type="text" placeholder="Comment" />
+          {commentsAreOpen ? 
+          <div style={{width:"100%"}}>
+          <div style={{width:"100%",display:"flex", flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+          <Form.Control 
+          size="md" 
+          type="text" 
+          placeholder="Comment" 
+          id="standard-basic"
+          name="comment"
+          value={commentState.comment}
+          name="comment"
+          onChange={handleChange('comment')}
+          />
+            <Button
+          style={{}}
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          endIcon={<SendIcon/>}
+        >
+          Send
+            </Button>
+          </div>
+          <div style={{display:"block"}}>
           <Comment/>
+          </div>
+          <ExpandMoreIcon style={{fontSize:"50px"}} />
             </div>
           :null}
-            
-
-
-          
+          </div>
             
         </div> 
             
