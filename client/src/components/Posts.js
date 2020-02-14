@@ -19,7 +19,7 @@ function Posts(props) {
       props.fetchPosts()
     }, []);
 
-
+console.log(props.myposts,"posts")
 
     return (
       <>

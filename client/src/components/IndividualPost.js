@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 // import { makeStyles } from '@material-ui/core/styles';
 import {Image,roundedCircle} from 'react-bootstrap';
 import  '../styles/postsIndividual.scss'
@@ -19,6 +19,7 @@ import CommentIcon from '@material-ui/icons/Comment';
 import SendIcon from '@material-ui/icons/Send';
 import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { axiosWithAuth } from '../helpers/index';
 
 
 const useStyles = makeStyles(theme => ({
@@ -59,10 +60,26 @@ const IndividualPost = (props) => {
       isPost:true,  
     });
     const [commentsAreOpen, setCommentsAreOpen]=useState(false)
-    const [commentState, setCommentState] = React.useState({
-      comment:''
+    const [commentState, setCommentState] = useState({
+      user_id: localStorage.getItem("id"),
+      comment_text:''
      });
+     const[commentFetch,setCommentFetch]= useState([])
    
+
+     useEffect(() => {
+      const fetchComments = () => {
+        axiosWithAuth()
+            .get(`/comment/${props.post.id}`)
+            .then(res => {  
+                console.log("comment fetch success")
+
+            })
+            .catch(err => {      
+            });
+    }; 
+
+     }, [])
      
      const handleChange = name => event => {
       setCommentState({
@@ -71,6 +88,18 @@ const IndividualPost = (props) => {
        });
      };
 
+
+     const onSubmitHandler = e => {
+      e.preventDefault();
+      axiosWithAuth()
+          .post(`/comment/${props.post.id}`, commentState)
+          .then(res => {  
+              console.log("comment success")
+          })
+          .catch(err => {      
+          });
+  };
+  
      
      
 console.log(commentsAreOpen,"commetns")
@@ -133,14 +162,14 @@ const toggleComments = (e) =>{
           <div style={{width:"100%"}}>
           <div style={{width:"100%",display:"flex", flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
           <Form.Control 
+          onSubmit={onSubmitHandler}
           size="md" 
           type="text" 
           placeholder="Comment" 
           id="standard-basic"
-          name="comment"
-          value={commentState.comment}
-          name="comment"
-          onChange={handleChange('comment')}
+          name="comment_text"
+          value={commentState.comment_text}
+          onChange={handleChange('comment_text')}
           />
             <Button
           style={{}}
@@ -148,12 +177,24 @@ const toggleComments = (e) =>{
           color="primary"
           className={classes.button}
           endIcon={<SendIcon/>}
+          onClick={onSubmitHandler}
         >
-          Send
+          Enter
             </Button>
           </div>
           <div style={{display:"block"}}>
-          <Comment/>
+
+         {
+          commentFetch.map((comment)=>{
+           return ( <>
+                    <Comment comment={comment} />
+                  </>
+              )
+          })} 
+          
+
+
+
           </div>
           <ExpandMoreIcon style={{fontSize:"50px"}} />
             </div>
