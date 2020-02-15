@@ -65,22 +65,26 @@ const IndividualPost = (props) => {
       comment_text:''
      });
      const[commentFetch,setCommentFetch]= useState([])
-   
+  
 
      useEffect(() => {
-      const fetchComments = () => {
-        axiosWithAuth()
-            .get(`/comment/${props.post.id}`)
-            .then(res => {  
-                console.log("comment fetch success")
-
-            })
-            .catch(err => {      
-            });
-    }; 
-
+      fetchComments()
      }, [])
-     
+     const fetchComments = () => {
+      axiosWithAuth()
+          .get(`/comment/${props.post.id}`)
+          .then(res => {  
+            setCommentFetch(res.data)
+            console.log(res.data,"commetns")
+
+            
+          })
+          .catch(err => {      
+          });
+  }; 
+
+
+
      const handleChange = name => event => {
       setCommentState({
          ...commentState,
