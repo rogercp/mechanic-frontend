@@ -14,6 +14,12 @@ import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { Form } from 'react-bootstrap';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice';
+import Icon from '@material-ui/core/Icon';
+import SendIcon from '@material-ui/icons/Send';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -36,7 +42,9 @@ const useStyles = makeStyles(theme => ({
             boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
           },
       },
-  
+      button: {
+        margin: theme.spacing(1),
+      },
   
     }));
 
@@ -47,11 +55,20 @@ function Search(props) {
 
     return (
       <>
-        <div>
-      <div style={{width:"80%",marginBottom:"15.65px"}}>
-      <Form.Control size="lg" type="text" placeholder="Search" className={classes.margin}/>
-
-          </div>
+        
+      <div style={{width:"100%",display:"flex", flexDirection:"row",justifyContent:"center",alignItems:"center",marginBottom:"15.65px"}}>
+      
+      <Form.Control size="md" type="text" placeholder="Search" className={classes.margin}/>
+     
+    
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.button}
+      >
+        search
+      </Button>
+        
           </div>
       </>
     );

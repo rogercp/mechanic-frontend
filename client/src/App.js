@@ -37,7 +37,7 @@ function App() {
       <BrowserRouter>
       <NavBar className="navbar"/>
             <Switch>
-            <Route key={uuid.v4()} exact path='/landing' component={Home} />,
+            <Route key={uuid.v4()} exact path='/' component={Home} />,
               {UsersRouter}
               <Route key={uuid.v4()} component={NoMatch} />
             </Switch>

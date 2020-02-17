@@ -1,7 +1,7 @@
 
 import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link,withRouter } from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -110,7 +110,7 @@ function NavBar(props) {
     return (
       <div className="nav" style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px"}}>
       <NavLink id="link" to="/login" activeClassName="active"   data-testid="signup-link">   
-          <i style={{float:"right"}}>Login</i>
+         <i style={{float:"right"}}>Login</i>
         </NavLink >
       </div>
     )

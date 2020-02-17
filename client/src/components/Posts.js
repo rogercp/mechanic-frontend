@@ -6,6 +6,7 @@ import { axiosWithAuth } from '../helpers/index';
 import IndividualPost from './IndividualPost'
 import { connect } from 'react-redux';
 import { fetchPosts } from "../store/actions/postActions";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 
@@ -18,21 +19,24 @@ function Posts(props) {
       props.fetchPosts()
     }, []);
 
-
+console.log(props.myposts,"posts")
 
     return (
       <>
  
-      <div style={{display:"flex", flexDirection:"column"}}>
-
+      <div style={{display:"flex", flexDirection:"column",alignItems:"center"}}>
+        
         {props.myposts.map(p => {
             return (
                 <>
+             
                 <IndividualPost   post={p}  key={caches.uid} fetchPosts={p.fetchPosts} />
                 </>
             );
         })}
         
+        
+         <ExpandMoreIcon style={{fontSize:"100px"}} />
 
         </div> 
       </>
