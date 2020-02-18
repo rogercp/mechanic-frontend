@@ -64,12 +64,12 @@ function ProfileImageShow(props) {
         });
 }
 
+
   function deleteImage(){
 
     fileRef.delete().then(()=>{
-     console.log("hitting")
-     console.log(props.image.id,"422")
-      axiosWithAuth().delete(`/users/imagee/${props.image.id}`)
+     
+      axiosWithAuth().delete(`/users/imagee/${props.image.file_name_profile}`)
       .then(res => {
         props.fetchProfileImage(userId)       
        })

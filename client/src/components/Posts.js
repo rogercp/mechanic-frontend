@@ -20,7 +20,7 @@ function Posts(props) {
       console.log(props.myposts,"usersposts")
     }, []);
 
-console.log(props.myposts,"posts")
+
 
     return (
       <>

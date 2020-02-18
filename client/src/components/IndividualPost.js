@@ -103,8 +103,31 @@ const IndividualPost = (props) => {
   };
   
      
-     
-console.log(commentsAreOpen,"commetns")
+
+  function incrementLike() {
+    axiosWithAuth()
+        .patch(`/post/inc/${props.post.id}`)
+        .then(res => {  
+            console.log("comment success")
+        })
+        .catch(err => {      
+        });
+};
+
+
+function decreaseLike () {
+  axiosWithAuth()
+      .patch(`/post/dec/${props.post.id}`)
+      .then(res => {  
+          console.log("comment success")
+      })
+      .catch(err => {      
+      });
+};
+
+
+
+
 const toggleComments = (e) =>{
 
     e.preventDefault();
@@ -123,7 +146,7 @@ const toggleComments = (e) =>{
         <div style={{display:"block",backgroundColor:"orange"}}>
         <section style={{display:"flex", flexDirection:"row",float:"left"}}>
       {props.post.file_name_profile ?
-        <ProfileImageShow  style={{width:"40px",height:"40px",paddingRight:"2px"}} isPost={state.isPost} userId={props.post.userId} isCirclePic={state.isCirclePic} image={props.post.file_name} post={props.post} />
+        <ProfileImageShow  style={{width:"40px",height:"40px",paddingRight:"2px"}} isPost={state.isPost} userId={props.post.user_id} isCirclePic={state.isCirclePic} image={props.post.file_name} post={props.post} />
           :
           <p>{props.post.user_name}</p>
         }
@@ -148,12 +171,15 @@ const toggleComments = (e) =>{
             <div style={{display:"block",backgroundColor:"orange"}}>
   
             <div style={{float:"left",display:"flex",flexDirection:"row"}}>
-            <CommentIcon className={classes.margin} onClick={toggleComments} /> <p style={{marginTop:"8px"}}>23</p>
+          <CommentIcon className={classes.margin} onClick={toggleComments} /> <p style={{marginTop:"8px"}}>{commentFetch.length}</p>
             </div>
 
             <div style={{float:"right",display:"flex",justifyContent:"space-between",alignItems:"space-between"}}> 
-            <ThumbUpIcon style={{borderRadius:"50%"}} className={classes.margin}/> <p style={{marginTop:"8px"}}>63</p>
-             <ThumbDownIcon style={{borderRadius:"50%"}} className={classes.margin} /><p style={{marginTop:"8px"}}>2</p>
+            <p style={{marginTop:"8px"}}>{props.post.like}</p>
+            <ThumbUpIcon onClick={incrementLike} style={{borderRadius:"50%"}} className={classes.margin}/> 
+            <button  onClick={incrementLike} >up</button>
+          <ThumbDownIcon onClick={decreaseLike} style={{borderRadius:"50%"}} className={classes.margin} />
+        <button  onCLick={decreaseLike} >down</button>
             </div>
             
             </div>
