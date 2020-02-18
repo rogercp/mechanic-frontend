@@ -32,9 +32,9 @@ function ProfileImageShow(props) {
   var fileRef = null
 
   if(props.isPost ){
-    fileRef = imagesRef.child(`${props.post.user_id}/${props.post.file_name}`);
+    fileRef = imagesRef.child(`${props.post.user_id}/${props.post.file_name_profile}`);
   }else{
-    fileRef = imagesRef.child(`${userId}/${props.image.file_name}`);
+    fileRef = imagesRef.child(`${userId}/${props.image.file_name_profile}`);
   }
     
 

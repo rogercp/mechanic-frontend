@@ -17,6 +17,7 @@ function Posts(props) {
 
     useEffect(() => {
       props.fetchPosts()
+      console.log(props.myposts,"usersposts")
     }, []);
 
 console.log(props.myposts,"posts")
