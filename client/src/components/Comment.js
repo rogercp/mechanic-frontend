@@ -140,7 +140,7 @@ function Comment(props) {
 <>
          
             <div style={{display:"block",marginBottom:"40px"}}>
-                    <p style={{textAlign:"left"}}>carlos</p>
+                    <p style={{textAlign:"left"}}>carliosa</p>
                     <p  style={{textAlign:"left"}}>{props.comment.comment_text}</p>
                     <div style={{display:"block",backgroundColor:"orange"}}>
   
