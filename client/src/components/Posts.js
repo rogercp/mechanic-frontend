@@ -30,8 +30,7 @@ function Posts(props) {
         {props.myposts.map(p => {
             return (
                 <>
-             
-                <IndividualPost   post={p}  key={caches.uid} fetchPosts={p.fetchPosts} />
+                <IndividualPost   post={p}  key={caches.uid} fetchPosts={props.fetchPosts} />
                 </>
             );
         })}

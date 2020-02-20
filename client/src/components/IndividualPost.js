@@ -108,7 +108,7 @@ const IndividualPost = (props) => {
     axiosWithAuth()
         .patch(`/post/inc/${props.post.id}`)
         .then(res => {  
-            console.log("comment success")
+            props.fetchPosts()
         })
         .catch(err => {      
         });
@@ -119,7 +119,7 @@ function decreaseLike () {
   axiosWithAuth()
       .patch(`/post/dec/${props.post.id}`)
       .then(res => {  
-          console.log("comment success")
+          props.fetchPosts()
       })
       .catch(err => {      
       });
@@ -177,9 +177,7 @@ const toggleComments = (e) =>{
             <div style={{float:"right",display:"flex",justifyContent:"space-between",alignItems:"space-between"}}> 
             <p style={{marginTop:"8px"}}>{props.post.like}</p>
             <ThumbUpIcon onClick={incrementLike} style={{borderRadius:"50%"}} className={classes.margin}/> 
-            <button  onClick={incrementLike} >up</button>
           <ThumbDownIcon onClick={decreaseLike} style={{borderRadius:"50%"}} className={classes.margin} />
-        <button  onCLick={decreaseLike} >down</button>
             </div>
             
             </div>
@@ -215,7 +213,7 @@ const toggleComments = (e) =>{
          {
           commentFetch.map((comment)=>{
            return ( <>
-                    <Comment comment={comment} />
+                    <Comment comment={comment} fetchComments={fetchComments} />
                   </>
               )
           })} 

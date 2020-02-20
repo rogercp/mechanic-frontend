@@ -92,6 +92,15 @@ const useStyles = makeStyles(theme => ({
         root: {
           width: '100%',
         },
+        margin: {
+          margin: theme.spacing(1),
+          backgroundColor:"white",
+          borderRadius:"10%",
+          boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
+          '&:hover':{
+              boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
+            },
+        },
         
   }))
   
@@ -103,6 +112,27 @@ function Comment(props) {
 
     
 
+    function incrementLike() {
+      axiosWithAuth()
+          .patch(`/comment/inc/${props.comment.id}`)
+          .then(res => {  
+              props.fetchComments()
+          })
+          .catch(err => {      
+          });
+  };
+  
+  
+  function decreaseLike () {
+    axiosWithAuth()
+        .patch(`/comment/dec/${props.comment.id}`)
+        .then(res => {  
+            props.fetchComments()
+        })
+        .catch(err => {      
+        });
+  };
+  
 
 
     return (
@@ -115,10 +145,11 @@ function Comment(props) {
                     <div style={{display:"block",backgroundColor:"orange"}}>
   
 
-                <div style={{float:"right",display:"flex",justifyContent:"space-between",alignItems:"space-between",marginTop:"-23px"}}> 
-                <ThumbUpIcon style={{borderRadius:"50%"}} className={classes.margin}/> <p>63</p>
-                <ThumbDownIcon style={{borderRadius:"50%"}} className={classes.margin} /><p >2</p>
-                </div>
+                    <div style={{float:"right",display:"flex",justifyContent:"space-between",alignItems:"space-between"}}> 
+                  <p style={{marginTop:"8px"}}>{props.comment.like}</p>
+                  <ThumbUpIcon onClick={incrementLike} style={{borderRadius:"50%"}} className={classes.margin}/> 
+                <ThumbDownIcon onClick={decreaseLike} style={{borderRadius:"50%"}} className={classes.margin} />
+                  </div>
   
                 </div>
             </div>
