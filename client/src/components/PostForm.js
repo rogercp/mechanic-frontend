@@ -45,8 +45,6 @@ function PostForm(props) {
   const userId = localStorage.getItem('id');
   const username = localStorage.getItem('username');  
   
-  console.log(userId,"id")
-  console.log(username,"name")
 
   const classes = useStyles();
   const [state, setState] = React.useState({

@@ -7,11 +7,12 @@ export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 export const ADD_POST_FAILURE = 'ADD_POST_FAILURE';
 
 export const addPost= post => dispatch => {
-  console.log(post,"post")
+ 
   dispatch({ type: ADD_POST_START });
   return axiosWithAuth()
     .post('/post', post)
     .then(res => {
+      
       dispatch({ type: ADD_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -30,6 +31,7 @@ export const fetchPosts = () => dispatch => {
  axios
     .get(`${process.env.REACT_APP_API_URL}/post/all`) 
     .then(res => {
+      console.log(res.data,"post")
       dispatch({ type: FETCH_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {

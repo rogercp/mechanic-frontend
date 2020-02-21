@@ -52,19 +52,47 @@ const useStyles = makeStyles(theme => ({
 function Search(props) {
   
     const classes = useStyles();
+    const [state, setState] = React.useState({
+      searchTerm:'',
+      
+    });
+  
+
+
+    const handleChange = name => event => {
+      setState({
+        ...state,
+        [name]: event.target.value,
+      });
+    };
+  
+
 
     return (
       <>
         
       <div style={{width:"100%",display:"flex", flexDirection:"row",justifyContent:"center",alignItems:"center",marginBottom:"15.65px"}}>
       
-      <Form.Control size="md" type="text" placeholder="Search" className={classes.margin}/>
+      <Form.Control 
+      size="md" 
+      type="text" 
+      placeholder="Search" 
+      className={classes.margin} 
+      // onSubmit={props.searchPostsHandler(state.searchTerm)}
+    
+      name="searchTerm"
+      label="searchTerm"
+      margin="normal"
+      value={state.searchTerm}
+      onChange={handleChange('searchTerm')}
+      />
      
     
       <Button
         variant="contained"
         color="primary"
         className={classes.button}
+        onClick={(e)=>{props.searchPostsHandler(state.searchTerm)}}
       >
         search
       </Button>

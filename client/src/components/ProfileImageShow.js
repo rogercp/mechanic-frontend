@@ -32,9 +32,9 @@ function ProfileImageShow(props) {
   var fileRef = null
 
   if(props.isPost ){
-    fileRef = imagesRef.child(`${props.post.user_id}/${props.post.file_name}`);
+    fileRef = imagesRef.child(`${props.post.user_id}/${props.post.file_name_profile}`);
   }else{
-    fileRef = imagesRef.child(`${userId}/${props.image.file_name}`);
+    fileRef = imagesRef.child(`${userId}/${props.image.file_name_profile}`);
   }
     
 
@@ -64,12 +64,12 @@ function ProfileImageShow(props) {
         });
 }
 
+
   function deleteImage(){
 
     fileRef.delete().then(()=>{
-     console.log("hitting")
-     console.log(props.image.id,"422")
-      axiosWithAuth().delete(`/users/imagee/${props.image.id}`)
+     
+      axiosWithAuth().delete(`/users/imagee/${props.image.file_name_profile}`)
       .then(res => {
         props.fetchProfileImage(userId)       
        })
