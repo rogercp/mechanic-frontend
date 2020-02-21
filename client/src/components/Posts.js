@@ -15,23 +15,12 @@ import Search from "./Search";
 
 function Posts(props) {
   
-// const [searchTerm,setSearchTerm] = useState('')
 const [filteredRecipes,setFilteredRecipes] = useState([])
-
-
-
-  // searchPostsHandler=e=>{
-  //   const data = Array.from(props.myposts);
-  //   const recipes=data.filter((recipe)=>{if(recipe.title.includes(e.target.value)){return recipe;}
-  //   })
-  //   setState({filteredRecipes:recipes});
-  // }
 
 
   async function searchPostsHandler (term) {
     console.log(term,"term")
-  //  await setSearchTerm(term)
-  //  console.log(searchTerm,"searchTerm")
+  
 
     axiosWithAuth()
         .post('/post/search', {searchTerm:term})
