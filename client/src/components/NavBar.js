@@ -119,7 +119,7 @@ function NavBar(props) {
       <>
         
       
-        <div className="nav" style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px"}}>
+        <div className="nav" style={{backgroundColor:"",maxWidth:"1300px"}}>
 
       <div>
         {props.userImage && props.userImage.length> 0 ? 
@@ -140,24 +140,24 @@ function NavBar(props) {
             <div className="links" >
            
               <NavLink id="link" to="/home" activeClassName="active"  style={{textDecoration:"none"}} data-testid="signup-link">
-                  <i>DASH</i>
+                  <i>Dash</i>
               </NavLink>
 
               <NavLink id="link" to="/chat" activeClassName="active"  style={{textDecoration:"none"}} data-testid="signup-link">   
-                  <i>CHAT</i>
+                  <i>Chat</i>
               </NavLink >
                   
               <NavLink id="link"  to="/mycars" activeClassName="active"  style={{textDecoration:"none"}} data-testid="signup-link">
-                  <DirectionsCarIcon/>
+                  <i>My Cars</i>
               </NavLink>
 
               <NavLink id="link" to="/settings" activeClassName="active"  style={{textDecoration:"none"}} data-testid="login-link">
-                  <SettingsIcon/>
+                  <i>Settings</i>
               </NavLink>
               
               <NavLink id="link" to="/landing" activeClassName="active"  style={{textDecoration:"none"}} data-testid="signup-link"
               onClick={logout}>
-                  <ExitToAppIcon className="icon" />
+                  <i>Logout</i>
               </NavLink>
 
             </div>

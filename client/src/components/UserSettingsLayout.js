@@ -6,7 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { axiosWithAuth } from '../helpers/index';
 import { Button } from 'react-bootstrap';
-import { confirmAlert } from 'react-confirm-alert'; // Import
+import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import EditIcon from '@material-ui/icons/Edit';
 import UserSettingsFormModal from './UserSettingsFormModal'
@@ -71,8 +71,9 @@ function UserSettingsLayout(props) {
                 return (
                     <div className='custom-ui'>
                     <h1>Are you sure?</h1>
-                    <Button variant="secondary" onClick={onClose}>No</Button>
+                    <Button className={classes.margin} variant="secondary" onClick={onClose}>No</Button>
                     <Button
+                    className={classes.margin}
                      variant="danger"
                         onClick={() => {
                             const body = localStorage.getItem('id');

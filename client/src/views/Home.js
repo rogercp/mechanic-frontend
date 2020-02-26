@@ -9,9 +9,7 @@ import { axiosWithAuth } from '../helpers/index';
 
 
 
-
 import  '../styles/home.scss'
-
 
 
 function Home(props) {

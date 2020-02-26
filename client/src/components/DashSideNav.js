@@ -32,21 +32,11 @@ function DashSideNav(props) {
             <div className="wrapper" >
             
             <section className="horizontal-scroll">
-            <p className="item">Item1</p>
-            <p className="item">Item2</p>
-            <p className="item">Item3</p>
-            <p className="item">Item4</p>
-            <p className="item">Item5</p>
-            <p className="item">Item1</p>
-            <p className="item">Item2</p>
-            <p className="item">Item3</p>
-            <p className="item">Item4</p>
-            <p className="item">Item5</p>
-            <p className="item">Item1</p>
-            <p className="item">Item2</p>
-            <p className="item">Item3</p>
-            <p className="item">Item4</p>
-            <p className="item">Item5</p>
+            <p className="item">Maintence</p>
+            <p className="item">Mods</p>
+            <p className="item">Repairs</p>
+            <p className="item">Tips</p>
+            
 
             </section>
 
@@ -62,21 +52,11 @@ function DashSideNav(props) {
 <div style={{display:"flex", flexDirection:"row"}}>
             <div className="sideNav" style={{width:"200px",height:"500px",}}>
            <section style={{display:"flex", flexDirection:"column"}}>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
-           <p className="item">Item</p>
+           <p className="item">Maintence</p>
+            <p className="item">Mods</p>
+            <p className="item">Repairs</p>
+            <p className="item">Tips</p>
+            
    
            </section>
 

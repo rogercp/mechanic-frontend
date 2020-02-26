@@ -16,7 +16,10 @@ import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Collapse from '@material-ui/core/Collapse';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-
+import  { Button as Button2 } from 'react-bootstrap';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import ReactCardFlip from 'react-card-flip';
 
 import  '../styles/carshow.scss'
 
@@ -78,6 +81,14 @@ const useStyles = makeStyles(theme => ({
       root: {
         width: '100%',
       },
+      areUSure: {
+        margin: theme.spacing(1),
+        boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
+        '&:hover':{
+            boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
+          },
+      },
+      
 
       
 }))
@@ -93,33 +104,58 @@ const MediatorCard = (props) => {
     const [errorOpen, setErrorOpen] = useState(false);
 
     const [flip,setFlip ] = useState({
-      toggled:false
+      isFlipped: false
   });
 
 
-  // 
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = () => {
     setChecked(prev => !prev);
   };
-// 
 
-  const handleChange2 = name => event => {
-      setFlip({ ...flip, [name]: event.target.checked });
-    };
+   
+   function flipEr(e) {
+    e.preventDefault();
+    setFlip(prevState => ({
+      isFlipped: !prevState.isFlipped
+    }));
+   
+  }
   
 
-  function handleDelete() {
-    axiosWithAuth()
-        .delete(`${process.env.REACT_APP_API_URL}/cars/${props.car.id}`)
-        .then(res => {
-            props.fetchCarsFunction();
-        })
-        .catch(error => {
-            console.error(error);
-        });
-}
+    const handleDelete = (e) => {
+      e.preventDefault();
+          confirmAlert({
+              customUI: ({ onClose }) => {
+              return (
+                  <div className='custom-ui'>
+                  <h1>Are you sure?</h1>
+                  <Button2 className={classes.areUSure} variant="secondary" onClick={onClose}>No</Button2>
+                  <Button2
+                  className={classes.areUSure}
+                   variant="danger"
+                      onClick={() => {
+                          axiosWithAuth()
+                          .delete(`${process.env.REACT_APP_API_URL}/cars/${props.car.id}`)
+                          .then(res => {  
+                              props.fetchCarsFunction();
+                              onClose();
+                          })
+                          .catch(err => {  
+                              onClose();    
+                          });  
+                      }}
+                  >
+                      Yes
+                  </Button2>
+                  </div>
+              );
+              }
+          });    
+    };
+
+
 
 
 /**
@@ -142,10 +178,14 @@ const MediatorCard = (props) => {
         setErrorOpen(true);
     }
 
+
+  
+
    
 
   return (
     <>
+    <ReactCardFlip isFlipped={flip.isFlipped} flipDirection="horizontal">
         
         <Card className={classes.paper}  style={{border:"black",minWidth:"350px",minHeight:"325px",maxWidth:"350px"}}>
             
@@ -165,19 +205,18 @@ const MediatorCard = (props) => {
              <CarImgUpload car={props.car}/>
             
              
-          
+          <button onClick={flipEr}>flip</button>
           </CardContent>
           <div style={{display:"block",width:"100%"}}>
         
            </div>
 
-    <FormControlLabel
-        control={<Switch checked={checked}  color="primary" onChange={handleChange} />}
-        label="Details"
-      />
-      <div className={classes.container}>
-        <Collapse in={checked}>
-          <Paper elevation={4} className={classes.paper}>
+           </Card>
+
+
+           <Card className={classes.paper}  style={{border:"black",minWidth:"350px",minHeight:"325px",maxWidth:"350px"}}>
+
+       
           <div className={classes.top}>
                 <div style={{display:"flex",flexDirection:"column",minHeight:'150px'}}>
                 
@@ -195,28 +234,15 @@ const MediatorCard = (props) => {
                     <IconButton id="del"  aria-label="delete"  className={classes.margin} onClick={handleDelete}>
                             <DeleteIcon  />    
                         </IconButton> 
-                    
+                        <button onClick={flipEr}>flip</button>
                     </Toolbar>
                     </div>
-                    
                </div>
-          </Paper>
-        </Collapse>
-
-</div>
-
-          
         </Card>
-        <CarModalExpand
-                open={fullopen}
-                handleClose={handlefullClose}
-                onClose={handlefullClose}
-                car={props.car}
-            />
-      
+          </ReactCardFlip>
 
+  
      
-
     </>
   );
 };

@@ -1,6 +1,8 @@
 
 import React, {useState} from 'react';
 import { axiosWithAuth } from '../helpers/index';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -18,6 +20,8 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import CarFixImgUpload from './CarFixImgUpload';
 import { fetchFixes } from "../store/actions/carMaintenenceActions";
 import { connect } from 'react-redux';
+import  { Button as Button2 } from 'react-bootstrap';
+
 
 import  '../styles/fullscreenmodal.scss'
 
@@ -79,6 +83,13 @@ const useStyles = makeStyles(theme => ({
         root: {
           width: '100%',
         },
+        areUSure: {
+          margin: theme.spacing(1),
+          boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
+          '&:hover':{
+              boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
+            },
+        },
         
   }))
   
@@ -90,17 +101,52 @@ function CarMaintenceCard(props) {
     const [fullopen, setFullOpen] = useState(false);
     const [errorOpen, setErrorOpen] = useState(false);
 
+  
 
-    function handleDelete2() {
-        axiosWithAuth()
-            .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.carFix.id}`)
-            .then(res => {
-                props.fetchFixes(props.car.id)
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }
+    const  handleDelete2 = (e) => {
+      e.preventDefault();
+          confirmAlert({
+              customUI: ({ onClose }) => {
+              return (
+                  <div className='custom-ui'>
+                  <h1>Are you sure?</h1>
+                  <Button2 className={classes.areUSure}  variant="secondary" onClick={onClose}>No</Button2>
+                  <Button2
+                  className={classes.areUSure}
+                   variant="danger"
+                      onClick={() => {
+                          axiosWithAuth()
+                          .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.carFix.id}`)
+                          .then(res => {  
+                            onClose();
+                            props.fetchFixes(props.car.id)
+                              
+                          })
+                          .catch(err => {  
+                              onClose();    
+                          });  
+                      }}
+                  >
+                      Yes
+                  </Button2>
+                  </div>
+              );
+              }
+          });    
+    };
+
+
+
+    // function handleDelete2() {
+    //     axiosWithAuth()
+    //         .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.carFix.id}`)
+    //         .then(res => {
+    //             props.fetchFixes(props.car.id)
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //         });
+    // }
     
 
     const handlefullOpen = () => {
