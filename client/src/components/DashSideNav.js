@@ -13,6 +13,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import Posts from './Posts';
 import { axiosWithAuth } from '../helpers/index';
+import { connect } from 'react-redux';
+import { fetchFilteredPosts } from "../store/actions/postActions";
 
 
 import  '../styles/dashsidenav.scss'
@@ -20,27 +22,21 @@ import  '../styles/dashsidenav.scss'
 
 
 
-function DashSideNav(props) {
+function DashSideNav(props) { 
   const [state, setState] = React.useState({
     right: false,
   });
   
   const [filterTerm, setFilterTerm] = React.useState('')
 
+  const [filteredData,setFilteredData] = []
 
   async function filterPostHandler (term) {
-    console.log(term)
-    axiosWithAuth()
-        .post('/post/filterCategory', {category:term})
-        .then(res => {  
-          console.log("success")
-        })
-        .catch(err => { 
-          console.log("sucess ")  
-        });
+  
+    props.fetchFilteredPosts(term)
+
   };
   
-
 
 
     return (
@@ -49,14 +45,13 @@ function DashSideNav(props) {
             <div className="wrapper" >
             
             <section className="horizontal-scroll">
-            <button id="link"  onClick={() => filterPostHandler('Maintence')} >Maintence</button>
-            <button  id="link"  onClick={() => filterPostHandler('Mods')} >Mods</button>
-            <button  id="link"  onClick={() => filterPostHandler('Repairs')} >Repairs</button>
-            <button  id="link"  onClick={() => filterPostHandler('Tips')} >Tips</button>
-            <button  id="link"  onClick={() => filterPostHandler('Exotics')} >Exotics</button>
-            <button  id="link"  onClick={() => filterPostHandler('German')} >German</button>
-
-
+            <button  id="link"  onClick={() => filterPostHandler('AllPosts')} >All Posts</button>
+            <button id="linkMobile"  onClick={() => filterPostHandler('Maintence')} >Maintence</button>
+            <button  id="linkMobile"  onClick={() => filterPostHandler('Mods')} >Mods</button>
+            <button  id="linkMobile"  onClick={() => filterPostHandler('Repairs')} >Repairs</button>
+            <button  id="linkMobile"  onClick={() => filterPostHandler('Tips')} >Tips</button>
+            <button  id="linkMobile"  onClick={() => filterPostHandler('Exotics')} >Exotics</button>
+            <button  id="linkMobile"  onClick={() => filterPostHandler('German')} >German</button>
 
             </section>
 
@@ -72,12 +67,14 @@ function DashSideNav(props) {
 <div style={{display:"flex", flexDirection:"row"}}>
             <div className="sideNav" style={{width:"200px",height:"500px",}}>
            <section style={{display:"flex", flexDirection:"column"}}>
+           <button  id="link"  onClick={() => filterPostHandler('AllPosts')} >All Posts</button>
            <button id="link"  onClick={() => filterPostHandler('Maintence')} >Maintence</button>
             <button  id="link"  onClick={() => filterPostHandler('Mods')} >Mods</button>
             <button  id="link"  onClick={() => filterPostHandler('Repairs')} >Repairs</button>
             <button  id="link"  onClick={() => filterPostHandler('Tips')} >Tips</button>
             <button  id="link"  onClick={() => filterPostHandler('Exotics')} >Exotics</button>
             <button  id="link"  onClick={() => filterPostHandler('German')} >German</button>
+           
 
 
    
@@ -93,12 +90,19 @@ function DashSideNav(props) {
            
 
     </div>
-          
 
+          
       </>
     );
 };
 
 
 
-export default DashSideNav;
+const mapStateToProps = state => ({
+  
+});
+export default connect(
+  mapStateToProps,
+  {fetchFilteredPosts}
+)(DashSideNav);
+

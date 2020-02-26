@@ -42,7 +42,7 @@ function Home(props) {
         <DashSideNav /> 
         </div>
         <div style={{minWidth:"70%"}}>
-        {/* <Search/> */}
+      
         <Posts/>
         </div>
         </div>
@@ -53,7 +53,7 @@ function Home(props) {
         </div>
         <div style={{margin:"0 auto"}} >
         <Question/> 
-        {/* <Search /> */}
+       
         <Posts/>
         </div>
 

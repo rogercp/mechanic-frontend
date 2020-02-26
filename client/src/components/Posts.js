@@ -15,17 +15,17 @@ import Search from "./Search";
 
 function Posts(props) {
   
-const [filteredRecipes,setFilteredRecipes] = useState([])
+const [searchPosts,setsearchPosts] = useState([])
 
 
   async function searchPostsHandler (term) {
-    console.log(term,"term")
+    
   
-
     axiosWithAuth()
         .post('/post/search', {searchTerm:term})
         .then(res => {  
-          setFilteredRecipes(res.data)
+          console.log(searchPosts)
+          setsearchPosts(res.data)
         })
         .catch(err => {      
         });
@@ -34,51 +34,97 @@ const [filteredRecipes,setFilteredRecipes] = useState([])
 
     useEffect(() => {
       props.fetchPosts()
-      console.log(props.myposts,"usersposts")
+      
     }, []);
 
+if(props.filteredPosts.length >0){
 
+  return (
 
-    return (
-      <>
+    <>
 
-        <Search  searchPostsHandler={searchPostsHandler} />
- 
-      <div style={{display:"flex", flexDirection:"column",alignItems:"center"}}>
-        
-        {filteredRecipes.length>0 ?
+    <Search  searchPostsHandler={searchPostsHandler} />
 
-          filteredRecipes.map(p => {
+  <div style={{display:"flex", flexDirection:"column",alignItems:"center"}}>
+    
+    
+      {searchPosts.length>0 ?
+
+        searchPosts.map(p => {
+        return (
+            <>
+            <IndividualPost   post={p}  key={caches.uid} fetchPosts={props.fetchPosts} />
+            </>
+        );
+    })
+      
+      :
+      
+    
+    props.filteredPosts.map(p => {
+        return (
+            <>
+            <IndividualPost   post={p}  key={caches.uid} fetchPosts={props.fetchPosts} />
+            </>
+        );
+    })
+  
+
+    }
+    
+    
+     <ExpandMoreIcon style={{fontSize:"100px"}} />
+
+    </div> 
+  </>
+
+  )
+}else{
+
+  return (
+    <>
+
+      <Search  searchPostsHandler={searchPostsHandler} />
+
+    <div style={{display:"flex", flexDirection:"column",alignItems:"center"}}>
+      
+      {searchPosts.length>0 ?
+
+        searchPosts.map(p => {
+        return (
+            <>
+            <IndividualPost   post={p}  key={caches.uid} fetchPosts={props.fetchPosts} />
+            </>
+        );
+    })
+      
+      :
+      
+      props.myposts.map(p => {
           return (
               <>
               <IndividualPost   post={p}  key={caches.uid} fetchPosts={props.fetchPosts} />
               </>
           );
       })
-        
-        :
-        
-        props.myposts.map(p => {
-            return (
-                <>
-                <IndividualPost   post={p}  key={caches.uid} fetchPosts={props.fetchPosts} />
-                </>
-            );
-        })
-  
-        }
-        
-        
-         <ExpandMoreIcon style={{fontSize:"100px"}} />
 
-        </div> 
-      </>
-    );
+      }
+      
+      
+       <ExpandMoreIcon style={{fontSize:"100px"}} />
+
+      </div> 
+    </>
+  );
+}
+
+  
 };
 
 
 const mapStateToProps = state => ({
   myposts: state.post.posts,
+  filteredPosts:state.post.filteredPosts
 });
 export default connect(
   mapStateToProps,
