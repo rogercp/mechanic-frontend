@@ -28,6 +28,26 @@
     color:$primary;
   }
 
+
+  #link{
+    
+    color:white;
+    margin: .5rem;
+    width: 90%;
+    background-color:$primary;
+    border:none;
+    padding: .3rem;
+    outline:0;
+    border-radius: .2rem;
+    box-shadow: 0 8px 10px rgba(0,0,0,0.2), 0 8px 8px rgba(0,0,0,0.2);
+    &:hover {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.22), 0 2px 2px rgba(0,0,0,0.22);
+        color:$primary;
+        background-color: $third;
+        outline:0;
+        
+        }
+}
   @media screen and (max-width: 575px) {
     .sideNav{
         z-index:-50;

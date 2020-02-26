@@ -97,13 +97,13 @@ useEffect(() => {
           }}
         >
           <option value="" />
-          <option value={"Sedan"}>category</option>
-          <option value={"Coupe"}>category</option>
-          <option value={"Van"}>category</option>
-          <option value={"SUV"}>category</option>
-          <option value={"Truck"}>category</option>
-          <option value={"Wagon"}>category</option>
-          <option value={"Convertible"}>category</option>
+          <option value={"Maintence"}>Maintence</option>
+          <option value={"Mods"}>Mods</option>
+          <option value={"Repairs"}>Repairs</option>
+          <option value={"Tips"}>Tips</option>
+          <option value={"Exotics"}>Exotics</option>
+          <option value={"German"}>German</option>
+          
         </Select>
      
         <TextField

@@ -185,7 +185,7 @@ const MediatorCard = (props) => {
 
   return (
     <>
-    <ReactCardFlip isFlipped={flip.isFlipped} flipDirection="horizontal">
+    <ReactCardFlip isFlipped={flip.isFlipped} flipDirection="vertical">
         
         <Card className={classes.paper}  style={{border:"black",minWidth:"350px",minHeight:"325px",maxWidth:"350px"}}>
             
@@ -205,7 +205,7 @@ const MediatorCard = (props) => {
              <CarImgUpload car={props.car}/>
             
              
-          <button onClick={flipEr}>flip</button>
+          <Button onClick={flipEr}>Details</Button>
           </CardContent>
           <div style={{display:"block",width:"100%"}}>
         
@@ -234,14 +234,21 @@ const MediatorCard = (props) => {
                     <IconButton id="del"  aria-label="delete"  className={classes.margin} onClick={handleDelete}>
                             <DeleteIcon  />    
                         </IconButton> 
-                        <button onClick={flipEr}>flip</button>
+                        
                     </Toolbar>
                     </div>
+                    
                </div>
+               <Button onClick={flipEr}>General</Button>
         </Card>
           </ReactCardFlip>
 
-  
+          <CarModalExpand
+                open={fullopen}
+                handleClose={handlefullClose}
+                onClose={handlefullClose}
+                car={props.car}
+            />
      
     </>
   );

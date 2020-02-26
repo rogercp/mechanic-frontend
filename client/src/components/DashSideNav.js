@@ -12,6 +12,7 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import Posts from './Posts';
+import { axiosWithAuth } from '../helpers/index';
 
 
 import  '../styles/dashsidenav.scss'
@@ -24,7 +25,23 @@ function DashSideNav(props) {
     right: false,
   });
   
- 
+  const [filterTerm, setFilterTerm] = React.useState('')
+
+
+  async function filterPostHandler (term) {
+    console.log(term)
+    axiosWithAuth()
+        .post('/post/filterCategory', {category:term})
+        .then(res => {  
+          console.log("success")
+        })
+        .catch(err => { 
+          console.log("sucess ")  
+        });
+  };
+  
+
+
 
     return (
       <>
@@ -32,11 +49,14 @@ function DashSideNav(props) {
             <div className="wrapper" >
             
             <section className="horizontal-scroll">
-            <p className="item">Maintence</p>
-            <p className="item">Mods</p>
-            <p className="item">Repairs</p>
-            <p className="item">Tips</p>
-            
+            <button id="link"  onClick={() => filterPostHandler('Maintence')} >Maintence</button>
+            <button  id="link"  onClick={() => filterPostHandler('Mods')} >Mods</button>
+            <button  id="link"  onClick={() => filterPostHandler('Repairs')} >Repairs</button>
+            <button  id="link"  onClick={() => filterPostHandler('Tips')} >Tips</button>
+            <button  id="link"  onClick={() => filterPostHandler('Exotics')} >Exotics</button>
+            <button  id="link"  onClick={() => filterPostHandler('German')} >German</button>
+
+
 
             </section>
 
@@ -52,11 +72,14 @@ function DashSideNav(props) {
 <div style={{display:"flex", flexDirection:"row"}}>
             <div className="sideNav" style={{width:"200px",height:"500px",}}>
            <section style={{display:"flex", flexDirection:"column"}}>
-           <p className="item">Maintence</p>
-            <p className="item">Mods</p>
-            <p className="item">Repairs</p>
-            <p className="item">Tips</p>
-            
+           <button id="link"  onClick={() => filterPostHandler('Maintence')} >Maintence</button>
+            <button  id="link"  onClick={() => filterPostHandler('Mods')} >Mods</button>
+            <button  id="link"  onClick={() => filterPostHandler('Repairs')} >Repairs</button>
+            <button  id="link"  onClick={() => filterPostHandler('Tips')} >Tips</button>
+            <button  id="link"  onClick={() => filterPostHandler('Exotics')} >Exotics</button>
+            <button  id="link"  onClick={() => filterPostHandler('German')} >German</button>
+
+
    
            </section>
 
