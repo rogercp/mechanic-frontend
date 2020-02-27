@@ -122,7 +122,7 @@ function NavBar(props) {
         <div className="nav" style={{backgroundColor:"",maxWidth:"1300px"}}>
 
       <div>
-        {props.userImage && props.userImage.length> 0 ? 
+        {props.userImage && props.userImage.length >0 ? 
             <div style={{width:"10px"}}>
             {props.userImage.map((image, index) => {
                   return <ProfileImageShow isCirclePic={state.isCirclePic} image={image}  key={index} />

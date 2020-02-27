@@ -72,14 +72,14 @@ function Search(props) {
       <>
         
       <div style={{width:"100%",display:"flex", flexDirection:"row",justifyContent:"center",alignItems:"center",marginBottom:"15.65px"}}>
-      
-      <Form.Control 
+   
+
+<Form.Control 
       size="md" 
       type="text" 
       placeholder="Search" 
       className={classes.margin} 
-      // onSubmit={props.searchPostsHandler(state.searchTerm)}
-    
+      
       name="searchTerm"
       label="searchTerm"
       margin="normal"
@@ -96,7 +96,8 @@ function Search(props) {
       >
         search
       </Button>
-        
+
+     
           </div>
       </>
     );

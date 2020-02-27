@@ -8,6 +8,7 @@ import CarAddModal from './CarAddModal';
 import { axiosWithAuth } from '../helpers/index';
 import CarCard from './CarCard'
 import Grid from '@material-ui/core/Grid';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 
@@ -79,11 +80,13 @@ async function fetchCars() {
 
     return (
         <div style={{display:'block'}}>
+           <Tooltip title="Add Car" placement="right">
         <Fab color="none" aria-label="add"  style={{color:"darkcyan", outline:'0'}} className={classes.margin}>
           <AddIcon
            onClick={handleOpen}
            />
         </Fab>
+        </Tooltip>
        
         <CarAddModal
          fetchCars={fetchCars} 

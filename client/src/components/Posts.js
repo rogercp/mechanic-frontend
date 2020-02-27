@@ -20,7 +20,6 @@ const [searchPosts,setsearchPosts] = useState([])
 
   async function searchPostsHandler (term) {
     
-  
     axiosWithAuth()
         .post('/post/search', {searchTerm:term})
         .then(res => {  

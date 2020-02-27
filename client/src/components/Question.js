@@ -8,6 +8,8 @@ import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Add';
 import PostAddModal from './PostAddModal';
 import { browserHistory } from 'react-router';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -71,12 +73,17 @@ function Question(props) {
 
     return (
       <>
-        <Fab color="none" aria-label="add" style={{color:"darkcyan",  outline:'0'}} className={classes.margin}>
-          <EditIcon 
-          onClick={handleOpen} 
-          />
-           
-        </Fab>
+
+  <Tooltip title="Ask Question" placement="right">
+  <Fab color="none" aria-label="add" style={{color:"darkcyan",  outline:'0'}} className={classes.margin}>
+            <EditIcon 
+            onClick={handleOpen} 
+            />
+            
+          </Fab>
+          </Tooltip>
+
+        
    
    
   <PostAddModal

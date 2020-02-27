@@ -145,8 +145,8 @@ const toggleComments = (e) =>{
 
         <div style={{display:"block",backgroundColor:"orange"}}>
         <section style={{display:"flex", flexDirection:"row",float:"left"}}>
-      {props.post.file_name_profile ?
-        <ProfileImageShow  style={{width:"40px",height:"40px",paddingRight:"2px"}} isPost={state.isPost} userId={props.post.user_id} isCirclePic={state.isCirclePic} image={props.post.file_name} post={props.post} />
+      {props.post ?
+        <ProfileImageShow  style={{width:"40px",height:"40px",paddingRight:"2px"}} isPost={state.isPost} isCirclePic={state.isCirclePic} post={props.post} />
           :
           <p>{props.post.user_name}</p>
         }

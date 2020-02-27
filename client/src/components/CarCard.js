@@ -20,6 +20,8 @@ import  { Button as Button2 } from 'react-bootstrap';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReactCardFlip from 'react-card-flip';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 import  '../styles/carshow.scss'
 
@@ -199,17 +201,16 @@ const MediatorCard = (props) => {
            style={{color:"darkcyan",  outline:'0'}}
                    onClick={handlefullOpen}
                    >
-           <AllOutIcon/>
+           
+           <Tooltip title="Open Repairs"><AllOutIcon /></Tooltip>
            </Button>
            </div>
              <CarImgUpload car={props.car}/>
             
              
-          <Button onClick={flipEr}>Details</Button>
+      
           </CardContent>
-          <div style={{display:"block",width:"100%"}}>
-        
-           </div>
+          <Button onClick={flipEr}>Details</Button>
 
            </Card>
 

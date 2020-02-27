@@ -45,11 +45,11 @@ function DashSideNav(props) {
             <div className="wrapper" >
             
             <section className="horizontal-scroll">
-            <button  id="link"  onClick={() => filterPostHandler('AllPosts')} >All Posts</button>
+            <button  id="linkMobile"  onClick={() => filterPostHandler('AllPosts')} >All Posts</button>
             <button id="linkMobile"  onClick={() => filterPostHandler('Maintence')} >Maintence</button>
             <button  id="linkMobile"  onClick={() => filterPostHandler('Mods')} >Mods</button>
             <button  id="linkMobile"  onClick={() => filterPostHandler('Repairs')} >Repairs</button>
-            <button  id="linkMobile"  onClick={() => filterPostHandler('Tips')} >Tips</button>
+            <button  id="linkMobile"  onClick={() => filterPostHandler('Tips')} >Tips/Tricks</button>
             <button  id="linkMobile"  onClick={() => filterPostHandler('Exotics')} >Exotics</button>
             <button  id="linkMobile"  onClick={() => filterPostHandler('German')} >German</button>
 
@@ -71,7 +71,7 @@ function DashSideNav(props) {
            <button id="link"  onClick={() => filterPostHandler('Maintence')} >Maintence</button>
             <button  id="link"  onClick={() => filterPostHandler('Mods')} >Mods</button>
             <button  id="link"  onClick={() => filterPostHandler('Repairs')} >Repairs</button>
-            <button  id="link"  onClick={() => filterPostHandler('Tips')} >Tips</button>
+            <button  id="link"  onClick={() => filterPostHandler('Tips')} >Tips/Tricks</button>
             <button  id="link"  onClick={() => filterPostHandler('Exotics')} >Exotics</button>
             <button  id="link"  onClick={() => filterPostHandler('German')} >German</button>
            
