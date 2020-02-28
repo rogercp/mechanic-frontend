@@ -23,113 +23,113 @@ const useStyles = makeStyles(theme => ({
 
 function ProfileImageShow(props) {
 
-    const classes = useStyles();
+  const classes = useStyles();
 
-    const [thisImage,setThisimage]= useState('')
-  
-    const userId = localStorage.getItem('id');
+  const [thisImage, setThisimage] = useState('')
+
+  const userId = localStorage.getItem('id');
 
 
   var fileRef = null
 
-  if(props.isPost === true){
+  if (props.isPost === true) {
     fileRef = imagesRef.child(`${props.post.user_id}/${props.post.file_name_profile}`);
-  }else{
+  } else {
     fileRef = imagesRef.child(`${userId}/${props.image.file_name_profile}`);
   }
-    
-
-    useEffect(() => {
-      getImg()
-    }, []);
-       
-      function getImg() {
-        fileRef.getMetadata().then((metadata) => {
-          fileRef.getDownloadURL().then(url => {
-
-            setThisimage(url)
-
-            // let img = document.getElementById('document-image');
-            // if (metadata.contentType === 'application/pdf') {
-            //     img.src = '';
-            //     // TODO handle PDFs
-            //   } else {
-            //     img.src = url;
-            //   }
-          })
-          .catch(err => {
-            console.error(err);
-          })
-        }).catch((err) => {
-          console.error(err);
-        });
-}
 
 
-  function deleteImage(){
+  useEffect(() => {
+    getImg()
+  }, []);
 
-    fileRef.delete().then(()=>{
-     
-      axiosWithAuth().delete(`/users/imagee/${props.image.file_name_profile}`)
-      .then(res => {
-        props.fetchProfileImage(userId)       
-       })
-      .catch(error => {
-          console.error(error);
+  function getImg() {
+    fileRef.getMetadata().then((metadata) => {
+      fileRef.getDownloadURL().then(url => {
+
+        setThisimage(url)
+
+        // let img = document.getElementById('document-image');
+        // if (metadata.contentType === 'application/pdf') {
+        //     img.src = '';
+        //     // TODO handle PDFs
+        //   } else {
+        //     img.src = url;
+        //   }
       })
-    })
-    .catch(err => {
-            console.error(err);
-    })
-}
+        .catch(err => {
+          console.error(err);
+        })
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
 
-const username = localStorage.getItem("username");
 
-  if(props.isCirclePic){
+  function deleteImage() {
+
+    fileRef.delete().then(() => {
+
+      axiosWithAuth().delete(`/users/imagee/${props.image.file_name_profile}`)
+        .then(res => {
+          props.fetchProfileImage(userId)
+        })
+        .catch(error => {
+          console.error(error);
+        })
+    })
+      .catch(err => {
+        console.error(err);
+      })
+  }
+
+  const username = localStorage.getItem("username");
+
+  if (props.isCirclePic) {
     return (
 
-<>
-{thisImage?
-  <div style={{display:"flex", alignItems:"center",justifyContent:"center"}}>
-        <div><Avatar alt="Remy Sharp"  src={`${thisImage}`}  /></div>
-        <div style={{marginTop:"8px"}}><p style={{marginLeft:"5px"}}>{props.isPost ? props.post.user_name : username}</p>
-        </div>
-        </div>
+      <>
+        {thisImage ?
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div><Avatar alt="Remy Sharp" src={`${thisImage}`} /></div>
+            <div style={{ marginTop: "8px" }}><p style={{ marginLeft: "5px" }}>{props.isPost ? props.post.user_name : username}</p>
+            </div>
+          </div>
 
-:
-<div style={{display:"flex", alignItems:"center",justifyContent:"center"}}>
-        <ImageIcon style={{fontSize:"50px"}}/> 
-        {username}
-        </div>}
-</>
+          :
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <ImageIcon style={{ fontSize: "50px" }} />
+            {username}
+          </div>}
+      </>
 
-      
+
 
 
     )
-  }else{
-    return(
+  } else {
+    return (
       <>
-          
 
-{thisImage?
-<div>
-    {/* {(metadata.contentType === 'application/pdf')? <div id="div-pdf" src={`${thisImage}`}></div> :  <img id="reg-image" height="200px" src={`${thisImage}`}></img>} */}
 
-<button onClick={deleteImage}>del</button>
-          <Image src="holder.js/171x180" rounded id="reg-image"  style={{maxWidth: "100%"}} src={`${thisImage}`}/>
-          {/* {props.image.file_name} */}
+        {thisImage ?
+          <div>
+            {/* {(metadata.contentType === 'application/pdf')? <div id="div-pdf" src={`${thisImage}`}></div> :  <img id="reg-image" height="200px" src={`${thisImage}`}></img>} */}
+
+            <button onClick={deleteImage}>del</button>
+            <Image src="holder.js/171x180" rounded id="reg-image" style={{ maxWidth: "100%" }} src={`${thisImage}`} />
+            {/* {props.image.file_name} */}
           </div>
-:<div>
-        <ImageIcon style={{fontSize:"300px"}}/> 
-        {username}
-        </div>}
-        
+          : <div>
+            <ImageIcon style={{ fontSize: "300px" }} />
+            {username}
+          </div>}
+
       </>
-  )
+    )
   }
 
-    
+
 }
 
 
@@ -139,5 +139,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  {fetchProfileImage}
+  { fetchProfileImage }
 )(ProfileImageShow);

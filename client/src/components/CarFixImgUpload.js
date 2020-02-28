@@ -14,13 +14,13 @@ import DescriptionIcon from '@material-ui/icons/Description';
 
 const useStyles = makeStyles(theme => ({
     button: {
-      margin: theme.spacing(1),
+        margin: theme.spacing(1),
     },
-  }));
+}));
 
 function CarFixImgUpload(props) {
 
-    
+
     const classes = useStyles();
     const [carFixImages, setCarFixImages] = useState([]);
     const [file, setFile] = useState({});
@@ -39,16 +39,16 @@ function CarFixImgUpload(props) {
     function handleErrorClose() {
         setErrorOpen(false);
     }
-    
+
     function handleErrorOpen() {
         setErrorOpen(true);
     }
 
 
     useEffect(() => {
-    
+
         fetchFixDocuments();
-        
+
     }, [file]);
 
     async function fetchFixDocuments() {
@@ -82,8 +82,8 @@ function CarFixImgUpload(props) {
             axiosWithAuth().post(`/car_fix/${props.carFix.id}/car_fix_images`, { file_name: file.name })
                 .then(res => {
                     fetchFixDocuments();
-                    window.location.reload();               
-                 })
+                    window.location.reload();
+                })
                 .catch(error => {
                     console.error(error);
                 })
@@ -91,77 +91,77 @@ function CarFixImgUpload(props) {
             console.error(err)
         });
     }
-    
 
 
-   if(carFixImages.length > 0 ){
+
+    if (carFixImages.length > 0) {
         return (
-        <>
+            <>
 
                 <Button
-                    style={{color:"darkcyan",  outline:'0'}}
-                            onClick={handlefullOpen}
-                        >
+                    style={{ color: "darkcyan", outline: '0' }}
+                    onClick={handlefullOpen}
+                >
 
-                <DescriptionIcon/>
+                    <DescriptionIcon />
                 </Button>
 
                 <ImageCarousel
-                open={fullopen}
-                handleClose={handlefullClose}
-                onClose={handlefullClose}
-                carFixImages= {carFixImages}
-                carFix = {props.carFix}
+                    open={fullopen}
+                    handleClose={handlefullClose}
+                    onClose={handlefullClose}
+                    carFixImages={carFixImages}
+                    carFix={props.carFix}
                 />
 
-                <div style={{height:"200px"}}>
-                <div style={{display:'flex',flexDirection:"column"}}>
-                 <form onSubmit={handleSubmitUploaderFixDocuments}> 
-                <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
-                    <Button
-                    variant="contained"
-                    name="car_type"
-                    color="default"
-                    className={classes.button}
-                    startIcon={<CloudUploadIcon />}
-                    type ="submit"
-                    >
-                    Upload
+                <div style={{ height: "200px" }}>
+                    <div style={{ display: 'flex', flexDirection: "column" }}>
+                        <form onSubmit={handleSubmitUploaderFixDocuments}>
+                            <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
+                            <Button
+                                variant="contained"
+                                name="car_type"
+                                color="default"
+                                className={classes.button}
+                                startIcon={<CloudUploadIcon />}
+                                type="submit"
+                            >
+                                Upload
                 </Button>
-                </form>
+                        </form>
+                    </div>
                 </div>
-                </div>
-            
-        </>
+
+            </>
         )
-    }else{
+    } else {
         return (
             <>
-                <div style={{height:"200px"}}>
-                {(props.carFix ? <DriveEtaIcon style={{fontSize:"100px"}}/> : null)} 
-                <div style={{display:'flex',flexDirection:"column"}}>
-                 <form onSubmit={handleSubmitUploaderFixDocuments}> 
-                <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
-                    <Button
-                    variant="contained"
-                    name="car_type"
-                    color="default"
-                    className={classes.button}
-                    startIcon={<CloudUploadIcon />}
-                    type ="submit"
-                    >
-                    Upload
+                <div style={{ height: "200px" }}>
+                    {(props.carFix ? <DriveEtaIcon style={{ fontSize: "100px" }} /> : null)}
+                    <div style={{ display: 'flex', flexDirection: "column" }}>
+                        <form onSubmit={handleSubmitUploaderFixDocuments}>
+                            <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
+                            <Button
+                                variant="contained"
+                                name="car_type"
+                                color="default"
+                                className={classes.button}
+                                startIcon={<CloudUploadIcon />}
+                                type="submit"
+                            >
+                                Upload
                 </Button>
-                </form>
+                        </form>
+                    </div>
                 </div>
-                </div>
-                
+
             </>
         )
     }
-   
-        
-    
+
+
+
 }
 
 

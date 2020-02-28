@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Dialog from "@material-ui/core/Dialog";
-import { Carousel,Image } from 'react-bootstrap';
+import { Carousel, Image } from 'react-bootstrap';
 import CarImageFixShow from './CarImageFixShow';
 
 
@@ -45,21 +45,21 @@ function ImageCarousel(props) {
 
 
   return (
-    <Dialog style={{backgroundColor:"black"}} open={props.open} onClose={props.handleClose} >
-        <Carousel  style={{backgroundColor:"black"}}>
-              {props.carFixImages.map((image, index) => {
+    <Dialog style={{ backgroundColor: "black" }} open={props.open} onClose={props.handleClose} >
+      <Carousel style={{ backgroundColor: "black" }}>
+        {props.carFixImages.map((image, index) => {
 
-               return (
-                <Carousel.Item style={{overflow:"auto"}} >
-                <CarImageFixShow style={{backgroundColor:"black"}}  key={index}  carFix={props.carFix} image={image}/>
-                  <Carousel.Caption>
-                    {/* <h3>First slide label</h3> */}
-                  </Carousel.Caption>
-                </Carousel.Item>
-                ) 
-                
-                    })}
-        </Carousel>
+          return (
+            <Carousel.Item style={{ overflow: "auto" }} >
+              <CarImageFixShow style={{ backgroundColor: "black" }} key={index} carFix={props.carFix} image={image} />
+              <Carousel.Caption>
+                {/* <h3>First slide label</h3> */}
+              </Carousel.Caption>
+            </Carousel.Item>
+          )
+
+        })}
+      </Carousel>
 
     </Dialog>
   );

@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -9,7 +9,7 @@ import CarMaintenenceForm from './CarMaintenenceForm';
 
 const useStyles = makeStyles(theme => ({
     dialog: {
-       
+
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         outline: 'none',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent:'center',
+        justifyContent: 'center',
         alignItems: 'center',
     },
     title: {
@@ -53,9 +53,9 @@ function CarFixAddModal(props) {
         return (
             <Dialog open={open} onClose={handleClose} className={classes.dialog}>
                 <div className={classes.paper}>
-                    <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
-                    <CarMaintenenceForm handleClose={handleClose} car={props.car}/>
-                    
+                    <Typography className={classes.body} variant="subtitle2"> {bodyText}</Typography>
+                    <CarMaintenenceForm handleClose={handleClose} car={props.car} />
+
                 </div>
             </Dialog>
         )
@@ -63,8 +63,8 @@ function CarFixAddModal(props) {
         return (
             <Dialog open={open} onClose={handleClose} className={classes.dialog}>
                 <div className={classes.paper}>
-                    <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
-                    <CarMaintenenceForm handleClose={handleClose} car={props.car}/>
+                    <Typography className={classes.body} variant="subtitle2"> {bodyText}</Typography>
+                    <CarMaintenenceForm handleClose={handleClose} car={props.car} />
                 </div>
             </Dialog>
         )

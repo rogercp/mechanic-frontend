@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import { axiosWithAuth } from '../helpers/index';
 
 
-import  '../styles/navbar.scss'
+import '../styles/navbar.scss'
 
 
 
@@ -38,18 +38,18 @@ const useStyles = makeStyles(theme => ({
 
 function CarForm(props) {
 
-  
+
   const classes = useStyles();
-  
+
   const [state, setState] = React.useState({
     car_type: '',
     car_make: '',
-    car_model:'',
-    car_nickname:'',
-    car_year:''
+    car_model: '',
+    car_nickname: '',
+    car_year: ''
   });
 
-  
+
   const handleChange = name => event => {
     setState({
       ...state,
@@ -60,18 +60,18 @@ function CarForm(props) {
   const onSubmitHandler = e => {
     e.preventDefault();
     axiosWithAuth()
-        .post(`/cars`, state)
-        .then(res => {  
-            props.fetchCars();
-            props.onClose();
-        })
-        .catch(err => {      
-        });
-};
+      .post(`/cars`, state)
+      .then(res => {
+        props.fetchCars();
+        props.onClose();
+      })
+      .catch(err => {
+      });
+  };
 
 
-    return (
-      <>
+  return (
+    <>
 
       <FormControl className={classes.formControl} noValidate autoComplete="off" onSubmit={onSubmitHandler}>
 
@@ -96,8 +96,8 @@ function CarForm(props) {
           <option value={"Wagon"}>Wagon</option>
           <option value={"Convertible"}>Convertible</option>
         </Select>
-     
-      
+
+
         <TextField
           id="standard-basic"
           name="car_year"
@@ -108,8 +108,8 @@ function CarForm(props) {
           name="car_make"
           onChange={handleChange('car_year')}
         />
-       
-      
+
+
         <TextField
           id="standard-basic"
           name="car_make"
@@ -119,8 +119,8 @@ function CarForm(props) {
           value={state.car_make}
           onChange={handleChange('car_make')}
         />
- 
- 
+
+
         <TextField
           id="standard-basic"
           name="car_model"
@@ -142,22 +142,22 @@ function CarForm(props) {
           onChange={handleChange('car_nickname')}
         />
 
-     
-        
+
+
         <Button
-        variant="contained"
-        color="primary"
-        size="large"
-        className={classes.button}
-        onClick={onSubmitHandler}
+          variant="contained"
+          color="primary"
+          size="large"
+          className={classes.button}
+          onClick={onSubmitHandler}
         >
-        Enter
+          Enter
         </Button>
 
- </FormControl>
+      </FormControl>
 
-      </>
-    );
+    </>
+  );
 };
 
 

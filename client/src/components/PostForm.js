@@ -1,5 +1,5 @@
 
-import React,{useEffect}from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -12,7 +12,7 @@ import { fetchPosts } from "../store/actions/postActions";
 import { fetchProfileImage } from "../store/actions/settingsActions";
 import moment from 'moment'
 
-import  '../styles/navbar.scss';
+import '../styles/navbar.scss';
 
 
 
@@ -43,15 +43,15 @@ function PostForm(props) {
   const time = moment().format("MMMM Do YYYY, h:mma")
 
   const userId = localStorage.getItem('id');
-  const username = localStorage.getItem('username');  
-  
+  const username = localStorage.getItem('username');
+
 
   const classes = useStyles();
   const [state, setState] = React.useState({
-    displayName:username,
+    displayName: username,
     user_id: userId,
-    category : '',
-    post_text:'',
+    category: '',
+    post_text: '',
     post_date: time,
   });
 
@@ -71,18 +71,18 @@ function PostForm(props) {
     props.fetchPosts();
     props.onClose();
 
-};
-     
-useEffect(() => {
+  };
 
-  props.fetchProfileImage(userId)
+  useEffect(() => {
 
-}, []);
+    props.fetchProfileImage(userId)
+
+  }, []);
 
 
-    return (
-      <>
-      <FormControl className={classes.formControl} style={{display:'flex',alignItems:'center',justifyContent:'center'}} noValidate autoComplete="off" onSubmit={onSubmitHandler}>
+  return (
+    <>
+      <FormControl className={classes.formControl} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} noValidate autoComplete="off" onSubmit={onSubmitHandler}>
 
         <InputLabel id="demo-simple-select-label">Category</InputLabel>
         <Select
@@ -103,45 +103,45 @@ useEffect(() => {
           <option value={"Tips"}>Tips</option>
           <option value={"Exotics"}>Exotics</option>
           <option value={"German"}>German</option>
-          
+
         </Select>
-     
+
         <TextField
           id="outlined-multiline-static"
           multiline
           name="post_text"
           value={state.post_text}
           onChange={handleChange('post_text')}
-        //   rows="4"
+          //   rows="4"
           placeholder="Description"
           className={classes.textField}
           margin="normal"
           variant="outlined"
         />
-       
+
         <Button
-        variant="contained"
-        color="primary"
-        size="large"
-        className={classes.button}
-        onClick={onSubmitHandler}
+          variant="contained"
+          color="primary"
+          size="large"
+          className={classes.button}
+          onClick={onSubmitHandler}
         >
-        Enter
+          Enter
         </Button>
 
- </FormControl>
-      </>
-    );
+      </FormControl>
+    </>
+  );
 };
 
 
-const mapStateToProps = ( state ) => ({
-  userImage : state.setting.userImage
+const mapStateToProps = (state) => ({
+  userImage: state.setting.userImage
 
 });
 
 export default connect(
   mapStateToProps,
-  { addPost,fetchPosts,fetchProfileImage }
+  { addPost, fetchPosts, fetchProfileImage }
 )(PostForm);
 

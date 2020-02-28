@@ -17,92 +17,92 @@ import { connect } from 'react-redux';
 import { fetchFilteredPosts } from "../store/actions/postActions";
 
 
-import  '../styles/dashsidenav.scss'
+import '../styles/dashsidenav.scss'
 
 
 
 
-function DashSideNav(props) { 
+function DashSideNav(props) {
   const [state, setState] = React.useState({
     right: false,
   });
-  
+
   const [filterTerm, setFilterTerm] = React.useState('')
 
-  const [filteredData,setFilteredData] = []
+  const [filteredData, setFilteredData] = []
 
-  async function filterPostHandler (term) {
-  
+  async function filterPostHandler(term) {
+
     props.fetchFilteredPosts(term)
 
   };
-  
-
-
-    return (
-      <>
-        <div className="mobile2" style={{width: '100%'}}>
-            <div className="wrapper" >
-            
-            <section className="horizontal-scroll">
-            <button  id="linkMobile"  onClick={() => filterPostHandler('AllPosts')} >All Posts</button>
-            <button id="linkMobile"  onClick={() => filterPostHandler('Maintence')} >Maintence</button>
-            <button  id="linkMobile"  onClick={() => filterPostHandler('Mods')} >Mods</button>
-            <button  id="linkMobile"  onClick={() => filterPostHandler('Repairs')} >Repairs</button>
-            <button  id="linkMobile"  onClick={() => filterPostHandler('Tips')} >Tips/Tricks</button>
-            <button  id="linkMobile"  onClick={() => filterPostHandler('Exotics')} >Exotics</button>
-            <button  id="linkMobile"  onClick={() => filterPostHandler('German')} >German</button>
-
-            </section>
 
 
 
+  return (
+    <>
+      <div className="mobile2" style={{ width: '100%' }}>
+        <div className="wrapper" >
 
-            </div>
+          <section className="horizontal-scroll">
+            <button id="linkMobile" onClick={() => filterPostHandler('AllPosts')} >All Posts</button>
+            <button id="linkMobile" onClick={() => filterPostHandler('Maintence')} >Maintence</button>
+            <button id="linkMobile" onClick={() => filterPostHandler('Mods')} >Mods</button>
+            <button id="linkMobile" onClick={() => filterPostHandler('Repairs')} >Repairs</button>
+            <button id="linkMobile" onClick={() => filterPostHandler('Tips')} >Tips/Tricks</button>
+            <button id="linkMobile" onClick={() => filterPostHandler('Exotics')} >Exotics</button>
+            <button id="linkMobile" onClick={() => filterPostHandler('German')} >German</button>
+
+          </section>
+
+
+
 
         </div>
-           
+
+      </div>
 
 
-<div style={{display:"flex", flexDirection:"row"}}>
-            <div className="sideNav" style={{width:"200px",height:"500px",}}>
-           <section style={{display:"flex", flexDirection:"column"}}>
-           <button  id="link"  onClick={() => filterPostHandler('AllPosts')} >All Posts</button>
-           <button id="link"  onClick={() => filterPostHandler('Maintence')} >Maintence</button>
-            <button  id="link"  onClick={() => filterPostHandler('Mods')} >Mods</button>
-            <button  id="link"  onClick={() => filterPostHandler('Repairs')} >Repairs</button>
-            <button  id="link"  onClick={() => filterPostHandler('Tips')} >Tips/Tricks</button>
-            <button  id="link"  onClick={() => filterPostHandler('Exotics')} >Exotics</button>
-            <button  id="link"  onClick={() => filterPostHandler('German')} >German</button>
-           
+
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <div className="sideNav" style={{ width: "200px", height: "500px", }}>
+          <section style={{ display: "flex", flexDirection: "column" }}>
+            <button id="link" onClick={() => filterPostHandler('AllPosts')} >All Posts</button>
+            <button id="link" onClick={() => filterPostHandler('Maintence')} >Maintence</button>
+            <button id="link" onClick={() => filterPostHandler('Mods')} >Mods</button>
+            <button id="link" onClick={() => filterPostHandler('Repairs')} >Repairs</button>
+            <button id="link" onClick={() => filterPostHandler('Tips')} >Tips/Tricks</button>
+            <button id="link" onClick={() => filterPostHandler('Exotics')} >Exotics</button>
+            <button id="link" onClick={() => filterPostHandler('German')} >German</button>
 
 
-   
-           </section>
 
-         
-   
-   
-   
-   
-           </div>
 
-           
+          </section>
 
-    </div>
 
-          
-      </>
-    );
+
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+    </>
+  );
 };
 
 
 
 const mapStateToProps = state => ({
-  
+
 });
 export default connect(
   mapStateToProps,
-  {fetchFilteredPosts}
+  { fetchFilteredPosts }
 )(DashSideNav);
 

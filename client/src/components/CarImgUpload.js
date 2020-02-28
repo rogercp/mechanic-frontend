@@ -11,9 +11,9 @@ import DriveEtaIcon from '@material-ui/icons/DriveEta';
 
 const useStyles = makeStyles(theme => ({
     button: {
-      margin: theme.spacing(1),
+        margin: theme.spacing(1),
     },
-  }));
+}));
 
 
 function CarImgUpload(props) {
@@ -24,21 +24,21 @@ function CarImgUpload(props) {
     const [file, setFile] = useState({});
 
     useEffect(() => {
-        if(props.car){
-        fetchCarImages();
+        if (props.car) {
+            fetchCarImages();
         }
-        
+
     }, [file]);
 
-    console.log(carImages,"carImages")
-    
+    console.log(carImages, "carImages")
+
     async function fetchCarImages() {
         let images = await axiosWithAuth().get(`/cars/${props.car.id}/images`)
         setCarImages(images.data);
         return images;
     }
 
-   
+
 
     function handleInputChanges(e) {
         e.preventDefault();
@@ -64,8 +64,8 @@ function CarImgUpload(props) {
             axiosWithAuth().post(`/cars/${props.car.id}/images`, { file_name: file.name })
                 .then(res => {
                     fetchCarImages();
-                    window.location.reload();               
-                 })
+                    window.location.reload();
+                })
                 .catch(error => {
                     console.error(error);
                 })
@@ -74,47 +74,47 @@ function CarImgUpload(props) {
         });
     }
 
-    
 
 
-    if(carImages.length > 0 ){
-        return (
-        <>
-                    {carImages.map((image, index) => {
-                        return <CarImgShow key={index} car={props.car} image={image}/>
-                    })} 
-        </>
-        )
-    } 
-   
-    else{
+
+    if (carImages.length > 0) {
         return (
             <>
-                <div style={{height:"200px"}}>
-                {(props.car ? <DriveEtaIcon style={{fontSize:"100px"}}/> : null)} 
-                <div style={{display:'flex',flexDirection:"column"}}>
-                 <form onSubmit={(handleSubmitUploader )}> 
-                <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
-                    <Button
-                    variant="contained"
-                    name="car_type"
-                    color="default"
-                    className={classes.button}
-                    startIcon={<CloudUploadIcon />}
-                    type ="submit"
-                    >
-                    Upload
-                </Button>
-                </form>
-                </div>
-                </div>
-                
+                {carImages.map((image, index) => {
+                    return <CarImgShow key={index} car={props.car} image={image} />
+                })}
             </>
         )
     }
-   
-        
-    
+
+    else {
+        return (
+            <>
+                <div style={{ height: "200px" }}>
+                    {(props.car ? <DriveEtaIcon style={{ fontSize: "100px" }} /> : null)}
+                    <div style={{ display: 'flex', flexDirection: "column" }}>
+                        <form onSubmit={(handleSubmitUploader)}>
+                            <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
+                            <Button
+                                variant="contained"
+                                name="car_type"
+                                color="default"
+                                className={classes.button}
+                                startIcon={<CloudUploadIcon />}
+                                type="submit"
+                            >
+                                Upload
+                </Button>
+                        </form>
+                    </div>
+                </div>
+
+            </>
+        )
+    }
+
+
+
 }
 
 

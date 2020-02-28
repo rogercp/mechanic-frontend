@@ -15,15 +15,15 @@ import { fetchProfileImage } from "../store/actions/settingsActions";
 
 const useStyles = makeStyles(theme => ({
     button: {
-      margin: theme.spacing(1),
+        margin: theme.spacing(1),
     },
-  }));
+}));
 
 function ProfileImageUpload(props) {
 
     const classes = useStyles();
 
-    
+
     // const [userImage, setUserImage] = useState({});
     const [file, setFile] = useState({});
 
@@ -33,7 +33,7 @@ function ProfileImageUpload(props) {
     // useEffect(() => {
 
     //     props.fetchProfileImage(userId);
-        
+
     // }, [file]);
 
 
@@ -67,9 +67,9 @@ function ProfileImageUpload(props) {
             // console.log('Upload success!', snapshot.constructor, snapshot);
             axiosWithAuth().post(`/users/image/${userId}`, { file_name: file.name })
                 .then(res => {
-                    props.fetchProfileImage(userId);  
-                    props.onClose()       
-                 })
+                    props.fetchProfileImage(userId);
+                    props.onClose()
+                })
                 .catch(error => {
                     console.error(error);
                 })
@@ -79,38 +79,38 @@ function ProfileImageUpload(props) {
     }
 
 
-        return (
-            <>
-                <div style={{height:"200px"}}>
-                {(props.carFix ? <p>no image</p>: null)} 
-                <div style={{display:'flex',flexDirection:"column"}}>
-                 <form onSubmit={handleSubmitUploaderProfilePicture}> 
-                <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
-                    <Button
-                    variant="contained"
-                    name="car_type"
-                    color="default"
-                    className={classes.button}
-                    startIcon={<CloudUploadIcon />}
-                    type ="submit"
-                    >
-                    Upload
+    return (
+        <>
+            <div style={{ height: "200px" }}>
+                {(props.carFix ? <p>no image</p> : null)}
+                <div style={{ display: 'flex', flexDirection: "column" }}>
+                    <form onSubmit={handleSubmitUploaderProfilePicture}>
+                        <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
+                        <Button
+                            variant="contained"
+                            name="car_type"
+                            color="default"
+                            className={classes.button}
+                            startIcon={<CloudUploadIcon />}
+                            type="submit"
+                        >
+                            Upload
                 </Button>
-                </form>
+                    </form>
                 </div>
-                </div>                
-            </>
-        )
-  
-    
+            </div>
+        </>
+    )
+
+
 }
 
 
 const mapStateToProps = state => ({
-    userImage : state.setting.userImage
-  });
-  export default connect(
+    userImage: state.setting.userImage
+});
+export default connect(
     mapStateToProps,
-    {fetchProfileImage}
-  )(ProfileImageUpload);
-  
+    { fetchProfileImage }
+)(ProfileImageUpload);
+
