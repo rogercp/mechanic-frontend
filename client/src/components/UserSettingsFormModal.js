@@ -1,5 +1,5 @@
 import ProfileImageUpload from './ProfileImageUpload';
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
         outline: 'none',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent:'center',
+        justifyContent: 'center',
         alignItems: 'center',
     },
     title: {
@@ -34,39 +34,39 @@ const useStyles = makeStyles(theme => ({
 
 
 function UserSettingsFormModal(props) {
-  
+
 
     const classes = useStyles();
     const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
     const [state, setState] = React.useState({
         user_name: '',
 
-      });
-      
-      function handleClose() {
-          onClose();
-      }
-  
-      function handleClick() {
-          props.history.push(redirect);
-      }
-    
+    });
+
+    function handleClose() {
+        onClose();
+    }
+
+    function handleClick() {
+        props.history.push(redirect);
+    }
+
     const handleChange = name => event => {
         setState({
-          ...state,
-          [name]: event.target.value,
+            ...state,
+            [name]: event.target.value,
         });
-      };
+    };
 
 
-      const onSubmitHandler = e => {
+    const onSubmitHandler = e => {
         e.preventDefault();
         axiosWithAuth()
             .post(``, state)
-            .then(res => {  
+            .then(res => {
                 window.location.reload();
             })
-            .catch(err => {      
+            .catch(err => {
             });
     };
 
@@ -74,31 +74,31 @@ function UserSettingsFormModal(props) {
 
 
     return (
-      <>
-        
+        <>
 
-        <Dialog open={open} onClose={handleClose} className={classes.dialog}>
-            <div >
 
-            <ProfileImageUpload  onClose={props.onClose}/>
-               
-                <div style={{maxWidth:"100px"}}>
-                <TextField
-                id="standard-basic"
-                name="car_make"
-                className={classes.textField}
-                label="username"
-                margin="normal"
-                value={state.car_make}
-                onChange={handleChange('car_make')}
-                /></div>
+            <Dialog open={open} onClose={handleClose} className={classes.dialog}>
+                <div >
+
+                    <ProfileImageUpload onClose={props.onClose} />
+
+                    <div style={{ maxWidth: "100px" }}>
+                        <TextField
+                            id="standard-basic"
+                            name="car_make"
+                            className={classes.textField}
+                            label="username"
+                            margin="normal"
+                            value={state.car_make}
+                            onChange={handleChange('car_make')}
+                        /></div>
 
 
                 </div>
             </Dialog>
 
 
-      </>
+        </>
     );
 };
 

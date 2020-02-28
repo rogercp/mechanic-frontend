@@ -93,7 +93,7 @@ function CarMaintenenceForm(props) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     fix_not_maintenence: false,
-    fix:'',
+    fix: '',
     fix_price: '',
     fix_description: '',
     fix_date: new Date().toLocaleString()
@@ -108,117 +108,117 @@ function CarMaintenenceForm(props) {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  
+
   const handleDateChange = date => {
-    setValues({fix_date : date})
+    setValues({ fix_date: date })
   };
 
 
   const onSubmitHandler = e => {
     e.preventDefault();
-    
+
     axiosWithAuth()
-        .post(`/car_fix/${props.car.id}`, values)
-        .then(res => {
-          props.fetchFixes(props.car.id);
-          props.handleClose();
-          
-        })
-        .catch(err => {
-        });
-};
+      .post(`/car_fix/${props.car.id}`, values)
+      .then(res => {
+        props.fetchFixes(props.car.id);
+        props.handleClose();
 
-    return (
-      <>
-     
-       <div className={classes.root}> 
-       
-      <form className={classes.container} noValidate autoComplete="off" > 
-    
-      <FormControl fullWidth className={classes.margin} onSubmit={onSubmitHandler}>
-      <p>{values.fix_not_maintenence === false ? "Maintence" : "Repair" }</p>
-        <AntSwitch
-        onChange={handleChange2('fix_not_maintenence')}
-        value="fix_not_maintenence"
-        color="default"
-        inputProps={{ 'aria-label': 'checkbox with default color' }}
-        />
-      <TextField
-          id="outlined-textarea"
-          onChange={handleChange('fix')}
-          name="fix"
-          value={values.fix}
-          placeholder={values.fix_not_maintenence === false ? "Maintence" : "Repair"}
-          multiline
-          className={classes.textField}
-          margin="normal"
-          variant="outlined"
-        />
-        <TextField
-          id="outlined-multiline-static"
-          multiline
-          name="fix_description"
-          value={values.fix_description}
-          onChange={handleChange('fix_description')}
-          rows="4"
-          placeholder="Description"
-          className={classes.textField}
-          margin="normal"
-          variant="outlined"
-        />
-        
+      })
+      .catch(err => {
+      });
+  };
 
-      <TextField
-          label="Total Cost"
-          value={values.fix_price}
-          name="fix_price"
-          id="standard-start-adornment"
-          onChange={handleChange('fix_price')}
-          className={clsx(classes.margin, classes.textField)}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          }}
-        />
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      
-        <KeyboardDatePicker
-          margin="normal"
-          id="date-picker-dialog"
-          label="Task Completed"
-          format="MM/dd/yyyy"
-          value={values.fix_date}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-              'aria-label': 'change date',
-            }}
+  return (
+    <>
+
+      <div className={classes.root}>
+
+        <form className={classes.container} noValidate autoComplete="off" >
+
+          <FormControl fullWidth className={classes.margin} onSubmit={onSubmitHandler}>
+            <p>{values.fix_not_maintenence === false ? "Maintence" : "Repair"}</p>
+            <AntSwitch
+              onChange={handleChange2('fix_not_maintenence')}
+              value="fix_not_maintenence"
+              color="default"
+              inputProps={{ 'aria-label': 'checkbox with default color' }}
             />
-          </MuiPickersUtilsProvider>
+            <TextField
+              id="outlined-textarea"
+              onChange={handleChange('fix')}
+              name="fix"
+              value={values.fix}
+              placeholder={values.fix_not_maintenence === false ? "Maintence" : "Repair"}
+              multiline
+              className={classes.textField}
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              id="outlined-multiline-static"
+              multiline
+              name="fix_description"
+              value={values.fix_description}
+              onChange={handleChange('fix_description')}
+              rows="4"
+              placeholder="Description"
+              className={classes.textField}
+              margin="normal"
+              variant="outlined"
+            />
 
-        <Button
-        variant="contained"
-        color="default"
-        className={classes.button}
-        startIcon={<CloudUploadIcon />}
-        >
-        documents
+
+            <TextField
+              label="Total Cost"
+              value={values.fix_price}
+              name="fix_price"
+              id="standard-start-adornment"
+              onChange={handleChange('fix_price')}
+              className={clsx(classes.margin, classes.textField)}
+              InputProps={{
+                startAdornment: <InputAdornment position="start">$</InputAdornment>,
+              }}
+            />
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+              <KeyboardDatePicker
+                margin="normal"
+                id="date-picker-dialog"
+                label="Task Completed"
+                format="MM/dd/yyyy"
+                value={values.fix_date}
+                onChange={handleDateChange}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
+              />
+            </MuiPickersUtilsProvider>
+
+            <Button
+              variant="contained"
+              color="default"
+              className={classes.button}
+              startIcon={<CloudUploadIcon />}
+            >
+              documents
         </Button>
 
-          
-        <Button
-        variant="contained"
-        color="primary"
-        size="large"
-        className={classes.button}
-        onClick={onSubmitHandler}
-        >
-        Enter
+
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={onSubmitHandler}
+            >
+              Enter
         </Button>
-         </FormControl>
-         
-     </form> 
-     </div> 
-        </>
-    );
+          </FormControl>
+
+        </form>
+      </div>
+    </>
+  );
 };
 
 
@@ -228,6 +228,6 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  {fetchFixes}
+  { fetchFixes }
 )(CarMaintenenceForm);
 

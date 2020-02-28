@@ -1,20 +1,35 @@
 
 
-import React from 'react';
+import React,{useEffect} from 'react';
 import Button from "react-bootstrap/Button";
 import { NavLink } from 'react-router-dom';
 import { DashSideNav } from '../components';
 import { Posts, Question, Search} from '../components';
-
+import { axiosWithAuth } from '../helpers/index';
 
 
 
 import  '../styles/home.scss'
 
 
-
 function Home(props) {
 
+    useEffect(() => {
+
+       const  userId = localStorage.getItem('id')
+        const username = localStorage.getItem('username')
+        axiosWithAuth()
+        .put(`/users/update/${userId}`, ({
+                    user_name: username,
+                })).then(
+                    console.log("success")
+                )
+                .catch(err => {
+                    console.log("error")
+                });
+
+      }, []);
+  
 
     return (
 
@@ -27,7 +42,7 @@ function Home(props) {
         <DashSideNav /> 
         </div>
         <div style={{minWidth:"70%"}}>
-        {/* <Search/> */}
+      
         <Posts/>
         </div>
         </div>
@@ -38,7 +53,7 @@ function Home(props) {
         </div>
         <div style={{margin:"0 auto"}} >
         <Question/> 
-        {/* <Search /> */}
+       
         <Posts/>
         </div>
 

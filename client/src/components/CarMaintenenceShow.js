@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from '../helpers/index';
 import { makeStyles } from '@material-ui/core/styles';
 import CarMaintenceCard from './CarMaintenenceCard';
@@ -8,115 +8,115 @@ import { connect } from 'react-redux';
 
 
 const useStyles = makeStyles(theme => ({
-    button: {
-        margin: theme.spacing(1)
+  button: {
+    margin: theme.spacing(1)
+  },
+  submitbutton: {
+    justifyContent: 'center',
+  },
+  modal: {
+    position: 'absolute',
+    margin: '0 auto',
+  },
+  paper: {
+    height: '50px',
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(0, 0, 0),
+    outline: 'none',
+    margin: '1%',
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+    boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
+    '&:hover': {
+      boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
     },
-    submitbutton: {
-        justifyContent: 'center',
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+      height: '100%',
     },
-    modal: {
-        position: 'absolute',
-        margin: '0 auto',
-    },
-    paper: {
-      height: '50px',
-      backgroundColor: theme.palette.background.paper,
-      boxShadow: theme.shadows[5],
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(0, 0, 0),
-      outline: 'none',
-      margin:'1%',
-      flexDirection: "column",
-      justifyContent: "space-between",
-      alignItems: "center",
-      boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
-      '&:hover':{
-          boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
-        },
-      [theme.breakpoints.down('md')]: {
-          width: '100%',
-          height: '100%',
-      },
-      [theme.breakpoints.down('sm')]: {
-          padding: theme.spacing(0,0,0),
-          width:'100%',
-          height: '100%',
-      },
+      width: '100%',
+      height: '100%',
     },
-        expand: {
-          transform: 'rotate(0deg)',
-          marginLeft: 'auto',
-          transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-          }),
-        },
-        expandOpen: {
-          transform: 'rotate(180deg)',
-        },
-        top:{
-          display:'flex',
-          flexDirection:'row',
-          alignItems:'center',
-        },
-        margin:{
-            color:'red',
-              outline:'0',
-        },
-        root: {
-          width: '100%',
-        },
-        
-  }))
-  
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
+  top: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  margin: {
+    color: 'red',
+    outline: '0',
+  },
+  root: {
+    width: '100%',
+  },
 
-function getModalStyle() {}
+}))
+
+
+function getModalStyle() { }
 
 function CarMaintenceShow(props) {
 
 
-    const [carFixes,setCarFixes] = useState([])
-    const [modalStyle] = useState(getModalStyle);
-    const [fullopen, setFullOpen] = useState(false);
-    const [errorOpen, setErrorOpen] = useState(false);
+  const [carFixes, setCarFixes] = useState([])
+  const [modalStyle] = useState(getModalStyle);
+  const [fullopen, setFullOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
 
-    const handlefullOpen = () => {
-        setFullOpen(true);
-    };
-    const handlefullClose = () => {
-        setFullOpen(false);
-    };
+  const handlefullOpen = () => {
+    setFullOpen(true);
+  };
+  const handlefullClose = () => {
+    setFullOpen(false);
+  };
 
-    function handleErrorClose() {
-        setErrorOpen(false);
-    }
-    
-    function handleErrorOpen() {
-        setErrorOpen(true);
-    }
+  function handleErrorClose() {
+    setErrorOpen(false);
+  }
 
-    useEffect(() => {
-      props.fetchFixes(props.car.id)
-    }, []);
+  function handleErrorOpen() {
+    setErrorOpen(true);
+  }
 
-
+  useEffect(() => {
+    props.fetchFixes(props.car.id)
+  }, []);
 
 
-    return (
-    
-      <div >
+
+
+  return (
+
+    <div >
       {props.myFixes.length < 1 ? <div>You have no fixes</div> :
-              <>
-                  {props.myFixes.map(c => {
-                      return (
+        <>
+          {props.myFixes.map(c => {
+            return (
 
-                        <CarMaintenceCard carFix={c} car={props.car}  />
-                        
-                     );
-                  })}
-                  </>
-              
-            }
-      </div>
-    );
+              <CarMaintenceCard carFix={c} car={props.car} />
+
+            );
+          })}
+        </>
+
+      }
+    </div>
+  );
 };
 
 
@@ -126,7 +126,7 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  {fetchFixes}
+  { fetchFixes }
 )(CarMaintenceShow);
 
 

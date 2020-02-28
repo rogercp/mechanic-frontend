@@ -1,6 +1,8 @@
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { axiosWithAuth } from '../helpers/index';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -18,166 +20,210 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import CarFixImgUpload from './CarFixImgUpload';
 import { fetchFixes } from "../store/actions/carMaintenenceActions";
 import { connect } from 'react-redux';
+import { Button as Button2 } from 'react-bootstrap';
 
-import  '../styles/fullscreenmodal.scss'
+
+import '../styles/fullscreenmodal.scss'
 
 
 const useStyles = makeStyles(theme => ({
-    button: {
-        margin: theme.spacing(1)
+  button: {
+    margin: theme.spacing(1)
+  },
+  submitbutton: {
+    justifyContent: 'center',
+  },
+  modal: {
+    position: 'absolute',
+    margin: '0 auto',
+  },
+  paper: {
+    height: '50px',
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(0, 0, 0),
+    outline: 'none',
+    margin: '1%',
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+    boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
+    '&:hover': {
+      boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
     },
-    submitbutton: {
-        justifyContent: 'center',
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+      height: '100%',
     },
-    modal: {
-        position: 'absolute',
-        margin: '0 auto',
-    },
-    paper: {
-      height: '50px',
-      backgroundColor: theme.palette.background.paper,
-      boxShadow: theme.shadows[5],
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(0, 0, 0),
-      outline: 'none',
-      margin:'1%',
-      flexDirection: "column",
-      justifyContent: "space-between",
-      alignItems: "center",
-      boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
-      '&:hover':{
-          boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
-        },
-      [theme.breakpoints.down('md')]: {
-          width: '100%',
-          height: '100%',
-      },
-      [theme.breakpoints.down('sm')]: {
-          padding: theme.spacing(0,0,0),
-          width:'90%',
-          height: '100%',
-      },
+      width: '90%',
+      height: '100%',
     },
-        expand: {
-          transform: 'rotate(0deg)',
-          marginLeft: 'auto',
-          transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-          }),
-        },
-        expandOpen: {
-          transform: 'rotate(180deg)',
-        },
-        top:{
-          display:'flex',
-          flexDirection:'row',
-          alignItems:'center',
-        },
-        margin:{
-            color:'red',
-              outline:'0',
-        },
-        root: {
-          width: '100%',
-        },
-        
-  }))
-  
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
+  top: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  margin: {
+    color: 'red',
+    outline: '0',
+  },
+  root: {
+    width: '100%',
+  },
+  areUSure: {
+    margin: theme.spacing(1),
+    boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
+    '&:hover': {
+      boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
+    },
+  },
+
+}))
+
 
 
 function CarMaintenceCard(props) {
 
-    const classes = useStyles();
-    const [fullopen, setFullOpen] = useState(false);
-    const [errorOpen, setErrorOpen] = useState(false);
-
-
-    function handleDelete2() {
-        axiosWithAuth()
-            .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.carFix.id}`)
-            .then(res => {
-                props.fetchFixes(props.car.id)
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }
-    
-
-    const handlefullOpen = () => {
-        setFullOpen(true);
-    };
-    const handlefullClose = () => {
-        setFullOpen(false);
-    };
-
-    function handleErrorClose() {
-        setErrorOpen(false);
-    }
-    
-    function handleErrorOpen() {
-        setErrorOpen(true);
-    }
+  const classes = useStyles();
+  const [fullopen, setFullOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
 
 
 
-    return (
+  const handleDelete2 = (e) => {
+    e.preventDefault();
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className='custom-ui'>
+            <h1>Are you sure?</h1>
+            <Button2 className={classes.areUSure} variant="secondary" onClick={onClose}>No</Button2>
+            <Button2
+              className={classes.areUSure}
+              variant="danger"
+              onClick={() => {
+                axiosWithAuth()
+                  .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.carFix.id}`)
+                  .then(res => {
+                    onClose();
+                    props.fetchFixes(props.car.id)
 
-            <ExpansionPanel >
-
-            <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
+                  })
+                  .catch(err => {
+                    onClose();
+                  });
+              }}
             >
-            <p>{props.carFix.fix_date}</p>
-            <p>{props.carFix.fix}</p> 
-            {props.carFix.fix_not_maintenence ? <BuildIcon/>: <AlarmOnIcon/>}
-            </ExpansionPanelSummary>
-
-            <ExpansionPanelDetails id="panelbody">
-
-            <div style={{display:"flex",flexDirection:"column",justifyContent:"spaceBetween"}}>
-            <div style={{width:"70%",textAlign:"left !important"}}>
-                <p style={{textAlign:"left!important"}}>${props.carFix.fix_price}</p>
-                <p>{props.carFix.fix_description}</p>
-               
-            </div>
+              Yes
+                  </Button2>
+          </div>
+        );
+      }
+    });
+  };
 
 
-           <CarFixImgUpload carFix={props.carFix}/>
 
-            <Toolbar style={{display:"flex",flexDirection:"row",alignItems:"spaceBetween",justifyContent:"spaceBetween"}} >
+  // function handleDelete2() {
+  //     axiosWithAuth()
+  //         .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.carFix.id}`)
+  //         .then(res => {
+  //             props.fetchFixes(props.car.id)
+  //         })
+  //         .catch(error => {
+  //             console.error(error);
+  //         });
+  // }
 
-                <Button
-                    id="edit"
-                >
-                    <EditIcon />
-                </Button>
+
+  const handlefullOpen = () => {
+    setFullOpen(true);
+  };
+  const handlefullClose = () => {
+    setFullOpen(false);
+  };
+
+  function handleErrorClose() {
+    setErrorOpen(false);
+  }
+
+  function handleErrorOpen() {
+    setErrorOpen(true);
+  }
 
 
-                <IconButton id="del"  aria-label="delete"  className={classes.margin} onClick={handleDelete2}>
-                <DeleteIcon  />    
-                </IconButton> 
 
-            </Toolbar>
-            </div>
+  return (
 
-            </ExpansionPanelDetails>
-            
-            </ExpansionPanel>
+    <ExpansionPanel >
 
-      
-        
-      
-        
-       )
+      <ExpansionPanelSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+      >
+        <p>{props.carFix.fix_date}</p>
+        <p>{props.carFix.fix}</p>
+        {props.carFix.fix_not_maintenence ? <BuildIcon /> : <AlarmOnIcon />}
+      </ExpansionPanelSummary>
+
+      <ExpansionPanelDetails id="panelbody">
+
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "spaceBetween" }}>
+          <div style={{ width: "70%", textAlign: "left !important" }}>
+            <p style={{ textAlign: "left!important" }}>${props.carFix.fix_price}</p>
+            <p>{props.carFix.fix_description}</p>
+
+          </div>
+
+
+          <CarFixImgUpload carFix={props.carFix} />
+
+          <Toolbar style={{ display: "flex", flexDirection: "row", alignItems: "spaceBetween", justifyContent: "spaceBetween" }} >
+
+            <Button
+              id="edit"
+            >
+              <EditIcon />
+            </Button>
+
+
+            <IconButton id="del" aria-label="delete" className={classes.margin} onClick={handleDelete2}>
+              <DeleteIcon />
+            </IconButton>
+
+          </Toolbar>
+        </div>
+
+      </ExpansionPanelDetails>
+
+    </ExpansionPanel>
+
+
+
+
+
+  )
 }
 
 
 const mapStateToProps = state => ({
-  });
-  export default connect(
-    mapStateToProps,
-    {fetchFixes}
-  )(CarMaintenceCard);
-  
+});
+export default connect(
+  mapStateToProps,
+  { fetchFixes }
+)(CarMaintenceCard);
+

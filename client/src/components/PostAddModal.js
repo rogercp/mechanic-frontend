@@ -10,7 +10,7 @@ import PostForm from './PostForm'
 
 const useStyles = makeStyles(theme => ({
     dialog: {
-       
+
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
         outline: 'none',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent:'center',
+        justifyContent: 'center',
         alignItems: 'center',
     },
     title: {
@@ -49,9 +49,9 @@ function CarAddModal(props) {
             <Dialog open={open} onClose={handleClose} className={classes.dialog}>
                 <div className={classes.paper}>
                     <Typography className={classes.title} variant="h6">{titleText}</Typography>
-                    <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
+                    <Typography className={classes.body} variant="subtitle2"> {bodyText}</Typography>
                     <PostForm onClose={props.onClose} />
-                    
+
                 </div>
             </Dialog>
         )
@@ -60,8 +60,8 @@ function CarAddModal(props) {
             <Dialog open={open} onClose={handleClose} className={classes.dialog}>
                 <div className={classes.paper}>
                     <Typography className={classes.title} variant="h6">{titleText}</Typography>
-                    <Typography className={classes.body} variant ="subtitle2"> {bodyText}</Typography>
-                    <PostForm onClose={props.onClose}/>
+                    <Typography className={classes.body} variant="subtitle2"> {bodyText}</Typography>
+                    <PostForm onClose={props.onClose} />
                 </div>
             </Dialog>
         )
