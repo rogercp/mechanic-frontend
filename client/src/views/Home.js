@@ -35,6 +35,15 @@ function Home(props) {
 
         <div style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px",paddingBottom:"700px"}}>
         
+       {!localStorage.getItem("token") ?
+    
+      <div className="nav" style={{ backgroundColor: "rgb(210, 210, 211)", maxWidth: "1300px" }}>
+        <NavLink id="link" style={{width:'50px'}}to="/login" activeClassName="active" data-testid="signup-link">
+          <i>Login</i>
+        </NavLink >
+      </div>:null
+}
+  
       
         <div className="web" style={{display:"flex", flexDirection:"row",width:"100%"}}>
         <div style={{minWidth:"30%"}}>

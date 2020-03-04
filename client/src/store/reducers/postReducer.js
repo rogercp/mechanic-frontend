@@ -8,12 +8,15 @@ ADD_POST_START ,
  FETCH_FILTEREDPOST_START,
 FETCH_FILTEREDPOST_SUCCESS,
 FETCH_FILTEREDPOST_FAILURE,
+TOGGLE_SEARCH_TO_TRUE,
+TOGGLE_SEARCH_TO_FALSE
 }from '../actions/postActions';
 
 const initialState = {
     addingPost:false,
     posts: [],
     filteredPosts:[],
+    searchToggle:false,
 
 }
 
@@ -32,6 +35,18 @@ const postReducer = (state = initialState, action) => {
             ...state,
             filteredPosts: action.payload
           };
+        case TOGGLE_SEARCH_TO_TRUE:
+          return {
+            ...state,
+            searchToggle:true
+          }
+       
+        case TOGGLE_SEARCH_TO_FALSE:
+          return {
+            ...state,
+            searchToggle:false
+          }
+         
         default: 
         return state 
     }

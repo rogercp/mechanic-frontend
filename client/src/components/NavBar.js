@@ -50,7 +50,6 @@ function NavBar(props) {
   };
 
 
-
   function logout() {
     localStorage.clear()
     window.location = '/'
@@ -82,8 +81,8 @@ function NavBar(props) {
         <Link className="link_mobile" activeClassName="activeNavButton" to="/home" style={{ textDecoration: "none" }} data-testid="signup-link">
           <div className="mobile_div" ><HomeIcon />Dash</div></Link>
 
-        <Link className="link_mobile" activeClassName="activeNavButton" to="/chat" style={{ textDecoration: "none" }} data-testid="signup-link">
-          <ChatBubbleIcon /> Chat</Link >
+        {/* <Link className="link_mobile" activeClassName="activeNavButton" to="/chat" style={{ textDecoration: "none" }} data-testid="signup-link">
+          <ChatBubbleIcon /> Chat</Link > */}
         <Link className="link_mobile" activeClassName="activeNavButton" to="/mycars" style={{ textDecoration: "none" }} data-testid="signup-link">
           <DirectionsCarIcon /> Cars</Link>
         <Link className="link_mobile" activeClassName="activeNavButton" to="/settings" style={{ textDecoration: "none" }} data-testid="login-link">
@@ -108,11 +107,12 @@ function NavBar(props) {
 
   if (!localStorage.getItem("token")) {
     return (
-      <div className="nav" style={{ backgroundColor: "rgb(210, 210, 211)", maxWidth: "1300px" }}>
-        <NavLink id="link" to="/login" activeClassName="active" data-testid="signup-link">
-          <i style={{ float: "right" }}>Login</i>
-        </NavLink >
-      </div>
+      // <div className="nav" style={{ backgroundColor: "rgb(210, 210, 211)", maxWidth: "1300px" }}>
+      //   <NavLink id="link" style={{width:'50px'}}to="/login" activeClassName="active" data-testid="signup-link">
+      //     <i style={{ float: "right" }}>Login</i>
+      //   </NavLink >
+      // </div>
+      null
     )
   } else {
     return (
@@ -143,9 +143,9 @@ function NavBar(props) {
               <i>Dash</i>
             </NavLink>
 
-            <NavLink id="link" to="/chat" activeClassName="active" style={{ textDecoration: "none" }} data-testid="signup-link">
+            {/* <NavLink id="link" to="/chat" activeClassName="active" style={{ textDecoration: "none" }} data-testid="signup-link">
               <i>Chat</i>
-            </NavLink >
+            </NavLink > */}
 
             <NavLink id="link" to="/mycars" activeClassName="active" style={{ textDecoration: "none" }} data-testid="signup-link">
               <i>My Cars</i>

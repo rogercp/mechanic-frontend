@@ -60,12 +60,21 @@ export const fetchFilteredPosts = term => dispatch => {
     });
 };
 
-// console.log(term)
-//     axiosWithAuth()
-//         .post('/post/filterCategory', {category:term})
-//         .then(res => {  
-//           setFilteredData(res.data)
-//         })
-//         .catch(err => { 
-//           console.log("sucess ")  
-//         });
+
+
+export const TOGGLE_SEARCH_TO_TRUE = 'TOGGLE_SEARCH_TO_TRUE';
+
+export const toggleSearchToTrue = () => dispatch => {
+
+  dispatch({ type: TOGGLE_SEARCH_TO_TRUE });
+ 
+};
+
+
+export const TOGGLE_SEARCH_TO_FALSE = 'TOGGLE_SEARCH_TO_FALSE';
+
+export const toggleSearchToFalse = () => dispatch => {
+
+  dispatch({ type: TOGGLE_SEARCH_TO_FALSE });
+ 
+};
