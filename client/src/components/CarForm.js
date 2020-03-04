@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,6 +11,7 @@ import { axiosWithAuth } from '../helpers/index';
 
 
 import '../styles/navbar.scss'
+import ImageUploadModal from './ImageUploadModal';
 
 
 
@@ -40,7 +41,8 @@ function CarForm(props) {
 
 
   const classes = useStyles();
-
+  const [fullopen, setFullOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
   const [state, setState] = React.useState({
     car_type: '',
     car_make: '',
@@ -48,6 +50,23 @@ function CarForm(props) {
     car_nickname: '',
     car_year: ''
   });
+
+
+
+  const handlefullOpen = () => {
+    setFullOpen(true);
+  };
+  const handlefullClose = () => {
+    setFullOpen(false);
+  };
+
+  function handleErrorClose() {
+    setErrorOpen(false);
+  }
+
+  function handleErrorOpen() {
+    setErrorOpen(true);
+  }
 
 
   const handleChange = name => event => {
@@ -63,7 +82,8 @@ function CarForm(props) {
       .post(`/cars`, state)
       .then(res => {
         props.fetchCars();
-        props.onClose();
+        // props.onClose();
+        handlefullOpen()
       })
       .catch(err => {
       });
@@ -155,6 +175,13 @@ function CarForm(props) {
         </Button>
 
       </FormControl>
+
+
+      <ImageUploadModal
+        open={fullopen}
+        handleClose={handlefullClose}
+        onClose={handlefullClose}
+      />
 
     </>
   );

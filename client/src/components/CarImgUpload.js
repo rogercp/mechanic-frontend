@@ -92,8 +92,8 @@ function CarImgUpload(props) {
             <>
                 <div style={{ height: "200px" }}>
                     {(props.car ? <DriveEtaIcon style={{ fontSize: "100px" }} /> : null)}
-                    <div style={{ display: 'flex', flexDirection: "column" }}>
-                        <form onSubmit={(handleSubmitUploader)}>
+                    <div>
+                        <form onSubmit={(handleSubmitUploader)} style={{ display: 'flex', flexDirection: "column",maxWidth:"200px",justifyContent:"Center"}}>
                             <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
                             <Button
                                 variant="contained"

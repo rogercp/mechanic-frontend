@@ -40,7 +40,6 @@ function Posts(props) {
 
     props.fetchFilteredPosts("AllPosts")
 
-
   }
 
 
