@@ -19,6 +19,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CarImgUpload from './CarImgUpload'
+import CarFixImgUpload from './CarFixImgUpload'
+
 
 
 import '../styles/fullscreenmodal.scss'
@@ -73,31 +75,54 @@ function ImageUploadModal(props) {
     setErrorOpen(false);
   }
 
-  function handleBothCloses(){
+  function handleBothClosesForCars(){
     props.onclose()
     props.handleClose()
   }
 
-
+  function handleBothClosesForMaintence(){
+    props.onclose()
+    props.handleClose()
+  }
 
   return (
     <>
       <Dialog   open={props.open} onClose={props.handleClose}  >
       <h2>Upload Image</h2>
+
       <FormControl className={classes.formControl} style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-          
-      <CarImgUpload car={props.car} isForm={true}/>
-
-
-      <Button
+         {props.isCar?
+         <>
+          <CarImgUpload car={props.car} isForm={true}/>
+          <Button
       className={classes.button} 
       variant="contained"
       color="primary"
       size="large"
-      onClick={handleBothCloses}>
+      onClick={handleBothClosesForCars}>
         
             Skip
      </Button>
+     </>
+          :null}
+     
+      {props.isMaintenence?
+      <>
+       <CarFixImgUpload carFix={props.currentMaintenence} isForm={true}/>
+       <Button
+      className={classes.button} 
+      variant="contained"
+      color="primary"
+      size="large"
+      onClick={handleBothClosesForMaintence}>
+        
+            Skip
+     </Button>
+     </>
+      :null}
+
+
+      
            
 
         </FormControl>

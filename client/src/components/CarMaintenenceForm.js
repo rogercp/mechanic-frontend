@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React,{useState} from 'react';
 import Switch from '@material-ui/core/Switch';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -18,6 +18,9 @@ import { axiosWithAuth } from '../helpers/index';
 import { withStyles } from '@material-ui/core/styles';
 import { fetchFixes } from "../store/actions/carMaintenenceActions";
 import { connect } from 'react-redux';
+import ImageUploadModal from './ImageUploadModal';
+
+
 
 const AntSwitch = withStyles(theme => ({
   root: {
@@ -91,6 +94,10 @@ const useStyles = makeStyles(theme => ({
 
 function CarMaintenenceForm(props) {
   const classes = useStyles();
+
+  const [fullopen, setFullOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
+  const [currentMaintenence,setcurrentMaintenence] = useState({})
   const [values, setValues] = React.useState({
     fix_not_maintenence: false,
     fix: '',
@@ -98,6 +105,24 @@ function CarMaintenenceForm(props) {
     fix_description: '',
     fix_date: new Date().toLocaleString()
   });
+
+
+
+  const handlefullOpen = () => {
+    setFullOpen(true);
+  };
+  const handlefullClose = () => {
+    setFullOpen(false);
+  };
+
+  function handleErrorClose() {
+    setErrorOpen(false);
+  }
+
+  function handleErrorOpen() {
+    setErrorOpen(true);
+  }
+
 
   const handleChange2 = name => event => {
     setValues({ ...values, [name]: event.target.checked });
@@ -120,13 +145,17 @@ function CarMaintenenceForm(props) {
     axiosWithAuth()
       .post(`/car_fix/${props.car.id}`, values)
       .then(res => {
+        setcurrentMaintenence(res.data)
         props.fetchFixes(props.car.id);
-        props.handleClose();
+        handlefullOpen()
+        // props.handleClose();
 
       })
       .catch(err => {
       });
   };
+
+  console.log(currentMaintenence,"curentMaintence")
 
   return (
     <>
@@ -194,14 +223,14 @@ function CarMaintenenceForm(props) {
               />
             </MuiPickersUtilsProvider>
 
-            <Button
+            {/* <Button
               variant="contained"
               color="default"
               className={classes.button}
               startIcon={<CloudUploadIcon />}
             >
               documents
-        </Button>
+        </Button> */}
 
 
             <Button
@@ -216,6 +245,16 @@ function CarMaintenenceForm(props) {
           </FormControl>
 
         </form>
+
+
+      <ImageUploadModal
+        isMaintenence={true}
+        currentMaintenence={currentMaintenence}
+        open={fullopen}
+        onClose={handlefullClose}
+        handleClose={handlefullClose}
+        onclose={props.onClose}
+      />
       </div>
     </>
   );

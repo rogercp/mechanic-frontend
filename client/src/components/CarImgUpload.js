@@ -91,7 +91,7 @@ function CarImgUpload(props) {
             <>
                 <div style={{ height: "200px" }}>
             {(!props.car.file_name && !props.isForm? 
-                   <DriveEtaIcon style={{ fontSize: "100px" }} />
+                   <DriveEtaIcon style={{ fontSize: "200px" }} />
             :
             null
             )}
