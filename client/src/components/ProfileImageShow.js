@@ -116,7 +116,8 @@ function ProfileImageShow(props) {
           <div>
             {/* {(metadata.contentType === 'application/pdf')? <div id="div-pdf" src={`${thisImage}`}></div> :  <img id="reg-image" height="200px" src={`${thisImage}`}></img>} */}
 
-            <button onClick={deleteImage}>del</button>
+            {/* <button onClick={deleteImage}>del</button> */}
+            
             <Image src="holder.js/171x180" rounded id="reg-image" style={{ maxWidth: "100%" }} src={`${thisImage}`} />
             {/* {props.image.file_name} */}
           </div>

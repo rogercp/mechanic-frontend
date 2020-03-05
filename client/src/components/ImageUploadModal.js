@@ -73,6 +73,10 @@ function ImageUploadModal(props) {
     setErrorOpen(false);
   }
 
+  function handleBothCloses(){
+    props.onclose()
+    props.handleClose()
+  }
 
 
 
@@ -82,14 +86,16 @@ function ImageUploadModal(props) {
       <h2>Upload Image</h2>
       <FormControl className={classes.formControl} style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
           
-      <CarImgUpload/>
+      <CarImgUpload car={props.car} isForm={true}/>
 
 
       <Button
       className={classes.button} 
       variant="contained"
       color="primary"
-      size="large">
+      size="large"
+      onClick={handleBothCloses}>
+        
             Skip
      </Button>
            

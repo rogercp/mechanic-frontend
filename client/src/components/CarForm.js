@@ -43,6 +43,7 @@ function CarForm(props) {
   const classes = useStyles();
   const [fullopen, setFullOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
+  const [currentCar,setCurrentCar] = useState({})
   const [state, setState] = React.useState({
     car_type: '',
     car_make: '',
@@ -81,6 +82,7 @@ function CarForm(props) {
     axiosWithAuth()
       .post(`/cars`, state)
       .then(res => {
+        setCurrentCar(res.data)
         props.fetchCars();
         // props.onClose();
         handlefullOpen()
@@ -88,7 +90,7 @@ function CarForm(props) {
       .catch(err => {
       });
   };
-
+ 
 
   return (
     <>
@@ -178,6 +180,8 @@ function CarForm(props) {
 
 
       <ImageUploadModal
+        onclose={props.onClose}
+        car={currentCar}
         open={fullopen}
         handleClose={handlefullClose}
         onClose={handlefullClose}

@@ -184,9 +184,9 @@ const MediatorCard = (props) => {
 
 
 
-
   return (
     <>
+    <div style={{margin:"20px"}}>
       <ReactCardFlip isFlipped={flip.isFlipped} flipDirection="vertical">
 
         <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "325px", maxWidth: "350px" }}>
@@ -205,6 +205,7 @@ const MediatorCard = (props) => {
                 <Tooltip title="Open Repairs"><AllOutIcon /></Tooltip>
               </Button>
             </div>
+            
             <CarImgUpload car={props.car} />
 
 
@@ -250,7 +251,7 @@ const MediatorCard = (props) => {
         onClose={handlefullClose}
         car={props.car}
       />
-
+</div>
     </>
   );
 };
