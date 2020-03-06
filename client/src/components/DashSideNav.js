@@ -15,7 +15,7 @@ import Posts from './Posts';
 import { axiosWithAuth } from '../helpers/index';
 import { connect } from 'react-redux';
 import { fetchFilteredPosts } from "../store/actions/postActions";
-
+import { toggleSearchToFalse } from "../store/actions/postActions";
 
 import '../styles/dashsidenav.scss'
 
@@ -34,6 +34,7 @@ function DashSideNav(props) {
   async function filterPostHandler(term) {
 
     props.fetchFilteredPosts(term)
+    props.toggleSearchToFalse()
 
   };
 
@@ -103,6 +104,6 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { fetchFilteredPosts }
+  { fetchFilteredPosts, toggleSearchToFalse}
 )(DashSideNav);
 

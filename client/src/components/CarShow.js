@@ -106,7 +106,7 @@ function CarShow(props) {
           sm={cars.length === 1 ? 12 : 12}
           md={cars.length === 1 ? 12 : 12}
           lg={cars.length === 1 ? 12 : 12}
-          container direction="row" justify="space-evenly">
+          container direction="row" justify="space-evenly" >
           {cars.map(c => {
             return (
               <>

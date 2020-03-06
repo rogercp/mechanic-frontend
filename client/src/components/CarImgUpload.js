@@ -30,7 +30,6 @@ function CarImgUpload(props) {
 
     }, [file]);
 
-    console.log(carImages, "carImages")
 
     async function fetchCarImages() {
         let images = await axiosWithAuth().get(`/cars/${props.car.id}/images`)
@@ -91,23 +90,34 @@ function CarImgUpload(props) {
         return (
             <>
                 <div style={{ height: "200px" }}>
-                    {(props.car ? <DriveEtaIcon style={{ fontSize: "100px" }} /> : null)}
-                    <div style={{ display: 'flex', flexDirection: "column" }}>
-                        <form onSubmit={(handleSubmitUploader)}>
-                            <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
-                            <Button
-                                variant="contained"
-                                name="car_type"
-                                color="default"
-                                className={classes.button}
-                                startIcon={<CloudUploadIcon />}
-                                type="submit"
-                            >
-                                Upload
-                </Button>
-                        </form>
-                    </div>
-                </div>
+            {(!props.car.file_name && !props.isForm? 
+                   <DriveEtaIcon style={{ fontSize: "200px" }} />
+            :
+            null
+            )}
+                    
+             {props.isForm ? <div>
+                    <form onSubmit={(handleSubmitUploader)} style={{ display: 'flex', flexDirection: "column",maxWidth:"200px",justifyContent:"Center"}}>
+                        <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
+                        <Button
+                            variant="contained"
+                            name="car_type"
+                            color="default"
+                            className={classes.button}
+                            startIcon={<CloudUploadIcon />}
+                            type="submit"
+                        >
+                            Upload
+            </Button>
+                    </form>
+                </div> :null}
+
+                
+      </div> 
+
+
+
+
 
             </>
         )

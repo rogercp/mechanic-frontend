@@ -40,6 +40,7 @@ function CarImgShow(props) {
   return (
     <>
       {/* {(metadata.contentType === 'application/pdf')? <div id="div-pdf" src={`${thisImage}`}></div> :  <img id="reg-image" height="200px" src={`${thisImage}`}></img>} */}
+      
       <img id="reg-image" height="200px" style={{ maxWidth: '100%', maxHeight: '100%' }} src={`${thisImage}`}></img>
       {/* {props.image.file_name} */}
 

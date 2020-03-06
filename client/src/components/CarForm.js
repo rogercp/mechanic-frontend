@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { axiosWithAuth } from '../helpers/index';
+import ImageUploadModal from './ImageUploadModal';
 
 
 import '../styles/navbar.scss'
@@ -40,7 +41,9 @@ function CarForm(props) {
 
 
   const classes = useStyles();
-
+  const [fullopen, setFullOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
+  const [currentCar,setCurrentCar] = useState({})
   const [state, setState] = React.useState({
     car_type: '',
     car_make: '',
@@ -48,6 +51,23 @@ function CarForm(props) {
     car_nickname: '',
     car_year: ''
   });
+
+
+
+  const handlefullOpen = () => {
+    setFullOpen(true);
+  };
+  const handlefullClose = () => {
+    setFullOpen(false);
+  };
+
+  function handleErrorClose() {
+    setErrorOpen(false);
+  }
+
+  function handleErrorOpen() {
+    setErrorOpen(true);
+  }
 
 
   const handleChange = name => event => {
@@ -62,13 +82,15 @@ function CarForm(props) {
     axiosWithAuth()
       .post(`/cars`, state)
       .then(res => {
+        setCurrentCar(res.data)
         props.fetchCars();
-        props.onClose();
+        // props.onClose();
+        handlefullOpen()
       })
       .catch(err => {
       });
   };
-
+ 
 
   return (
     <>
@@ -155,6 +177,16 @@ function CarForm(props) {
         </Button>
 
       </FormControl>
+
+
+      <ImageUploadModal
+        isCar={true}
+        onclose={props.onClose}
+        car={currentCar}
+        open={fullopen}
+        handleClose={handlefullClose}
+        onClose={handlefullClose}
+      />
 
     </>
   );

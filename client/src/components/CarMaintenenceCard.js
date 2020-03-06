@@ -103,50 +103,50 @@ function CarMaintenceCard(props) {
 
 
 
-  const handleDelete2 = (e) => {
-    e.preventDefault();
-    confirmAlert({
-      customUI: ({ onClose }) => {
-        return (
-          <div className='custom-ui'>
-            <h1>Are you sure?</h1>
-            <Button2 className={classes.areUSure} variant="secondary" onClick={onClose}>No</Button2>
-            <Button2
-              className={classes.areUSure}
-              variant="danger"
-              onClick={() => {
-                axiosWithAuth()
-                  .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.carFix.id}`)
-                  .then(res => {
-                    onClose();
-                    props.fetchFixes(props.car.id)
+  // const handleDelete2 = (e) => {
+  //   e.preventDefault();
+  //   confirmAlert({
+  //     customUI: ({ onClose }) => {
+  //       return (
+  //         <div className='custom-ui'>
+  //           <h1>Are you sure?</h1>
+  //           <Button2 className={classes.areUSure} variant="secondary" onClick={onClose}>No</Button2>
+  //           <Button2
+  //             className={classes.areUSure}
+  //             variant="danger"
+  //             onClick={() => {
+  //               axiosWithAuth()
+  //                 .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.carFix.id}`)
+  //                 .then(res => {
+  //                   onClose();
+  //                   props.fetchFixes(props.car.id)
 
-                  })
-                  .catch(err => {
-                    onClose();
-                  });
-              }}
-            >
-              Yes
-                  </Button2>
-          </div>
-        );
-      }
-    });
-  };
+  //                 })
+  //                 .catch(err => {
+  //                   onClose();
+  //                 });
+  //             }}
+  //           >
+  //             Yes
+  //                 </Button2>
+  //         </div>
+  //       );
+  //     }
+  //   });
+  // };
 
 
 
-  // function handleDelete2() {
-  //     axiosWithAuth()
-  //         .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.carFix.id}`)
-  //         .then(res => {
-  //             props.fetchFixes(props.car.id)
-  //         })
-  //         .catch(error => {
-  //             console.error(error);
-  //         });
-  // }
+  function handleDelete2() {
+      axiosWithAuth()
+          .delete(`${process.env.REACT_APP_API_URL}/car_fix/${props.carFix.id}`)
+          .then(res => {
+              props.fetchFixes(props.car.id)
+          })
+          .catch(error => {
+              console.error(error);
+          });
+  }
 
 
   const handlefullOpen = () => {
