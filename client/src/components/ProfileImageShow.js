@@ -85,7 +85,7 @@ function ProfileImageShow(props) {
 
   const username = localStorage.getItem("username");
 
-  if (props.isCirclePic) {
+  if (props.isCirclePic && props.isPostPic) {
     return (
 
       <>
@@ -99,7 +99,7 @@ function ProfileImageShow(props) {
           :
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
             <ImageIcon style={{ fontSize: "50px" }} />
-            {username}
+            {props.post.user_name} 
           </div>}
       </>
 
@@ -107,7 +107,31 @@ function ProfileImageShow(props) {
 
 
     )
-  } else {
+  }if(props.isCirclePic) {
+    
+    return (
+
+      <>
+        {thisImage ?
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div><Avatar alt="Remy Sharp" src={`${thisImage}`} /></div>
+            <div style={{ marginTop: "8px" }}><p style={{ marginLeft: "5px" }}>{props.isPost ? props.post.user_name : username}</p>
+            </div>
+          </div>
+
+          :
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <ImageIcon style={{ fontSize: "50px" }} />
+            {username} 
+          </div>}
+      </>
+
+
+
+
+    )
+
+  }else {
     return (
       <>
 
@@ -117,7 +141,7 @@ function ProfileImageShow(props) {
             {/* {(metadata.contentType === 'application/pdf')? <div id="div-pdf" src={`${thisImage}`}></div> :  <img id="reg-image" height="200px" src={`${thisImage}`}></img>} */}
 
             {/* <button onClick={deleteImage}>del</button> */}
-            
+
             <Image src="holder.js/171x180" rounded id="reg-image" style={{ maxWidth: "100%" }} src={`${thisImage}`} />
             {/* {props.image.file_name} */}
           </div>
