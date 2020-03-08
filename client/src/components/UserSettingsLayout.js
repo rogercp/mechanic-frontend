@@ -111,7 +111,7 @@ function UserSettingsLayout(props) {
         <div style={{ display: "flex",flexDirection:"column"}}>
 
             <div>
-            <p>userName:{username}</p>
+            <p>username:{username}</p>
                 {props.userImage && props.userImage.length > 0 ?
                     (
                         <div style={{ width: "200px" }}>

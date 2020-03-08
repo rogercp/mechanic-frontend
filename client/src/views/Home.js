@@ -65,13 +65,20 @@ function Home(props) {
         </div>
         </div>
 
-        <div className="mobile">
+        <div className="mobile" >
+          
         <div >
         <DashSideNav/> 
         </div>
-        <div style={{margin:"0 auto"}} >
-        <Question/> 
+        <div style={{margin:"0 auto",marginTop:"10px",display:"block"}} >
        
+        {!localStorage.getItem("token") ?
+        <NavLink id="link" style={{width:'50px'}}to="/login" activeClassName="active" data-testid="signup-link">
+          <i>Login</i>
+        </NavLink >
+      : <Question/> 
+      }
+  
         <Posts/>
         </div>
 
