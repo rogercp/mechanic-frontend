@@ -6,6 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { axiosWithAuth } from '../helpers/index';
 import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -59,11 +60,17 @@ function UserSettingsFormModal(props) {
     };
 
 
+
+    const userId = localStorage.getItem('id');
+    const username = localStorage.getItem("username");
+
     const onSubmitHandler = e => {
+        console.log(state,"usernamesatte")
         e.preventDefault();
         axiosWithAuth()
-            .post(``, state)
+            .put(`users/update/${userId}`, state)
             .then(res => {
+                localStorage.setItem("username",`${state.user_name}`);
                 window.location.reload();
             })
             .catch(err => {
@@ -85,13 +92,22 @@ function UserSettingsFormModal(props) {
                     <div style={{ maxWidth: "100px" }}>
                         <TextField
                             id="standard-basic"
-                            name="car_make"
+                            name="user_name"
+                            defaultValue = {username}
                             className={classes.textField}
                             label="username"
                             margin="normal"
-                            value={state.car_make}
-                            onChange={handleChange('car_make')}
+                            value={state.user_name}
+                            onChange={handleChange('user_name')}
                         /></div>
+  <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={onSubmitHandler}
+        >
+          submit
+      </Button>
 
 
                 </div>

@@ -15,6 +15,7 @@ import ImageIcon from '@material-ui/icons/Image';
 import { connect } from 'react-redux';
 import ProfileImageShow from './ProfileImageShow';
 import { fetchProfileImage } from "../store/actions/settingsActions";
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 const useStyles = makeStyles(theme => ({
@@ -107,10 +108,10 @@ function UserSettingsLayout(props) {
 
     return (
 
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <div style={{ display: "flex",flexDirection:"column"}}>
 
             <div>
-
+            <p>userName:{username}</p>
                 {props.userImage && props.userImage.length > 0 ?
                     (
                         <div style={{ width: "200px" }}>
@@ -122,7 +123,7 @@ function UserSettingsLayout(props) {
                     : <ImageIcon style={{ fontSize: "200px" }} />}
 
 
-                <p>userName:{username}</p></div>
+               </div>
 
             <div style={{ marginTop: "15px" }}>
                 <UserSettingsFormModal
@@ -134,18 +135,21 @@ function UserSettingsLayout(props) {
                     redirectText={"cars"}
                 />
 
+
+                <Tooltip title="Edit Info" placement="right">
                 <Fab color="none" aria-label="add" style={{ color: "darkcyan", outline: '0' }} className={classes.margin} >
                     <EditIcon
 
                         onClick={handleOpen}
                     />
                 </Fab>
-                <p>Edit Info</p>
-
+                </Tooltip>
+                <Tooltip title="Delete Account" placement="right">
                 <Button className={classes.margin} onClick={submit} variant="danger">
-                    Delete
+                    Delete Account
             </Button>
-                <p>Delete Account</p>
+            </Tooltip>
+            
             </div>
 
 
