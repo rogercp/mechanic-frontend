@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import ProfileImageShow from './ProfileImageShow';
 import { fetchProfileImage } from "../store/actions/settingsActions";
 import ImageIcon from '@material-ui/icons/Image';
+import { axiosWithAuth } from '../helpers/index';
 
 
 import '../styles/navbar.scss'
@@ -40,6 +41,29 @@ function NavBar(props) {
     right: false,
     isCirclePic: true
   });
+
+
+ 
+
+    function getUserNameOnLoad(){
+      const  userId = localStorage.getItem('id')
+      axiosWithAuth()
+      .get(`/users/username/${userId}`)
+      .then(res =>{
+        console.log(res.data)
+        localStorage.setItem('username',res.data)    
+        
+      })
+        .catch(err => {
+                  console.log("error")
+         });
+    
+
+    }
+
+
+
+
 
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -99,7 +123,7 @@ function NavBar(props) {
   const username = localStorage.getItem("username");
 
   useEffect(() => {
-
+    getUserNameOnLoad()
     props.fetchProfileImage(userId)
 
   }, []);

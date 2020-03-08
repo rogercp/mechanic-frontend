@@ -120,7 +120,9 @@ function UserSettingsLayout(props) {
                             })}
                         </div>
                     )
-                    : <ImageIcon style={{ fontSize: "200px" }} />}
+                    : 
+                   null
+                    }
 
 
                </div>

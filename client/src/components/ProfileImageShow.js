@@ -146,8 +146,7 @@ function ProfileImageShow(props) {
             {/* {props.image.file_name} */}
           </div>
           : <div>
-            <ImageIcon style={{ fontSize: "300px" }} />
-            {username}
+            <ImageIcon style={{ fontSize: "200px" }} />
           </div>}
 
       </>

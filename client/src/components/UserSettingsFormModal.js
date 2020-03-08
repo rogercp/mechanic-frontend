@@ -3,34 +3,34 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
 import { axiosWithAuth } from '../helpers/index';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
 
 
 
 const useStyles = makeStyles(theme => ({
-    dialog: {
-        margin: '0 auto',
-    },
-    paper: {
-        backgroundColor: theme.palette.background.paper,
-        border: '1px solid #000',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2),
-        outline: 'none',
+    formControl: {
+        margin: theme.spacing(1),
+        width: 270,
+        height:600
+      },
+      selectEmpty: {
+        marginTop: theme.spacing(2),
+      },
+      container: {
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    title: {
-        paddingBottom: '10px',
-    },
-    body: {
-        paddingBottom: '20px',
-    },
+        flexWrap: 'wrap',
+      },
+      textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: 200,
+      },
+      button: {
+        margin: theme.spacing(1),
+      },
 }))
 
 
@@ -40,7 +40,7 @@ function UserSettingsFormModal(props) {
     const classes = useStyles();
     const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
     const [state, setState] = React.useState({
-        user_name: '',
+        user_name: localStorage.getItem("username"),
 
     });
 
@@ -85,21 +85,20 @@ function UserSettingsFormModal(props) {
 
 
             <Dialog open={open} onClose={handleClose} className={classes.dialog}>
-                <div >
-
+                 <FormControl className={classes.formControl} style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}> 
                     <ProfileImageUpload onClose={props.onClose} />
 
-                    <div style={{ maxWidth: "100px" }}>
+                 
                         <TextField
                             id="standard-basic"
                             name="user_name"
-                            defaultValue = {username}
+                            defaultValue = {state.user_name}
                             className={classes.textField}
                             label="username"
                             margin="normal"
                             value={state.user_name}
                             onChange={handleChange('user_name')}
-                        /></div>
+                        />
   <Button
           variant="contained"
           color="primary"
@@ -110,7 +109,7 @@ function UserSettingsFormModal(props) {
       </Button>
 
 
-                </div>
+                </FormControl>
             </Dialog>
 
 
