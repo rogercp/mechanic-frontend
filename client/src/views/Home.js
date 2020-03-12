@@ -14,22 +14,31 @@ import  '../styles/home.scss'
 
 function Home(props) {
 
-    useEffect(() => {
+    // useEffect(() => {
 
-       const  userId = localStorage.getItem('id')
-        const username = localStorage.getItem('username')
-        axiosWithAuth()
-        .put(`/users/update/${userId}`, ({
-                    user_name: username,
-                })).then(
-                    console.log("success")
-                )
-                .catch(err => {
-                    console.log("error")
-                });
+    //   getUserNameOnLoad()
 
-      }, []);
+    //   }, []);
   
+
+    //   function getUserNameOnLoad(){
+    //     const  userId = localStorage.getItem('id')
+    //     axiosWithAuth()
+    //     .get(`/users/username/${userId}`)
+    //     .then(res =>{
+    //       console.log(res.data)
+    //       localStorage.setItem('username',res.data)    
+          
+    //     })
+    //       .catch(err => {
+    //                 console.log("error")
+    //        });
+      
+
+    //   }
+
+
+
 
     return (
 
@@ -56,13 +65,20 @@ function Home(props) {
         </div>
         </div>
 
-        <div className="mobile">
+        <div className="mobile" >
+          
         <div >
         <DashSideNav/> 
         </div>
-        <div style={{margin:"0 auto"}} >
-        <Question/> 
+        <div style={{margin:"0 auto",marginTop:"10px",display:"block"}} >
        
+        {!localStorage.getItem("token") ?
+        <NavLink id="link" style={{width:'50px'}}to="/login" activeClassName="active" data-testid="signup-link">
+          <i>Login</i>
+        </NavLink >
+      : <Question/> 
+      }
+  
         <Posts/>
         </div>
 

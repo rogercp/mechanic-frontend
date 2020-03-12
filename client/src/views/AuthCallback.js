@@ -14,13 +14,12 @@ function AuthCallback(props) {
             let token = await user.getIdToken();
             localStorage.setItem("token", token);
 
+
             axios
                 .post(`${process.env.REACT_APP_API_URL}/users/auth`, {
                     user: user,
                     token: token
-                }).then(
-                    localStorage.setItem("username", user.displayName.substr(0,user.displayName.indexOf(' ')))
-                )
+                })
                 .then(res => {
                    
                     localStorage.setItem("id", res.data.id);

@@ -9,6 +9,9 @@ import EditIcon from '@material-ui/icons/Add';
 import PostAddModal from './PostAddModal';
 import { browserHistory } from 'react-router';
 import Tooltip from '@material-ui/core/Tooltip';
+import { confirmAlert } from 'react-confirm-alert';
+import { axiosWithAuth } from '../helpers/index';
+import { Button } from 'react-bootstrap';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -54,6 +57,23 @@ function Question(props) {
     if (localStorage.getItem("token") === null) {
       props.history.push('/login')
     }
+    if(localStorage.getItem("username") === null){
+
+
+      confirmAlert({
+        customUI: ({ onClose }) => {
+            return (
+                <div className='custom-ui' >
+
+                  <h3>You need a username to Post. Click the edit icon to create one.</h3>
+                    <Button className={classes.margin} variant="secondary" onClick={onClose}>Close</Button>
+
+                </div>
+            );
+        }
+    });
+      props.history.push('/settings')
+    }
     setOpen(true);
 
   }
@@ -70,13 +90,16 @@ function Question(props) {
   }
 
 
+
+
+
   return (
     <>
    
       <Tooltip title="Ask Question" placement="right">
         <Fab color="none" aria-label="add" style={{ color: "darkcyan", outline: '0' }} className={classes.margin}>
           <EditIcon
-            onClick={handleOpen}
+          onClick={handleOpen} 
           />
 
         </Fab>

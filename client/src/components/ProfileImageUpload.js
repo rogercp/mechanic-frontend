@@ -84,7 +84,7 @@ function ProfileImageUpload(props) {
             <div style={{ height: "200px" }}>
                 {(props.carFix ? <p>no image</p> : null)}
                 <div style={{ display: 'flex', flexDirection: "column" }}>
-                    <form onSubmit={handleSubmitUploaderProfilePicture}>
+                    <form onSubmit={handleSubmitUploaderProfilePicture} style={{ display: 'flex', flexDirection: "column",maxWidth:"200px",justifyContent:"Center"}}>
                         <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
                         <Button
                             variant="contained"

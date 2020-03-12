@@ -75,11 +75,11 @@ function Search(props) {
 
 
         <Form.Control
+          onSubmit={(e) => { props.searchPostsHandler(state.searchTerm) }}
           size="md"
           type="text"
           placeholder="Search"
           className={classes.margin}
-
           name="searchTerm"
           label="searchTerm"
           margin="normal"
