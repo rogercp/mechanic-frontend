@@ -21,7 +21,11 @@ import CarFixImgUpload from './CarFixImgUpload';
 import { fetchFixes } from "../store/actions/carMaintenenceActions";
 import { connect } from 'react-redux';
 import { Button as Button2 } from 'react-bootstrap';
-
+import Typography from '@material-ui/core/Typography';
+import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
+import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import { withStyles } from '@material-ui/core/styles';
 
 import '../styles/fullscreenmodal.scss'
 
@@ -90,6 +94,10 @@ const useStyles = makeStyles(theme => ({
       boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
     },
   },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
 
 }))
 
@@ -100,6 +108,12 @@ function CarMaintenceCard(props) {
   const classes = useStyles();
   const [fullopen, setFullOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
+
+  const [expanded, setExpanded] = React.useState('panel1');
+
+  const handleChange = panel => (event, newExpanded) => {
+    setExpanded(newExpanded ? panel : false);
+  };
 
 
 
@@ -166,23 +180,66 @@ function CarMaintenceCard(props) {
 
 
 
+const ExpansionPanel = withStyles({
+  root: {
+    border: '1px solid rgba(0, 0, 0, .125)',
+    boxShadow: 'none',
+    '&:not(:last-child)': {
+      borderBottom: 0,
+    },
+    '&:before': {
+      display: 'none',
+    },
+    '&$expanded': {
+      margin: 'auto',
+    },
+  },
+  expanded: {},
+})(MuiExpansionPanel);
+
+
+
+const ExpansionPanelSummary = withStyles({
+  root: {
+    backgroundColor: 'rgba(0, 0, 0, .03)',
+    borderBottom: '1px solid rgba(0, 0, 0, .125)',
+    marginBottom: -1,
+    minHeight: 56,
+    '&$expanded': {
+      minHeight: 56,
+    },
+  },
+  content: {
+    '&$expanded': {
+      margin: '12px 0',
+    },
+  },
+  expanded: {},
+})(MuiExpansionPanelSummary);
+
+const ExpansionPanelDetails = withStyles(theme => ({
+  root: {
+    padding: theme.spacing(2),
+  },
+}))(MuiExpansionPanelDetails);
+
+
+
+
   return (
 
-    <ExpansionPanel >
+    
 
-      <ExpansionPanelSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls="panel1a-content"
-        id="panel1a-header"
-      >
+<div>
+      <ExpansionPanel square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+        <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
         <p>{props.carFix.fix_date}</p>
         <p>{props.carFix.fix}</p>
         {props.carFix.fix_not_maintenence ? <BuildIcon /> : <AlarmOnIcon />}
-      </ExpansionPanelSummary>
-
-      <ExpansionPanelDetails id="panelbody">
-
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "spaceBetween" }}>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "spaceBetween" }}>
           <div style={{ width: "70%", textAlign: "left !important" }}>
             <p style={{ textAlign: "left!important" }}>${props.carFix.fix_price}</p>
             <p>{props.carFix.fix_description}</p>
@@ -207,10 +264,60 @@ function CarMaintenceCard(props) {
 
           </Toolbar>
         </div>
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
 
-      </ExpansionPanelDetails>
+    </div>
 
-    </ExpansionPanel>
+
+
+
+
+    // <ExpansionPanel >
+
+    //   <ExpansionPanelSummary
+    //     expandIcon={<ExpandMoreIcon />}
+    //     aria-controls="panel1a-content"
+    //     id="panel1a-header"
+    //   >
+        
+    //     <p>{props.carFix.fix_date}</p>
+    //     <p>{props.carFix.fix}</p>
+    //     {props.carFix.fix_not_maintenence ? <BuildIcon /> : <AlarmOnIcon />}
+    //   </ExpansionPanelSummary>
+
+    //   <ExpansionPanelDetails >
+    //   <Typography>
+    //     <div style={{ display: "flex", flexDirection: "column", justifyContent: "spaceBetween" }}>
+    //       <div style={{ width: "70%", textAlign: "left !important" }}>
+    //         <p style={{ textAlign: "left!important" }}>${props.carFix.fix_price}</p>
+    //         <p>{props.carFix.fix_description}</p>
+
+    //       </div>
+
+
+    //       <CarFixImgUpload carFix={props.carFix} />
+
+    //       <Toolbar style={{ display: "flex", flexDirection: "row", alignItems: "spaceBetween", justifyContent: "spaceBetween" }} >
+
+    //         <Button
+    //           id="edit"
+    //         >
+    //           <EditIcon />
+    //         </Button>
+
+
+    //         <IconButton id="del" aria-label="delete" className={classes.margin} onClick={handleDelete2}>
+    //           <DeleteIcon />
+    //         </IconButton>
+
+    //       </Toolbar>
+    //     </div>
+    //     </Typography>
+    //   </ExpansionPanelDetails>
+
+    // </ExpansionPanel>
 
 
 
