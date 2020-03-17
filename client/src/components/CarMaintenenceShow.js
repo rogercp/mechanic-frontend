@@ -98,6 +98,7 @@ function CarMaintenceShow(props) {
   }, []);
 
 
+  console.log(props.myFixes,"carFixes")
 
 
   return (
