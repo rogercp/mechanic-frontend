@@ -17,7 +17,6 @@ import BuildIcon from '@material-ui/icons/Build';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 import ImageCarousel from './ImageCarousel';
 import DescriptionIcon from '@material-ui/icons/Description';
-import CarFixImgUpload from './CarFixImgUpload';
 import { fetchFixes } from "../store/actions/carMaintenenceActions";
 import { connect } from 'react-redux';
 import { Button as Button2 } from 'react-bootstrap';
@@ -26,6 +25,7 @@ import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import { withStyles } from '@material-ui/core/styles';
+import MaintenceCardEditModal from './MaintenceCardEditModal'
 
 import '../styles/fullscreenmodal.scss'
 
@@ -156,6 +156,24 @@ function CarMaintenceCard(props) {
   const [errorOpen, setErrorOpen] = useState(false);
 
   const [expanded, setExpanded] = React.useState('panel1');
+  const [open, setOpen] = useState(false);
+ 
+
+
+
+  function handleOpen() {
+      setOpen(true);
+  }
+  function handleErrorOpen() {
+      setErrorOpen(true);
+  }
+  function handleClose() {
+      setOpen(false);
+  }
+  function handleErrorClose() {
+      setErrorOpen(false);
+  }
+
 
   const handleChange = panel => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -163,9 +181,8 @@ function CarMaintenceCard(props) {
 
 
 
-  // const handleDelete2 = (e) => {
-  //   e.preventDefault();
-  //   confirmAlert({
+  // const  handleDelete2 = () => {
+  //    confirmAlert({
   //     customUI: ({ onClose }) => {
   //       return (
   //         <div className='custom-ui'>
@@ -247,14 +264,16 @@ function CarMaintenceCard(props) {
           </div>
 
 
-          <CarFixImgUpload carFix={props.carFix} />
+         
 
           <Toolbar style={{ display: "flex", flexDirection: "row", alignItems: "spaceBetween", justifyContent: "spaceBetween" }} >
 
             <Button
               id="edit"
             >
-              <EditIcon />
+              <EditIcon
+              onClick={handleOpen}
+              />
             </Button>
 
 
@@ -268,6 +287,16 @@ function CarMaintenceCard(props) {
         </ExpansionPanelDetails>
       </ExpansionPanel>
 
+
+      <MaintenceCardEditModal
+                    carFix={props.carFix}
+                    open={open}
+                    onClose={handleClose}
+                    titleText={"User Info"}
+                    bodyText={""}
+                    redirect={"/cars"}
+                    redirectText={"cars"}
+                />
     </div>
 
 

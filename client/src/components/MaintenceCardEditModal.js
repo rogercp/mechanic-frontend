@@ -7,6 +7,7 @@ import { axiosWithAuth } from '../helpers/index';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
+import CarFixImgUpload from './CarFixImgUpload';
 
 
 
@@ -34,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-function UserSettingsFormModal(props) {
+function MaintenceCardEditModal(props) {
 
 
     const classes = useStyles();
@@ -88,30 +89,12 @@ function UserSettingsFormModal(props) {
                 
                  <FormControl className={classes.formControl} style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}> 
                  <div >
-                 <h2>Change Image</h2>
-                    <ProfileImageUpload onClose={props.onClose} />
+                 <CarFixImgUpload carFix={props.carFix} />
                  </div>
                 
-<div> <TextField
-                            id="standard-basic"
-                            name="user_name"
-                            defaultValue = {state.user_name}
-                            className={classes.textField}
-                            label="username"
-                            margin="normal"
-                            value={state.user_name}
-                            onChange={handleChange('user_name')}
-                        />
-  <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          onClick={onSubmitHandler}
-        >
-          submit
-      </Button>
-</div>
-                 
+                    <div> 
+                    </div>
+                                    
                        
 
                 </FormControl>
@@ -122,4 +105,4 @@ function UserSettingsFormModal(props) {
     );
 };
 
-export default UserSettingsFormModal;
+export default MaintenceCardEditModal;
