@@ -78,8 +78,7 @@ function MaintenceCardEditModal(props) {
             });
     };
 
-
-
+console.log(props.carFix,"carfix")
 
     return (
         <>
@@ -93,6 +92,30 @@ function MaintenceCardEditModal(props) {
                  </div>
                 
                     <div> 
+
+                        <p>{props.carFix.fix_description}:description</p>
+                        <p>{props.carFix.fix_price}:price</p>
+                      
+                    <TextField
+                            id="standard-basic"
+                            name="user_name"
+                            defaultValue = {state.user_name}
+                            className={classes.textField}
+                            label="username"
+                            margin="normal"
+                            value={state.user_name}
+                            onChange={handleChange('user_name')}
+                        />
+                    <Button
+                            variant="contained"
+                            color="primary"
+                            className={classes.button}
+                            onClick={onSubmitHandler}
+                            >
+                            submit
+                        </Button>
+
+
                     </div>
                                     
                        
