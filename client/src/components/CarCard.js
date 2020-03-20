@@ -21,7 +21,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReactCardFlip from 'react-card-flip';
 import Tooltip from '@material-ui/core/Tooltip';
-
+import CarCardEditModal from './CarCardEditModal';
 
 import '../styles/carshow.scss'
 
@@ -104,7 +104,23 @@ const MediatorCard = (props) => {
   const [modalStyle] = useState(getModalStyle);
   const [fullopen, setFullOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
+
+  function handleOpen() {
+    setOpen(true);
+}
+function handleErrorOpen() {
+    setErrorOpen(true);
+}
+function handleClose() {
+    setOpen(false);
+}
+function handleErrorClose() {
+    setErrorOpen(false);
+}
+
+  
   const [flip, setFlip] = useState({
     isFlipped: false
   });
@@ -229,7 +245,7 @@ const MediatorCard = (props) => {
                 <Button
                   id="edit"
                 >
-                  <EditIcon />
+                  <EditIcon  onClick={handleOpen}/>
                 </Button>
 
 
@@ -251,7 +267,18 @@ const MediatorCard = (props) => {
         onClose={handlefullClose}
         car={props.car}
       />
+
+      <CarCardEditModal
+                    car={props.car}
+                    open={open}
+                    onClose={handleClose}
+                    titleText={"User Info"}
+                    bodyText={""}
+                    redirect={"/cars"}
+                    redirectText={"cars"}
+                />
 </div>
+        
     </>
   );
 };

@@ -123,6 +123,7 @@ function CarFixImgUpload(props) {
         return (
             <>
             <div style={{ height: "200px" }}>
+                <h4>Add Image</h4>
                 <div style={{ display: 'flex', flexDirection: "column" }}>
                     <form onSubmit={handleSubmitUploaderFixDocuments} style={{ display: 'flex', flexDirection: "column",maxWidth:"200px",justifyContent:"Center"}}>
                             <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
