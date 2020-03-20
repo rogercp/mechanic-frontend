@@ -25,7 +25,9 @@ import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import { withStyles } from '@material-ui/core/styles';
-import MaintenceCardEditModal from './MaintenceCardEditModal'
+import MaintenceCardEditModal from './MaintenceCardEditModal';
+import CarFixImgUpload from './CarFixImgUpload';
+
 
 import '../styles/fullscreenmodal.scss'
 
@@ -261,6 +263,7 @@ function CarMaintenceCard(props) {
             <p style={{ textAlign: "left!important" }}>${props.carFix.fix_price}</p>
             <p>{props.carFix.fix_description}</p>
 
+            <CarFixImgUpload carFix={props.carFix} isCarousel={true} />
           </div>
 
 
