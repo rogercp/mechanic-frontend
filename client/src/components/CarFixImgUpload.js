@@ -12,6 +12,7 @@ import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import ImageCarousel from './ImageCarousel';
 import DescriptionIcon from '@material-ui/icons/Description';
 
+
 const useStyles = makeStyles(theme => ({
     button: {
         margin: theme.spacing(1),
@@ -102,10 +103,9 @@ function CarFixImgUpload(props) {
             style={{ color: "darkcyan", outline: '0' }}
             onClick={handlefullOpen}
         >
-    
-            <DescriptionIcon />
+        Images
         </Button>
-    
+   
         <ImageCarousel
             open={fullopen}
             handleClose={handlefullClose}
