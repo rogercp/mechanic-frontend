@@ -85,11 +85,14 @@ function UserSettingsFormModal(props) {
 
 
             <Dialog open={open} onClose={handleClose} className={classes.dialog}>
+                
                  <FormControl className={classes.formControl} style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}> 
+                 <div >
+                 <h2>Change Image</h2>
                     <ProfileImageUpload onClose={props.onClose} />
-
-                 
-                        <TextField
+                 </div>
+                
+<div> <TextField
                             id="standard-basic"
                             name="user_name"
                             defaultValue = {state.user_name}
@@ -107,7 +110,9 @@ function UserSettingsFormModal(props) {
         >
           submit
       </Button>
-
+</div>
+                 
+                       
 
                 </FormControl>
             </Dialog>
