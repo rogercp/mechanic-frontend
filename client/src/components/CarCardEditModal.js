@@ -40,11 +40,6 @@ function CarCardEditModal(props) {
 
     const classes = useStyles();
     const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
-    // const [state, setState] = React.useState({
-    //     user_name: localStorage.getItem("username"),
-
-    // });
-
 
     const [state, setState] = React.useState({
         car_make: props.car.car_make,
@@ -53,14 +48,6 @@ function CarCardEditModal(props) {
         car_year: props.car.car_year,
       });
      
-
-console.log(props.car,"carcarscarscars")
-
-// send edit
-
-
-
-
 
 
     function handleClose() {
@@ -80,16 +67,13 @@ console.log(props.car,"carcarscarscars")
 
 
 
-    const userId = localStorage.getItem('id');
-    const username = localStorage.getItem("username");
 
     const onSubmitHandler = e => {
         console.log(state,"usernamesatte")
         e.preventDefault();
         axiosWithAuth()
-            .put(`users/update/${userId}`, state)
+            .put(`cars/update/${props.car.id}`, state)
             .then(res => {
-                localStorage.setItem("username",`${state.user_name}`);
                 window.location.reload();
             })
             .catch(err => {

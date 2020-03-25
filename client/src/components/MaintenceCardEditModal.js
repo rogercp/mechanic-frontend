@@ -89,14 +89,13 @@ function MaintenceCardEditModal(props) {
     const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
     const [state, setState] = React.useState({
        
-        fix_not_maintenence: props.carFix.fix_not_maintenence,
+        // fix_not_maintenence: props.carFix.fix_not_maintenence,
         fix: props.carFix.fix,
         fix_price: props.carFix.fix_price,
         fix_description: props.carFix.fix_description,
         fix_date: props.carFix.fix_date
     });
 
-    console.log(props.carFix,"carfixcardiz")
 
     function handleClose() {
         onClose();
@@ -122,11 +121,16 @@ function MaintenceCardEditModal(props) {
 
 
 
-    const userId = localStorage.getItem('id');
-    const username = localStorage.getItem("username");
-
     const onSubmitHandler = e => {
-       
+        console.log(state,"usernamesatte")
+        e.preventDefault();
+        axiosWithAuth()
+            .put(`car_fix/update/${props.carFix.id}`, state)
+            .then(res => {
+                window.location.reload();
+            })
+            .catch(err => {
+            });
     };
 
     return (
@@ -147,6 +151,7 @@ function MaintenceCardEditModal(props) {
               color="default"
               inputProps={{ 'aria-label': 'checkbox with default color' }}
             /> */}
+            <h3>Change Fields</h3>
             <TextField
               id="outlined-textarea"
               onChange={handleChange('fix')}

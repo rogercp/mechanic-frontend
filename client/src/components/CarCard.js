@@ -232,7 +232,7 @@ function handleErrorClose() {
         </Card>
 
 
-        <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "325px", maxWidth: "350px" }}>
+        <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "325px", maxWidth: "350px", display: "flex", flexDirection: "column",justifyContent:"center",alignItems:"center"}}>
 
 
           <div className={classes.top}>
@@ -241,16 +241,16 @@ function handleErrorClose() {
 
               <p className="case-label">Car Type: {props.car.car_type}</p>
               <p className="case-label">{props.car.car_year} {props.car.car_make} {props.car.car_model} </p>
-              <Toolbar style={{ display: "flex", flexDirection: "row", alignItems: "spaceBetween", justifyContent: "spaceBetween" }} >
+              <Toolbar style={{ display: "flex", flexDirection: "row", alignItems: "spaceBetween", justifyContent: "spaceBetween"}} >
                 <Button
                   id="edit"
                 >
-                  <EditIcon  onClick={handleOpen}/>
+                      <Tooltip title="Edit"><EditIcon  onClick={handleOpen}/></Tooltip>  
                 </Button>
 
 
                 <IconButton id="del" aria-label="delete" className={classes.margin} onClick={handleDelete}>
-                  <DeleteIcon />
+               <DeleteIcon />
                 </IconButton>
 
               </Toolbar>
