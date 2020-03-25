@@ -8,8 +8,55 @@ import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import CarFixImgUpload from './CarFixImgUpload';
+import Switch from '@material-ui/core/Switch';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+import clsx from 'clsx';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { withStyles } from '@material-ui/core/styles';
+import { fetchFixes } from "../store/actions/carMaintenenceActions";
+import { connect } from 'react-redux';
+import ImageUploadModal from './ImageUploadModal';
 
 
+
+const AntSwitch = withStyles(theme => ({
+    root: {
+      width: 28,
+      height: 16,
+      padding: 0,
+      display: 'flex',
+    },
+    switchBase: {
+      padding: 2,
+      color: theme.palette.grey[500],
+      '&$checked': {
+        transform: 'translateX(12px)',
+        color: theme.palette.common.white,
+        '& + $track': {
+          opacity: 1,
+          backgroundColor: theme.palette.primary.main,
+          borderColor: theme.palette.primary.main,
+        },
+      },
+    },
+    thumb: {
+      width: 12,
+      height: 12,
+      boxShadow: 'none',
+    },
+    track: {
+      border: `1px solid ${theme.palette.grey[500]}`,
+      borderRadius: 16 / 2,
+      opacity: 1,
+      backgroundColor: theme.palette.common.white,
+    },
+    checked: {},
+  }))(Switch);
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -41,9 +88,15 @@ function MaintenceCardEditModal(props) {
     const classes = useStyles();
     const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
     const [state, setState] = React.useState({
-        user_name: localStorage.getItem("username"),
-
+       
+        fix_not_maintenence: props.carFix.fix_not_maintenence,
+        fix: props.carFix.fix,
+        fix_price: props.carFix.fix_price,
+        fix_description: props.carFix.fix_description,
+        fix_date: props.carFix.fix_date
     });
+
+    console.log(props.carFix,"carfixcardiz")
 
     function handleClose() {
         onClose();
@@ -53,12 +106,19 @@ function MaintenceCardEditModal(props) {
         props.history.push(redirect);
     }
 
-    const handleChange = name => event => {
-        setState({
-            ...state,
-            [name]: event.target.value,
-        });
-    };
+    const handleChange2 = name => event => {
+    setState({ ...state, [name]: event.target.checked });
+  };
+
+
+  const handleChange = name => event => {
+    setState({ ...state, [name]: event.target.value });
+  };
+
+
+  const handleDateChange = date => {
+    setState({ fix_date: date })
+  };
 
 
 
@@ -66,19 +126,8 @@ function MaintenceCardEditModal(props) {
     const username = localStorage.getItem("username");
 
     const onSubmitHandler = e => {
-        console.log(state,"usernamesatte")
-        e.preventDefault();
-        axiosWithAuth()
-            .put(`users/update/${userId}`, state)
-            .then(res => {
-                localStorage.setItem("username",`${state.user_name}`);
-                window.location.reload();
-            })
-            .catch(err => {
-            });
+       
     };
-
-console.log(props.carFix,"carfix")
 
     return (
         <>
@@ -90,33 +139,95 @@ console.log(props.carFix,"carfix")
                  <div >
                  <CarFixImgUpload carFix={props.carFix} />
                  </div>
-                
-                    <div> 
+            
+                 <p>{state.fix_not_maintenence === false ? "Maintence" : "Repair"}</p>
+            <AntSwitch
+              onChange={handleChange2('fix_not_maintenence')}
+              defaultValue = {state.fix_not_maintenence}
+            //   not working
 
-                        <p>{props.carFix.fix_description}:description</p>
-                        <p>{props.carFix.fix_price}:price</p>
-                      
-                    <TextField
-                            id="standard-basic"
-                            name="user_name"
-                            defaultValue = {state.user_name}
-                            className={classes.textField}
-                            label="username"
-                            margin="normal"
-                            value={state.user_name}
-                            onChange={handleChange('user_name')}
-                        />
-                    <Button
-                            variant="contained"
-                            color="primary"
-                            className={classes.button}
-                            onClick={onSubmitHandler}
-                            >
-                            submit
-                        </Button>
+              value="fix_not_maintenence"
+              color="default"
+              inputProps={{ 'aria-label': 'checkbox with default color' }}
+            />
+            <TextField
+              id="outlined-textarea"
+              onChange={handleChange('fix')}
+              name="fix"
+              defaultValue = {state.fix}
+
+              value={state.fix}
+              placeholder={state.fix_not_maintenence === false ? "Maintence" : "Repair"}
+              multiline
+              className={classes.textField}
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              id="outlined-multiline-static"
+              multiline
+              name="fix_description"
+              defaultValue = {state.fix_description}
+
+              value={state.fix_description}
+              onChange={handleChange('fix_description')}
+              rows="4"
+              placeholder="Description"
+              className={classes.textField}
+              margin="normal"
+              variant="outlined"
+            />
 
 
-                    </div>
+            <TextField
+              label="Total Cost"
+              defaultValue = {state.fix_price}
+
+              value={state.fix_price}
+              name="fix_price"
+              id="standard-start-adornment"
+              onChange={handleChange('fix_price')}
+              className={clsx(classes.margin, classes.textField)}
+              InputProps={{
+                startAdornment: <InputAdornment position="start">$</InputAdornment>,
+              }}
+            />
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+              <KeyboardDatePicker
+                margin="normal"
+                id="date-picker-dialog"
+                label="Task Completed"
+                format="MM/dd/yyyy"
+                defaultValue = {state.fix_date}
+
+                value={state.fix_date}
+                onChange={handleDateChange}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
+              />
+            </MuiPickersUtilsProvider>
+
+            {/* <Button
+              variant="contained"
+              color="default"
+              className={classes.button}
+              startIcon={<CloudUploadIcon />}
+            >
+              documents
+        </Button> */}
+
+
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={onSubmitHandler}
+            >
+              Enter
+        </Button>
                                     
                        
 
