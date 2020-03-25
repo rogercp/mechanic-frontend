@@ -140,16 +140,13 @@ function MaintenceCardEditModal(props) {
                  <CarFixImgUpload carFix={props.carFix} />
                  </div>
             
-                 <p>{state.fix_not_maintenence === false ? "Maintence" : "Repair"}</p>
+                 {/* <p>{state.fix_not_maintenence === false ? "Maintence" : "Repair"}</p>
             <AntSwitch
               onChange={handleChange2('fix_not_maintenence')}
-              defaultValue = {state.fix_not_maintenence}
-            //   not working
-
               value="fix_not_maintenence"
               color="default"
               inputProps={{ 'aria-label': 'checkbox with default color' }}
-            />
+            /> */}
             <TextField
               id="outlined-textarea"
               onChange={handleChange('fix')}
