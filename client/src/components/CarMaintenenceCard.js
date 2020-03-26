@@ -256,7 +256,7 @@ function CarMaintenceCard(props) {
         <p>{props.carFix.fix}</p>
         {props.carFix.fix_not_maintenence ? <BuildIcon /> : <AlarmOnIcon />}
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        <ExpansionPanelDetails  style={{ display: "flex", flexDirection: "column",justifyContent:"center",alignItems:"center"}} >
           <Typography>
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "spaceBetween" }}>
           <div style={{ width: "70%", textAlign: "left !important" }}>

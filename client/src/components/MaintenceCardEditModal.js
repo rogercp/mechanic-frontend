@@ -94,6 +94,7 @@ function MaintenceCardEditModal(props) {
         fix_price: props.carFix.fix_price,
         fix_description: props.carFix.fix_description,
         fix_date: props.carFix.fix_date
+        
     });
 
 
@@ -120,9 +121,9 @@ function MaintenceCardEditModal(props) {
   };
 
 
-
+  console.log(state,"carfixedits")
     const onSubmitHandler = e => {
-        console.log(state,"usernamesatte")
+        
         e.preventDefault();
         axiosWithAuth()
             .put(`car_fix/update/${props.carFix.id}`, state)
