@@ -21,9 +21,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import PostImageUpload from './PostImageUpload'
 
 
-
 import '../styles/fullscreenmodal.scss'
-import PostImageUpload from "./PostImageUpload";
 
 
 

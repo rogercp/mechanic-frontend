@@ -53,7 +53,7 @@ function PostImageUpload(props) {
 
     async function fetchFixDocuments() {
         let fixImages = await axiosWithAuth().get(`/car_fix/${props.carFix.id}/car_fix_images`)
-        setCarFixImages(fixImages.data);
+        setPostImages(fixImages.data);
         return fixImages;
     }
 
@@ -109,7 +109,7 @@ function PostImageUpload(props) {
             open={fullopen}
             handleClose={handlefullClose}
             onClose={handlefullClose}
-            carFixImages={carFixImages}
+            postImages={postImages}
             carFix={props.carFix}
         />
     
