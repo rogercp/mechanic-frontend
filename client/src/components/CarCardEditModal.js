@@ -40,10 +40,15 @@ function CarCardEditModal(props) {
 
     const classes = useStyles();
     const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
-    const [state, setState] = React.useState({
-        user_name: localStorage.getItem("username"),
 
-    });
+    const [state, setState] = React.useState({
+        car_make: props.car.car_make,
+        car_model: props.car.car_model,
+        car_nickname: props.car.car_nickname,
+        car_year: props.car.car_year,
+      });
+     
+
 
     function handleClose() {
         onClose();
@@ -62,16 +67,13 @@ function CarCardEditModal(props) {
 
 
 
-    const userId = localStorage.getItem('id');
-    const username = localStorage.getItem("username");
 
     const onSubmitHandler = e => {
         console.log(state,"usernamesatte")
         e.preventDefault();
         axiosWithAuth()
-            .put(`users/update/${userId}`, state)
+            .put(`cars/update/${props.car.id}`, state)
             .then(res => {
-                localStorage.setItem("username",`${state.user_name}`);
                 window.location.reload();
             })
             .catch(err => {
@@ -92,28 +94,71 @@ console.log(props.carFix,"carfix")
                  </div>
                 
                     <div> 
-{/* 
-                        <p>{props.car}:description</p>
-                        <p>{props.car}:price</p> */}
-                      
-                    <TextField
-                            id="standard-basic"
-                            name="user_name"
-                            defaultValue = {state.user_name}
-                            className={classes.textField}
-                            label="username"
-                            margin="normal"
-                            value={state.user_name}
-                            onChange={handleChange('user_name')}
-                        />
-                    <Button
-                            variant="contained"
-                            color="primary"
-                            className={classes.button}
-                            onClick={onSubmitHandler}
-                            >
-                            submit
-                        </Button>
+        <h3>Edit</h3>
+                    
+        <TextField
+       
+          id="standard-basic"
+          name="car_year"
+          defaultValue = {state.car_year}
+          className={classes.textField}
+          label="Year"
+          margin="normal"
+          value={state.car_year}
+          name="car_make"
+          onChange={handleChange('car_year')}
+        />
+
+
+        <TextField
+        
+          id="standard-basic"
+          name="car_make"
+          defaultValue = {state.car_make}
+          className={classes.textField}
+          label="Make"
+          margin="normal"
+          value={state.car_make}
+          onChange={handleChange('car_make')}
+        />
+
+
+        <TextField
+        
+          id="standard-basic"
+          name="car_model"
+          defaultValue = {state.car_model}
+          className={classes.textField}
+          label="Model"
+          margin="normal"
+          value={state.car_model}
+          onChange={handleChange('car_model')}
+        />
+
+
+        <TextField
+        
+          id="standard-basic"
+          name="car_nickname"
+          defaultValue = {state.car_nickname}
+          className={classes.textField}
+          label="Nickname"
+          margin="normal"
+          value={state.car_nickname}
+          onChange={handleChange('car_nickname')}
+        />
+
+
+
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          className={classes.button}
+          onClick={onSubmitHandler}
+        >
+          Enter
+        </Button>
 
 
                     </div>

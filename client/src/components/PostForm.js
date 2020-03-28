@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,6 +11,7 @@ import { addPost } from "../store/actions/postActions";
 import { fetchPosts } from "../store/actions/postActions";
 import { fetchProfileImage } from "../store/actions/settingsActions";
 import moment from 'moment'
+import PostImageFormModal from './PostImageFormModal'
 
 import '../styles/navbar.scss';
 
@@ -47,6 +48,7 @@ function PostForm(props) {
 
 
   const classes = useStyles();
+  const [currentPost,setCurrentPost] = useState({})
   const [state, setState] = React.useState({
     displayName: username,
     user_id: userId,
@@ -54,6 +56,26 @@ function PostForm(props) {
     post_text: '',
     post_date: time,
   });
+
+  const [fullopen, setFullOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
+  
+
+  const handlefullOpen = () => {
+    setFullOpen(true);
+  };
+  const handlefullClose = () => {
+    setFullOpen(false);
+  };
+
+  function handleErrorClose() {
+    setErrorOpen(false);
+  }
+
+  function handleErrorOpen() {
+    setErrorOpen(true);
+  }
+
 
 
 
@@ -69,7 +91,8 @@ function PostForm(props) {
     e.preventDefault();
     props.addPost(state);
     props.fetchPosts();
-    props.onClose();
+    handlefullOpen()
+    // props.onClose();
 
   };
 
@@ -130,6 +153,14 @@ function PostForm(props) {
         </Button>
 
       </FormControl>
+
+      <PostImageFormModal
+        post={currentPost}
+        onclose={props.onClose}
+        open={fullopen}
+        handleClose={handlefullClose}
+        onClose={handlefullClose}
+      />
     </>
   );
 };
