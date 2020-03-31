@@ -8,7 +8,7 @@ function PostImageShow(props) {
 
   const [thisImage, setThisimage] = useState('')
 
-//   const fileRef = imagesRef.child(`${props.carFix.id}/${props.image.file_name}`);
+  const fileRef = imagesRef.child(`${props.post.id}/${props.image.file_name}`);
 
   useEffect(() => {
     getImg()

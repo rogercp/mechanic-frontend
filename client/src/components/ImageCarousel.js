@@ -47,7 +47,7 @@ function ImageCarousel(props) {
   return (
     <Dialog style={{ backgroundColor: "black" }} open={props.open} onClose={props.handleClose} >
       <Carousel style={{ backgroundColor: "black" }}>
-        {props.carFixImages.map((image, index) => {
+        {props.postImages.map((image, index) => {
 
           return (
             <Carousel.Item style={{ overflow: "auto" }} >

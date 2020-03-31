@@ -52,7 +52,7 @@ function PostImageUpload(props) {
     }, [file]);
 
     async function fetchFixDocuments() {
-        let fixImages = await axiosWithAuth().get(`/car_fix/${props.carFix.id}/car_fix_images`)
+        let fixImages = await axiosWithAuth().get(`/post/${props.post.id}/post_images`)
         setPostImages(fixImages.data);
         return fixImages;
     }
@@ -75,11 +75,11 @@ function PostImageUpload(props) {
     function handleSubmitUploaderFixDocuments(e) {
         e.preventDefault()
         // Create file ref (Example: /documents/:car_id/:file_name)
-        const fileRef = imagesRef.child(`${props.carFix.id}/${file.name}`)
+        const fileRef = imagesRef.child(`${props.post.id}/${file.name}`)
         // Upload file
         fileRef.put(file).then((snapshot) => {
             // console.log('Upload success!', snapshot.constructor, snapshot);
-            axiosWithAuth().post(`/car_fix/${props.carFix.id}/car_fix_images`, { file_name: file.name })
+            axiosWithAuth().post(`/post/${props.post.id}/post_images`, { file_name: file.name })
                 .then(res => {
                     fetchFixDocuments();
                     window.location.reload();
