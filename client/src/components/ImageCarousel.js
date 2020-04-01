@@ -8,6 +8,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Dialog from "@material-ui/core/Dialog";
 import { Carousel, Image } from 'react-bootstrap';
 import CarImageFixShow from './CarImageFixShow';
+import PostImageShow from './PostImageShow';
 
 
 
@@ -43,7 +44,30 @@ function ImageCarousel(props) {
   };
 
 
+if(props.isImageDelShow){
+  return (
+    <>
+    <h2>hello tehre</h2>
+      <Carousel style={{ backgroundColor: "red" }}>
+        {props.postImages.map((image, index) => {
 
+          return (
+       
+            <Carousel.Item style={{ overflow: "auto" }} >
+              <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} image={image} />
+              <Carousel.Caption>
+                {/* <h3>First slide label</h3> */}
+              </Carousel.Caption>
+            </Carousel.Item>
+         
+          )
+
+        })}
+      </Carousel>
+</>
+
+  );
+}else{
   return (
     <Dialog style={{ backgroundColor: "black" }} open={props.open} onClose={props.handleClose} >
       <Carousel style={{ backgroundColor: "black" }}>
@@ -51,7 +75,7 @@ function ImageCarousel(props) {
 
           return (
             <Carousel.Item style={{ overflow: "auto" }} >
-              <CarImageFixShow style={{ backgroundColor: "black" }} key={index} carFix={props.carFix} image={image} />
+              <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} image={image} />
               <Carousel.Caption>
                 {/* <h3>First slide label</h3> */}
               </Carousel.Caption>
@@ -63,6 +87,8 @@ function ImageCarousel(props) {
 
     </Dialog>
   );
+}
+  
 }
 
 export default ImageCarousel;

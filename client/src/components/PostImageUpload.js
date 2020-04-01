@@ -98,19 +98,18 @@ function PostImageUpload(props) {
         return (
 <>
 
-            <Button
+            {/* <Button
             style={{ color: "darkcyan", outline: '0' }}
             onClick={handlefullOpen}
         >
         Images
         </Button>
-   
+    */}
         <ImageCarousel
-            open={fullopen}
-            handleClose={handlefullClose}
-            onClose={handlefullClose}
+        style={{ backgroundColor: "red", maxWidth:"100px"}}
+            isImageDelShow= {true}
             postImages={postImages}
-            carFix={props.carFix}
+
         />
     
 </>

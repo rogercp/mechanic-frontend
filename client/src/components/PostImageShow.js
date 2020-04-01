@@ -29,6 +29,23 @@ function PostImageShow(props) {
     });
   }
 
+//   function deleteImage() {
+
+//     fileRef.delete().then(() => {
+
+//       axiosWithAuth().delete(`/post/imagee/${props.image.file_name_profile}`)
+//         .then(res => {
+//           props.fetchProfileImage(userId)
+//         })
+//         .catch(error => {
+//           console.error(error);
+//         })
+//     })
+//       .catch(err => {
+//         console.error(err);
+//       })
+//   }
+
   return (
     <>
       {/* {(metadata.contentType === 'application/pdf')? <div id="div-pdf" src={`${thisImage}`}></div> :  <img id="reg-image" height="200px" src={`${thisImage}`}></img>} */}
