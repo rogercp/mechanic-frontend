@@ -66,22 +66,22 @@ function ProfileImageShow(props) {
   }
 
 
-  function deleteImage() {
+  // function deleteImage() {
 
-    fileRef.delete().then(() => {
+  //   fileRef.delete().then(() => {
 
-      axiosWithAuth().delete(`/users/imagee/${props.image.file_name_profile}`)
-        .then(res => {
-          props.fetchProfileImage(userId)
-        })
-        .catch(error => {
-          console.error(error);
-        })
-    })
-      .catch(err => {
-        console.error(err);
-      })
-  }
+  //     axiosWithAuth().delete(`/users/imagee/${props.image.file_name_profile}`)
+  //       .then(res => {
+  //         props.fetchProfileImage(userId)
+  //       })
+  //       .catch(error => {
+  //         console.error(error);
+  //       })
+  //   })
+  //     .catch(err => {
+  //       console.error(err);
+  //     })
+  // }
 
   const username = localStorage.getItem("username");
 

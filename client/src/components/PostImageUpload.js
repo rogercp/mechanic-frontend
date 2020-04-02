@@ -47,12 +47,12 @@ function PostImageUpload(props) {
 
     useEffect(() => {
 
-        fetchFixDocuments();
+        fetchPostImages();
 
     }, [file]);
 
-    async function fetchFixDocuments() {
-        let fixImages = await axiosWithAuth().get(`/post/${props.post.id}/post_images`)
+    async function fetchPostImages(id) {
+        let fixImages = await axiosWithAuth().get(`/post/${props.post.id || id}/post_images`)
         setPostImages(fixImages.data);
         return fixImages;
     }
@@ -81,8 +81,8 @@ function PostImageUpload(props) {
             // console.log('Upload success!', snapshot.constructor, snapshot);
             axiosWithAuth().post(`/post/${props.post.id}/post_images`, { file_name: file.name })
                 .then(res => {
-                    fetchFixDocuments();
-                    window.location.reload();
+                    fetchPostImages();
+                    // window.location.reload();
                 })
                 .catch(error => {
                     console.error(error);
@@ -109,6 +109,8 @@ function PostImageUpload(props) {
         style={{ backgroundColor: "red", maxWidth:"100px"}}
             isImageDelShow= {true}
             postImages={postImages}
+            post={props.post}
+            fetchPostImages={fetchPostImages}
 
         />
     

@@ -48,22 +48,20 @@ if(props.isImageDelShow){
   return (
     <>
     <h2>hello tehre</h2>
-      <Carousel style={{ backgroundColor: "red" }}>
+      <div>
         {props.postImages.map((image, index) => {
 
           return (
        
-            <Carousel.Item style={{ overflow: "auto" }} >
-              <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} image={image} />
-              <Carousel.Caption>
-                {/* <h3>First slide label</h3> */}
-              </Carousel.Caption>
-            </Carousel.Item>
+            <div style={{ overflow: "auto",width:"75px",margin:"1px",overflow:"hidden"}} >
+              <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} isDeleteableOnClick={true} fetchPostImages={props.fetchPostImages} image={image} />
+             
+            </div>
          
           )
 
         })}
-      </Carousel>
+      </div>
 </>
 
   );
@@ -72,7 +70,6 @@ if(props.isImageDelShow){
     <Dialog style={{ backgroundColor: "black" }} open={props.open} onClose={props.handleClose} >
       <Carousel style={{ backgroundColor: "black" }}>
         {props.postImages.map((image, index) => {
-
           return (
             <Carousel.Item style={{ overflow: "auto" }} >
               <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} image={image} />
