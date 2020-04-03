@@ -71,6 +71,7 @@ function PostImageUpload(props) {
         }
     }
 
+console.log(props.post.id,"psotsssss")
 
     function handleSubmitUploaderFixDocuments(e) {
         e.preventDefault()
@@ -81,7 +82,7 @@ function PostImageUpload(props) {
             // console.log('Upload success!', snapshot.constructor, snapshot);
             axiosWithAuth().post(`/post/${props.post.id}/post_images`, { file_name: file.name })
                 .then(res => {
-                    fetchPostImages();
+                    fetchPostImages(props.post.id);
                     // window.location.reload();
                 })
                 .catch(error => {
@@ -110,7 +111,7 @@ function PostImageUpload(props) {
             isImageDelShow= {true}
             postImages={postImages}
             post={props.post}
-            fetchPostImages={fetchPostImages}
+            fetchPostImage={fetchPostImages}
 
         />
     

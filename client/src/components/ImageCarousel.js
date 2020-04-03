@@ -47,14 +47,13 @@ function ImageCarousel(props) {
 if(props.isImageDelShow){
   return (
     <>
-    <h2>hello tehre</h2>
       <div>
         {props.postImages.map((image, index) => {
 
           return (
        
             <div style={{ overflow: "auto",width:"75px",margin:"1px",overflow:"hidden"}} >
-              <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} isDeleteableOnClick={true} fetchPostImages={props.fetchPostImages} image={image} />
+              <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} isDeleteableOnClick={true} fetchPostImage={props.fetchPostImage} image={image} />
              
             </div>
          
