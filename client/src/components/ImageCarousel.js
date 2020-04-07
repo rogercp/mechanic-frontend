@@ -34,6 +34,7 @@ function ImageCarousel(props) {
   // const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
+//  const [fullScreenActive,setFullScreenActive] = React.useState(false)
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -43,6 +44,10 @@ function ImageCarousel(props) {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
+  // function triggerFullScreen(e){
+  // e.preventDefault()
+  //   setFullScreenActive(false)
+  // }
 
 if(props.isImageDelShow){
   return (
@@ -64,7 +69,22 @@ if(props.isImageDelShow){
 </>
 
   );
-}else{
+}else if(props.isPostImageCarousel){
+  return (
+    <div style={{ width:"200px"}} >
+  <Carousel style={{ backgroundColor: "black"}}>
+  {props.postImages.map((image, index) => {
+    return (
+      <Carousel.Item style={{ overflow: "auto" }} >
+        <PostImageShow style={{ backgroundColor: "black" }} onClick={props.open} key={index} post={props.post} image={image} />
+      </Carousel.Item>
+    )
+  })}
+</Carousel>
+</div>
+  )
+}
+else {
   return (
     <Dialog style={{ backgroundColor: "black" }} open={props.open} onClose={props.handleClose} >
       <Carousel style={{ backgroundColor: "black" }}>

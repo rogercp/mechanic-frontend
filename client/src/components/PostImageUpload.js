@@ -24,12 +24,14 @@ function PostImageUpload(props) {
     const classes = useStyles();
     const [postImages, setPostImages] = useState([]);
     const [file, setFile] = useState({});
+    const [isPostImageCarousel,setIsPostImageCarousel]=useState(true)
 
     const [fullopen, setFullOpen] = useState(false);
     const [errorOpen, setErrorOpen] = useState(false);
 
 
     const handlefullOpen = () => {
+        setIsPostImageCarousel(false)
         setFullOpen(true);
     };
     const handlefullClose = () => {
@@ -120,7 +122,7 @@ console.log(props.post.id,"psotsssss")
     }
     
 
-    else {
+    else if(props.isForm){
         return (
             <>
             <div style={{ height: "200px" }}>
@@ -145,6 +147,45 @@ console.log(props.post.id,"psotsssss")
 
             </>
         )
+    }else if (props.isCarouselForPost){
+
+        return (
+            <>
+                   
+                    <ImageCarousel
+                    isPostImageCarousel={isPostImageCarousel}
+                    postImages={postImages}
+                    post={props.post}
+                    fetchPostImage={fetchPostImages}
+            
+                    />
+                
+            </>
+                    )
+    }
+    {
+        return (
+            <>
+                    <Button
+                        style={{ color: "darkcyan", outline: '0' }}
+                        onClick={handlefullOpen}
+                    >
+                    Expand Images
+                    </Button>
+               
+                    <ImageCarousel
+                   open={fullopen}
+                   handleClose={handlefullClose}
+                   onClose={handlefullClose}
+                    postImages={postImages}
+                    post={props.post}
+                    fetchPostImage={fetchPostImages}
+            
+                    />
+                
+            </>
+                    )
+
     }
 
 

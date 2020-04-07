@@ -20,7 +20,7 @@ import SendIcon from '@material-ui/icons/Send';
 import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { axiosWithAuth } from '../helpers/index';
-
+import PostImageUpload from './PostImageUpload'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -167,8 +167,8 @@ const IndividualPost = (props) => {
 
         {/* 
             <a href="https://www.w3schools.com/html/" target="_blank">links</a> */}
-        <img style={{ width: "30%", height: "30%" }} src="https://source.unsplash.com/random" />
-
+               <PostImageUpload post={props.post}  />
+               <PostImageUpload post={props.post} isCarouselForPost={true} />
 
         <div style={{ display: "block", backgroundColor: "orange" }}>
 
