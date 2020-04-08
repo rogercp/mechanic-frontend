@@ -8,6 +8,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Dialog from "@material-ui/core/Dialog";
 import { Carousel, Image } from 'react-bootstrap';
 import CarImageFixShow from './CarImageFixShow';
+import PostImageShow from './PostImageShow';
 
 
 
@@ -33,6 +34,7 @@ function ImageCarousel(props) {
   // const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
+//  const [fullScreenActive,setFullScreenActive] = React.useState(false)
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -42,16 +44,57 @@ function ImageCarousel(props) {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
+  // function triggerFullScreen(e){
+  // e.preventDefault()
+  //   setFullScreenActive(false)
+  // }
 
+if(props.isImageDelShow){
+  return (
+    <>
+      <div>
+        {props.postImages.map((image, index) => {
 
+          return (
+       
+            <div style={{ overflow: "auto",width:"75px",margin:"1px",overflow:"hidden"}} >
+              <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} isDeleteableOnClick={true} fetchPostImage={props.fetchPostImage} image={image} />
+             
+            </div>
+         
+          )
+
+        })}
+      </div>
+</>
+
+  );
+}else if(props.isPostImageCarousel){
+  return (
+    <div style={{width:"300px"}}  >
+  <Carousel interval={50000000000000000} style={{ backgroundColor: "black"}}>
+  {props.postImages.map((image, index) => {
+    return (
+      
+      <Carousel.Item style={{ overflow: "auto" }} >
+        <PostImageShow style={{ backgroundColor: "black" }} onClick={props.open} key={index} post={props.post} image={image} />
+      </Carousel.Item>
+    
+    )
+  })}
+</Carousel>
+</div>
+
+  )
+}
+else {
   return (
     <Dialog style={{ backgroundColor: "black" }} open={props.open} onClose={props.handleClose} >
       <Carousel style={{ backgroundColor: "black" }}>
-        {props.carFixImages.map((image, index) => {
-
+        {props.postImages.map((image, index) => {
           return (
             <Carousel.Item style={{ overflow: "auto" }} >
-              <CarImageFixShow style={{ backgroundColor: "black" }} key={index} carFix={props.carFix} image={image} />
+              <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} image={image} />
               <Carousel.Caption>
                 {/* <h3>First slide label</h3> */}
               </Carousel.Caption>
@@ -63,6 +106,8 @@ function ImageCarousel(props) {
 
     </Dialog>
   );
+}
+  
 }
 
 export default ImageCarousel;

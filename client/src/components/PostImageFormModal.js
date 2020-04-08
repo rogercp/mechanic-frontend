@@ -92,8 +92,9 @@ function PostImageFormModal(props) {
     
      
     
-    
-       <PostImageUpload carFix={props.currentMaintenence} isForm={true}/>
+
+       <PostImageUpload post={props.post} isCarousel={true}/>
+       <PostImageUpload post={props.post} isForm={true}/>
        <Button
       className={classes.button} 
       variant="contained"

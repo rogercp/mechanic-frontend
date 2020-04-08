@@ -24,6 +24,6 @@ export declare class Clock extends React.Component<ClockProps> {
     hasSelected: () => boolean;
     render(): JSX.Element;
 }
-export declare const styles: (theme: Theme) => Record<"container" | "clock" | "squareMask" | "pin", import("@material-ui/styles").CSSProperties | (() => import("@material-ui/styles").CSSProperties)>;
+export declare const styles: (theme: Theme) => Record<"container" | "clock" | "squareMask" | "pin", import("@material-ui/core/styles/withStyles").CSSProperties | import("@material-ui/core/styles/withStyles").CreateCSSProperties<{}> | ((props: {}) => import("@material-ui/core/styles/withStyles").CreateCSSProperties<{}>)>;
 declare const _default: React.ComponentType<(Pick<ClockProps, "children" | "value" | "onChange" | "type" | "ampm" | "minutesStep"> & import("@material-ui/core/styles").StyledComponentProps<"container" | "clock" | "squareMask" | "pin">) | (Pick<React.PropsWithChildren<ClockProps>, "children" | "value" | "onChange" | "type" | "ampm" | "minutesStep"> & import("@material-ui/core/styles").StyledComponentProps<"container" | "clock" | "squareMask" | "pin">)>;
 export default _default;

@@ -20,7 +20,7 @@ import SendIcon from '@material-ui/icons/Send';
 import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { axiosWithAuth } from '../helpers/index';
-
+import PostImageUpload from './PostImageUpload'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -65,17 +65,33 @@ const IndividualPost = (props) => {
     comment_text: ''
   });
   const [commentFetch, setCommentFetch] = useState([])
-
+  // const [currentPost,setCurrentPost] = useState({})
 
   useEffect(() => {
     fetchComments()
+    // fetchPostbyId(props.post.id)
   }, [])
+
+
+// const fetchPostbyId = (id) =>{
+
+//   axiosWithAuth()
+//   .get(`/post/postProfileImg/${id}`)
+//   .then(res => {
+//     setCurrentPost(res.data)
+//   })
+//   .catch(err => {
+//   });
+  
+// }
+
+// console.log(currentPost,"currentPost")
+
   const fetchComments = () => {
     axiosWithAuth()
       .get(`/comment/${props.post.id}`)
       .then(res => {
         setCommentFetch(res.data)
-        console.log(res.data, "commetns")
       })
       .catch(err => {
       });
@@ -126,6 +142,7 @@ const IndividualPost = (props) => {
   };
 
 
+  
 
 
   const toggleComments = (e) => {
@@ -141,7 +158,7 @@ const IndividualPost = (props) => {
   }
   return (
     <>
-      <div className="singlePost" style={{ width: "98%", marginBottom: "5px" }}>
+      <div className="singlePost" style={{ width: "98%", marginBottom: "5px"}}>
 
         <div style={{ display: "block", backgroundColor: "orange" }}>
           <section style={{ display: "flex", flexDirection: "row", float: "left" }}>
@@ -163,13 +180,17 @@ const IndividualPost = (props) => {
 
         </div>
 
-        <div style={{ display: "block", marginTop: "45px" }}><p style={{ textAlign: "left" }}>{props.post.post_text}</p></div>
+       
 
-        {/* 
-            <a href="https://www.w3schools.com/html/" target="_blank">links</a> */}
-        <img style={{ width: "30%", height: "30%" }} src="https://source.unsplash.com/random" />
-
-
+            <div style={{ display: "block", marginTop: "45px",marginBottom:"45px", textAlign:"center" }}>
+            <div style={{display:"flex",flexDirection:"column", justifyContent:"center",alignItems:"center"}}><PostImageUpload post={props.post}  />
+            <PostImageUpload post={props.post} isCarouselForPost={true} />
+            <p>{props.post.post_text}</p>
+            </div>
+           
+           
+            </div>
+        
         <div style={{ display: "block", backgroundColor: "orange" }}>
 
           <div style={{ float: "left", display: "flex", flexDirection: "row" }}>

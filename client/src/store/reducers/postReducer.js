@@ -17,6 +17,7 @@ const initialState = {
     posts: [],
     filteredPosts:[],
     searchToggle:false,
+    currentPost:{}
 
 }
 
@@ -24,7 +25,13 @@ const initialState = {
 const postReducer = (state = initialState, action) => {
 
     switch (action.type) {
+     
 
+      case  ADD_POST_SUCCESS:
+        return {
+          ...state,
+          currentPost: action.payload
+        };
         case FETCH_POST_SUCCESS:
         return {
           ...state,

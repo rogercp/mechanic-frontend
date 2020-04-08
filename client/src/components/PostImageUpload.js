@@ -24,12 +24,14 @@ function PostImageUpload(props) {
     const classes = useStyles();
     const [postImages, setPostImages] = useState([]);
     const [file, setFile] = useState({});
+    const [isPostImageCarousel,setIsPostImageCarousel]=useState(true)
 
     const [fullopen, setFullOpen] = useState(false);
     const [errorOpen, setErrorOpen] = useState(false);
 
 
     const handlefullOpen = () => {
+        setIsPostImageCarousel(false)
         setFullOpen(true);
     };
     const handlefullClose = () => {
@@ -47,14 +49,14 @@ function PostImageUpload(props) {
 
     useEffect(() => {
 
-        fetchFixDocuments();
+        fetchPostImages(props.post.id );
 
     }, [file]);
 
-    async function fetchFixDocuments() {
-        let fixImages = await axiosWithAuth().get(`/car_fix/${props.carFix.id}/car_fix_images`)
+    async function fetchPostImages(id) {
+        let fixImages = await axiosWithAuth().get(`/post/${id}/post_images`)
         setPostImages(fixImages.data);
-        return fixImages;
+        // return fixImages;
     }
 
     function handleInputChanges(e) {
@@ -71,18 +73,19 @@ function PostImageUpload(props) {
         }
     }
 
+// console.log(props.post.id,"psotsssss")
 
     function handleSubmitUploaderFixDocuments(e) {
         e.preventDefault()
         // Create file ref (Example: /documents/:car_id/:file_name)
-        const fileRef = imagesRef.child(`${props.carFix.id}/${file.name}`)
+        const fileRef = imagesRef.child(`${props.post.id}/${file.name}`)
         // Upload file
         fileRef.put(file).then((snapshot) => {
             // console.log('Upload success!', snapshot.constructor, snapshot);
-            axiosWithAuth().post(`/car_fix/${props.carFix.id}/car_fix_images`, { file_name: file.name })
+            axiosWithAuth().post(`/post/${props.post.id}/post_images`, { file_name: file.name })
                 .then(res => {
-                    fetchFixDocuments();
-                    window.location.reload();
+                    fetchPostImages(props.post.id);
+                    // window.location.reload();
                 })
                 .catch(error => {
                     console.error(error);
@@ -98,19 +101,13 @@ function PostImageUpload(props) {
         return (
 <>
 
-            <Button
-            style={{ color: "darkcyan", outline: '0' }}
-            onClick={handlefullOpen}
-        >
-        Images
-        </Button>
-   
         <ImageCarousel
-            open={fullopen}
-            handleClose={handlefullClose}
-            onClose={handlefullClose}
+        style={{ backgroundColor: "red", maxWidth:"100px"}}
+            isImageDelShow= {true}
             postImages={postImages}
-            carFix={props.carFix}
+            post={props.post}
+            fetchPostImage={fetchPostImages}
+
         />
     
 </>
@@ -118,7 +115,7 @@ function PostImageUpload(props) {
     }
     
 
-    else {
+    else if(props.isForm){
         return (
             <>
             <div style={{ height: "200px" }}>
@@ -143,6 +140,45 @@ function PostImageUpload(props) {
 
             </>
         )
+    }else if (props.isCarouselForPost){
+
+        return (
+            <>
+           
+                    <ImageCarousel
+                    isPostImageCarousel={isPostImageCarousel}
+                    postImages={postImages}
+                    post={props.post}
+                    fetchPostImage={fetchPostImages}
+            
+                    />
+           
+            </>
+                    )
+    }
+    {
+        return (
+            <>
+                    <Button
+                        style={{ color: "darkcyan", outline: '0' }}
+                        onClick={handlefullOpen}
+                    >
+                    Expand Images
+                    </Button>
+               
+                    <ImageCarousel
+                   open={fullopen}
+                   handleClose={handlefullClose}
+                   onClose={handlefullClose}
+                    postImages={postImages}
+                    post={props.post}
+                    fetchPostImage={fetchPostImages}
+            
+                    />
+                
+            </>
+                    )
+
     }
 
 

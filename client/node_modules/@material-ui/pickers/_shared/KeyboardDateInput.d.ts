@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { TextFieldProps } from '@material-ui/core/TextField';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import { InputAdornmentProps } from '@material-ui/core/InputAdornment';
+import { BaseTextFieldProps, TextFieldProps } from '@material-ui/core/TextField';
 import { ExtendMui } from '../typings/extendMui';
-export interface KeyboardDateInputProps extends ExtendMui<TextFieldProps, 'variant' | 'onError' | 'onChange' | 'value'> {
+export interface KeyboardDateInputProps extends ExtendMui<BaseTextFieldProps, 'variant' | 'onError' | 'value'> {
     format: string;
     onChange: (value: string | null) => void;
     openPicker: () => void;
@@ -11,6 +11,8 @@ export interface KeyboardDateInputProps extends ExtendMui<TextFieldProps, 'varia
     inputValue: string;
     inputProps?: TextFieldProps['inputProps'];
     InputProps?: TextFieldProps['InputProps'];
+    onBlur?: TextFieldProps['onBlur'];
+    onFocus?: TextFieldProps['onFocus'];
     /** Override input component */
     TextFieldComponent?: React.ComponentType<TextFieldProps>;
     /** Icon displaying for open picker button */

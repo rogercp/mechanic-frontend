@@ -8,7 +8,7 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { addPost } from "../store/actions/postActions";
-import { fetchPosts } from "../store/actions/postActions";
+import { fetchFilteredPosts } from "../store/actions/postActions";
 import { fetchProfileImage } from "../store/actions/settingsActions";
 import moment from 'moment'
 import PostImageFormModal from './PostImageFormModal'
@@ -48,7 +48,7 @@ function PostForm(props) {
 
 
   const classes = useStyles();
-  const [currentPost,setCurrentPost] = useState({})
+  // const [currentPost,setCurrentPost] = useState()
   const [state, setState] = React.useState({
     displayName: username,
     user_id: userId,
@@ -90,19 +90,18 @@ function PostForm(props) {
   const onSubmitHandler = e => {
     e.preventDefault();
     props.addPost(state);
-    props.fetchPosts();
+    props.fetchFilteredPosts();
     handlefullOpen()
+    
     // props.onClose();
-
   };
 
   useEffect(() => {
 
-    props.fetchProfileImage(userId)
-
+    // setCurrentPost(props.currentPost)
   }, []);
 
-
+// console.log(currentPost,"current psostststst")
   return (
     <>
       <FormControl className={classes.formControl} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} noValidate autoComplete="off" onSubmit={onSubmitHandler}>
@@ -155,7 +154,7 @@ function PostForm(props) {
       </FormControl>
 
       <PostImageFormModal
-        post={currentPost}
+        post={props.currentPost}
         onclose={props.onClose}
         open={fullopen}
         handleClose={handlefullClose}
@@ -167,12 +166,12 @@ function PostForm(props) {
 
 
 const mapStateToProps = (state) => ({
-  userImage: state.setting.userImage
-
+  userImage: state.setting.userImage,
+  currentPost: state.post.currentPost
 });
 
 export default connect(
   mapStateToProps,
-  { addPost, fetchPosts, fetchProfileImage }
+  { addPost, fetchFilteredPosts, fetchProfileImage }
 )(PostForm);
 
