@@ -8,7 +8,7 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { addPost } from "../store/actions/postActions";
-import { fetchPosts } from "../store/actions/postActions";
+import { fetchFilteredPosts } from "../store/actions/postActions";
 import { fetchProfileImage } from "../store/actions/settingsActions";
 import moment from 'moment'
 import PostImageFormModal from './PostImageFormModal'
@@ -90,7 +90,7 @@ function PostForm(props) {
   const onSubmitHandler = e => {
     e.preventDefault();
     props.addPost(state);
-    props.fetchPosts();
+    props.fetchFilteredPosts();
     handlefullOpen()
     
     // props.onClose();
@@ -172,6 +172,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { addPost, fetchPosts, fetchProfileImage }
+  { addPost, fetchFilteredPosts, fetchProfileImage }
 )(PostForm);
 

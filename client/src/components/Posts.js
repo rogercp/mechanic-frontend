@@ -7,6 +7,7 @@ import IndividualPost from './IndividualPost'
 import { connect } from 'react-redux';
 import {  fetchFilteredPosts } from "../store/actions/postActions";
 import { toggleSearchToTrue } from "../store/actions/postActions";
+import {fetchPosts} from "../store/actions/postActions";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import search from './Search';
 import Search from "./Search";
@@ -42,7 +43,7 @@ function Posts(props) {
 
   }
 
-
+  console.log(props.filteredPosts, "this is all the posts")
 
   if (props.searchToggle === true) {
 
@@ -60,7 +61,7 @@ function Posts(props) {
             searchPosts.map(p => {
               return (
                 <>
-                  <IndividualPost post={p} key={caches.uid} fetchPosts={props.fetchPosts} />
+                  <IndividualPost   post={p} key={caches.uid} fetchPosts={props.fetchPosts} />
                 </>
               );
             })
@@ -88,7 +89,7 @@ function Posts(props) {
             {props.filteredPosts.map(p => {
               return (
                 <>
-                  <IndividualPost post={p} key={caches.uid} fetchPosts={props.fetchPosts} />
+                  <IndividualPost   post={p} key={caches.uid} fetchPosts={props.fetchPosts} />
                 </>
               );
             })}
@@ -113,5 +114,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  {toggleSearchToTrue,fetchFilteredPosts }
+  {toggleSearchToTrue,fetchFilteredPosts,fetchPosts }
 )(Posts);

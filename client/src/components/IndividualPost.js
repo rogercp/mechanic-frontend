@@ -65,11 +65,28 @@ const IndividualPost = (props) => {
     comment_text: ''
   });
   const [commentFetch, setCommentFetch] = useState([])
-
+  // const [currentPost,setCurrentPost] = useState({})
 
   useEffect(() => {
     fetchComments()
+    // fetchPostbyId(props.post.id)
   }, [])
+
+
+// const fetchPostbyId = (id) =>{
+
+//   axiosWithAuth()
+//   .get(`/post/postProfileImg/${id}`)
+//   .then(res => {
+//     setCurrentPost(res.data)
+//   })
+//   .catch(err => {
+//   });
+  
+// }
+
+// console.log(currentPost,"currentPost")
+
   const fetchComments = () => {
     axiosWithAuth()
       .get(`/comment/${props.post.id}`)
@@ -125,7 +142,7 @@ const IndividualPost = (props) => {
   };
 
 
-  console.log(props.post,"this is the post")
+  
 
 
   const toggleComments = (e) => {
