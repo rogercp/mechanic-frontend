@@ -92,6 +92,7 @@ function PostImageFormModal(props) {
     
      
     
+
        <PostImageUpload post={props.post} isCarousel={true}/>
        <PostImageUpload post={props.post} isForm={true}/>
        <Button

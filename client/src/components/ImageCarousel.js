@@ -71,17 +71,20 @@ if(props.isImageDelShow){
   );
 }else if(props.isPostImageCarousel){
   return (
-    <div style={{ width:"200px"}} >
-  <Carousel style={{ backgroundColor: "black"}}>
+    <div style={{width:"300px"}}  >
+  <Carousel interval={50000000000000000} style={{ backgroundColor: "black"}}>
   {props.postImages.map((image, index) => {
     return (
+      
       <Carousel.Item style={{ overflow: "auto" }} >
         <PostImageShow style={{ backgroundColor: "black" }} onClick={props.open} key={index} post={props.post} image={image} />
       </Carousel.Item>
+    
     )
   })}
 </Carousel>
 </div>
+
   )
 }
 else {

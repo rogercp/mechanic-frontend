@@ -75,7 +75,6 @@ const IndividualPost = (props) => {
       .get(`/comment/${props.post.id}`)
       .then(res => {
         setCommentFetch(res.data)
-        console.log(res.data, "commetns")
       })
       .catch(err => {
       });
@@ -126,6 +125,7 @@ const IndividualPost = (props) => {
   };
 
 
+  console.log(props.post,"this is the post")
 
 
   const toggleComments = (e) => {
@@ -141,7 +141,7 @@ const IndividualPost = (props) => {
   }
   return (
     <>
-      <div className="singlePost" style={{ width: "98%", marginBottom: "5px" }}>
+      <div className="singlePost" style={{ width: "98%", marginBottom: "5px"}}>
 
         <div style={{ display: "block", backgroundColor: "orange" }}>
           <section style={{ display: "flex", flexDirection: "row", float: "left" }}>
@@ -163,13 +163,17 @@ const IndividualPost = (props) => {
 
         </div>
 
-        <div style={{ display: "block", marginTop: "45px" }}><p style={{ textAlign: "left" }}>{props.post.post_text}</p></div>
+       
 
-        {/* 
-            <a href="https://www.w3schools.com/html/" target="_blank">links</a> */}
-               <PostImageUpload post={props.post}  />
-               <PostImageUpload post={props.post} isCarouselForPost={true} />
-
+            <div style={{ display: "block", marginTop: "45px",marginBottom:"45px", textAlign:"center" }}>
+            <div style={{display:"flex",flexDirection:"column", justifyContent:"center",alignItems:"center"}}><PostImageUpload post={props.post}  />
+            <PostImageUpload post={props.post} isCarouselForPost={true} />
+            <p>{props.post.post_text}</p>
+            </div>
+           
+           
+            </div>
+        
         <div style={{ display: "block", backgroundColor: "orange" }}>
 
           <div style={{ float: "left", display: "flex", flexDirection: "row" }}>

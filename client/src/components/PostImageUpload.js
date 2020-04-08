@@ -49,14 +49,14 @@ function PostImageUpload(props) {
 
     useEffect(() => {
 
-        fetchPostImages();
+        fetchPostImages(props.post.id );
 
     }, [file]);
 
     async function fetchPostImages(id) {
-        let fixImages = await axiosWithAuth().get(`/post/${props.post.id || id}/post_images`)
+        let fixImages = await axiosWithAuth().get(`/post/${id}/post_images`)
         setPostImages(fixImages.data);
-        return fixImages;
+        // return fixImages;
     }
 
     function handleInputChanges(e) {
@@ -73,7 +73,7 @@ function PostImageUpload(props) {
         }
     }
 
-console.log(props.post.id,"psotsssss")
+// console.log(props.post.id,"psotsssss")
 
     function handleSubmitUploaderFixDocuments(e) {
         e.preventDefault()
@@ -101,13 +101,6 @@ console.log(props.post.id,"psotsssss")
         return (
 <>
 
-            {/* <Button
-            style={{ color: "darkcyan", outline: '0' }}
-            onClick={handlefullOpen}
-        >
-        Images
-        </Button>
-    */}
         <ImageCarousel
         style={{ backgroundColor: "red", maxWidth:"100px"}}
             isImageDelShow= {true}
@@ -151,7 +144,7 @@ console.log(props.post.id,"psotsssss")
 
         return (
             <>
-                   
+           
                     <ImageCarousel
                     isPostImageCarousel={isPostImageCarousel}
                     postImages={postImages}
@@ -159,7 +152,7 @@ console.log(props.post.id,"psotsssss")
                     fetchPostImage={fetchPostImages}
             
                     />
-                
+           
             </>
                     )
     }
