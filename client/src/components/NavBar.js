@@ -193,7 +193,7 @@ function NavBar(props) {
 
           <div style={{ width: "100%", position: "fixed" }}>
             {/* display:inline-block  --- this will work for a non-sticky navbar */}
-            <Button style={{ float: "right", marginTop: "20px", display: "block" }} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
+            <Button style={{ float: "right", marginTop: "20px",zIndex: "1000",position: "relative" }} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
           </div>
           <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
             {sideList('right')}

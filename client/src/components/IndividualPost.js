@@ -160,21 +160,21 @@ const IndividualPost = (props) => {
     <>
       <div className="singlePost" style={{ width: "98%", marginBottom: "5px"}}>
 
-        <div style={{ display: "block", backgroundColor: "orange" }}>
-          <section style={{ display: "flex", flexDirection: "row", float: "left" }}>
+        <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+         
 
             {props.post ?
-              <ProfileImageShow style={{ width: "40px", height: "40px", paddingRight: "2px" }} isPost={state.isPost} isPostPic={true} isCirclePic={state.isCirclePic} post={props.post} />
+            
+              <ProfileImageShow style={{ alignSelf:"flex-start",width: "40px", height: "40px", paddingRight: "2px" }} isPost={state.isPost} isPostPic={true} isCirclePic={state.isCirclePic} post={props.post} />
+              
               :
               null
               
             }
+         
 
-          </section>
-
-          <div style={{ float: "right" }}>
-            <p>{props.post.post_date}</p>
-          </div>
+            <p style={{alignSelf:"flex-end"}}>{props.post.post_date}</p>
+          
 
 
 
@@ -182,22 +182,31 @@ const IndividualPost = (props) => {
 
        
 
-            <div style={{ display: "block", marginTop: "45px",marginBottom:"45px", textAlign:"center" }}>
-            <div style={{display:"flex",flexDirection:"column", justifyContent:"center",alignItems:"center"}}><PostImageUpload post={props.post}  />
+            
+            <div style={{display:"flex",flexDirection:"column", justifyContent:"center",alignItems:"center"}}>
+              
+              <div>
+            <PostImageUpload post={props.post}  />
+            </div>
+            <div>
+
             <PostImageUpload post={props.post} isCarouselForPost={true} />
+            </div>
+            <div>
             <p>{props.post.post_text}</p>
             </div>
-           
-           
             </div>
+            
+           
+           
         
-        <div style={{ display: "block", backgroundColor: "orange" }}>
+        <div style={{ display:"flex",flexDirection:"row", justifyContent:"center",alignItems:"center"}}>
 
-          <div style={{ float: "left", display: "flex", flexDirection: "row" }}>
+          <div style={{ margin:"0",display: "flex", flexDirection: "row" }}>
             <CommentIcon className={classes.margin} onClick={toggleComments} /> <p style={{ marginTop: "8px" }}>{commentFetch.length}</p>
           </div>
 
-          <div style={{ float: "right", display: "flex", justifyContent: "space-between", alignItems: "space-between" }}>
+          <div style={{ marginRight:"0", display: "flex", justifyContent: "space-between", alignItems: "space-between" }}>
             <p style={{ marginTop: "8px" }}>{props.post.like}</p>
             <ThumbUpIcon onClick={incrementLike} style={{ borderRadius: "50%" }} className={classes.margin} />
             <ThumbDownIcon onClick={decreaseLike} style={{ borderRadius: "50%" }} className={classes.margin} />
