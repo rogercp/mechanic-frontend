@@ -141,21 +141,34 @@ function PostImageUpload(props) {
             </>
         )
     }else if (props.isCarouselForPost){
+        if(postImages.length <1){
+            return (
+                null
+            )
+        }else{
+            return (
+                <>
+               
+                        <ImageCarousel
+                        isPostImageCarousel={isPostImageCarousel}
+                        postImages={postImages}
+                        post={props.post}
+                        fetchPostImage={fetchPostImages}
+                
+                        />
+               
+                </>
+                        )
+        }
+       
+    }else if (postImages.length <1){
+    return (
+        null
+    )
+       
+    
 
-        return (
-            <>
-           
-                    <ImageCarousel
-                    isPostImageCarousel={isPostImageCarousel}
-                    postImages={postImages}
-                    post={props.post}
-                    fetchPostImage={fetchPostImages}
-            
-                    />
-           
-            </>
-                    )
-    }
+    }else
     {
         return (
             <>
