@@ -80,7 +80,6 @@ function CarCardEditModal(props) {
             });
     };
 
-console.log(props.carFix,"carfix")
 
     return (
         <>

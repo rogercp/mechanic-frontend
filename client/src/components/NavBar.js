@@ -50,7 +50,6 @@ function NavBar(props) {
       axiosWithAuth()
       .get(`/users/username/${userId}`)
       .then(res =>{
-        console.log(res.data)
         localStorage.setItem('username',res.data)    
         
       })

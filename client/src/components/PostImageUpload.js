@@ -49,11 +49,26 @@ function PostImageUpload(props) {
 
     useEffect(() => {
 
-        fetchPostImages(props.post.id );
+        fetchPostImages(props.post.id);
 
     }, [file]);
 
+    useEffect(() => {
+
+      
+        fetchPostImagesAfterSubmit(props.post.id);
+        
+
+    }, [postImages]);
+
+
     async function fetchPostImages(id) {
+        let fixImages = await axiosWithAuth().get(`/post/${id}/post_images`)
+        setPostImages(fixImages.data);
+        // return fixImages;
+    }
+
+    async function fetchPostImagesAfterSubmit(id) {
         let fixImages = await axiosWithAuth().get(`/post/${id}/post_images`)
         setPostImages(fixImages.data);
         // return fixImages;
@@ -75,17 +90,17 @@ function PostImageUpload(props) {
 
 // console.log(props.post.id,"psotsssss")
 
-    function handleSubmitUploaderFixDocuments(e) {
+ function handleSubmitUploaderFixDocuments(e) {
         e.preventDefault()
         // Create file ref (Example: /documents/:car_id/:file_name)
         const fileRef = imagesRef.child(`${props.post.id}/${file.name}`)
         // Upload file
-        fileRef.put(file).then((snapshot) => {
+         fileRef.put(file).then( (snapshot) => {
             // console.log('Upload success!', snapshot.constructor, snapshot);
-            axiosWithAuth().post(`/post/${props.post.id}/post_images`, { file_name: file.name })
+             axiosWithAuth().post(`/post/${props.post.id}/post_images`, { file_name: file.name })
                 .then(res => {
-                    fetchPostImages(props.post.id);
-                    // window.location.reload();
+                    fetchPostImagesAfterSubmit(props.post.id);
+                    // window.location.reload(); 
                 })
                 .catch(error => {
                     console.error(error);
