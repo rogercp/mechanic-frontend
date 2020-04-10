@@ -21,6 +21,8 @@ import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { axiosWithAuth } from '../helpers/index';
 import PostImageUpload from './PostImageUpload'
+import { confirmAlert } from 'react-confirm-alert';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -107,38 +109,113 @@ const IndividualPost = (props) => {
   };
 
 
+
+
+
   const onSubmitHandler = e => {
     e.preventDefault();
-    axiosWithAuth()
+    if (localStorage.getItem("token") === null && localStorage.getItem("username") === null ) {
+      props.history.push('/login')
+    }
+    if(localStorage.getItem("username") === null && localStorage.getItem("token") ){
+  
+  
+      confirmAlert({
+        customUI: ({ onClose }) => {
+            return (
+                <div className='custom-ui' >
+  
+                  <h3>You need a username to Post. Click the edit icon to create one.</h3>
+                    <Button className={classes.margin} variant="secondary" onClick={onClose}>Close</Button>
+  
+                </div>
+            );
+        }
+    });
+      props.history.push('/settings')
+    }else{
+
+      axiosWithAuth()
       .post(`/comment/${props.post.id}`, commentState)
       .then(res => {
         console.log("comment success")
       })
       .catch(err => {
       });
+    }
+
+
+   
   };
 
 
 
   function incrementLike() {
-    axiosWithAuth()
+
+    if (localStorage.getItem("token") === null && localStorage.getItem("username") === null ) {
+      props.history.push('/login')
+    }
+    if(localStorage.getItem("username") === null && localStorage.getItem("token") ){
+  
+  
+      confirmAlert({
+        customUI: ({ onClose }) => {
+            return (
+                <div className='custom-ui' >
+  
+                  <h3>You need a username to Post. Click the edit icon to create one.</h3>
+                    <Button className={classes.margin} variant="secondary" onClick={onClose}>Close</Button>
+  
+                </div>
+            );
+        }
+    });
+      props.history.push('/settings')
+    }else{
+
+      axiosWithAuth()
       .patch(`/post/inc/${props.post.id}`)
       .then(res => {
         props.fetchPosts()
       })
       .catch(err => {
       });
+    }
+
+
   };
 
 
   function decreaseLike() {
-    axiosWithAuth()
+    if (localStorage.getItem("token") === null && localStorage.getItem("username") === null ) {
+      props.history.push('/login')
+    }
+    if(localStorage.getItem("username") === null && localStorage.getItem("token") ){
+  
+  
+      confirmAlert({
+        customUI: ({ onClose }) => {
+            return (
+                <div className='custom-ui' >
+  
+                  <h3>You need a username to Post. Click the edit icon to create one.</h3>
+                    <Button className={classes.margin} variant="secondary" onClick={onClose}>Close</Button>
+  
+                </div>
+            );
+        }
+    });
+      props.history.push('/settings')
+    }else{
+      axiosWithAuth()
       .patch(`/post/dec/${props.post.id}`)
       .then(res => {
         props.fetchPosts()
       })
       .catch(err => {
       });
+    }
+    
   };
 
 
@@ -268,4 +345,4 @@ const IndividualPost = (props) => {
 
 
 
-export default IndividualPost;
+export default withRouter(IndividualPost);
