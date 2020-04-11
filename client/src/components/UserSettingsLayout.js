@@ -111,6 +111,7 @@ function UserSettingsLayout(props) {
         <div style={{ display: "flex",flexDirection:"column"}}>
 
             <div>
+              
             <p>username:{username}</p>
                 {props.userImage && props.userImage.length > 0 ?
                     (
@@ -138,7 +139,7 @@ function UserSettingsLayout(props) {
                 />
 
 
-                <Tooltip title="Edit Info" placement="right">
+                <Tooltip title="Edit Info" placement="left">
                 <Fab color="none" aria-label="add" style={{ color: "darkcyan", outline: '0' }} className={classes.margin} >
                     <EditIcon
 
