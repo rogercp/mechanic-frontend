@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 import { axiosWithAuth } from '../helpers/index';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -110,7 +110,22 @@ function Comment(props) {
 
   const classes = useStyles();
 
+  const [usernameforpost,setUsernameforpost]= useState()
+  useEffect(() => {
+    fetchCommentUserName()
+  }, [])
 
+
+  const fetchCommentUserName = () => {
+    axiosWithAuth()
+      .get(`users/username/${props.comment.user_id}`)
+      .then(res => {
+        setUsernameforpost(res.data)
+        console.log(res.data,"res.data")
+      })
+      .catch(err => {
+      });
+  };
 
   function incrementLike() {
     axiosWithAuth()
@@ -140,8 +155,8 @@ function Comment(props) {
     <>
 
       <div style={{ display: "block", marginBottom: "40px" }}>
-        <p style={{ textAlign: "left" }}>carliosa</p>
-        <p style={{ textAlign: "left" }}>{props.comment.comment_text}</p>
+        <p style={{ textAlign: "left",color:"#0275d8" }}>{usernameforpost}</p>
+        <p style={{ textAlign: "left" ,}}>{props.comment.comment_text}</p>
         <div style={{ display: "block", backgroundColor: "orange" }}>
 
 

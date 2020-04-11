@@ -67,7 +67,6 @@ const IndividualPost = (props) => {
     comment_text: ''
   });
   const [commentFetch, setCommentFetch] = useState([])
-  // const [currentPost,setCurrentPost] = useState({})
 
   useEffect(() => {
     fetchComments()
@@ -75,19 +74,7 @@ const IndividualPost = (props) => {
   }, [])
 
 
-// const fetchPostbyId = (id) =>{
-
-//   axiosWithAuth()
-//   .get(`/post/postProfileImg/${id}`)
-//   .then(res => {
-//     setCurrentPost(res.data)
-//   })
-//   .catch(err => {
-//   });
   
-// }
-
-// console.log(currentPost,"currentPost")
 
   const fetchComments = () => {
     axiosWithAuth()
