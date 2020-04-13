@@ -54,10 +54,10 @@ function Question(props) {
 
   function handleOpen() {
 
-    if (localStorage.getItem("token") === null) {
+    if (localStorage.getItem("token") === null && localStorage.getItem("username") === null ) {
       props.history.push('/login')
     }
-    if(localStorage.getItem("username") === null){
+    if(localStorage.getItem("username") === null && localStorage.getItem("token") ){
 
 
       confirmAlert({

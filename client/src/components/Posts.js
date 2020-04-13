@@ -43,7 +43,6 @@ function Posts(props) {
 
   }
 
-  console.log(props.filteredPosts, "this is all the posts")
 
   if (props.searchToggle === true) {
 

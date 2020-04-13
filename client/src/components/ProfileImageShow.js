@@ -92,7 +92,7 @@ function ProfileImageShow(props) {
         {thisImage ?
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
             <div><Avatar alt="Remy Sharp" src={`${thisImage}`} /></div>
-            <div style={{ marginTop: "8px" }}><p style={{ marginLeft: "5px" }}>{props.isPost ? props.post.user_name : username}</p>
+            <div style={{ marginTop: "8px" }}><p style={{ marginLeft: "5px" ,color:"#0275d8"}}>{props.isPost ? props.post.user_name : username}</p>
             </div>
           </div>
 
@@ -115,7 +115,7 @@ function ProfileImageShow(props) {
         {thisImage ?
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
             <div><Avatar alt="Remy Sharp" src={`${thisImage}`} /></div>
-            <div style={{ marginTop: "8px" }}><p style={{ marginLeft: "5px" }}>{props.isPost ? props.post.user_name : username}</p>
+            <div style={{ marginTop: "8px" }}><p style={{ marginLeft: "5px" ,color:"#0275d8" }}>{props.isPost ? props.post.user_name : username}</p>
             </div>
           </div>
 

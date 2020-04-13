@@ -96,6 +96,8 @@ function PostForm(props) {
     // props.onClose();
   };
 
+  console.log(props.currentPost,"currentPosty")
+
   useEffect(() => {
 
     // setCurrentPost(props.currentPost)
