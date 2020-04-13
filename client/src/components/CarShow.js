@@ -10,6 +10,8 @@ import CarCard from './CarCard'
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
 
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+// import Loader from 'react-loader-spinner'
 
 
 const useStyles = makeStyles(theme => ({
@@ -74,12 +76,16 @@ function CarShow(props) {
   }, []);
 
   async function fetchCars() {
+    
     const res = await axiosWithAuth().get(`/cars`);
     setCars(res.data);
   }
 
   return (
+    
+     
     <div style={{ display: 'block' }}>
+    
       <Tooltip title="Add Car" placement="right">
         <Fab color="none" aria-label="add" style={{ color: "darkcyan", outline: '0' }} className={classes.margin}>
           <AddIcon
@@ -120,6 +126,9 @@ function CarShow(props) {
     </div>
 
   );
+  
+   
+   
 };
 
 
