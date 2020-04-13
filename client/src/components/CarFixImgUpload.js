@@ -50,7 +50,7 @@ function CarFixImgUpload(props) {
 
         fetchFixDocuments();
 
-    }, [file]);
+    }, []);
 
     async function fetchFixDocuments() {
         let fixImages = await axiosWithAuth().get(`/car_fix/${props.carFix.id}/car_fix_images`)

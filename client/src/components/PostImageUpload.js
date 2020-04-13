@@ -51,7 +51,7 @@ function PostImageUpload(props) {
 
         fetchPostImages(props.post.id);
 
-    }, [file]);
+    }, []);
 
     useEffect(() => {
 
