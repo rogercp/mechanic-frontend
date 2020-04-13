@@ -86,6 +86,26 @@ if(props.isImageDelShow){
 </div>
 
   )
+}else if(props.isCarFixImages){
+  return (
+    <Dialog style={{ backgroundColor: "black" }} open={props.open} onClose={props.handleClose} >
+      <Carousel style={{ backgroundColor: "black" }}>
+        {props.carFixImages.map((image, index) => {
+          return (
+            <Carousel.Item style={{ overflow: "auto" }} >
+              <CarImageFixShow style={{ backgroundColor: "black" }} carFix={props.carFix} key={index} image={image} />
+              <Carousel.Caption>
+                {/* <h3>First slide label</h3> */}
+              </Carousel.Caption>
+            </Carousel.Item>
+          )
+
+        })}
+      </Carousel>
+
+    </Dialog>
+  );
+
 }
 else {
   return (
