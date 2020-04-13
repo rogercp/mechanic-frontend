@@ -54,6 +54,7 @@ function CarFixImgUpload(props) {
 
     async function fetchFixDocuments() {
         let fixImages = await axiosWithAuth().get(`/car_fix/${props.carFix.id}/car_fix_images`)
+        console.log(fixImages.data,"datatatttttattat")
         setCarFixImages(fixImages.data);
         return fixImages;
     }
@@ -95,7 +96,7 @@ function CarFixImgUpload(props) {
 
 
 
-  if(props.isCarousel){
+  if(props.isCarousel && carFixImages.length>0){
         return (
 <>
 
@@ -107,6 +108,7 @@ function CarFixImgUpload(props) {
         </Button>
    
         <ImageCarousel
+            isCarFixImages={true}
             open={fullopen}
             handleClose={handlefullClose}
             onClose={handlefullClose}
