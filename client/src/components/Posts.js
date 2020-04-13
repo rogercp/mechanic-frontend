@@ -12,8 +12,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import search from './Search';
 import Search from "./Search";
 
-
-
 function Posts(props) {
 
   const [searchPosts, setsearchPosts] = useState([])
