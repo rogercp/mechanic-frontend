@@ -41,7 +41,7 @@ function ProfileImageShow(props) {
 
   useEffect(() => {
     getImg()
-  }, []);
+  }, );
 
   function getImg() {
     fileRef.getMetadata().then((metadata) => {
