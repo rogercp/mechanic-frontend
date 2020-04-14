@@ -59,7 +59,7 @@ function PostImageUpload(props) {
         fetchPostImagesAfterSubmit(props.post.id);
         
 
-    }, [postImages]);
+    }, [postImages,props]);
 
 
     async function fetchPostImages(id) {

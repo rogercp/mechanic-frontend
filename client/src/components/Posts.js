@@ -32,7 +32,7 @@ function Posts(props) {
 
   useEffect(() => {
     onFirstLoad()
-  }, []);
+  },);
 
 
   function onFirstLoad(){
