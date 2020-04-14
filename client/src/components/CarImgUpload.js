@@ -28,7 +28,7 @@ function CarImgUpload(props) {
             fetchCarImages();
         }
 
-    }, []);
+    }, [props]);
 
 
     async function fetchCarImages() {
