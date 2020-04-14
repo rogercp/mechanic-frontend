@@ -46,15 +46,27 @@ function CarFixImgUpload(props) {
     }
 
 
+    // React.useCallback (()=>{
+
+    //     async function fetchFixDocuments() {
+    //            let fixImages = await axiosWithAuth().get(`/car_fix/${props.carFix.id}/car_fix_images`)
+    //             setCarFixImages(fixImages.data);
+    //             return fixImages;
+    //          }
+
+    // },[])
+        
+            
+
     useEffect(() => {
 
-        fetchFixDocuments();
+        
+        fetchFixDocuments()
 
-    }, [file,fetchFixDocuments]);
+    },);
 
     async function fetchFixDocuments() {
         let fixImages = await axiosWithAuth().get(`/car_fix/${props.carFix.id}/car_fix_images`)
-        console.log(fixImages.data,"datatatttttattat")
         setCarFixImages(fixImages.data);
         return fixImages;
     }
