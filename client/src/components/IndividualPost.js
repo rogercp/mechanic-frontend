@@ -141,7 +141,7 @@ likes:props.post.like
       axiosWithAuth()
         .post(`/comment/${props.post.id}`, commentState)
         .then(res => {
-          console.log("comment success")
+          fetchComments()
         })
         .catch(err => {
         });
