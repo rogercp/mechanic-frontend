@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
 
 function PostImageUpload(props) {
 
-
     const classes = useStyles();
     const [postImages, setPostImages] = useState([]);
     const [file, setFile] = useState({});
@@ -53,14 +52,14 @@ function PostImageUpload(props) {
 
     }, [file]);
 
-    useEffect(() => {
+    // useEffect(() => {
 
 
-        fetchPostImagesAfterSubmit(props.post.id);
+    //     fetchPostImagesAfterSubmit(props.post.id);
 
 
-    }, []);
-    
+    // }, []);
+
 // postImages
 
     async function fetchPostImages(id) {
@@ -71,8 +70,10 @@ function PostImageUpload(props) {
 
     async function fetchPostImagesAfterSubmit(id) {
         let fixImages = await axiosWithAuth().get(`/post/${id}/post_images`)
-        setPostImages(fixImages.data);
+        // setPostImages(fixImages.data);
         // return fixImages;
+        console.log(fixImages.data,"datatattattatatta")
+
     }
 
     function handleInputChanges(e) {
@@ -101,7 +102,6 @@ function PostImageUpload(props) {
             axiosWithAuth().post(`/post/${props.post.id}/post_images`, { file_name: file.name })
                 .then(res => {
                     fetchPostImagesAfterSubmit(props.post.id);
-                    // window.location.reload(); 
                 })
                 .catch(error => {
                     console.error(error);
@@ -122,7 +122,7 @@ function PostImageUpload(props) {
                     isImageDelShow={true}
                     postImages={postImages}
                     post={props.post}
-                    fetchPostImage={fetchPostImages}
+                    fetchPostImages={fetchPostImages}
 
                 />
 

@@ -51,7 +51,6 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
   },
 
-
 }));
 
 const IndividualPost = (props) => {
@@ -66,6 +65,11 @@ const IndividualPost = (props) => {
     comment_text: ''
   });
   const [commentFetch, setCommentFetch] = useState([])
+  const [likesFetch,setLikeFetch] = useState({
+likes:props.post.like
+  }
+  
+  )
 
   useEffect(() => {
     fetchComments()
@@ -73,7 +77,20 @@ const IndividualPost = (props) => {
   }, [])
 
 
+  const fetchSpecificPost = () =>{
 
+    axiosWithAuth()
+    .get(`/post/fetchPostLikes/${props.post.id}`)
+    .then(res => {
+      console.log(res.data,"dadsadadasd")
+      setLikeFetch(prevState =>({
+        ...prevState.likes,
+        likes:res.data[0].like,
+      }))
+    })
+    .catch(err => {
+    });
+  }
 
   const fetchComments = () => {
     axiosWithAuth()
@@ -162,7 +179,7 @@ const IndividualPost = (props) => {
       axiosWithAuth()
         .patch(`/post/inc/${props.post.id}`)
         .then(res => {
-          props.fetchPosts()
+          fetchSpecificPost(props.post.id)
         })
         .catch(err => {
         });
@@ -195,7 +212,8 @@ const IndividualPost = (props) => {
       axiosWithAuth()
         .patch(`/post/dec/${props.post.id}`)
         .then(res => {
-          props.fetchPosts()
+          fetchSpecificPost(props.post.id)
+
         })
         .catch(err => {
         });
@@ -269,7 +287,7 @@ const IndividualPost = (props) => {
           </div>
 
           <div style={{ marginRight: "0", display: "flex", justifyContent: "space-between", alignItems: "space-between" }}>
-            <p style={{ marginTop: "8px" }}>{props.post.like}</p>
+            <p style={{ marginTop: "8px" }}>{likesFetch.likes}</p>
             <ThumbUpIcon onClick={incrementLike} style={{ borderRadius: "50%" }} className={classes.margin} />
             <ThumbDownIcon onClick={decreaseLike} style={{ borderRadius: "50%" }} className={classes.margin} />
           </div>

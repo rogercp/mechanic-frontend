@@ -37,7 +37,7 @@ function PostImageShow(props) {
 
       axiosWithAuth().delete(`/post/image/${props.image.id}`)
         .then(res => {
-          props.fetchPostImage(props.post.id)
+          props.fetchPostImages(props.post.id)
         })
         .catch(error => {
           console.error(error);

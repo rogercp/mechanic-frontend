@@ -32,7 +32,7 @@ function ImageCarousel(props) {
             return (
 
               <div style={{ overflow: "auto", width: "75px", margin: "1px", overflow: "hidden" }} >
-                <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} isDeleteableOnClick={true} fetchPostImage={props.fetchPostImage} image={image} />
+                <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} isDeleteableOnClick={true} fetchPostImages={props.fetchPostImages} image={image} />
 
               </div>
 

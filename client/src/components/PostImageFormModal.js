@@ -77,8 +77,6 @@ function PostImageFormModal(props) {
         <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
 
 
-
-
           <PostImageUpload post={props.post} isCarousel={true} />
           <PostImageUpload post={props.post} isForm={true} />
           <Button

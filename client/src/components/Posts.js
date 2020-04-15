@@ -56,7 +56,7 @@ function Posts(props) {
             searchPosts.map(p => {
               return (
                 <>
-                  <IndividualPost post={p} key={caches.uid} fetchPosts={props.fetchPosts} />
+                  <IndividualPost post={p} key={caches.uid} fetchPosts={props.fetchFilteredPosts} />
                 </>
               );
             })
@@ -84,7 +84,7 @@ function Posts(props) {
           {props.filteredPosts.map(p => {
             return (
               <>
-                <IndividualPost post={p} key={caches.uid} fetchPosts={props.fetchPosts} />
+                <IndividualPost post={p} key={caches.uid} fetchPosts={props.fetchFilteredPosts} />
               </>
             );
           })}
