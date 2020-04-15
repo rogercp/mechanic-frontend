@@ -43,22 +43,22 @@ function NavBar(props) {
   });
 
 
- 
 
-    function getUserNameOnLoad(){
-      const  userId = localStorage.getItem('id')
-      axiosWithAuth()
+
+  function getUserNameOnLoad() {
+    const userId = localStorage.getItem('id')
+    axiosWithAuth()
       .get(`/users/username/${userId}`)
-      .then(res =>{
-        localStorage.setItem('username',res.data)    
-        
-      })
-        .catch(err => {
-                  console.log("error")
-         });
-    
+      .then(res => {
+        localStorage.setItem('username', res.data)
 
-    }
+      })
+      .catch(err => {
+        console.log("error")
+      });
+
+
+  }
 
 
 
@@ -192,7 +192,7 @@ function NavBar(props) {
 
           <div style={{ width: "100%", position: "fixed" }}>
             {/* display:inline-block  --- this will work for a non-sticky navbar */}
-            <Button style={{ float: "right", marginTop: "20px",zIndex: "1000",position: "relative" }} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
+            <Button style={{ float: "right", marginTop: "20px", zIndex: "1000", position: "relative" }} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
           </div>
           <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
             {sideList('right')}

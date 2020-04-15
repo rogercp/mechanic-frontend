@@ -1,6 +1,6 @@
 
 
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import Switch from '@material-ui/core/Switch';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -55,6 +55,7 @@ const AntSwitch = withStyles(theme => ({
   },
   checked: {},
 }))(Switch);
+
 /**
  *  Import styles
  */
@@ -97,7 +98,7 @@ function CarMaintenenceForm(props) {
 
   const [fullopen, setFullOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
-  const [currentMaintenence,setcurrentMaintenence] = useState({})
+  const [currentMaintenence, setcurrentMaintenence] = useState({})
   const [values, setValues] = React.useState({
     fix_not_maintenence: false,
     fix: '',
@@ -155,7 +156,7 @@ function CarMaintenenceForm(props) {
       });
   };
 
-  console.log(currentMaintenence,"curentMaintence")
+  console.log(currentMaintenence, "curentMaintence")
 
   return (
     <>
@@ -247,14 +248,14 @@ function CarMaintenenceForm(props) {
         </form>
 
 
-      <ImageUploadModal
-        isMaintenence={true}
-        currentMaintenence={currentMaintenence}
-        open={fullopen}
-        onClose={handlefullClose}
-        handleClose={handlefullClose}
-        onclose={props.onClose}
-      />
+        <ImageUploadModal
+          isMaintenence={true}
+          currentMaintenence={currentMaintenence}
+          open={fullopen}
+          onClose={handlefullClose}
+          handleClose={handlefullClose}
+          onclose={props.onClose}
+        />
       </div>
     </>
   );

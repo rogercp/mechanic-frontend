@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CarImgShow from './CarImgShow';
-import CarImageFixShow from './CarImageFixShow';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +27,7 @@ function CarImgUpload(props) {
             fetchCarImages();
         }
 
-    },);
+    }, []);
 
 
     async function fetchCarImages() {
@@ -90,30 +89,30 @@ function CarImgUpload(props) {
         return (
             <>
                 <div style={{ height: "200px" }}>
-            {(!props.car.file_name && !props.isForm? 
-                   <DriveEtaIcon style={{ fontSize: "200px" }} />
-            :
-            null
-            )}
-                    
-             {props.isForm ? <div>
-                    <form onSubmit={(handleSubmitUploader)} style={{ display: 'flex', flexDirection: "column",maxWidth:"200px",justifyContent:"Center"}}>
-                        <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
-                        <Button
-                            variant="contained"
-                            name="car_type"
-                            color="default"
-                            className={classes.button}
-                            startIcon={<CloudUploadIcon />}
-                            type="submit"
-                        >
-                            Upload
-            </Button>
-                    </form>
-                </div> :null}
+                    {(!props.car.file_name && !props.isForm ?
+                        <DriveEtaIcon style={{ fontSize: "200px" }} />
+                        :
+                        null
+                    )}
 
-                
-      </div> 
+                    {props.isForm ? <div>
+                        <form onSubmit={(handleSubmitUploader)} style={{ display: 'flex', flexDirection: "column", maxWidth: "200px", justifyContent: "Center" }}>
+                            <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
+                            <Button
+                                variant="contained"
+                                name="car_type"
+                                color="default"
+                                className={classes.button}
+                                startIcon={<CloudUploadIcon />}
+                                type="submit"
+                            >
+                                Upload
+            </Button>
+                        </form>
+                    </div> : null}
+
+
+                </div>
 
 
 

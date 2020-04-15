@@ -1,5 +1,5 @@
 
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -59,7 +59,7 @@ function PostForm(props) {
 
   const [fullopen, setFullOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
-  
+
 
   const handlefullOpen = () => {
     setFullOpen(true);
@@ -92,18 +92,17 @@ function PostForm(props) {
     props.addPost(state);
     props.fetchFilteredPosts();
     handlefullOpen()
-    
+
     // props.onClose();
   };
 
-  console.log(props.currentPost,"currentPosty")
+  console.log(props.currentPost, "currentPosty")
 
   useEffect(() => {
 
     // setCurrentPost(props.currentPost)
   }, []);
 
-// console.log(currentPost,"current psostststst")
   return (
     <>
       <FormControl className={classes.formControl} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} noValidate autoComplete="off" onSubmit={onSubmitHandler}>

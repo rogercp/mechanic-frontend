@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
 import { Image, roundedCircle } from 'react-bootstrap';
 import '../styles/postsIndividual.scss'
 import { HTML5_FMT } from 'moment';
@@ -52,7 +51,6 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
   },
 
-
 }));
 
 const IndividualPost = (props) => {
@@ -67,6 +65,11 @@ const IndividualPost = (props) => {
     comment_text: ''
   });
   const [commentFetch, setCommentFetch] = useState([])
+  const [likesFetch,setLikeFetch] = useState({
+likes:props.post.like
+  }
+  
+  )
 
   useEffect(() => {
     fetchComments()
@@ -74,7 +77,20 @@ const IndividualPost = (props) => {
   }, [])
 
 
-  
+  const fetchSpecificPost = () =>{
+
+    axiosWithAuth()
+    .get(`/post/fetchPostLikes/${props.post.id}`)
+    .then(res => {
+      console.log(res.data,"dadsadadasd")
+      setLikeFetch(prevState =>({
+        ...prevState.likes,
+        likes:res.data[0].like,
+      }))
+    })
+    .catch(err => {
+    });
+  }
 
   const fetchComments = () => {
     axiosWithAuth()
@@ -101,111 +117,112 @@ const IndividualPost = (props) => {
 
   const onSubmitHandler = e => {
     e.preventDefault();
-    if (localStorage.getItem("token") === null && localStorage.getItem("username") === null ) {
+    if (localStorage.getItem("token") === null && localStorage.getItem("username") === null) {
       props.history.push('/login')
     }
-    if(localStorage.getItem("username") === null && localStorage.getItem("token") ){
-  
-  
+    if (localStorage.getItem("username") === null && localStorage.getItem("token")) {
+
+
       confirmAlert({
         customUI: ({ onClose }) => {
-            return (
-                <div className='custom-ui' >
-  
-                  <h3>You need a username to Post. Click the edit icon to create one.</h3>
-                    <Button className={classes.margin} variant="secondary" onClick={onClose}>Close</Button>
-  
-                </div>
-            );
+          return (
+            <div className='custom-ui' >
+
+              <h3>You need a username to Post. Click the edit icon to create one.</h3>
+              <Button className={classes.margin} variant="secondary" onClick={onClose}>Close</Button>
+
+            </div>
+          );
         }
-    });
+      });
       props.history.push('/settings')
-    }else{
+    } else {
 
       axiosWithAuth()
-      .post(`/comment/${props.post.id}`, commentState)
-      .then(res => {
-        console.log("comment success")
-      })
-      .catch(err => {
-      });
+        .post(`/comment/${props.post.id}`, commentState)
+        .then(res => {
+          fetchComments()
+        })
+        .catch(err => {
+        });
     }
 
 
-   
+
   };
 
 
 
   function incrementLike() {
 
-    if (localStorage.getItem("token") === null && localStorage.getItem("username") === null ) {
+    if (localStorage.getItem("token") === null && localStorage.getItem("username") === null) {
       props.history.push('/login')
     }
-    if(localStorage.getItem("username") === null && localStorage.getItem("token") ){
-  
-  
+    if (localStorage.getItem("username") === null && localStorage.getItem("token")) {
+
+
       confirmAlert({
         customUI: ({ onClose }) => {
-            return (
-                <div className='custom-ui' >
-  
-                  <h3>You need a username to Post. Click the edit icon to create one.</h3>
-                    <Button className={classes.margin} variant="secondary" onClick={onClose}>Close</Button>
-  
-                </div>
-            );
+          return (
+            <div className='custom-ui' >
+
+              <h3>You need a username to Post. Click the edit icon to create one.</h3>
+              <Button className={classes.margin} variant="secondary" onClick={onClose}>Close</Button>
+
+            </div>
+          );
         }
-    });
+      });
       props.history.push('/settings')
-    }else{
+    } else {
 
       axiosWithAuth()
-      .patch(`/post/inc/${props.post.id}`)
-      .then(res => {
-        props.fetchPosts()
-      })
-      .catch(err => {
-      });
+        .patch(`/post/inc/${props.post.id}`)
+        .then(res => {
+          fetchSpecificPost(props.post.id)
+        })
+        .catch(err => {
+        });
     }
 
   };
 
 
   function decreaseLike() {
-    if (localStorage.getItem("token") === null && localStorage.getItem("username") === null ) {
+    if (localStorage.getItem("token") === null && localStorage.getItem("username") === null) {
       props.history.push('/login')
     }
-    if(localStorage.getItem("username") === null && localStorage.getItem("token") ){
-  
-  
+    if (localStorage.getItem("username") === null && localStorage.getItem("token")) {
+
+
       confirmAlert({
         customUI: ({ onClose }) => {
-            return (
-                <div className='custom-ui' >
-  
-                  <h3>You need a username to Post. Click the edit icon to create one.</h3>
-                    <Button className={classes.margin} variant="secondary" onClick={onClose}>Close</Button>
-  
-                </div>
-            );
+          return (
+            <div className='custom-ui' >
+
+              <h3>You need a username to Post. Click the edit icon to create one.</h3>
+              <Button className={classes.margin} variant="secondary" onClick={onClose}>Close</Button>
+
+            </div>
+          );
         }
-    });
-      props.history.push('/settings')
-    }else{
-      axiosWithAuth()
-      .patch(`/post/dec/${props.post.id}`)
-      .then(res => {
-        props.fetchPosts()
-      })
-      .catch(err => {
       });
+      props.history.push('/settings')
+    } else {
+      axiosWithAuth()
+        .patch(`/post/dec/${props.post.id}`)
+        .then(res => {
+          fetchSpecificPost(props.post.id)
+
+        })
+        .catch(err => {
+        });
     }
-    
+
   };
 
 
-  
+
 
 
   const toggleComments = (e) => {
@@ -221,56 +238,56 @@ const IndividualPost = (props) => {
   }
   return (
     <>
-      <div className="singlePost" style={{ width: "98%", marginBottom: "5px"}}>
+      <div className="singlePost" style={{ width: "98%", marginBottom: "5px" }}>
 
-        <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
-         
+        <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
 
-            {props.post ?
-            
-              <ProfileImageShow style={{ alignSelf:"flex-start",width: "40px", height: "40px", paddingRight: "2px" }} isPost={state.isPost} isPostPic={true} isCirclePic={state.isCirclePic} post={props.post} />
-              
-              :
-              null
-              
-            }
-         
 
-            <p style={{alignSelf:"flex-end"}}>{props.post.post_date}</p>
-          
+          {props.post ?
+
+            <ProfileImageShow style={{ alignSelf: "flex-start", width: "40px", height: "40px", paddingRight: "2px" }} isPost={state.isPost} isPostPic={true} isCirclePic={state.isCirclePic} post={props.post} />
+
+            :
+            null
+
+          }
+
+
+          <p style={{ alignSelf: "flex-end" }}>{props.post.post_date}</p>
+
 
 
 
         </div>
 
-       
 
-            
-            <div style={{display:"flex",flexDirection:"column", justifyContent:"center",alignItems:"center"}}>
-              
-              <div>
-            <PostImageUpload post={props.post}  />
-            </div>
-            <div>
+
+
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+
+          <div>
+            <PostImageUpload post={props.post} />
+          </div>
+          <div>
 
             <PostImageUpload post={props.post} isCarouselForPost={true} />
-            </div>
-            <div>
+          </div>
+          <div>
             <p>{props.post.post_text}</p>
-            </div>
-            </div>
-            
-           
-           
-        
-        <div style={{ display:"flex",flexDirection:"row", justifyContent:"center",alignItems:"center"}}>
+          </div>
+        </div>
 
-          <div style={{ margin:"0",display: "flex", flexDirection: "row" }}>
+
+
+
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
+
+          <div style={{ margin: "0", display: "flex", flexDirection: "row" }}>
             <CommentIcon className={classes.margin} onClick={toggleComments} /> <p style={{ marginTop: "8px" }}>{commentFetch.length}</p>
           </div>
 
-          <div style={{ marginRight:"0", display: "flex", justifyContent: "space-between", alignItems: "space-between" }}>
-            <p style={{ marginTop: "8px" }}>{props.post.like}</p>
+          <div style={{ marginRight: "0", display: "flex", justifyContent: "space-between", alignItems: "space-between" }}>
+            <p style={{ marginTop: "8px" }}>{likesFetch.likes}</p>
             <ThumbUpIcon onClick={incrementLike} style={{ borderRadius: "50%" }} className={classes.margin} />
             <ThumbDownIcon onClick={decreaseLike} style={{ borderRadius: "50%" }} className={classes.margin} />
           </div>

@@ -1,16 +1,13 @@
 
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import { NavLink,Route, withRouter } from 'react-router-dom';
-import TextField from '@material-ui/core/TextField';
+import { withRouter } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Add';
 import PostAddModal from './PostAddModal';
-import { browserHistory } from 'react-router';
 import Tooltip from '@material-ui/core/Tooltip';
 import { confirmAlert } from 'react-confirm-alert';
-import { axiosWithAuth } from '../helpers/index';
 import { Button } from 'react-bootstrap';
 
 const useStyles = makeStyles(theme => ({

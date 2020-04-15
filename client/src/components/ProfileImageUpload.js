@@ -1,12 +1,10 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { imagesRef } from '../helpers/firebase';
 import axiosWithAuth from '../helpers/axiosWithAuth';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import ProfileImageShow from './ProfileImageShow';
-import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import { connect } from 'react-redux';
 import { fetchProfileImage } from "../store/actions/settingsActions";
 
@@ -84,7 +82,7 @@ function ProfileImageUpload(props) {
             <div style={{ height: "200px" }}>
                 {(props.carFix ? <p>no image</p> : null)}
                 <div style={{ display: 'flex', flexDirection: "column" }}>
-                    <form onSubmit={handleSubmitUploaderProfilePicture} style={{ display: 'flex', flexDirection: "column",maxWidth:"200px",justifyContent:"Center"}}>
+                    <form onSubmit={handleSubmitUploaderProfilePicture} style={{ display: 'flex', flexDirection: "column", maxWidth: "200px", justifyContent: "Center" }}>
                         <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
                         <Button
                             variant="contained"

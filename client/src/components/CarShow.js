@@ -76,16 +76,16 @@ function CarShow(props) {
   }, []);
 
   async function fetchCars() {
-    
+
     const res = await axiosWithAuth().get(`/cars`);
     setCars(res.data);
   }
 
   return (
-    
-     
+
+
     <div style={{ display: 'block' }}>
-    
+
       <Tooltip title="Add Car" placement="right">
         <Fab color="none" aria-label="add" style={{ color: "darkcyan", outline: '0' }} className={classes.margin}>
           <AddIcon
@@ -126,9 +126,9 @@ function CarShow(props) {
     </div>
 
   );
-  
-   
-   
+
+
+
 };
 
 

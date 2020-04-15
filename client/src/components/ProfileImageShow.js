@@ -5,7 +5,6 @@ import { imagesRef } from '../helpers/firebase';
 import { Image } from 'react-bootstrap';
 import { fetchProfileImage } from "../store/actions/settingsActions";
 import { connect } from 'react-redux';
-import { axiosWithAuth } from '../helpers/index';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import ImageIcon from '@material-ui/icons/Image';
@@ -41,7 +40,7 @@ function ProfileImageShow(props) {
 
   useEffect(() => {
     getImg()
-  }, );
+  }, []);
 
   function getImg() {
     fileRef.getMetadata().then((metadata) => {
