@@ -6,11 +6,7 @@ import axiosWithAuth from '../helpers/axiosWithAuth';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import CarImgShow from './CarImgShow';
-import CarImageFixShow from './CarImageFixShow';
-import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import ImageCarousel from './ImageCarousel';
-import DescriptionIcon from '@material-ui/icons/Description';
 
 
 const useStyles = makeStyles(theme => ({
@@ -55,15 +51,15 @@ function CarFixImgUpload(props) {
     //          }
 
     // },[])
-        
-            
+
+
 
     useEffect(() => {
 
-        
+
         fetchFixDocuments()
 
-    },);
+    }, [file]);
 
     async function fetchFixDocuments() {
         let fixImages = await axiosWithAuth().get(`/car_fix/${props.carFix.id}/car_fix_images`)
@@ -108,38 +104,38 @@ function CarFixImgUpload(props) {
 
 
 
-  if(props.isCarousel && carFixImages.length>0){
+    if (props.isCarousel && carFixImages.length > 0) {
         return (
-<>
+            <>
 
-            <Button
-            style={{ color: "darkcyan", outline: '0' }}
-            onClick={handlefullOpen}
-        >
-        Images
+                <Button
+                    style={{ color: "darkcyan", outline: '0' }}
+                    onClick={handlefullOpen}
+                >
+                    Images
         </Button>
-   
-        <ImageCarousel
-            isCarFixImages={true}
-            open={fullopen}
-            handleClose={handlefullClose}
-            onClose={handlefullClose}
-            carFixImages={carFixImages}
-            carFix={props.carFix}
-        />
-    
-</>
+
+                <ImageCarousel
+                    isCarFixImages={true}
+                    open={fullopen}
+                    handleClose={handlefullClose}
+                    onClose={handlefullClose}
+                    carFixImages={carFixImages}
+                    carFix={props.carFix}
+                />
+
+            </>
         )
     }
-    
+
 
     else {
         return (
             <>
-            <div style={{ height: "200px" }}>
-                <h4>Add Image</h4>
-                <div style={{ display: 'flex', flexDirection: "column" }}>
-                    <form onSubmit={handleSubmitUploaderFixDocuments} style={{ display: 'flex', flexDirection: "column",maxWidth:"200px",justifyContent:"Center"}}>
+                <div style={{ height: "200px" }}>
+                    <h4>Add Image</h4>
+                    <div style={{ display: 'flex', flexDirection: "column" }}>
+                        <form onSubmit={handleSubmitUploaderFixDocuments} style={{ display: 'flex', flexDirection: "column", maxWidth: "200px", justifyContent: "Center" }}>
                             <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
                             <Button
                                 variant="contained"
@@ -154,7 +150,7 @@ function CarFixImgUpload(props) {
                         </form>
                     </div>
                 </div>
-           
+
 
             </>
         )

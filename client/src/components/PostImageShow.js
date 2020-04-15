@@ -47,30 +47,30 @@ function PostImageShow(props) {
         console.error(err);
       })
   }
-if(props.isDeleteableOnClick){
+  if (props.isDeleteableOnClick) {
     return (
-        <>
-          {/* {(metadata.contentType === 'application/pdf')? <div id="div-pdf" src={`${thisImage}`}></div> :  <img id="reg-image" height="200px" src={`${thisImage}`}></img>} */}
-          <Tooltip title="delete" placement="right">
+      <>
+        {/* {(metadata.contentType === 'application/pdf')? <div id="div-pdf" src={`${thisImage}`}></div> :  <img id="reg-image" height="200px" src={`${thisImage}`}></img>} */}
+        <Tooltip title="delete" placement="left">
           <img id="reg-image" onClick={deleteImage} style={{ maxWidth: '100%', maxHeight: '450px', backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }} src={`${thisImage}`}></img>
-          </Tooltip>
-          {/* {props.image.file_name} */}
-    
-        </>
+        </Tooltip>
+        {/* {props.image.file_name} */}
+
+      </>
 
     )
-}else{
+  } else {
     return (
-        <>
-          {/* {(metadata.contentType === 'application/pdf')? <div id="div-pdf" src={`${thisImage}`}></div> :  <img id="reg-image" height="200px" src={`${thisImage}`}></img>} */}
-         
-          <img id="reg-image" style={{ maxWidth: '100%', maxHeight: '100%', backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }} src={`${thisImage}`}></img>
-          {/* {props.image.file_name} */}
-         
-        </>
-      )
-}
-  
+      <>
+        {/* {(metadata.contentType === 'application/pdf')? <div id="div-pdf" src={`${thisImage}`}></div> :  <img id="reg-image" height="200px" src={`${thisImage}`}></img>} */}
+
+        <img id="reg-image" style={{ maxWidth: '100%', maxHeight: '100%', backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }} src={`${thisImage}`}></img>
+        {/* {props.image.file_name} */}
+
+      </>
+    )
+  }
+
 }
 
 

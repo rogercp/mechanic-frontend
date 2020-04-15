@@ -9,7 +9,7 @@ function AuthCallback(props) {
     firebase.auth().onAuthStateChanged(async user => {
         // User is signed in.
         if (user) {
-           
+
 
             let token = await user.getIdToken();
             localStorage.setItem("token", token);
@@ -21,7 +21,7 @@ function AuthCallback(props) {
                     token: token
                 })
                 .then(res => {
-                   
+
                     localStorage.setItem("id", res.data.id);
                     window.location = "/home";
                 })

@@ -25,88 +25,88 @@ import ImageUploadModal from './ImageUploadModal';
 
 
 const AntSwitch = withStyles(theme => ({
-    root: {
-      width: 28,
-      height: 16,
-      padding: 0,
-      display: 'flex',
-    },
-    switchBase: {
-      padding: 2,
-      color: theme.palette.grey[500],
-      '&$checked': {
-        transform: 'translateX(12px)',
-        color: theme.palette.common.white,
-        '& + $track': {
-          opacity: 1,
-          backgroundColor: theme.palette.primary.main,
-          borderColor: theme.palette.primary.main,
-        },
+  root: {
+    width: 28,
+    height: 16,
+    padding: 0,
+    display: 'flex',
+  },
+  switchBase: {
+    padding: 2,
+    color: theme.palette.grey[500],
+    '&$checked': {
+      transform: 'translateX(12px)',
+      color: theme.palette.common.white,
+      '& + $track': {
+        opacity: 1,
+        backgroundColor: theme.palette.primary.main,
+        borderColor: theme.palette.primary.main,
       },
     },
-    thumb: {
-      width: 12,
-      height: 12,
-      boxShadow: 'none',
-    },
-    track: {
-      border: `1px solid ${theme.palette.grey[500]}`,
-      borderRadius: 16 / 2,
-      opacity: 1,
-      backgroundColor: theme.palette.common.white,
-    },
-    checked: {},
-  }))(Switch);
+  },
+  thumb: {
+    width: 12,
+    height: 12,
+    boxShadow: 'none',
+  },
+  track: {
+    border: `1px solid ${theme.palette.grey[500]}`,
+    borderRadius: 16 / 2,
+    opacity: 1,
+    backgroundColor: theme.palette.common.white,
+  },
+  checked: {},
+}))(Switch);
 
 const useStyles = makeStyles(theme => ({
-    formControl: {
-        margin: theme.spacing(1),
-        width: 270,
-        height:600
-      },
-      selectEmpty: {
-        marginTop: theme.spacing(2),
-      },
-      container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-      },
-      textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: 200,
-      },
-      button: {
-        margin: theme.spacing(1),
-      },
+  formControl: {
+    margin: theme.spacing(1),
+    width: 270,
+    height: 600
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
 }))
 
 
 function MaintenceCardEditModal(props) {
 
 
-    const classes = useStyles();
-    const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
-    const [state, setState] = React.useState({
-       
-        // fix_not_maintenence: props.carFix.fix_not_maintenence,
-        fix: props.carFix.fix,
-        fix_price: props.carFix.fix_price,
-        fix_description: props.carFix.fix_description,
-        fix_date: props.carFix.fix_date
-        
-    });
+  const classes = useStyles();
+  const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
+  const [state, setState] = React.useState({
+
+    // fix_not_maintenence: props.carFix.fix_not_maintenence,
+    fix: props.carFix.fix,
+    fix_price: props.carFix.fix_price,
+    fix_description: props.carFix.fix_description,
+    fix_date: props.carFix.fix_date
+
+  });
 
 
-    function handleClose() {
-        onClose();
-    }
+  function handleClose() {
+    onClose();
+  }
 
-    function handleClick() {
-        props.history.push(redirect);
-    }
+  function handleClick() {
+    props.history.push(redirect);
+  }
 
-    const handleChange2 = name => event => {
+  const handleChange2 = name => event => {
     setState({ ...state, [name]: event.target.checked });
   };
 
@@ -121,82 +121,82 @@ function MaintenceCardEditModal(props) {
   };
 
 
-  console.log(state,"carfixedits")
-    const onSubmitHandler = e => {
-        
-        e.preventDefault();
-        axiosWithAuth()
-            .put(`car_fix/update/${props.carFix.id}`, state)
-            .then(res => {
-                window.location.reload();
-            })
-            .catch(err => {
-            });
-    };
+  console.log(state, "carfixedits")
+  const onSubmitHandler = e => {
 
-    return (
-        <>
+    e.preventDefault();
+    axiosWithAuth()
+      .put(`car_fix/update/${props.carFix.id}`, state)
+      .then(res => {
+        window.location.reload();
+      })
+      .catch(err => {
+      });
+  };
+
+  return (
+    <>
 
 
-            <Dialog open={open} onClose={handleClose} className={classes.dialog}>
-                
-                 <FormControl className={classes.formControl} style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}> 
-                 <div >
-                 <CarFixImgUpload carFix={props.carFix} />
-                 </div>
-            
-                 {/* <p>{state.fix_not_maintenence === false ? "Maintence" : "Repair"}</p>
+      <Dialog open={open} onClose={handleClose} className={classes.dialog}>
+
+        <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+          <div >
+            <CarFixImgUpload carFix={props.carFix} />
+          </div>
+
+          {/* <p>{state.fix_not_maintenence === false ? "Maintence" : "Repair"}</p>
             <AntSwitch
               onChange={handleChange2('fix_not_maintenence')}
               value="fix_not_maintenence"
               color="default"
               inputProps={{ 'aria-label': 'checkbox with default color' }}
             /> */}
-            <h3>Change Fields</h3>
-            <TextField
-              id="outlined-textarea"
-              onChange={handleChange('fix')}
-              name="fix"
-              defaultValue = {state.fix}
+          <h3>Change Fields</h3>
+          <TextField
+            id="outlined-textarea"
+            onChange={handleChange('fix')}
+            name="fix"
+            defaultValue={state.fix}
 
-              value={state.fix}
-              placeholder={state.fix_not_maintenence === false ? "Maintence" : "Repair"}
-              multiline
-              className={classes.textField}
-              margin="normal"
-              variant="outlined"
-            />
-            <TextField
-              id="outlined-multiline-static"
-              multiline
-              name="fix_description"
-              defaultValue = {state.fix_description}
+            value={state.fix}
+            placeholder={state.fix_not_maintenence === false ? "Maintence" : "Repair"}
+            multiline
+            className={classes.textField}
+            margin="normal"
+            variant="outlined"
+          />
+          <TextField
+            id="outlined-multiline-static"
+            multiline
+            name="fix_description"
+            defaultValue={state.fix_description}
 
-              value={state.fix_description}
-              onChange={handleChange('fix_description')}
-              rows="4"
-              placeholder="Description"
-              className={classes.textField}
-              margin="normal"
-              variant="outlined"
-            />
+            value={state.fix_description}
+            onChange={handleChange('fix_description')}
+            rows="4"
+            placeholder="Description"
+            className={classes.textField}
+            margin="normal"
+            variant="outlined"
+          />
 
 
-            <TextField
-              label="Total Cost"
-              defaultValue = {state.fix_price}
+          <TextField
+            label="Total Cost"
+            defaultValue={state.fix_price}
 
-              value={state.fix_price}
-              name="fix_price"
-              id="standard-start-adornment"
-              onChange={handleChange('fix_price')}
-              className={clsx(classes.margin, classes.textField)}
-              InputProps={{
-                startAdornment: <InputAdornment position="start">$</InputAdornment>,
-              }}
-            />
-            
-            {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            value={state.fix_price}
+            name="fix_price"
+            id="standard-start-adornment"
+            onChange={handleChange('fix_price')}
+            className={clsx(classes.margin, classes.textField)}
+            InputProps={{
+              startAdornment: <InputAdornment position="start">$</InputAdornment>,
+            }}
+          />
+
+          {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
               <KeyboardDatePicker
                 margin="normal"
@@ -223,24 +223,24 @@ function MaintenceCardEditModal(props) {
         </Button> */}
 
 
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.button}
-              onClick={onSubmitHandler}
-            >
-              Enter
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.button}
+            onClick={onSubmitHandler}
+          >
+            Enter
         </Button>
-                                    
-                       
-
-                </FormControl>
-            </Dialog>
 
 
-        </>
-    );
+
+        </FormControl>
+      </Dialog>
+
+
+    </>
+  );
 };
 
 export default MaintenceCardEditModal;

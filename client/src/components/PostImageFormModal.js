@@ -12,26 +12,26 @@ import '../styles/fullscreenmodal.scss'
 
 
 const useStyles = makeStyles(theme => ({
-    formControl: {
-        margin: theme.spacing(1),
-        width: 270,
-        height:600
-      },
-      selectEmpty: {
-        marginTop: theme.spacing(2),
-      },
-      container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-      },
-      textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: 200,
-      },
-      button: {
-        margin: theme.spacing(1),
-      },
+  formControl: {
+    margin: theme.spacing(1),
+    width: 270,
+    height: 600
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
 
 }));
 
@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 function PostImageFormModal(props) {
   const classes = useStyles();
 
-  
+
   const [open, setOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
 
@@ -59,46 +59,46 @@ function PostImageFormModal(props) {
     setErrorOpen(false);
   }
 
-  function handleBothClosesForCars(){
+  function handleBothClosesForCars() {
     props.onclose()
     props.handleClose()
   }
 
-  function handleBothClosesForMaintence(){
+  function handleBothClosesForMaintence() {
     props.onclose()
     props.handleClose()
   }
 
   return (
     <>
-      <Dialog   open={props.open} onClose={props.handleClose}  >
-      <h2>Upload Images</h2>
+      <Dialog open={props.open} onClose={props.handleClose}  >
+        <h2>Upload Images</h2>
 
-      <FormControl className={classes.formControl} style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-    
-     
-    
+        <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
 
-       <PostImageUpload post={props.post} isCarousel={true}/>
-       <PostImageUpload post={props.post} isForm={true}/>
-       <Button
-      className={classes.button} 
-      variant="contained"
-      color="primary"
-      size="large"
-      onClick={handleBothClosesForMaintence}>
-        
+
+
+
+          <PostImageUpload post={props.post} isCarousel={true} />
+          <PostImageUpload post={props.post} isForm={true} />
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={handleBothClosesForMaintence}>
+
             Skip
      </Button>
-    
-      
 
 
-      
-           
+
+
+
+
 
         </FormControl>
-        </Dialog>
+      </Dialog>
     </>
   )
 }

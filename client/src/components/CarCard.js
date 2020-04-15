@@ -12,10 +12,6 @@ import CarModalExpand from './CarModalExpand'
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import CarImgUpload from './CarImgUpload';
-import Switch from '@material-ui/core/Switch';
-import Paper from '@material-ui/core/Paper';
-import Collapse from '@material-ui/core/Collapse';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Button as Button2 } from 'react-bootstrap';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -109,18 +105,18 @@ const MediatorCard = (props) => {
 
   function handleOpen() {
     setOpen(true);
-}
-function handleErrorOpen() {
+  }
+  function handleErrorOpen() {
     setErrorOpen(true);
-}
-function handleClose() {
+  }
+  function handleClose() {
     setOpen(false);
-}
-function handleErrorClose() {
+  }
+  function handleErrorClose() {
     setErrorOpen(false);
-}
+  }
 
-  
+
   const [flip, setFlip] = useState({
     isFlipped: false
   });
@@ -202,83 +198,83 @@ function handleErrorClose() {
 
   return (
     <>
-    <div style={{margin:"20px"}}>
-      <ReactCardFlip isFlipped={flip.isFlipped} flipDirection="vertical">
+      <div style={{ margin: "20px" }}>
+        <ReactCardFlip isFlipped={flip.isFlipped} flipDirection="vertical">
 
-        <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "325px", maxWidth: "350px" }}>
+          <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "325px", maxWidth: "350px" }}>
 
 
 
-          <CardContent >
+            <CardContent >
+
+              <div className={classes.top}>
+                <h3 className='card-name'> {props.car.car_nickname}</h3>
+                <Button
+                  style={{ color: "darkcyan", outline: '0' }}
+                  onClick={handlefullOpen}
+                >
+
+                  <Tooltip title="Open Repairs"><AllOutIcon /></Tooltip>
+                </Button>
+              </div>
+
+              <CarImgUpload car={props.car} />
+
+
+
+            </CardContent>
+            <Button onClick={flipEr}>Details</Button>
+
+          </Card>
+
+
+          <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "325px", maxWidth: "350px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+
 
             <div className={classes.top}>
-              <h3 className='card-name'> {props.car.car_nickname}</h3>
-              <Button
-                style={{ color: "darkcyan", outline: '0' }}
-                onClick={handlefullOpen}
-              >
+              <div style={{ display: "flex", flexDirection: "column", minHeight: '150px' }}>
 
-                <Tooltip title="Open Repairs"><AllOutIcon /></Tooltip>
-              </Button>
+
+                <p className="case-label">Car Type: {props.car.car_type}</p>
+                <p className="case-label">{props.car.car_year} {props.car.car_make} {props.car.car_model} </p>
+                <Toolbar style={{ display: "flex", flexDirection: "row", alignItems: "spaceBetween", justifyContent: "spaceBetween" }} >
+                  <Button
+                    id="edit"
+                  >
+                    <Tooltip title="Edit"><EditIcon onClick={handleOpen} /></Tooltip>
+                  </Button>
+
+
+                  <IconButton id="del" aria-label="delete" className={classes.margin} onClick={handleDelete}>
+                    <DeleteIcon />
+                  </IconButton>
+
+                </Toolbar>
+              </div>
+
             </div>
-            
-            <CarImgUpload car={props.car} />
+            <Button onClick={flipEr}>General</Button>
+          </Card>
+        </ReactCardFlip>
 
+        <CarModalExpand
+          open={fullopen}
+          handleClose={handlefullClose}
+          onClose={handlefullClose}
+          car={props.car}
+        />
 
+        <CarCardEditModal
+          car={props.car}
+          open={open}
+          onClose={handleClose}
+          titleText={"User Info"}
+          bodyText={""}
+          redirect={"/cars"}
+          redirectText={"cars"}
+        />
+      </div>
 
-          </CardContent>
-          <Button onClick={flipEr}>Details</Button>
-
-        </Card>
-
-
-        <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "325px", maxWidth: "350px", display: "flex", flexDirection: "column",justifyContent:"center",alignItems:"center"}}>
-
-
-          <div className={classes.top}>
-            <div style={{ display: "flex", flexDirection: "column", minHeight: '150px' }}>
-
-
-              <p className="case-label">Car Type: {props.car.car_type}</p>
-              <p className="case-label">{props.car.car_year} {props.car.car_make} {props.car.car_model} </p>
-              <Toolbar style={{ display: "flex", flexDirection: "row", alignItems: "spaceBetween", justifyContent: "spaceBetween"}} >
-                <Button
-                  id="edit"
-                >
-                      <Tooltip title="Edit"><EditIcon  onClick={handleOpen}/></Tooltip>  
-                </Button>
-
-
-                <IconButton id="del" aria-label="delete" className={classes.margin} onClick={handleDelete}>
-               <DeleteIcon />
-                </IconButton>
-
-              </Toolbar>
-            </div>
-
-          </div>
-          <Button onClick={flipEr}>General</Button>
-        </Card>
-      </ReactCardFlip>
-
-      <CarModalExpand
-        open={fullopen}
-        handleClose={handlefullClose}
-        onClose={handlefullClose}
-        car={props.car}
-      />
-
-      <CarCardEditModal
-                    car={props.car}
-                    open={open}
-                    onClose={handleClose}
-                    titleText={"User Info"}
-                    bodyText={""}
-                    redirect={"/cars"}
-                    redirectText={"cars"}
-                />
-</div>
-        
     </>
   );
 };

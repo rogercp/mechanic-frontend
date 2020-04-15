@@ -103,7 +103,7 @@ function UserSettingsLayout(props) {
 
         props.fetchProfileImage(userId)
 
-    },);
+    }, []);
 
 
     return (

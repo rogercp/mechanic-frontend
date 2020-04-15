@@ -1,7 +1,5 @@
-
-
 import React, { useState } from 'react';
-import {Image,roundedCircle} from 'react-bootstrap';
+import { Image, roundedCircle } from 'react-bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import UserSettingsLayout from '../components/UserSettingsLayout'
@@ -9,17 +7,17 @@ import UserSettingsLayout from '../components/UserSettingsLayout'
 
 
 
- function UserSettings(props) {
- 
+function UserSettings(props) {
+
 
   return (
-  <div style={{backgroundColor:"rgb(210, 210, 211)",maxWidth:"1300px",paddingBottom:"700px",paddingTop:"50px"}}>
-   
+    <div style={{ backgroundColor: "rgb(210, 210, 211)", maxWidth: "1300px", paddingBottom: "700px", paddingTop: "50px" }}>
 
-   <UserSettingsLayout/>
-         
+
+      <UserSettingsLayout />
+
     </div>
   );
- }
+}
 
 export default UserSettings;

@@ -10,47 +10,47 @@ import {
   Home
 } from './views';
 
-import  './styles/navbar.scss'
+import './styles/navbar.scss'
 
 function App() {
-// console.log(process.env)
+  // console.log(process.env)
 
-  if(localStorage.getItem('token')){
+  if (localStorage.getItem('token')) {
     return (
       <div className="outerapp">
-      <BrowserRouter>
-        <NavBar className="navbar"/>
-            <Switch>
-              {loggedInRoutes}
-              <Route key={uuid.v4()} component={NoMatch} />
-            </Switch>
-        
-      </BrowserRouter>
+        <BrowserRouter>
+          <NavBar className="navbar" />
+          <Switch>
+            {loggedInRoutes}
+            <Route key={uuid.v4()} component={NoMatch} />
+          </Switch>
+
+        </BrowserRouter>
       </div>
     )
 
 
-  }else{
+  } else {
     return (
       <div className="outerapp">
-      
-      <BrowserRouter>
-      <NavBar className="navbar"/>
-      
-            <Switch>
+
+        <BrowserRouter>
+          <NavBar className="navbar" />
+
+          <Switch>
             <Route key={uuid.v4()} exact path='/' component={Home} />,
               {UsersRouter}
-              <Route key={uuid.v4()} component={NoMatch} />
-            </Switch>
-        
-      </BrowserRouter>
-      
+            <Route key={uuid.v4()} component={NoMatch} />
+          </Switch>
+
+        </BrowserRouter>
+
       </div>
     )
   }
-    
+
 }
-  
+
 
 
 
