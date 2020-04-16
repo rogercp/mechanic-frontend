@@ -6,7 +6,7 @@ import IndividualPost from './IndividualPost'
 import { connect } from 'react-redux';
 import { fetchFilteredPosts } from "../store/actions/postActions";
 import { toggleSearchToTrue } from "../store/actions/postActions";
-import { fetchPosts } from "../store/actions/postActions";
+// import { fetchPosts } from "../store/actions/postActions";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Search from "./Search";
 
@@ -14,6 +14,7 @@ function Posts(props) {
 
   const [searchPosts, setsearchPosts] = useState([])
 
+  // const [filteredPosts,setFilteredposts] = useState()
 
   async function searchPostsHandler(term) {
 
@@ -30,15 +31,17 @@ function Posts(props) {
 
   useEffect(() => {
     onFirstLoad()
+    // setFilteredposts(props.filteredPosts)
   }, []);
 
 
-  function onFirstLoad() {
+  async function onFirstLoad() {
 
-    props.fetchFilteredPosts("AllPosts")
+   await props.fetchFilteredPosts("AllPosts")
 
   }
 
+  console.log(props.filteredPosts,"filtered posts posts")
 
   if (props.searchToggle === true) {
 
@@ -49,7 +52,6 @@ function Posts(props) {
         <Search searchPostsHandler={searchPostsHandler} />
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-
 
           {
 
@@ -65,7 +67,7 @@ function Posts(props) {
           }
 
 
-          <ExpandMoreIcon style={{ fontSize: "100px" }} />
+          {/* <ExpandMoreIcon style={{ fontSize: "100px" }} /> */}
 
         </div>
       </>
@@ -80,18 +82,18 @@ function Posts(props) {
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 
+       
+              {props.filteredPosts.map(p => {
+                return (
+                  <>
+                    <IndividualPost post={p} key={caches.uid} fetchPosts={props.fetchFilteredPosts} />
+                  </>
+                );
+              })}
+          
+    
 
-          {props.filteredPosts.map(p => {
-            return (
-              <>
-                <IndividualPost post={p} key={caches.uid} fetchPosts={props.fetchFilteredPosts} />
-              </>
-            );
-          })}
-
-
-
-          <ExpandMoreIcon style={{ fontSize: "100px" }} />
+          {/* <ExpandMoreIcon style={{ fontSize: "100px" }} /> */}
 
         </div>
       </>
@@ -109,5 +111,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { toggleSearchToTrue, fetchFilteredPosts, fetchPosts }
+  { toggleSearchToTrue, fetchFilteredPosts }
 )(Posts);

@@ -334,7 +334,7 @@ likes:props.post.like
 
 
               </div>
-              <ExpandMoreIcon style={{ fontSize: "50px" }} />
+              {/* <ExpandMoreIcon style={{ fontSize: "50px" }} /> */}
             </div>
             : null}
         </div>
