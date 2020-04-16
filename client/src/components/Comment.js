@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../helpers/index';
+import axios from 'axios'
 import { fetchFixes } from "../store/actions/carMaintenenceActions";
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -36,11 +37,10 @@ function Comment(props) {
 
 
   const fetchCommentUserName = () => {
-    axiosWithAuth()
-      .get(`users/username/${props.comment.user_id}`)
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/users/username/${props.comment.user_id}`)
       .then(res => {
         setUsernameforpost(res.data)
-        console.log(res.data, "res.data")
       })
       .catch(err => {
       });
