@@ -160,6 +160,7 @@ function PostForm(props) {
         open={fullopen}
         handleClose={handlefullClose}
         onClose={handlefullClose}
+        onOpen = {handlefullOpen}
       />
     </>
   );

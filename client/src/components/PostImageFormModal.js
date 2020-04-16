@@ -6,7 +6,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import PostImageUpload from './PostImageUpload'
 
-
 import '../styles/fullscreenmodal.scss'
 
 
@@ -77,8 +76,8 @@ function PostImageFormModal(props) {
         <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
 
 
-          <PostImageUpload post={props.post} isCarousel={true} />
-          <PostImageUpload post={props.post} isForm={true} />
+          <PostImageUpload post={props.post} isCarousel={true}   />
+          
           <Button
             className={classes.button}
             variant="contained"
