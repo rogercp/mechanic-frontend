@@ -49,7 +49,7 @@ function Posts(props) {
   //  }
  
 
-  // console.log(filteredPosts.posts,"filtered posts posts")
+  console.log(props.filteredPosts,"filtered posts from reduz in posts")
 
   if (props.searchToggle === true) {
 

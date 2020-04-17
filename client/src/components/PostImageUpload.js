@@ -67,10 +67,8 @@ function PostImageUpload(props) {
     async function fetchPostImages(id) {
         let fixImages = await axiosWithAuth().get(`/post/${id}/post_images`)
         setPostImages(fixImages.data);
-       console.log(fixImages.data,"fatatatatatat")
     }
 
-    console.log(postImages,"this is the one outside of any funciton")
 
     async function fetchPostImagesAfterSubmit(id) {
         axiosWithAuth().get(`/post/${id}/post_images`)
