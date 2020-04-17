@@ -51,9 +51,10 @@ export const FETCH_FILTEREDPOST_FAILURE = 'FETCH_FILTEREDPOST_FAILURE';
 
 export const fetchFilteredPosts = term => dispatch => {
   dispatch({ type: FETCH_FILTEREDPOST_START });
-  return axiosWithAuth()
-    .post('/post/filterCategory', { category: term })
+  return axios
+    .post(`${process.env.REACT_APP_API_URL}/post/filterCategory`, { category: term })
     .then(res => {
+      console.log(res.data,"immeditatly after call in actions")
       dispatch({ type: FETCH_FILTEREDPOST_SUCCESS, payload: res.data });
     })
     .catch(err => {
