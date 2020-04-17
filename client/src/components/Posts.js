@@ -31,23 +31,11 @@ function Posts(props) {
 
 
   useEffect(() => {
-    onFirstLoad()
-    // onLoad()
+    props.fetchFilteredPosts("AllPosts")
   }, []);
 
 
-  async function onFirstLoad() {
 
-   await props.fetchFilteredPosts("AllPosts")
-  //  setFilteredposts(props.filteredPosts)
-  }
-  //  function onLoad() {
-
-    
-  //    setFilteredposts({props.filteredPosts})
-
-  //  }
- 
 
   console.log(props.filteredPosts,"filtered posts from reduz in posts")
 
