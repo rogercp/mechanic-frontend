@@ -14,7 +14,8 @@ function Posts(props) {
 
   const [searchPosts, setsearchPosts] = useState([])
 
-  // const [filteredPosts,setFilteredposts] = useState()
+  // const [filteredPosts,setFilteredposts] = useState({
+  // })
 
   async function searchPostsHandler(term) {
 
@@ -31,17 +32,24 @@ function Posts(props) {
 
   useEffect(() => {
     onFirstLoad()
-    // setFilteredposts(props.filteredPosts)
+    // onLoad()
   }, []);
 
 
   async function onFirstLoad() {
 
    await props.fetchFilteredPosts("AllPosts")
-
+  //  setFilteredposts(props.filteredPosts)
   }
+  //  function onLoad() {
 
-  console.log(props.filteredPosts,"filtered posts posts")
+    
+  //    setFilteredposts({props.filteredPosts})
+
+  //  }
+ 
+
+  // console.log(filteredPosts.posts,"filtered posts posts")
 
   if (props.searchToggle === true) {
 
@@ -74,7 +82,7 @@ function Posts(props) {
 
     )
   }
-  else {
+  else if(props.filteredPosts.length>0) {
     return (
       <>
 
@@ -98,6 +106,15 @@ function Posts(props) {
         </div>
       </>
     );
+  }else{
+
+    return (
+
+
+      <>
+      <h1>ayyyyy</h1>
+      </>
+    )
   }
 
 

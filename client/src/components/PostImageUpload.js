@@ -10,6 +10,7 @@ import CarImageFixShow from './CarImageFixShow';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import ImageCarousel from './ImageCarousel';
 import DescriptionIcon from '@material-ui/icons/Description';
+import PostImageShow from './PostImageShow';
 
 
 const useStyles = makeStyles(theme => ({
@@ -19,6 +20,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function PostImageUpload(props) {
+     
+    
 
     const classes = useStyles();
     const [postImages, setPostImages] = useState([]);
@@ -53,27 +56,32 @@ function PostImageUpload(props) {
     }, [file]);
 
     // useEffect(() => {
-
-
-    //     fetchPostImagesAfterSubmit(props.post.id);
-
-
+    
+    //         fetchPostImagesAfterSubmit(props.post.id);
+    
     // }, []);
 
-// postImages
+
+
 
     async function fetchPostImages(id) {
         let fixImages = await axiosWithAuth().get(`/post/${id}/post_images`)
         setPostImages(fixImages.data);
-        // return fixImages;
+       console.log(fixImages.data,"fatatatatatat")
     }
 
-    async function fetchPostImagesAfterSubmit(id) {
-        let fixImages = await axiosWithAuth().get(`/post/${id}/post_images`)
-        // setPostImages(fixImages.data);
-        // return fixImages;
-        console.log(fixImages.data,"datatattattatatta")
+    console.log(postImages,"this is the one outside of any funciton")
 
+    async function fetchPostImagesAfterSubmit(id) {
+        axiosWithAuth().get(`/post/${id}/post_images`)
+        .then(res =>{
+            console.log(res.data,"this is the data")
+            setPostImages(res.data);
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+        
     }
 
     function handleInputChanges(e) {
@@ -101,7 +109,10 @@ function PostImageUpload(props) {
             // console.log('Upload success!', snapshot.constructor, snapshot);
             axiosWithAuth().post(`/post/${props.post.id}/post_images`, { file_name: file.name })
                 .then(res => {
-                    fetchPostImagesAfterSubmit(props.post.id);
+
+                     fetchPostImagesAfterSubmit(props.post.id);
+                    
+                     
                 })
                 .catch(error => {
                     console.error(error);
@@ -125,16 +136,7 @@ function PostImageUpload(props) {
                     fetchPostImages={fetchPostImages}
 
                 />
-
-            </>
-        )
-    }
-
-
-    else if (props.isForm) {
-        return (
-            <>
-                <div style={{ height: "200px" }}>
+                 <div style={{ height: "200px" }}>
                     <h4>Add Image</h4>
                     <div style={{ display: 'flex', flexDirection: "column" }}>
                         <form onSubmit={handleSubmitUploaderFixDocuments} style={{ display: 'flex', flexDirection: "column", maxWidth: "200px", justifyContent: "Center" }}>
@@ -153,9 +155,9 @@ function PostImageUpload(props) {
                     </div>
                 </div>
 
-
             </>
         )
+
     } else if (props.isCarouselForPost) {
         if (postImages.length < 1) {
             return (
@@ -177,12 +179,11 @@ function PostImageUpload(props) {
             )
         }
 
-    } else if (postImages.length < 1) {
+    } 
+    else if (postImages.length < 1) {
         return (
             null
         )
-
-
 
     } else {
         return (
