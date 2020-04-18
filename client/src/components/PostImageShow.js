@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { imagesRef } from '../helpers/firebase';
 import { axiosWithAuth } from '../helpers/index';
 import Tooltip from '@material-ui/core/Tooltip';
-
-
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 function PostImageShow(props) {
 
@@ -52,7 +51,10 @@ function PostImageShow(props) {
       <>
         {/* {(metadata.contentType === 'application/pdf')? <div id="div-pdf" src={`${thisImage}`}></div> :  <img id="reg-image" height="200px" src={`${thisImage}`}></img>} */}
         <Tooltip title="delete" placement="left">
-          <img id="reg-image" onClick={deleteImage} style={{ maxWidth: '100%', maxHeight: '450px', backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }} src={`${thisImage}`}></img>
+        {/* <div style={{}}>
+        <HighlightOffIcon  style ={{position: 'absolute',bottom: "80%",color: 'red',outline: '0',}}/> */}
+          <span style={{position:'relative',}}><HighlightOffIcon  style ={{position: 'absolute',top:"0px",right:"0px",bottom:"0px",left:"0px",color: 'red',border: '1px black',}}/><img id="reg-image" onClick={deleteImage} style={{ maxWidth: '100%', maxHeight: '450px', backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }} src={`${thisImage}`}></img></span>
+          {/* </div> */}
         </Tooltip>
         {/* {props.image.file_name} */}
 

@@ -40,7 +40,7 @@ const postReducer = (state = initialState, action) => {
     case FETCH_FILTEREDPOST_SUCCESS:
       return {
         ...state,
-        filteredPosts: [...action.payload]
+        filteredPosts: action.payload
       };
     case TOGGLE_SEARCH_TO_TRUE:
       return {

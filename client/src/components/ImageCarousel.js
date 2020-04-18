@@ -43,7 +43,33 @@ function ImageCarousel(props) {
       </>
 
     );
-  } else if (props.isPostImageCarousel) {
+  } 
+  else if(props.isImageDelShowForFixes){
+
+
+    return (
+      <>
+        <div>
+          {props.carFixImages.map((image, index) => {
+
+            return (
+
+              <div style={{ overflow: "auto", width: "75px", margin: "1px", overflow: "hidden" }} >
+                <CarImageFixShow style={{ backgroundColor: "black" }} carFix={props.carFix} key={index} image={image} isDeleteableOnClick={true} fetchFixDocuments={props.fetchFixDocuments}/>
+
+              </div>
+
+            )
+
+          })}
+        </div>
+      </>
+
+    );
+  }
+  
+
+  else if (props.isPostImageCarousel) {
     return (
       <div style={{ width: "300px" }}  >
         <Carousel interval={50000000000000000} style={{ backgroundColor: "black" }}>

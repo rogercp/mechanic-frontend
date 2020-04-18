@@ -92,7 +92,6 @@ function CarFixImgUpload(props) {
             axiosWithAuth().post(`/car_fix/${props.carFix.id}/car_fix_images`, { file_name: file.name })
                 .then(res => {
                     fetchFixDocuments();
-                    window.location.reload();
                 })
                 .catch(error => {
                     console.error(error);
@@ -128,12 +127,21 @@ function CarFixImgUpload(props) {
         )
     }
 
-
-    else {
+else{
+        
         return (
             <>
+                
+
+                    <ImageCarousel
+                    style={{ backgroundColor: "red", maxWidth: "100px" }}
+                    isImageDelShowForFixes={true}
+                    carFixImages={carFixImages}
+                    carFix={props.carFix}
+                    fetchFixDocuments={fetchFixDocuments}
+                />
                 <div style={{ height: "200px" }}>
-                    <h4>Add Image</h4>
+                <h4>Add Image</h4>
                     <div style={{ display: 'flex', flexDirection: "column" }}>
                         <form onSubmit={handleSubmitUploaderFixDocuments} style={{ display: 'flex', flexDirection: "column", maxWidth: "200px", justifyContent: "Center" }}>
                             <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
@@ -155,6 +163,7 @@ function CarFixImgUpload(props) {
             </>
         )
     }
+
 
 
 
