@@ -36,9 +36,9 @@ function CarImageFixShow(props) {
 
     fileRef.delete().then(() => {
 
-      axiosWithAuth().delete(`/car_fix/image/${props.image.id}`)
+      axiosWithAuth().delete(`/car_fix/carFix_image/${props.image.id}`)
         .then(res => {
-          props.fetchFixDocuments(props.image.id)
+          props.fetchFixDocuments(props.carFix.id)
         })
         .catch(error => {
           console.error(error);

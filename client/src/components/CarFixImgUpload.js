@@ -103,26 +103,29 @@ function CarFixImgUpload(props) {
 
 
 
-    if (props.isCarousel && carFixImages.length > 0) {
+    if (props.isCarousel ) {
         return (
             <>
-
+            {carFixImages.length > 0 ?
+            <>
                 <Button
-                    style={{ color: "darkcyan", outline: '0' }}
-                    onClick={handlefullOpen}
-                >
-                    Images
-        </Button>
+                style={{ color: "darkcyan", outline: '0' }}
+                onClick={handlefullOpen}
+                 >
+                Images
+                 </Button>
 
-                <ImageCarousel
-                    isCarFixImages={true}
-                    open={fullopen}
-                    handleClose={handlefullClose}
-                    onClose={handlefullClose}
-                    carFixImages={carFixImages}
-                    carFix={props.carFix}
-                />
-
+            <ImageCarousel
+                isCarFixImages={true}
+                open={fullopen}
+                handleClose={handlefullClose}
+                onClose={handlefullClose}
+                carFixImages={carFixImages}
+                carFix={props.carFix}
+            />
+            </>
+        :null}
+                
             </>
         )
     }
@@ -143,7 +146,7 @@ else{
                 <div style={{ height: "200px" }}>
                 <h4>Add Image</h4>
                     <div style={{ display: 'flex', flexDirection: "column" }}>
-                        <form onSubmit={handleSubmitUploaderFixDocuments} style={{ display: 'flex', flexDirection: "column", maxWidth: "200px", justifyContent: "Center" }}>
+                        <form onSubmit={handleSubmitUploaderFixDocuments} style={{display: 'flex', flexDirection: "column", maxWidth: "200px", justifyContent: "Center" }}>
                             <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
                             <Button
                                 variant="contained"

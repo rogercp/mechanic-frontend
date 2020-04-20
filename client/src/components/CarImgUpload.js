@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 function CarImgUpload(props) {
 
     const classes = useStyles();
-    const [carImages, setCarImages] = useState([]);
+    const [carImages, setCarImages] = useState({});
     const [carFixImages, setCarFixImages] = useState([]);
     const [file, setFile] = useState({});
 
@@ -75,13 +75,25 @@ function CarImgUpload(props) {
 
 
 
-    if (carImages.length > 0) {
+    if (props.isForFrontCardView) {
         return (
             <>
+            {carImages.length > 0 ?
+                <>
                 {carImages.map((image, index) => {
                     return <CarImgShow key={index} car={props.car} image={image} />
                 })}
-            </>
+                </>
+                :
+                <>
+                
+                <DriveEtaIcon style={{ fontSize: "200px" }} />
+
+                </>
+            }
+            
+                
+         </>   
         )
     }
 
@@ -89,11 +101,7 @@ function CarImgUpload(props) {
         return (
             <>
                 <div style={{ height: "200px" }}>
-                    {(!props.car.file_name && !props.isForm ?
-                        <DriveEtaIcon style={{ fontSize: "200px" }} />
-                        :
-                        null
-                    )}
+                    
 
                     {props.isForm ? <div>
                         <form onSubmit={(handleSubmitUploader)} style={{ display: 'flex', flexDirection: "column", maxWidth: "200px", justifyContent: "Center" }}>

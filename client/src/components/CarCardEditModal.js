@@ -5,7 +5,7 @@ import { axiosWithAuth } from '../helpers/index';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import CarFixImgUpload from './CarFixImgUpload';
+import CarImgUpload from './CarImgUpload';
 
 
 
@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     width: 270,
     height: 600
+    
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -157,6 +158,7 @@ function CarCardEditModal(props) {
               Enter
         </Button>
 
+        <CarImgUpload car={props.car} isForm={true} />
 
           </div>
 

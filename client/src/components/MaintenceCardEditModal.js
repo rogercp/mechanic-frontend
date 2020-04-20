@@ -62,7 +62,8 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     width: 270,
-    height: 600
+
+    
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -140,10 +141,8 @@ function MaintenceCardEditModal(props) {
 
       <Dialog open={open} onClose={handleClose} className={classes.dialog}>
 
-        <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-          <div >
-            <CarFixImgUpload carFix={props.carFix} />
-          </div>
+      <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+         
 
           {/* <p>{state.fix_not_maintenence === false ? "Maintence" : "Repair"}</p>
             <AntSwitch
@@ -152,6 +151,7 @@ function MaintenceCardEditModal(props) {
               color="default"
               inputProps={{ 'aria-label': 'checkbox with default color' }}
             /> */}
+            <div>
           <h3>Change Fields</h3>
           <TextField
             id="outlined-textarea"
@@ -233,7 +233,9 @@ function MaintenceCardEditModal(props) {
             Enter
         </Button>
 
-
+        </div>
+            <CarFixImgUpload carFix={props.carFix} />
+         
 
         </FormControl>
       </Dialog>

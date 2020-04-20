@@ -21,7 +21,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { axiosWithAuth } from '../helpers/index';
 import PostImageUpload from './PostImageUpload'
 import { confirmAlert } from 'react-confirm-alert';
-
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -49,6 +50,29 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     margin: theme.spacing(1),
+  },
+  paper: {
+    height: '100%',
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    outline: 'none',
+    margin: '1%',
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+    boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
+    '&:hover': {
+      boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+      height: '100%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(0, 0, 0),
+      width: '100%',
+      height: '100%',
+    },
   },
 
 }));
@@ -238,10 +262,15 @@ likes:props.post.like
   }
   return (
     <>
-      <div className="singlePost" style={{ width: "98%", marginBottom: "5px" }}>
+      {/* <div className="singlePost" style={{ width: "98%", marginBottom: "5px" }}>
 
-        <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}> */}
 
+<Card className={classes.paper} style={{ width: "98%"}}>
+
+<CardContent> 
+
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
 
           {props.post ?
 
@@ -338,8 +367,9 @@ likes:props.post.like
             </div>
             : null}
         </div>
+        </CardContent>
 
-      </div>
+      </Card>
 
     </>
   );

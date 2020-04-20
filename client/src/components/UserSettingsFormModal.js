@@ -86,10 +86,10 @@ function UserSettingsFormModal(props) {
 
                 <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                     <div >
-                        <h2>Change Image</h2>
+                        <h2>Add or Switch Profile Image</h2>
                         <ProfileImageUpload onClose={props.onClose} />
                     </div>
-
+                    
                     <div> <TextField
                         id="standard-basic"
                         name="user_name"
