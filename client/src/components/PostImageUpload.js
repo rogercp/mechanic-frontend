@@ -156,7 +156,8 @@ function PostImageUpload(props) {
             </>
         )
 
-    } else if (props.isCarouselForPost) {
+    } 
+    else if (props.isCarouselForPost) {
         if (postImages.length < 1) {
             return (
                 null

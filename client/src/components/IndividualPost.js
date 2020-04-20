@@ -24,6 +24,9 @@ import { confirmAlert } from 'react-confirm-alert';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
+
+import '../styles/searchOrSubmitButtons.scss'
+
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
@@ -40,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     backgroundColor: "white",
     borderRadius: "10%",
-    boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
+    boxShadow: "0 8px 10px rgba(0,0,0,0.2), 0 7px 7px rgba(0,0,0,0.2)",
     '&:hover': {
       boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
     },
@@ -268,7 +271,7 @@ likes:props.post.like
 
 <Card className={classes.paper} style={{ width: "98%"}}>
 
-<CardContent> 
+<CardContent  > 
 
             <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
 
@@ -339,10 +342,10 @@ likes:props.post.like
                   onChange={handleChange('comment_text')}
                 />
                 <Button
-                  style={{}}
+                  
                   variant="contained"
                   color="primary"
-                  className={classes.button}
+                  id="seSub"
                   endIcon={<SendIcon />}
                   onClick={onSubmitHandler}
                 >

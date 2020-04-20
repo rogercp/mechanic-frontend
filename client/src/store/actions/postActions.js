@@ -49,10 +49,10 @@ export const FETCH_FILTEREDPOST_SUCCESS = 'FETCH_FILTEREDPOST_SUCCESS';
 export const FETCH_FILTEREDPOST_FAILURE = 'FETCH_FILTEREDPOST_FAILURE';
 
 
-export const fetchFilteredPosts = term => dispatch => {
+export const fetchFilteredPosts = (term,date) => dispatch => {
   dispatch({ type: FETCH_FILTEREDPOST_START });
   return axios
-    .post(`${process.env.REACT_APP_API_URL}/post/filterCategory`, { category: term })
+    .post(`${process.env.REACT_APP_API_URL}/post/filterCategory`, { category: term , order: date })
     .then(res => {
       console.log(res.data,"immeditatly after call in actions")
       dispatch({ type: FETCH_FILTEREDPOST_SUCCESS, payload: res.data });

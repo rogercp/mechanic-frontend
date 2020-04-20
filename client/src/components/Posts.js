@@ -9,6 +9,9 @@ import { toggleSearchToTrue } from "../store/actions/postActions";
 // import { fetchPosts } from "../store/actions/postActions";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Search from "./Search";
+import { Dropdown } from 'react-bootstrap';
+
+
 
 function Posts(props) {
 
@@ -35,7 +38,7 @@ function Posts(props) {
   }, []);
 
 function onFirstLoad(){
-  props.fetchFilteredPosts("AllPosts")
+  props.fetchFilteredPosts("AllPosts","date")
 
 }
 
@@ -49,6 +52,17 @@ function onFirstLoad(){
       <>
 
         <Search searchPostsHandler={searchPostsHandler} />
+
+        <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        Order By
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 
@@ -78,6 +92,18 @@ function onFirstLoad(){
       <>
 
         <Search searchPostsHandler={searchPostsHandler} />
+
+
+            <Dropdown>
+          <Dropdown.Toggle variant="seconday" id="dropdown-basic">
+          Order By
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item href="#/action-1">Date</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Likes</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 
