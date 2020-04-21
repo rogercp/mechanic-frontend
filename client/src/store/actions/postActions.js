@@ -49,13 +49,14 @@ export const FETCH_FILTEREDPOST_SUCCESS = 'FETCH_FILTEREDPOST_SUCCESS';
 export const FETCH_FILTEREDPOST_FAILURE = 'FETCH_FILTEREDPOST_FAILURE';
 
 
-export const fetchFilteredPosts = term => dispatch => {
+export const fetchFilteredPosts = (term,orderTerm) => dispatch => {
   dispatch({ type: FETCH_FILTEREDPOST_START });
   return axios
-    .post(`${process.env.REACT_APP_API_URL}/post/filterCategory`, { category: term })
+    .post(`${process.env.REACT_APP_API_URL}/post/filterCategory`, { category: term , order: orderTerm })
     .then(res => {
-      console.log(res.data,"immeditatly after call in actions")
+      // console.log(res.data,"immeditatly after call in actions")
       dispatch({ type: FETCH_FILTEREDPOST_SUCCESS, payload: res.data });
+      // dispatch({ type: CHANGE_ORDER_POSTS ,payload: orderTerm});
     })
     .catch(err => {
       dispatch({ type: FETCH_FILTEREDPOST_FAILURE, payload: err.response });
@@ -78,5 +79,14 @@ export const TOGGLE_SEARCH_TO_FALSE = 'TOGGLE_SEARCH_TO_FALSE';
 export const toggleSearchToFalse = () => dispatch => {
 
   dispatch({ type: TOGGLE_SEARCH_TO_FALSE });
+
+};
+
+
+export const CHANGE_ORDER_POSTS = 'CHANGE_ORDER_POSTS';
+
+export const  changeOrderPosts = (orderTerm) => dispatch => {
+
+  dispatch({ type: CHANGE_ORDER_POSTS ,payload: orderTerm});
 
 };

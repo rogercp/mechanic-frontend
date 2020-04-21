@@ -218,7 +218,7 @@ const MediatorCard = (props) => {
                 </Button>
               </div>
 
-              <CarImgUpload car={props.car} />
+              <CarImgUpload car={props.car} isForFrontCardView={true} />
 
 
 

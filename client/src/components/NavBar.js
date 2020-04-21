@@ -19,7 +19,6 @@ import { axiosWithAuth } from '../helpers/index';
 
 
 import '../styles/navbar.scss'
-import { flexbox } from '@material-ui/system';
 
 const useStyles = makeStyles({
   list: {
@@ -82,9 +81,11 @@ function NavBar(props) {
     <div
       className={classes.list}
       role="presentation"
+    
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
+    
       <List className="list" >
         <div>
           {props.userImage && props.userImage.length > 0 ?
@@ -114,7 +115,7 @@ function NavBar(props) {
           onClick={logout}><ExitToAppIcon className="icon" /> Logout</Link>
 
       </List>
-
+ 
     </div>
   );
 
@@ -188,19 +189,17 @@ function NavBar(props) {
         </div>
 
 
-        <div className="mobile" >
+        <div className="mobile"  >
 
           <div style={{ width: "100%", position: "fixed" }}>
             {/* display:inline-block  --- this will work for a non-sticky navbar */}
             <Button style={{ float: "right", marginTop: "20px", zIndex: "1000", position: "relative" }} onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
           </div>
-          <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
+          <Drawer  anchor="right" open={state.right}  onClose={toggleDrawer('right', false)}>
             {sideList('right')}
 
           </Drawer>
         </div>
-
-
 
 
 

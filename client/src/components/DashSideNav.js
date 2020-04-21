@@ -11,15 +11,12 @@ import '../styles/dashsidenav.scss'
 
 function DashSideNav(props) {
 
-
   async function filterPostHandler(term) {
 
     props.fetchFilteredPosts(term)
     props.toggleSearchToFalse()
 
   };
-
-
 
   return (
     <>
