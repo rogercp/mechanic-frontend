@@ -9,7 +9,8 @@ import {
   FETCH_FILTEREDPOST_SUCCESS,
   FETCH_FILTEREDPOST_FAILURE,
   TOGGLE_SEARCH_TO_TRUE,
-  TOGGLE_SEARCH_TO_FALSE
+  TOGGLE_SEARCH_TO_FALSE,
+  CHANGE_ORDER_POSTS
 } from '../actions/postActions';
 
 const initialState = {
@@ -17,8 +18,8 @@ const initialState = {
   posts: [],
   filteredPosts: [],
   searchToggle: false,
-  currentPost: {}
-
+  currentPost: {},
+  order: 'date'
 }
 
 
@@ -36,6 +37,11 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: action.payload
+      };
+    case CHANGE_ORDER_POSTS:
+      return {
+        ...state,
+        order: action.payload
       };
     case FETCH_FILTEREDPOST_SUCCESS:
       return {

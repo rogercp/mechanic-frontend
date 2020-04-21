@@ -6,20 +6,28 @@ import IndividualPost from './IndividualPost'
 import { connect } from 'react-redux';
 import { fetchFilteredPosts } from "../store/actions/postActions";
 import { toggleSearchToTrue } from "../store/actions/postActions";
+import { changeOrderPosts } from "../store/actions/postActions";
 // import { fetchPosts } from "../store/actions/postActions";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Search from "./Search";
-import { Dropdown } from 'react-bootstrap';
+// import { Dropdown } from 'react-bootstrap';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/Select';
+import OrderPosts from './OrderPosts'
+ 
 
 
 
 function Posts(props) {
 
   const [searchPosts, setsearchPosts] = useState([])
+  
+//  const [orderBy,setOrderBy] = useState({
 
-  // const [filteredPosts,setFilteredposts] = useState({
-  // })
+//    order:props.orderPosts
 
+//   })
+  
   async function searchPostsHandler(term) {
 
     axiosWithAuth()
@@ -35,15 +43,34 @@ function Posts(props) {
 
    useEffect(() => {
     onFirstLoad()
-  }, []);
+   
+    // if(props.orderPosts !== orderBy.order){
 
-function onFirstLoad(){
-  props.fetchFilteredPosts("AllPosts","date")
+    //   props.changeOrderPosts(orderBy.order)
+      
+    // }
 
-}
+  }, [props.orderPosts]);
+
+  function onFirstLoad(){
+
+    // props.fetchFilteredPosts("AllPosts",`${orderBy.order}`)
+    props.fetchFilteredPosts("AllPosts",`${props.orderPosts}`)
 
 
-  console.log(props.filteredPosts,"filtered posts from reduz in posts")
+  }
+
+// const handleChange = name => event => {
+//   setOrderBy({
+//     ...orderBy,
+//     [name]: event.target.value,
+//   });
+
+// };
+
+
+
+  console.log(props.filteredPosts,"Postss coming from reducer")
 
   if (props.searchToggle === true) {
 
@@ -52,17 +79,23 @@ function onFirstLoad(){
       <>
 
         <Search searchPostsHandler={searchPostsHandler} />
+        {/* <Select
+          native
+          name="order"
+          value={orderBy.order}
+          onChange={handleChange('order')}
+          inputProps={{
+            name: 'type',
+            id: 'outlined-type-native-simple',
+          }}
+        >
+          <option value={"date"}>date</option>
+          <option value={"likes"}>likes</option>
+        
+        </Select> */}
 
-        <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Order By
-      </Dropdown.Toggle>
+        <OrderPosts/>
 
-      <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 
@@ -80,30 +113,34 @@ function onFirstLoad(){
           }
 
 
-          {/* <ExpandMoreIcon style={{ fontSize: "100px" }} /> */}
 
         </div>
       </>
 
     )
   }
-  else if(props.filteredPosts.length>0) {
+  else  {
     return (
       <>
 
         <Search searchPostsHandler={searchPostsHandler} />
 
-
-            <Dropdown>
-          <Dropdown.Toggle variant="seconday" id="dropdown-basic">
-          Order By
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">Date</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Likes</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        
+        {/* <Select
+          native
+          name="order"
+          value={orderBy.order}
+          onChange={handleChange('order')}
+          inputProps={{
+            name: 'type',
+            id: 'outlined-type-native-simple',
+          }}
+        >
+          <option value={"date"}>date</option>
+          <option value={"likes"}>likes</option>
+        
+        </Select> */}
+        <OrderPosts/>
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 
@@ -116,22 +153,11 @@ function onFirstLoad(){
                 );
               })}
           
-    
-
-          {/* <ExpandMoreIcon style={{ fontSize: "100px" }} /> */}
+  
 
         </div>
       </>
     );
-  }else{
-
-    return (
-
-
-      <>
-      <h1>ayyyyy</h1>
-      </>
-    )
   }
 
 
@@ -141,9 +167,10 @@ function onFirstLoad(){
 const mapStateToProps = state => ({
   searchToggle: state.post.searchToggle,
   myposts: state.post.posts,
-  filteredPosts: state.post.filteredPosts
+  filteredPosts: state.post.filteredPosts,
+  orderPosts: state.post.order
 });
 export default connect(
   mapStateToProps,
-  { toggleSearchToTrue, fetchFilteredPosts }
+  { toggleSearchToTrue, fetchFilteredPosts, changeOrderPosts }
 )(Posts);
