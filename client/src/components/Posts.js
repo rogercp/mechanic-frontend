@@ -6,21 +6,22 @@ import IndividualPost from './IndividualPost'
 import { connect } from 'react-redux';
 import { fetchFilteredPosts } from "../store/actions/postActions";
 import { toggleSearchToTrue } from "../store/actions/postActions";
-import { changeOrderPosts } from "../store/actions/postActions";
+// import { changeOrderPosts } from "../store/actions/postActions";
 // import { fetchPosts } from "../store/actions/postActions";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Search from "./Search";
-// import { Dropdown } from 'react-bootstrap';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/Select';
 import OrderPosts from './OrderPosts'
- 
+import axios from 'axios';
 
 
 
 function Posts(props) {
 
   const [searchPosts, setsearchPosts] = useState([])
+
+  const [initalLoadPosts, setInitialLoadPosts] = useState([])
   
 //  const [orderBy,setOrderBy] = useState({
 
@@ -43,23 +44,36 @@ function Posts(props) {
 
    useEffect(() => {
     onFirstLoad()
-   
-    // if(props.orderPosts !== orderBy.order){
+  }, []);
 
-    //   props.changeOrderPosts(orderBy.order)
-      
-    // }
 
-  }, [props.orderPosts]);
+
+// useEffect(()=>{
+//   props.fetchFilteredPosts("AllPosts",'date')
+// },[])
+
+
 
   function onFirstLoad(){
 
-    // props.fetchFilteredPosts("AllPosts",`${orderBy.order}`)
-    props.fetchFilteredPosts("AllPosts",`${props.orderPosts}`)
+     axios
+      .post(`${process.env.REACT_APP_API_URL}/post/filterCategory`, { category: 'AllPosts' , order: 'date' })
+      .then(res => {
+        setInitialLoadPosts(res.data)
 
+      })
+      .catch(err => {
+        console.log(err)
+      });
+
+  
+    
 
   }
 
+  // useEffect(() => {
+  //   props.fetchFilteredPosts("AllPosts",'date')
+  // });
 // const handleChange = name => event => {
 //   setOrderBy({
 //     ...orderBy,
@@ -70,7 +84,7 @@ function Posts(props) {
 
 
 
-  console.log(props.filteredPosts,"Postss coming from reducer")
+  console.log(props.orderPosts,"orderPost")
 
   if (props.searchToggle === true) {
 
@@ -104,7 +118,7 @@ function Posts(props) {
             searchPosts.map(p => {
               return (
                 <>
-                  <IndividualPost post={p} key={caches.uid} fetchPosts={props.fetchFilteredPosts} />
+                  <IndividualPost post={p} key={caches.uid}  fetchPosts={props.fetchFilteredPosts} />
                 </>
               );
             })
@@ -119,6 +133,35 @@ function Posts(props) {
 
     )
   }
+else if( props.filteredPosts.length < 1 && props.searchToggle === false){
+
+  return (
+    <>
+
+      <Search searchPostsHandler={searchPostsHandler} />
+
+    
+      <OrderPosts/>
+
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+
+     
+            {initalLoadPosts.map(p => {
+
+              return (
+                <>
+                  <IndividualPost post={p} key={caches.uid}  fetchPosts={props.fetchFilteredPosts} />
+                </>
+              );
+            })}
+        
+
+
+      </div>
+    </>
+  );
+}
+
   else  {
     return (
       <>
@@ -146,9 +189,10 @@ function Posts(props) {
 
        
               {props.filteredPosts.map(p => {
+                console.log(p, "each post")
                 return (
                   <>
-                    <IndividualPost post={p} key={caches.uid} fetchPosts={props.fetchFilteredPosts} />
+                    <IndividualPost post={p}  fetchPosts={props.fetchFilteredPosts} />
                   </>
                 );
               })}
@@ -159,6 +203,7 @@ function Posts(props) {
       </>
     );
   }
+  
 
 
 };
@@ -172,5 +217,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { toggleSearchToTrue, fetchFilteredPosts, changeOrderPosts }
+  { toggleSearchToTrue, fetchFilteredPosts }
 )(Posts);

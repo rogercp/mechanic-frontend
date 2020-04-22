@@ -19,9 +19,10 @@ const initialState = {
   filteredPosts: [],
   searchToggle: false,
   currentPost: {},
-  order: 'date'
+  order: null 
 }
 
+console.log(initialState.filteredPosts,"posts in")
 
 const postReducer = (state = initialState, action) => {
 
