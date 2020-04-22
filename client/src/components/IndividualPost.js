@@ -93,14 +93,20 @@ const IndividualPost = (props) => {
   });
   const [commentFetch, setCommentFetch] = useState([])
   const [likesFetch,setLikeFetch] = useState({
-likes:props.post.like
+        likes:null
   }
   
   )
 
+  // const [likesFetch,setLikeFetch] = useState(null)
+
   useEffect(() => {
     fetchComments()
     // fetchPostbyId(props.post.id)
+    // setLikeFetch(prevState =>({
+    //   ...prevState.likes,
+    //   likes:props.post.like,
+    // }))
   }, [])
 
 
@@ -110,10 +116,13 @@ likes:props.post.like
     .get(`/post/fetchPostLikes/${props.post.id}`)
     .then(res => {
       console.log(res.data,"dadsadadasd")
+
       setLikeFetch(prevState =>({
         ...prevState.likes,
         likes:res.data[0].like,
       }))
+      // setLikeFetch(res.data[0].like)
+
     })
     .catch(err => {
     });
@@ -297,13 +306,13 @@ likes:props.post.like
 
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
 
-          <div>
+          {/* <div>
             <PostImageUpload post={props.post} />
           </div>
           <div>
 
             <PostImageUpload post={props.post} isCarouselForPost={true} />
-          </div>
+          </div> */}
           <div>
             <p>{props.post.post_text}</p>
           </div>
@@ -319,7 +328,7 @@ likes:props.post.like
           </div>
 
           <div style={{ marginRight: "0", display: "flex", justifyContent: "space-between", alignItems: "space-between" }}>
-            <p style={{ marginTop: "8px" }}>{likesFetch.likes}</p>
+            <p style={{ marginTop: "8px" }}>{likesFetch.likes === null ? props.post.like:likesFetch.likes}</p>
             <ThumbUpIcon onClick={incrementLike} style={{ borderRadius: "50%" }} className={classes.margin} />
             <ThumbDownIcon onClick={decreaseLike} style={{ borderRadius: "50%" }} className={classes.margin} />
           </div>
