@@ -64,14 +64,32 @@ function Pagination(props) {
     setCurrentPage(num)
     const indexOfInComing = pagesWindow.indexOf(num)
 
-    if(indexOfInComing >1){
+    if(indexOfInComing >2){
 
-      goForward()
+      let lastNum = pagesWindow[pagesWindow.length-1]
+      let newLastNum = lastNum + 1
+  
+      setPagesWindow(
+        prevState => (  pagesWindow.slice(1))
+      )
+      setPagesWindow(
+        prevState => (  prevState.concat([newLastNum]))
+      )
+     
 
     }
-    else if(indexOfInComing <1){
+    else if(indexOfInComing <2){
 
-      goBack()
+      let firstNum = pagesWindow[0]
+    let newfirstNum = [firstNum - 1]
+
+    setPagesWindow(
+      prevState => ( pagesWindow.slice(0,-1))
+    )
+
+    setPagesWindow(
+      prevState => (  newfirstNum.concat(prevState))
+    )
       
     }
 
@@ -84,8 +102,8 @@ function Pagination(props) {
 
       <div style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", marginBottom: "15.65px" }}>
         <div>
-          {  pagesWindow[0] > 0?
-            <button onClick={goBack}>prev</button>
+          {  currentpage >= 2 ?
+           <button onClick={goBack}>prev</button>
             :
             null
           }
@@ -97,7 +115,7 @@ function Pagination(props) {
             <div>
              {
                (()=>{
-                if(pageNumber === 0){
+                if(pageNumber === 0 || pageNumber < 0){
                   return (
                       null
                   )
@@ -125,7 +143,7 @@ function Pagination(props) {
         }
 
         <div>
-          { pagesWindow[4] < numberOfPages  ?
+          { currentpage < numberOfPages ?
           <button onClick={goForward}>next</button>
             :null
           }
