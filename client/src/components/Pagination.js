@@ -2,29 +2,29 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { id } from 'date-fns/esm/locale';
-
-
+import { Button  } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { updatePageNumber } from "../store/actions/postActions";
 
 
 function Pagination(props) {
 
-  const [numberOfPages, setNumberOfPages] = useState(8)
+  const [numberOfPages, setNumberOfPages] = useState()
 
   const [pagesWindow, setPagesWindow] = useState(
     [0, 0, 1, 2, 3]
   )
 
-  const [currentpage, setCurrentPage] = useState(1)
-
+  const [currentpage, setCurrentPage] = useState(props.currentpage)
 
 
   useEffect(() => {
 
+    setNumberOfPages(props.numPages)
+    // setCurrentPage(props.currentpage)
+  },)
 
-    
-  },[])
-
-
+console.log(props.currentPage)
   const  goForward = (() => {
 
     let lastNum = pagesWindow[pagesWindow.length-1]
@@ -38,6 +38,7 @@ function Pagination(props) {
     )
    
     setCurrentPage(currentpage + 1)
+    props.updatePageNumber(currentpage + 1)
 
   })
 
@@ -56,12 +57,13 @@ function Pagination(props) {
     )
    
     setCurrentPage(currentpage - 1)
-
+    props.updatePageNumber(currentpage - 1)
   })
 
   const onClickNumber=((num)=>{
 
     setCurrentPage(num)
+    props.updatePageNumber(num)
     const indexOfInComing = pagesWindow.indexOf(num)
 
     if(indexOfInComing >2){
@@ -103,7 +105,7 @@ function Pagination(props) {
       <div style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", marginBottom: "15.65px" }}>
         <div>
           {  currentpage >= 2 ?
-           <button onClick={goBack}>prev</button>
+           <Button variant="dark" onClick={goBack}>prev</Button>
             :
             null
           }
@@ -122,13 +124,13 @@ function Pagination(props) {
                 }else if(currentpage === pageNumber ){
                   return (
                    <span>  
-                      <button style={{ color: "#0275d8" }}>{pageNumber}</button> 
+                      <Button  variant="primary" >{pageNumber}</Button> 
                      </span>
                   )
                 }else if(pageNumber > 0 && pageNumber === numberOfPages || pageNumber < numberOfPages )
                 return(
                   <span>               
-                     <button onClick={()=>onClickNumber(pageNumber)}>{pageNumber}</button>
+                     <Button variant="secondary" onClick={()=>onClickNumber(pageNumber)}>{pageNumber}</Button>
                   </span>
                 )
              })()
@@ -144,7 +146,7 @@ function Pagination(props) {
 
         <div>
           { currentpage < numberOfPages ?
-          <button onClick={goForward}>next</button>
+          <Button variant="dark" onClick={goForward}>next</Button>
             :null
           }
           
@@ -157,4 +159,10 @@ function Pagination(props) {
 
 
 
-export default Pagination;
+const mapStateToProps = state => ({
+  currentpage : state.post.currentpage
+});
+export default connect(
+  mapStateToProps,
+  { updatePageNumber }
+)(Pagination);

@@ -91,3 +91,11 @@ export const toggleSearchToFalse = () => dispatch => {
 //   dispatch({ type: CHANGE_ORDER_POSTS ,payload: orderTerm});
 
 // };
+
+export const UPDATE_PAGE_NUMBER = "UPDATE_PAGE_NUMBER"
+
+export const  updatePageNumber = (number) => dispatch => {
+console.log(number, "number iin action post")
+  dispatch({ type: UPDATE_PAGE_NUMBER ,payload: number});
+
+};

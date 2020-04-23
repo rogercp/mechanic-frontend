@@ -10,7 +10,8 @@ import {
   FETCH_FILTEREDPOST_FAILURE,
   TOGGLE_SEARCH_TO_TRUE,
   TOGGLE_SEARCH_TO_FALSE,
-  CHANGE_ORDER_POSTS
+  CHANGE_ORDER_POSTS,
+  UPDATE_PAGE_NUMBER
 } from '../actions/postActions';
 
 const initialState = {
@@ -19,7 +20,8 @@ const initialState = {
   filteredPosts: [],
   searchToggle: false,
   currentPost: {},
-  order: null 
+  order: null,
+  currentpage : 1 
 }
 
 console.log(initialState.filteredPosts,"posts in")
@@ -53,12 +55,17 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         searchToggle: true
-      }
+      };
 
     case TOGGLE_SEARCH_TO_FALSE:
       return {
         ...state,
         searchToggle: false
+      };
+      case UPDATE_PAGE_NUMBER:
+      return {
+        ...state,
+        currentpage: action.payload
       }
 
     default:

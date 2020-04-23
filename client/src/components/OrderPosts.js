@@ -20,9 +20,10 @@ function OrderPosts(props) {
     
 
  <Dropdown as={ButtonGroup}>
-   <Button variant="Dark">Order By</Button>
+ <Dropdown.Toggle variant="dark" id="dropdown-basic">
+    Order By 
+  </Dropdown.Toggle>
 
-   <Dropdown.Toggle split variant="Dark" id="dropdown-split-basic" />
 
    <Dropdown.Menu>
      <Dropdown.Item onClick={(e)=> props.fetchFilteredPosts("AllPosts",'date') }>date</Dropdown.Item>

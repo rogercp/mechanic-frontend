@@ -21,6 +21,8 @@ function Posts(props) {
   const [searchPosts, setsearchPosts] = useState([])
 
   const [initalLoadPosts, setInitialLoadPosts] = useState([])
+
+  const [numPages,setNumPages] = useState()
   
 //  const [orderBy,setOrderBy] = useState({
 
@@ -43,7 +45,7 @@ function Posts(props) {
 
    useEffect(() => {
     onFirstLoad()
-  }, []);
+  }, [props.currentPage]);
 
 
 
@@ -56,10 +58,11 @@ function Posts(props) {
   function onFirstLoad(){
 
      axios
-      .post(`${process.env.REACT_APP_API_URL}/post/filterCategory`, { category: 'AllPosts' , order: 'date', })
+      .post(`${process.env.REACT_APP_API_URL}/post/filterCategory`, { category: 'AllPosts' , order: 'date', currentPage:props.currentPage })
       .then(res => {
         setInitialLoadPosts(res.data.data)
-
+        setNumPages(res.data.pagination.lastPage)
+        
       })
       .catch(err => {
         console.log(err)
@@ -69,6 +72,9 @@ function Posts(props) {
     
 
   }
+
+  console.log(props.currentPage,"currentPage from redux in posts copnoent")
+  console.log(numPages,"pages num in posts")
 
   // useEffect(() => {
   //   props.fetchFilteredPosts("AllPosts",'date')
@@ -92,24 +98,11 @@ function Posts(props) {
       <>
 
         <Search searchPostsHandler={searchPostsHandler} />
-        {/* <Select
-          native
-          name="order"
-          value={orderBy.order}
-          onChange={handleChange('order')}
-          inputProps={{
-            name: 'type',
-            id: 'outlined-type-native-simple',
-          }}
-        >
-          <option value={"date"}>date</option>
-          <option value={"likes"}>likes</option>
-        
-        </Select> */}
-
+       
+        <Pagination numPages={numPages}/>
         <OrderPosts/>
 
-<Pagination/>
+
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 
           {
@@ -139,9 +132,9 @@ else if( props.filteredPosts.length < 1 && props.searchToggle === false){
 
       <Search searchPostsHandler={searchPostsHandler} />
 
-    
+      <Pagination numPages={numPages}/>
       <OrderPosts/>
-      <Pagination/>
+     
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 
      
@@ -168,21 +161,8 @@ else if( props.filteredPosts.length < 1 && props.searchToggle === false){
         <Search searchPostsHandler={searchPostsHandler} />
 
         
-        {/* <Select
-          native
-          name="order"
-          value={orderBy.order}
-          onChange={handleChange('order')}
-          inputProps={{
-            name: 'type',
-            id: 'outlined-type-native-simple',
-          }}
-        >
-          <option value={"date"}>date</option>
-          <option value={"likes"}>likes</option>
-        
-        </Select> */}
-        <OrderPosts/>
+        <Pagination numPages={numPages}/>
+        <OrderPosts />
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 
@@ -191,7 +171,7 @@ else if( props.filteredPosts.length < 1 && props.searchToggle === false){
                 console.log(p, "each post")
                 return (
                   <>
-                    <IndividualPost post={p}  fetchPosts={props.fetchFilteredPosts} />
+                    <IndividualPost post={p}   fetchPosts={props.fetchFilteredPosts} />
                   </>
                 );
               })}
@@ -212,7 +192,8 @@ const mapStateToProps = state => ({
   searchToggle: state.post.searchToggle,
   myposts: state.post.posts,
   filteredPosts: state.post.filteredPosts,
-  orderPosts: state.post.order
+  orderPosts: state.post.order,
+  currentPage :state.post.currentpage
 });
 export default connect(
   mapStateToProps,
