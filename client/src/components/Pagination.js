@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { id } from 'date-fns/esm/locale';
 
 
 
@@ -9,25 +10,19 @@ function Pagination(props) {
 
   const [numberOfPages, setNumberOfPages] = useState(8)
 
-  // const [pagesWindow, setPagesWindow] = useState({
-
-  //   window: [1, 2, 3, 4, 78]
-
-  // })
-
   const [pagesWindow, setPagesWindow] = useState(
-
-    [1, 2, 3, 4, 78]
-
+    [0, 0, 1, 2, 3]
   )
 
   const [currentpage, setCurrentPage] = useState(1)
 
 
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  // },[])
+
+    
+  },[])
 
 
   const  goForward = (() => {
@@ -35,48 +30,50 @@ function Pagination(props) {
     let lastNum = pagesWindow[pagesWindow.length-1]
     let newLastNum = lastNum + 1
 
-    console.log(newLastNum,"nwefwefwef")
-    //  setPagesWindow(
-    //   prevState => ({
-    //     ...prevState,
-    //     window:  prevState.window.shift()
-    //   })
-    // )
-
     setPagesWindow(
       prevState => (  pagesWindow.slice(1))
     )
-
     setPagesWindow(
       prevState => (  prevState.concat([newLastNum]))
     )
-    // setPagesWindow(
-    //   prevState => ( [...prevState, prevState.push(prevState.pop())])
-    // )
-
-    //  setPagesWindow(
-    //    prevState => ({
-    //   ...prevState,
-    //   window: prevState.window.push()
-    // })
-    // )
-
-    console.log(pagesWindow, "this ")
-
-    // pagesWindow.window.slice(1)
-    // pagesWindow.window.push(lastNum++)
-
-
+   
     setCurrentPage(currentpage + 1)
 
   })
 
-  console.log(pagesWindow, "this ")
 
   const goBack = (() => {
 
+    let firstNum = pagesWindow[0]
+    let newfirstNum = [firstNum - 1]
 
+    setPagesWindow(
+      prevState => ( pagesWindow.slice(0,-1))
+    )
+
+    setPagesWindow(
+      prevState => (  newfirstNum.concat(prevState))
+    )
+   
     setCurrentPage(currentpage - 1)
+
+  })
+
+  const onClickNumber=((num)=>{
+
+    setCurrentPage(num)
+    const indexOfInComing = pagesWindow.indexOf(num)
+
+    if(indexOfInComing >1){
+
+      goForward()
+
+    }
+    else if(indexOfInComing <1){
+
+      goBack()
+      
+    }
 
   })
 
@@ -87,14 +84,39 @@ function Pagination(props) {
 
       <div style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", marginBottom: "15.65px" }}>
         <div>
-          <button onClick={goBack}>prev</button>
+          {  pagesWindow[0] > 0?
+            <button onClick={goBack}>prev</button>
+            :
+            null
+          }
+          
         </div>
 
         {pagesWindow.map((pageNumber) => {
           return (
-            <>
-              {currentpage === pageNumber ? <p style={{ color: "#0275d8" }}>{pageNumber}</p> : <p>{pageNumber}</p>}
-            </>
+            <div>
+             {
+               (()=>{
+                if(pageNumber === 0){
+                  return (
+                      null
+                  )
+                }else if(currentpage === pageNumber ){
+                  return (
+                   <span>  
+                      <button style={{ color: "#0275d8" }}>{pageNumber}</button> 
+                     </span>
+                  )
+                }else if(pageNumber > 0 && pageNumber === numberOfPages || pageNumber < numberOfPages )
+                return(
+                  <span>               
+                     <button onClick={()=>onClickNumber(pageNumber)}>{pageNumber}</button>
+                  </span>
+                )
+             })()
+              
+             }                      
+            </div>
           )
 
         })
@@ -103,7 +125,11 @@ function Pagination(props) {
         }
 
         <div>
+          { pagesWindow[4] < numberOfPages  ?
           <button onClick={goForward}>next</button>
+            :null
+          }
+          
 
         </div>
       </div>
