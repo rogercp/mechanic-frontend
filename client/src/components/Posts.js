@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from '../helpers/index';
 import IndividualPost from './IndividualPost'
@@ -8,6 +6,7 @@ import { fetchFilteredPosts } from "../store/actions/postActions";
 import { toggleSearchToTrue } from "../store/actions/postActions";
 // import { changeOrderPosts } from "../store/actions/postActions";
 // import { fetchPosts } from "../store/actions/postActions";
+import Pagination from './Pagination'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Search from "./Search";
 import Select from '@material-ui/core/Select';
@@ -57,9 +56,9 @@ function Posts(props) {
   function onFirstLoad(){
 
      axios
-      .post(`${process.env.REACT_APP_API_URL}/post/filterCategory`, { category: 'AllPosts' , order: 'date' })
+      .post(`${process.env.REACT_APP_API_URL}/post/filterCategory`, { category: 'AllPosts' , order: 'date', })
       .then(res => {
-        setInitialLoadPosts(res.data)
+        setInitialLoadPosts(res.data.data)
 
       })
       .catch(err => {
@@ -110,7 +109,7 @@ function Posts(props) {
 
         <OrderPosts/>
 
-
+<Pagination/>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 
           {
@@ -142,7 +141,7 @@ else if( props.filteredPosts.length < 1 && props.searchToggle === false){
 
     
       <OrderPosts/>
-
+      <Pagination/>
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 
      
