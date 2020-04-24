@@ -18,13 +18,25 @@ function Pagination(props) {
   const [currentpage, setCurrentPage] = useState(props.currentpage)
 
 
+  const [order,setOrder] = useState(props.orderPosts)
+
   useEffect(() => {
 
     setNumberOfPages(props.numPages)
-    // setCurrentPage(props.currentpage)
+
+      // if(props.orderPosts !== order){
+      //   props.updatePageNumber(1)
+      // }
+ 
   },)
 
-console.log(props.currentPage)
+  // useEffect(() => {
+
+  //   setCurrentPage(props.currentpage)
+ 
+
+  // },[props.currentpage])
+
   const  goForward = (() => {
 
     let lastNum = pagesWindow[pagesWindow.length-1]
@@ -163,6 +175,7 @@ console.log(props.currentPage)
 
 
 const mapStateToProps = state => ({
+  orderPosts: state.post.order,
   currentpage : state.post.currentpage
 });
 export default connect(

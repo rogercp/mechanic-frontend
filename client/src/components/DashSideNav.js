@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React ,{useEffect}from 'react';
 import { connect } from 'react-redux';
 import { fetchFilteredPosts } from "../store/actions/postActions";
 import { toggleSearchToFalse } from "../store/actions/postActions";
@@ -11,12 +11,23 @@ import '../styles/dashsidenav.scss'
 
 function DashSideNav(props) {
 
-  async function filterPostHandler(term) {
+  async function filterPostHandler(term,order) {
 
-    props.fetchFilteredPosts(term)
+    props.fetchFilteredPosts(term,'date',1)
     props.toggleSearchToFalse()
-
+    window.scrollTo(0, 0);
   };
+
+  // useEffect(() => {
+    
+      
+  //   props.fetchFilteredPosts(`${props.currentTermForFilter}`,`${props.orderPosts}`,`${props.currentPage}`)
+
+    
+  // }, [props.currentPage]);
+
+
+  
 
   return (
     <>
@@ -46,7 +57,7 @@ function DashSideNav(props) {
             <button id="link" onClick={() => filterPostHandler('AllPosts')} >All Posts</button>
             <button id="link" onClick={() => filterPostHandler('Maintence')} >Maintence</button>
             <button id="link" onClick={() => filterPostHandler('Mods')} >Mods</button>
-            <button id="link" onClick={() => filterPostHandler('Repairs')} >Repairs</button>
+            <button id="link" onClick={() => filterPostHandler('Repairs','date')} >Repairs</button>
             <button id="link" onClick={() => filterPostHandler('Tips')} >Tips/Tricks</button>
             <button id="link" onClick={() => filterPostHandler('Exotics')} >Exotics</button>
             <button id="link" onClick={() => filterPostHandler('German')} >German</button>
@@ -65,7 +76,9 @@ function DashSideNav(props) {
 
 
 const mapStateToProps = state => ({
-
+  orderPosts: state.post.order,
+  currentPage :state.post.currentpage,
+  currentTermForFilter:state.post.currentTermForFilter
 });
 export default connect(
   mapStateToProps,

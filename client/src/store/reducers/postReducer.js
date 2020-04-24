@@ -12,7 +12,9 @@ import {
   TOGGLE_SEARCH_TO_FALSE,
   CHANGE_ORDER_POSTS,
   UPDATE_PAGE_NUMBER,
-  // CURRENT_PAGE_FOR_ORDERED_POSTS
+  // CURRENT_PAGE_FOR_ORDERED_POSTS,
+CURRENT_TERM_FOR_FILTER,
+
 } from '../actions/postActions';
 
 const initialState = {
@@ -23,7 +25,8 @@ const initialState = {
   currentPost: {},
   order: null,
   currentpage : 1,
-  // currentpageForOrderedPosts:1
+  // currentpageForOrderedPosts:1,
+  currentTermForFilter:null
 }
 
 console.log(initialState.filteredPosts,"posts in")
@@ -75,6 +78,12 @@ const postReducer = (state = initialState, action) => {
   //       ...state,
   //       currentpageForOrderedPosts: action.payload
   //     }
+
+case CURRENT_TERM_FOR_FILTER:
+      return {
+        ...state,
+        currentTermForFilter: action.payload
+      };
 
     default:
       return state

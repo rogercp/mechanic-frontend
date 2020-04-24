@@ -4,6 +4,7 @@ import IndividualPost from './IndividualPost'
 import { connect } from 'react-redux';
 import { fetchFilteredPosts } from "../store/actions/postActions";
 import { toggleSearchToTrue } from "../store/actions/postActions";
+import {updatePageNumber} from '../store/actions/postActions'
 // import { changeOrderPosts } from "../store/actions/postActions";
 // import { fetchPosts } from "../store/actions/postActions";
 import Pagination from './Pagination'
@@ -29,6 +30,8 @@ function Posts(props) {
 //    order:props.orderPosts
 
 //   })
+
+const [order,setOrder] = useState()
   
   async function searchPostsHandler(term) {
 
@@ -45,14 +48,22 @@ function Posts(props) {
 
    useEffect(() => {
     onFirstLoad()
-    props.fetchFilteredPosts("AllPosts",`${props.orderPosts}`,`${props.currentPage}`)
-  }, [props.currentPage]);
+  
+
+    // if(props.orderPosts !== order){
+    //   props.fetchFilteredPosts("AllPosts",`${props.orderPosts}`,1)
+
+    // }else{
+
+      props.fetchFilteredPosts(`${props.currentTermForFilter}`,`${props.orderPosts}`,`${props.currentPage}`)
+
+    // }
+    // setOrder(props.orderPosts)
+    
+  }, [props.currentPage,props.currentTermForFilter]);
 
 
 
-// useEffect(()=>{
-//   props.fetchFilteredPosts("AllPosts",'date')
-// },[])
 
 
 
@@ -72,19 +83,12 @@ function Posts(props) {
   
   }
 
-  console.log(props.currentPage,"currentPage from redux in posts copnoent")
-  console.log(numPages,"pages num in posts")
+  console.log(props.currentTermForFilter,"currentTermForFilter")
+  console.log(props.orderPosts,"orderPosts")
+  console.log(props.currentPage,"currentPage")
+ 
+ 
 
-  // useEffect(() => {
-  //   props.fetchFilteredPosts("AllPosts",'date')
-  // });
-// const handleChange = name => event => {
-//   setOrderBy({
-//     ...orderBy,
-//     [name]: event.target.value,
-//   });
-
-// };
 
 
 
@@ -196,9 +200,10 @@ const mapStateToProps = state => ({
   myposts: state.post.posts,
   filteredPosts: state.post.filteredPosts,
   orderPosts: state.post.order,
-  currentPage :state.post.currentpage
+  currentPage :state.post.currentpage,
+  currentTermForFilter:state.post.currentTermForFilter
 });
 export default connect(
   mapStateToProps,
-  { toggleSearchToTrue, fetchFilteredPosts }
+  { toggleSearchToTrue, fetchFilteredPosts ,updatePageNumber}
 )(Posts);
