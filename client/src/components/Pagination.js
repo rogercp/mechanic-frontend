@@ -40,6 +40,7 @@ console.log(props.currentPage)
     setCurrentPage(currentpage + 1)
     props.updatePageNumber(currentpage + 1)
 
+    window.scrollTo(0, 0);
   })
 
 
@@ -58,6 +59,7 @@ console.log(props.currentPage)
    
     setCurrentPage(currentpage - 1)
     props.updatePageNumber(currentpage - 1)
+    window.scrollTo(0, 0);
   })
 
   const onClickNumber=((num)=>{
@@ -94,6 +96,7 @@ console.log(props.currentPage)
     )
       
     }
+    window.scrollTo(0, 0);
 
   })
 

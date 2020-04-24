@@ -12,7 +12,6 @@ function OrderPosts(props) {
 
   
 
-  console.log(props.orderPosts,'coming corm redux orderf')
 
   return (
 
@@ -26,8 +25,8 @@ function OrderPosts(props) {
 
 
    <Dropdown.Menu>
-     <Dropdown.Item onClick={(e)=> props.fetchFilteredPosts("AllPosts",'date') }>date</Dropdown.Item>
-    <Dropdown.Item onClick={(e)=> props.fetchFilteredPosts("AllPosts",'likes') }>likes</Dropdown.Item>
+     <Dropdown.Item onClick={(e)=> props.fetchFilteredPosts("AllPosts",'date',1) }>date</Dropdown.Item>
+    <Dropdown.Item onClick={(e)=> props.fetchFilteredPosts("AllPosts",'likes',1) }>likes</Dropdown.Item>
    </Dropdown.Menu>
  </Dropdown>
     </>
@@ -44,7 +43,8 @@ const mapStateToProps = state => ({
   searchToggle: state.post.searchToggle,
   myposts: state.post.posts,
   filteredPosts: state.post.filteredPosts,
-  orderPosts: state.post.order
+  orderPosts: state.post.order,
+  currentpageForOrderedPosts : state.post.currentpageForOrderedPosts
 });
 export default connect(
   mapStateToProps,

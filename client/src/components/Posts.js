@@ -45,6 +45,7 @@ function Posts(props) {
 
    useEffect(() => {
     onFirstLoad()
+    props.fetchFilteredPosts("AllPosts",`${props.orderPosts}`,`${props.currentPage}`)
   }, [props.currentPage]);
 
 
@@ -69,8 +70,6 @@ function Posts(props) {
       });
 
   
-    
-
   }
 
   console.log(props.currentPage,"currentPage from redux in posts copnoent")
@@ -89,7 +88,8 @@ function Posts(props) {
 
 
 
-  console.log(props.orderPosts,"orderPost")
+  
+
 
   if (props.searchToggle === true) {
 
@@ -121,6 +121,7 @@ function Posts(props) {
 
 
         </div>
+        {/* <Pagination numPages={numPages}/> */}
       </>
 
     )
@@ -150,6 +151,7 @@ else if( props.filteredPosts.length < 1 && props.searchToggle === false){
 
 
       </div>
+      {/* <Pagination numPages={numPages}/> */}
     </>
   );
 }
@@ -161,17 +163,16 @@ else if( props.filteredPosts.length < 1 && props.searchToggle === false){
         <Search searchPostsHandler={searchPostsHandler} />
 
         
-        <Pagination numPages={numPages}/>
+        <Pagination numPages={props.filteredPosts.pagination.lastPage}/>
         <OrderPosts />
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 
        
-              {props.filteredPosts.map(p => {
-                console.log(p, "each post")
+              {props.filteredPosts.data.map(p => {
                 return (
                   <>
-                    <IndividualPost post={p}   fetchPosts={props.fetchFilteredPosts} />
+                    <IndividualPost post={p}  numPages={props.filteredPosts.pagination.lastPage} fetchPosts={props.fetchFilteredPosts} />
                   </>
                 );
               })}
@@ -179,6 +180,8 @@ else if( props.filteredPosts.length < 1 && props.searchToggle === false){
   
 
         </div>
+        {/* <Pagination numPages={numPages}/> */}
+
       </>
     );
   }

@@ -49,15 +49,18 @@ export const FETCH_FILTEREDPOST_SUCCESS = 'FETCH_FILTEREDPOST_SUCCESS';
 export const FETCH_FILTEREDPOST_FAILURE = 'FETCH_FILTEREDPOST_FAILURE';
 
 export const CHANGE_ORDER_POSTS = 'CHANGE_ORDER_POSTS';
+// export const CURRENT_PAGE_FOR_ORDERED_POSTS = 'CURRENT_PAGE_FOR_ORDERED_POSTS';
 
-export const fetchFilteredPosts = (term,orderTerm) => dispatch => {
+export const fetchFilteredPosts = (term,orderTerm,currentPage) => dispatch => {
   console.log(orderTerm,"term in actions")
   dispatch({ type: FETCH_FILTEREDPOST_START });
   return axios
-    .post(`${process.env.REACT_APP_API_URL}/post/filterCategory`, { category: term , order: orderTerm })
+    .post(`${process.env.REACT_APP_API_URL}/post/filterCategory`, { category: term , order: orderTerm,currentPage:currentPage })
     .then(res => {
       dispatch({ type: FETCH_FILTEREDPOST_SUCCESS, payload: res.data });
       dispatch({ type: CHANGE_ORDER_POSTS ,payload: orderTerm});
+      // dispatch({ type: CURRENT_PAGE_FOR_ORDERED_POSTS ,payload: currentPage});
+
     })
     .catch(err => {
       dispatch({ type: FETCH_FILTEREDPOST_FAILURE, payload: err.response });
