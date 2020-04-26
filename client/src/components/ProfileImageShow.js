@@ -24,7 +24,7 @@ function ProfileImageShow(props) {
 
   const classes = useStyles();
 
-  const [thisImage, setThisimage] = useState('')
+  const [thisImage, setThisimage] = useState(null)
 
   const userId = localStorage.getItem('id');
 
@@ -39,8 +39,9 @@ function ProfileImageShow(props) {
 
 
   useEffect(() => {
+    setThisimage(null)
     getImg()
-  }, []);
+  }, [props.post]);
 
   function getImg() {
     fileRef.getMetadata().then((metadata) => {

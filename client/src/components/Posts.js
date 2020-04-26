@@ -83,11 +83,11 @@ const [order,setOrder] = useState()
   
   }
 
-  console.log(props.currentTermForFilter,"currentTermForFilter")
-  console.log(props.orderPosts,"orderPosts")
-  console.log(props.currentPage,"currentPage")
+  // console.log(props.currentTermForFilter,"currentTermForFilter")
+  // console.log(props.orderPosts,"orderPosts")
+  // console.log(props.currentPage,"currentPage")
  
- 
+ console.log(initalLoadPosts,"initalLoadPosts")
 
 
 
