@@ -101,7 +101,9 @@ const IndividualPost = (props) => {
   // const [likesFetch,setLikeFetch] = useState(null)
 
   useEffect(() => {
+
     fetchComments()
+    
     // fetchPostbyId(props.post.id)
     // setLikeFetch(prevState =>({
     //   ...prevState.likes,

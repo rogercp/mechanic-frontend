@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { imagesRef } from '../helpers/firebase';
 import axiosWithAuth from '../helpers/axiosWithAuth';
 import Button from '@material-ui/core/Button';
@@ -7,7 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { connect } from 'react-redux';
 import { fetchProfileImage } from "../store/actions/settingsActions";
-
 
 
 
@@ -21,10 +20,7 @@ function ProfileImageUpload(props) {
 
     const classes = useStyles();
 
-
-    // const [userImage, setUserImage] = useState({});
     const [file, setFile] = useState({});
-
 
     const userId = localStorage.getItem('id');
 
@@ -62,11 +58,11 @@ function ProfileImageUpload(props) {
         const fileRef = imagesRef.child(`${userId}/${file.name}`)
         // Upload file
         fileRef.put(file).then((snapshot) => {
-            // console.log('Upload success!', snapshot.constructor, snapshot);
             axiosWithAuth().post(`/users/image/${userId}`, { file_name: file.name })
                 .then(res => {
-                    props.fetchProfileImage(userId);
                     props.onClose()
+                    props.fetchProfileImage(userId);
+                    
                 })
                 .catch(error => {
                     console.error(error);

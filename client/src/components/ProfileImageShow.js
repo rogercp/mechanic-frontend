@@ -28,9 +28,12 @@ function ProfileImageShow(props) {
 
   const userId = localStorage.getItem('id');
 
+  const username = localStorage.getItem("username");
 
   var fileRef = null
 
+  // the first handles the post image 
+  // the second handles user images for settings and navbar
   if (props.isPost === true) {
     fileRef = imagesRef.child(`${props.post.user_id}/${props.post.file_name_profile}`);
   } else {
@@ -39,9 +42,10 @@ function ProfileImageShow(props) {
 
 
   useEffect(() => {
+    // set image to empty so on filtering and searching image transitions nicely
     setThisimage(null)
     getImg()
-  }, [props.post]);
+  }, [props.post,props.userImage]);
 
   function getImg() {
     fileRef.getMetadata().then((metadata) => {
@@ -83,11 +87,10 @@ function ProfileImageShow(props) {
   //     })
   // }
 
-  const username = localStorage.getItem("username");
 
+  // Handles image for post 
   if (props.isCirclePic && props.isPostPic) {
     return (
-
       <>
         {thisImage ?
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -107,7 +110,9 @@ function ProfileImageShow(props) {
 
 
     )
-  }if(props.isCirclePic) {
+  }
+  // handles image for users navbar
+  if(props.isCirclePic) {
     
     return (
 
@@ -127,14 +132,13 @@ function ProfileImageShow(props) {
       </>
 
 
-
-
     )
 
-  }else {
+  }
+  // handles image in user settings
+  else {
     return (
       <>
-
 
         {thisImage ?
           <div>
@@ -160,6 +164,7 @@ function ProfileImageShow(props) {
 
 
 const mapStateToProps = state => ({
+  userImage: state.setting.userImage
 });
 export default connect(
   mapStateToProps,

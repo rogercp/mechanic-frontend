@@ -22,13 +22,16 @@ function Pagination(props) {
 
   useEffect(() => {
 
+
+    setCurrentPage(1)
+    props.updatePageNumber(1)
     setNumberOfPages(props.numPages)
 
       // if(props.orderPosts !== order){
       //   props.updatePageNumber(1)
       // }
  
-  },)
+  },[props.numPages,props.orderPosts])
 
   // useEffect(() => {
 
@@ -117,7 +120,7 @@ function Pagination(props) {
   return (
     <>
 
-      <div style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", marginBottom: "15.65px" }}>
+      <div style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center",marginBottom:"5px"}}>
         <div>
           {  currentpage >= 2 ?
            <Button variant="dark" onClick={goBack}>prev</Button>

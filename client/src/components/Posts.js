@@ -103,8 +103,8 @@ const [order,setOrder] = useState()
 
         <Search searchPostsHandler={searchPostsHandler} />
        
-        <Pagination numPages={numPages}/>
-        <OrderPosts/>
+        {/* <Pagination numPages={numPages}/>
+        <OrderPosts/> */}
 
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -136,10 +136,10 @@ else if( props.filteredPosts.length < 1 && props.searchToggle === false){
     <>
 
       <Search searchPostsHandler={searchPostsHandler} />
-
+      
       <Pagination numPages={numPages}/>
       <OrderPosts/>
-     
+
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 
      

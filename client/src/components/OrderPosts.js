@@ -22,14 +22,13 @@ function OrderPosts(props) {
     <>
     
 
- <Dropdown as={ButtonGroup}>
+ <Dropdown as={ButtonGroup} style={{marginBottom:"5px"}}>
  <Dropdown.Toggle variant="dark" id="dropdown-basic">
-    Order By 
+    order by {props.orderPosts === null ? "date" :props.orderPosts}
   </Dropdown.Toggle>
 
-
    <Dropdown.Menu>
-    
+
      {
        props.currentTermForFilter === null
        ?
