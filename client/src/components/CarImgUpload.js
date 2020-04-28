@@ -19,7 +19,7 @@ function CarImgUpload(props) {
 
     const classes = useStyles();
     const [carImages, setCarImages] = useState({});
-    const [carFixImages, setCarFixImages] = useState([]);
+    const [carFixImages, setCarFixImages] = useState(null);
     const [file, setFile] = useState({});
 
     useEffect(() => {

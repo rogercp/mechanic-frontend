@@ -102,14 +102,16 @@ const IndividualPost = (props) => {
 
   useEffect(() => {
 
+    setCommentFetch(null)
+
     fetchComments()
-    
+
     // fetchPostbyId(props.post.id)
     // setLikeFetch(prevState =>({
     //   ...prevState.likes,
     //   likes:props.post.like,
     // }))
-  }, [])
+  }, [props.post])
 
 
   const fetchSpecificPost = () =>{
@@ -326,7 +328,7 @@ const IndividualPost = (props) => {
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
 
           <div style={{ margin: "0", display: "flex", flexDirection: "row" }}>
-            <CommentIcon className={classes.margin} onClick={toggleComments} /> <p style={{ marginTop: "8px" }}>{commentFetch.length}</p>
+            <CommentIcon className={classes.margin} onClick={toggleComments} /> <p style={{ marginTop: "8px" }}>{commentFetch ?commentFetch.length:null}</p>
           </div>
 
           <div style={{ marginRight: "0", display: "flex", justifyContent: "space-between", alignItems: "space-between" }}>
