@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     width: 270,
-    height: 600
+
     
   },
   selectEmpty: {
@@ -87,10 +87,7 @@ function CarCardEditModal(props) {
       <Dialog open={open} onClose={handleClose} className={classes.dialog}>
 
         <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-          <div >
-            {/* <CarFixImgUpload carFix={props.carFix} /> */}
-          </div>
-
+         
           <div>
             <h3>Edit</h3>
 
@@ -157,10 +154,10 @@ function CarCardEditModal(props) {
             >
               Enter
         </Button>
-
+        </div>
         <CarImgUpload car={props.car} isForm={true} />
 
-          </div>
+         
 
 
 

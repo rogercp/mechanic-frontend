@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CarImgShow from './CarImgShow';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import ImageCarousel from './ImageCarousel'
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -18,8 +19,7 @@ const useStyles = makeStyles(theme => ({
 function CarImgUpload(props) {
 
     const classes = useStyles();
-    const [carImages, setCarImages] = useState({});
-    const [carFixImages, setCarFixImages] = useState(null);
+    const [carImages, setCarImages] = useState([]);
     const [file, setFile] = useState({});
 
     useEffect(() => {
@@ -75,10 +75,23 @@ function CarImgUpload(props) {
 
 
 
-    if (props.isForFrontCardView) {
+    if (props.isForFrontCardView && props.isCarCardCarousel) {
         return (
+
+
             <>
             {carImages.length > 0 ?
+                <ImageCarousel  car={props.car} carImages={carImages}  isCarImage={true}/>
+            :
+            
+            <>
+                
+                <DriveEtaIcon style={{ fontSize: "200px" }} />
+
+                </>
+            }
+
+            {/* {carImages.length > 0 ?
                 <>
                 {carImages.map((image, index) => {
                     return <CarImgShow key={index} car={props.car} image={image} />
@@ -90,16 +103,25 @@ function CarImgUpload(props) {
                 <DriveEtaIcon style={{ fontSize: "200px" }} />
 
                 </>
-            }
+            } */}
             
                 
          </>   
         )
     }
-
+    
     else {
         return (
             <>
+
+            <ImageCarousel
+                    style={{ backgroundColor: "red", maxWidth: "100px" }}
+                    isImageDelShowForCars={true}
+                    carImages={carImages}
+                    car={props.car}
+                    fetchCarImages={fetchCarImages}
+                />
+
                 <div style={{ height: "200px" }}>
                     
 

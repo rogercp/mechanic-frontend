@@ -5,7 +5,7 @@ import Dialog from "@material-ui/core/Dialog";
 import { Carousel, Image } from 'react-bootstrap';
 import CarImageFixShow from './CarImageFixShow';
 import PostImageShow from './PostImageShow';
-
+import CarImageShow from './CarImgShow'
 
 
 function ImageCarousel(props) {
@@ -46,7 +46,6 @@ function ImageCarousel(props) {
   } 
   else if(props.isImageDelShowForFixes){
 
-
     return (
       <>
         <div>
@@ -67,7 +66,28 @@ function ImageCarousel(props) {
 
     );
   }
-  
+  else if(props.isImageDelShowForCars){
+
+    return (
+      <>
+        <div>
+          {props.carImages.map((image, index) => {
+
+            return (
+
+              <div style={{ overflow: "auto", width: "75px", margin: "1px", overflow: "hidden" }} >
+                <CarImageShow style={{ backgroundColor: "black" }} carFix={props.carFix} key={index} image={image} isDeleteableOnClick={true} car={props.car} fetchCarImages={props.fetchCarImages}/>
+
+              </div>
+
+            )
+
+          })}
+        </div>
+      </>
+
+    );
+  }
 
   else if (props.isPostImageCarousel) {
     return (
@@ -107,6 +127,30 @@ function ImageCarousel(props) {
     );
 
   }
+
+
+  else if (props.isCarImage) {
+    return (
+      <div style={{ width: "300px" }}  >
+      <Carousel interval={50000000000000000} style={{ backgroundColor: "black" }}>
+          {props.carImages.map((image, index) => {
+            return (
+              <Carousel.Item style={{ overflow: "auto" }} >
+                <CarImageShow style={{ backgroundColor: "black" }} car={props.car} key={index} image={image} />
+                <Carousel.Caption>
+                  {/* <h3>First slide label</h3> */}
+                </Carousel.Caption>
+              </Carousel.Item>
+            )
+
+          })}
+        </Carousel>
+      </div>
+    );
+
+  }
+
+
   else {
     return (
       <Dialog style={{ backgroundColor: "black" }} open={props.open} onClose={props.handleClose} >
