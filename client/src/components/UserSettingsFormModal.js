@@ -42,6 +42,19 @@ function UserSettingsFormModal(props) {
         user_name: localStorage.getItem("username"),
 
     });
+    const [toggleView,setToggleView] = React.useState(false)
+
+    function toggleViewHandler(){
+  
+      if(toggleView){
+        setToggleView(false)
+      }
+     else{
+      setToggleView(true)
+     }
+    
+      
+    }
 
     function handleClose() {
         onClose();
@@ -76,20 +89,55 @@ function UserSettingsFormModal(props) {
     };
 
 
-
+    if(toggleView){
+        return(
+            <Dialog open={open} onClose={handleClose} className={classes.dialog}>
+ <Button
+               variant="dark" 
+                color="primary"
+                size="large"
+                className={classes.button}
+                onClick={toggleViewHandler}
+                >
+                Go To Edit Username
+            </Button>
+                <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+               
+                   
+                        <h2>Add or Switch Profile Image</h2>
+                        <ProfileImageUpload onClose={props.onClose} />
+               
+                    </FormControl>
+                    <Button
+              variant="dark" 
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={handleClose}
+            >
+             Close Form
+        </Button>
+            </Dialog>
+            
+        )
+      }else{
 
     return (
         <>
 
 
             <Dialog open={open} onClose={handleClose} className={classes.dialog}>
-
+            <Button
+                variant="dark" 
+                color="primary"
+                size="large"
+                className={classes.button}
+                onClick={toggleViewHandler}
+                >
+                Go To Edit Image
+            </Button>
                 <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                    <div >
-                        <h2>Add or Switch Profile Image</h2>
-                        <ProfileImageUpload onClose={props.onClose} />
-                    </div>
-                    
+                
                     <div> <TextField
                         id="standard-basic"
                         name="user_name"
@@ -113,11 +161,21 @@ function UserSettingsFormModal(props) {
 
 
                 </FormControl>
+                <Button
+              variant="dark" 
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={handleClose}
+            >
+             Close Form
+        </Button>
             </Dialog>
 
 
         </>
     );
+}
 };
 
 export default UserSettingsFormModal;

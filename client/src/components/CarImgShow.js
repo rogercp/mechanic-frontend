@@ -39,12 +39,11 @@ function CarImgShow(props) {
     });
   }
 
-
   function deleteImage() {
 
     fileRef.delete().then(() => {
 
-      axiosWithAuth().delete(`/car/car_image/${props.image.id}`)
+      axiosWithAuth().delete(`/cars/car_image/${props.image.id}`)
         .then(res => {
           props.fetchCarImages(props.car.id)
         })

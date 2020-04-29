@@ -219,7 +219,7 @@ const MediatorCard = (props) => {
               </div>
 
               {/* <CarImgUpload car={props.car} isForFrontCardView={true} /> */}
-              <CarImgUpload  car={props.car} isForFrontCardView={true} isCarCardCarousel={true}/>
+              <CarImgUpload fetchCars={props.fetchCars} car={props.car} isForFrontCardView={true} isCarCardCarousel={true}/>
 
 
 
@@ -259,6 +259,7 @@ const MediatorCard = (props) => {
         </ReactCardFlip>
 
         <CarModalExpand
+        fetchCars={props.fetchCars}
           open={fullopen}
           handleClose={handlefullClose}
           onClose={handlefullClose}
@@ -266,6 +267,7 @@ const MediatorCard = (props) => {
         />
 
         <CarCardEditModal
+        fetchCars={props.fetchCars}
           car={props.car}
           open={open}
           onClose={handleClose}

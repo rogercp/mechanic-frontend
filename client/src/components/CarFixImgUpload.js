@@ -59,7 +59,7 @@ function CarFixImgUpload(props) {
 
         fetchFixDocuments()
 
-    }, [file]);
+    }, []);
 
     async function fetchFixDocuments() {
         let fixImages = await axiosWithAuth().get(`/car_fix/${props.carFix.id}/car_fix_images`)
@@ -92,6 +92,7 @@ function CarFixImgUpload(props) {
             axiosWithAuth().post(`/car_fix/${props.carFix.id}/car_fix_images`, { file_name: file.name })
                 .then(res => {
                     fetchFixDocuments();
+                    window.location.reload()
                 })
                 .catch(error => {
                     console.error(error);

@@ -47,7 +47,7 @@ function CarMaintenceShow(props) {
           {props.myFixes.map(c => {
             return (
 
-              <CarMaintenceCard carFix={c} car={props.car} />
+              <CarMaintenceCard carFix={c} car={props.car}  />
 
             );
           })}

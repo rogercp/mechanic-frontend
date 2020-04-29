@@ -142,8 +142,7 @@ function NavBar(props) {
     return (
       <>
 
-
-        <div className="nav" style={{ backgroundColor: "", maxWidth: "1300px" }}>
+        <div className="nav" style={{ backgroundColor: "#A9A9A9", maxWidth: "1300px"}}>
 
           <div>
             {props.userImage && props.userImage.length > 0 ?

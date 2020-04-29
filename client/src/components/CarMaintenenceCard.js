@@ -226,6 +226,7 @@ function CarMaintenceCard(props) {
 
       <MaintenceCardEditModal
                     carFix={props.carFix}
+                    car={props.car}
                     open={open}
                     onClose={handleClose}
                     titleText={"User Info"}

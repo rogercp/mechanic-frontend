@@ -116,7 +116,7 @@ function CarShow(props) {
           {cars.map(c => {
             return (
               <>
-                <CarCard fetchCarsFunction={fetchCars} car={c} key={caches.uid} fetchCars={c.fetchCars} />
+                <CarCard fetchCarsFunction={fetchCars} car={c} key={caches.uid} fetchCars={fetchCars} />
               </>
             );
           })}

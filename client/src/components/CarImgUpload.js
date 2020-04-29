@@ -60,9 +60,8 @@ function CarImgUpload(props) {
         fileRef.put(file).then((snapshot) => {
             // console.log('Upload success!', snapshot.constructor, snapshot);
             axiosWithAuth().post(`/cars/${props.car.id}/images`, { file_name: file.name })
-                .then(res => {
+                .then(res => {  
                     fetchCarImages();
-                    window.location.reload();
                 })
                 .catch(error => {
                     console.error(error);

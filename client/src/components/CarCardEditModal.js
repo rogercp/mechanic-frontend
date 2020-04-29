@@ -47,8 +47,20 @@ function CarCardEditModal(props) {
     car_year: props.car.car_year,
   });
 
+  const [toggleView,setToggleView] = React.useState(false)
 
+  function toggleViewHandler(){
 
+    if(toggleView){
+      setToggleView(false)
+    }
+   else{
+    setToggleView(true)
+   }
+  
+    
+  }
+  
   function handleClose() {
     onClose();
   }
@@ -65,7 +77,9 @@ function CarCardEditModal(props) {
   };
 
 
-
+  const closeForm = () =>{
+    props.onClose()
+  }
 
   const onSubmitHandler = e => {
     console.log(state, "usernamesatte")
@@ -73,23 +87,63 @@ function CarCardEditModal(props) {
     axiosWithAuth()
       .put(`cars/update/${props.car.id}`, state)
       .then(res => {
-        window.location.reload();
+        props.onClose()
+        props.fetchCars()
+
       })
       .catch(err => {
       });
   };
 
+if(toggleView){
+  return(
+    <Dialog open={open} onClose={handleClose} className={classes.dialog}>
+  <Button
+              variant="dark" 
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={toggleViewHandler}
+            >
+              Go To Edit Form
+        </Button>
+    <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+  
+    <CarImgUpload onClose={props.onClose} fetchCars={props.fetchCars} car={props.car} isForm={true} />
+ 
+        </FormControl>
+        <Button
+              variant="dark" 
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={closeForm}
+            >
+             Close Form
+        </Button>
+      </Dialog>
 
+  )
+}else{
   return (
     <>
 
 
       <Dialog open={open} onClose={handleClose} className={classes.dialog}>
-
+      <Button
+             variant="dark" 
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={toggleViewHandler}
+            >
+              Go To Image Edit
+        </Button>
         <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
          
           <div>
-            <h3>Edit</h3>
+        
+            <h3>Edit Car</h3>
 
             <TextField
 
@@ -155,18 +209,27 @@ function CarCardEditModal(props) {
               Enter
         </Button>
         </div>
-        <CarImgUpload car={props.car} isForm={true} />
+       
 
          
 
 
 
         </FormControl>
+        <Button
+              variant="dark" 
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={closeForm}
+            >
+             Close Form
+        </Button>
       </Dialog>
-
-
-    </>
-  );
+      </>
+  )
+}
+  
 };
 
 export default CarCardEditModal;
