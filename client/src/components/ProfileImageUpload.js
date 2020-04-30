@@ -21,6 +21,7 @@ function ProfileImageUpload(props) {
     const classes = useStyles();
 
     const [file, setFile] = useState({});
+    const [isLoading,setIsLoading] = useState(false)
 
     const userId = localStorage.getItem('id');
 
@@ -53,6 +54,7 @@ function ProfileImageUpload(props) {
 
 
     function handleSubmitUploaderProfilePicture(e) {
+        setIsLoading(true)
         e.preventDefault()
         // Create file ref (Example: /documents/:car_id/:file_name)
         const fileRef = imagesRef.child(`${userId}/${file.name}`)
@@ -60,6 +62,7 @@ function ProfileImageUpload(props) {
         fileRef.put(file).then((snapshot) => {
             axiosWithAuth().post(`/users/image/${userId}`, { file_name: file.name })
                 .then(res => {
+                    setIsLoading(true)
                     props.onClose()
                     props.fetchProfileImage(userId);
                     
@@ -79,6 +82,12 @@ function ProfileImageUpload(props) {
                 {(props.carFix ? <p>no image</p> : null)}
                 <div style={{ display: 'flex', flexDirection: "column" }}>
                     <form onSubmit={handleSubmitUploaderProfilePicture} style={{ display: 'flex', flexDirection: "column", maxWidth: "200px", justifyContent: "Center" }}>
+                        
+                    {isLoading ? 
+                         <div class="spinner-border" role="status">
+                         <span class="sr-only">Loading...</span>
+                         </div>
+                            :null}
                         <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
                         <Button
                             variant="contained"

@@ -108,9 +108,9 @@ if(toggleView){
               Go To Edit Form
         </Button>
     <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-  
+    
     <CarImgUpload onClose={props.onClose} fetchCars={props.fetchCars} car={props.car} isForm={true} />
- 
+    
         </FormControl>
         <Button
               variant="dark" 

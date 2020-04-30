@@ -4,12 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { green } from '@material-ui/core/colors';
-import CarAddModal from './CarAddModal';
 import { axiosWithAuth } from '../helpers/index';
 import CarCard from './CarCard'
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import CarForm from './CarForm'
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 // import Loader from 'react-loader-spinner'
 
@@ -94,7 +94,7 @@ function CarShow(props) {
         </Fab>
       </Tooltip>
 
-      <CarAddModal
+      <CarForm
         fetchCars={fetchCars}
         open={open}
         onClose={handleClose}

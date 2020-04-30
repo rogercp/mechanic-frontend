@@ -22,6 +22,8 @@ function CarImgUpload(props) {
     const [carImages, setCarImages] = useState([]);
     const [file, setFile] = useState({});
 
+    const [isLoading,setIsLoading] = useState(false)
+
     useEffect(() => {
         if (props.car) {
             fetchCarImages();
@@ -53,6 +55,7 @@ function CarImgUpload(props) {
     }
 
     function handleSubmitUploader(e) {
+        setIsLoading(true)
         e.preventDefault()
         // Create file ref (Example: /documents/:car_id/:file_name)
         const fileRef = imagesRef.child(`${props.car.id}/${file.name}`)
@@ -60,7 +63,8 @@ function CarImgUpload(props) {
         fileRef.put(file).then((snapshot) => {
             // console.log('Upload success!', snapshot.constructor, snapshot);
             axiosWithAuth().post(`/cars/${props.car.id}/images`, { file_name: file.name })
-                .then(res => {  
+                .then(res => { 
+                    setIsLoading(false) 
                     fetchCarImages();
                 })
                 .catch(error => {
@@ -126,7 +130,14 @@ function CarImgUpload(props) {
 
                     {props.isForm ? <div>
                         <form onSubmit={(handleSubmitUploader)} style={{ display: 'flex', flexDirection: "column", maxWidth: "200px", justifyContent: "Center" }}>
-                            <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
+                    
+                        {isLoading ? 
+                         <div class="spinner-border" role="status">
+                         <span class="sr-only">Loading...</span>
+                         </div>
+                            :null}
+                       
+                        <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
                             <Button
                                 variant="contained"
                                 name="car_type"

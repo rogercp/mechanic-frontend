@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { green } from '@material-ui/core/colors';
-import CarFixAddModal from './CarFixAddModal';
+import CarMaintenenceForm from './CarMaintenenceForm';
 import Tooltip from '@material-ui/core/Tooltip';
 
 
@@ -97,7 +97,7 @@ function CarModalExpand(props) {
         </div>
 
         <div style={{ backgroundColor: "rgb(210, 210, 211)", margin: "0", paddingBottom: "300px" }}>
-          <CarFixAddModal
+          <CarMaintenenceForm
             open={open}
             car={props.car}
             onClose={handleClose}

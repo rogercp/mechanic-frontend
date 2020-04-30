@@ -30,6 +30,7 @@ function PostImageUpload(props) {
 
     const [fullopen, setFullOpen] = useState(false);
     const [errorOpen, setErrorOpen] = useState(false);
+    const [isLoading,setIsLoading] = useState(false)
 
 
     const handlefullOpen = () => {
@@ -99,6 +100,7 @@ function PostImageUpload(props) {
     // console.log(props.post.id,"psotsssss")
 
     function handleSubmitUploaderFixDocuments(e) {
+        setIsLoading(true)
         e.preventDefault()
         // Create file ref (Example: /documents/:car_id/:file_name)
         const fileRef = imagesRef.child(`${props.post.id}/${file.name}`)
@@ -107,7 +109,7 @@ function PostImageUpload(props) {
             // console.log('Upload success!', snapshot.constructor, snapshot);
             axiosWithAuth().post(`/post/${props.post.id}/post_images`, { file_name: file.name })
                 .then(res => {
-
+                    setIsLoading(true)
                      fetchPostImagesAfterSubmit(props.post.id);
                     
                      
@@ -138,6 +140,12 @@ function PostImageUpload(props) {
                     <h4>Add Image</h4>
                     <div style={{ display: 'flex', flexDirection: "column" }}>
                         <form onSubmit={handleSubmitUploaderFixDocuments} style={{ display: 'flex', flexDirection: "column", maxWidth: "200px", justifyContent: "Center" }}>
+                            
+                        {isLoading ? 
+                         <div class="spinner-border" role="status">
+                         <span class="sr-only">Loading...</span>
+                         </div>
+                            :null}
                             <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
                             <Button
                                 variant="contained"
