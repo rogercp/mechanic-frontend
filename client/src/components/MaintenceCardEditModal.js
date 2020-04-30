@@ -20,7 +20,6 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { withStyles } from '@material-ui/core/styles';
 import { fetchFixes } from "../store/actions/carMaintenenceActions";
 import { connect } from 'react-redux';
-import ImageUploadModal from './ImageUploadModal';
 
 
 

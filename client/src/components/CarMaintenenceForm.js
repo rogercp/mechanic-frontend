@@ -18,7 +18,6 @@ import { axiosWithAuth } from '../helpers/index';
 import { withStyles } from '@material-ui/core/styles';
 import { fetchFixes } from "../store/actions/carMaintenenceActions";
 import { connect } from 'react-redux';
-import ImageUploadModal from './ImageUploadModal';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';

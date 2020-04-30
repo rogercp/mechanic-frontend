@@ -12,9 +12,9 @@ function PostImageShow(props) {
   const fileRef = imagesRef.child(`${props.post.id}/${props.image.file_name}`);
 
   useEffect(() => {
-   
+    // setThisimage(null)
     getImg()
-  }, []);
+  }, );
 
   function getImg() {
     
