@@ -245,7 +245,7 @@ function PostForm(props) {
       size="large"
       onClick={handleClose}>
 
-      Skip
+      Done
   </Button>
 
 

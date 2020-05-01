@@ -301,8 +301,6 @@ const IndividualPost = (props) => {
           <p style={{ alignSelf: "flex-end" }}>{props.post.post_date}</p>
 
 
-
-
         </div>
 
 
