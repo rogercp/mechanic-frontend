@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { imagesRef } from '../helpers/firebase';
 import { axiosWithAuth } from '../helpers/index';
 import Tooltip from '@material-ui/core/Tooltip';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 
 function CarImageFixShow(props) {
 
   const [thisImage, setThisimage] = useState('')
+
 
   const fileRef = imagesRef.child(`${props.carFix.id}/${props.image.file_name}`);
 
@@ -17,6 +17,7 @@ function CarImageFixShow(props) {
   }, []);
 
   function getImg() {
+    // send fileref to firebase then recieves the images
     fileRef.getMetadata().then((metadata) => {
       fileRef.getDownloadURL().then(url => {
 
@@ -32,6 +33,7 @@ function CarImageFixShow(props) {
   }
 
 
+  // delete for images from firebase and the reference on the backend
   function deleteImage() {
 
     fileRef.delete().then(() => {

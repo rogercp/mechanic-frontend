@@ -27,7 +27,6 @@ function PostImageUpload(props) {
     const [postImages, setPostImages] = useState([]);
     const [file, setFile] = useState({});
     const [isPostImageCarousel, setIsPostImageCarousel] = useState(true)
-
     const [fullopen, setFullOpen] = useState(false);
     const [errorOpen, setErrorOpen] = useState(false);
     const [isLoading,setIsLoading] = useState(false)
@@ -54,7 +53,8 @@ function PostImageUpload(props) {
 
         fetchPostImages(props.post.id);
 
-    }, [file]);
+     // on post change re render this component with the correct images
+    }, [file,props.post]);
 
     // useEffect(() => {
     
@@ -66,22 +66,24 @@ function PostImageUpload(props) {
 
 
     async function fetchPostImages(id) {
-        let fixImages = await axiosWithAuth().get(`/post/${id}/post_images`)
-        setPostImages(fixImages.data);
+        let postImages = await axiosWithAuth().get(`/post/${id}/post_images`)
+        console.log(postImages,"fixIMages")
+        setPostImages(postImages.data);
     }
 
 
-    async function fetchPostImagesAfterSubmit(id) {
-        axiosWithAuth().get(`/post/${id}/post_images`)
-        .then(res =>{
-            console.log(res.data,"this is the data")
-            setPostImages(res.data);
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+    // async function fetchPostImagesAfterSubmit(id) {
+    //     // 
+    //     axiosWithAuth().get(`/post/${id}/post_images`)
+    //     .then(res =>{
+    //         console.log(res.data,"this is the data")
+    //         setPostImages(res.data);
+    //     })
+    //     .catch(err=>{
+    //         console.log(err)
+    //     })
         
-    }
+    // }
 
     function handleInputChanges(e) {
         e.preventDefault();
@@ -102,15 +104,15 @@ function PostImageUpload(props) {
     function handleSubmitUploaderFixDocuments(e) {
         setIsLoading(true)
         e.preventDefault()
-        // Create file ref (Example: /documents/:car_id/:file_name)
+        // Create file ref for firebase
         const fileRef = imagesRef.child(`${props.post.id}/${file.name}`)
-        // Upload file
+        // Upload file to googke
         fileRef.put(file).then((snapshot) => {
-            // console.log('Upload success!', snapshot.constructor, snapshot);
+            // send reference to backend
             axiosWithAuth().post(`/post/${props.post.id}/post_images`, { file_name: file.name })
                 .then(res => {
-                    setIsLoading(true)
-                     fetchPostImagesAfterSubmit(props.post.id);
+                    setIsLoading(false)
+                    fetchPostImages(props.post.id);
                     
                      
                 })
@@ -166,11 +168,8 @@ function PostImageUpload(props) {
 
     } 
     else if (props.isCarouselForPost) {
-        if (postImages.length < 1) {
-            return (
-                null
-            )
-        } else {
+        
+            
             return (
                 <>
 
@@ -184,15 +183,12 @@ function PostImageUpload(props) {
 
                 </>
             )
-        }
+        
 
     } 
-    else if (postImages.length < 1) {
-        return (
-            null
-        )
 
-    } else {
+   
+    else {
         return (
             <>
                 <Button
@@ -216,6 +212,7 @@ function PostImageUpload(props) {
         )
 
     }
+
 
 
 

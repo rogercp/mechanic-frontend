@@ -26,6 +26,7 @@ function CarFixImgUpload(props) {
     const [errorOpen, setErrorOpen] = useState(false);
     const [isLoading,setIsLoading] = useState(false)
 
+    // modal methods
     const handlefullOpen = () => {
         setFullOpen(true);
     };
@@ -40,7 +41,7 @@ function CarFixImgUpload(props) {
     function handleErrorOpen() {
         setErrorOpen(true);
     }
-
+    // 
 
     // React.useCallback (()=>{
 
@@ -85,11 +86,11 @@ function CarFixImgUpload(props) {
     function handleSubmitUploaderFixDocuments(e) {
         setIsLoading(true)
         e.preventDefault()
-        // Create file ref (Example: /documents/:car_id/:file_name)
+        // Create file ref for firebase
         const fileRef = imagesRef.child(`${props.carFix.id}/${file.name}`)
-        // Upload file
+        // Upload file to google
         fileRef.put(file).then((snapshot) => {
-            // console.log('Upload success!', snapshot.constructor, snapshot);
+            // send reference to the backend
             axiosWithAuth().post(`/car_fix/${props.carFix.id}/car_fix_images`, { file_name: file.name })
                 .then(res => {
                     setIsLoading(false)
@@ -104,8 +105,8 @@ function CarFixImgUpload(props) {
     }
 
 
-
-    if (props.isCarousel ) {
+    // data coming from CardMaintenceForm for this first statement
+    if (props.isCarousel) {
         return (
             <>
             {carFixImages.length > 0 ?
@@ -133,7 +134,6 @@ function CarFixImgUpload(props) {
     }
 
 else{
-        
         return (
             <>
                 

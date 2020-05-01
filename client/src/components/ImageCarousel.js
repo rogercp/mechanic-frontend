@@ -7,20 +7,9 @@ import CarImageFixShow from './CarImageFixShow';
 import PostImageShow from './PostImageShow';
 import CarImageShow from './CarImgShow'
 
-
+// Component soley responsible for organizing images into a carousel or order in a certain manner
+// Data coming from multiple components
 function ImageCarousel(props) {
-
-  const theme = useTheme();
-
-  const [activeStep, setActiveStep] = React.useState(0);
-
-  const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
 
 
   if (props.isImageDelShow) {
@@ -32,7 +21,7 @@ function ImageCarousel(props) {
             return (
 
               <div style={{ overflow: "auto", width: "75px", margin: "1px", overflow: "hidden" }} >
-                <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} isDeleteableOnClick={true} fetchPostImages={props.fetchPostImages} image={image} />
+                <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} isDeleteableOnClick={true}  postImages={props.postImages}    fetchPostImages={props.fetchPostImages} image={image} />
 
               </div>
 
@@ -44,6 +33,8 @@ function ImageCarousel(props) {
 
     );
   } 
+
+
   else if(props.isImageDelShowForFixes){
 
     return (
@@ -66,6 +57,8 @@ function ImageCarousel(props) {
 
     );
   }
+
+
   else if(props.isImageDelShowForCars){
 
     return (
@@ -97,7 +90,7 @@ function ImageCarousel(props) {
             return (
 
               <Carousel.Item style={{ overflow: "auto" }} >
-                <PostImageShow style={{ backgroundColor: "black" }} onClick={props.open} key={index} post={props.post} image={image} />
+                <PostImageShow style={{ backgroundColor: "black" }} onClick={props.open} key={index} postImages={props.postImages}  post={props.post} image={image} />
               </Carousel.Item>
 
             )
@@ -106,7 +99,9 @@ function ImageCarousel(props) {
       </div>
 
     )
-  } else if (props.isCarFixImages) {
+  } 
+  
+  else if (props.isCarFixImages) {
     return (
       <Dialog style={{ backgroundColor: "black" }} open={props.open} onClose={props.handleClose} >
         <Carousel style={{ backgroundColor: "black" }}>
@@ -158,7 +153,7 @@ function ImageCarousel(props) {
           {props.postImages.map((image, index) => {
             return (
               <Carousel.Item style={{ overflow: "auto" }} >
-                <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post} image={image} />
+                <PostImageShow style={{ backgroundColor: "black" }} key={index} post={props.post}  postImages={props.postImages}  image={image} />
                 <Carousel.Caption>
                   {/* <h3>First slide label</h3> */}
                 </Carousel.Caption>

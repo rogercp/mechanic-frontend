@@ -307,17 +307,18 @@ const IndividualPost = (props) => {
 
 
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+ 
+           <div>
 
-          <div>
-            <PostImageUpload post={props.post} />
-          </div>
+             <PostImageUpload post={props.post} />
+           </div>
           <div>
 
-            <PostImageUpload post={props.post} isCarouselForPost={true} />
-          </div>
-          <div>
+             <PostImageUpload post={props.post} isCarouselForPost={true} />
+           </div>
+    <div>
             <p>{props.post.post_text}</p>
-          </div>
+           </div>
         </div>
 
 

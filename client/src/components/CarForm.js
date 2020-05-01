@@ -11,7 +11,6 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import CarImgUpload from './CarImgUpload'
 
@@ -75,6 +74,7 @@ function CarForm(props) {
 
 
   const classes = useStyles();
+  // modal methods from props
   const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
   const [fullopen, setFullOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
@@ -86,15 +86,16 @@ function CarForm(props) {
     car_nickname: '',
     car_year: ''
   });
+  // handle the stepper at top of modal
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
+  // 
 
-
-
+// stepper methods 
   function getSteps() {
     return ['Create Car', 'Add Images'];
   }
-  
+
   function getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
@@ -105,8 +106,6 @@ function CarForm(props) {
         return 'Unknown stepIndex';
     }
   }
-    
-  
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -119,24 +118,13 @@ function CarForm(props) {
     setActiveStep(0);
   };
 
-
-  const handlefullOpen = () => {
-    setFullOpen(true);
-  };
-  const handlefullClose = () => {
-    setFullOpen(false);
-  };
-
-  function handleErrorClose() {
-    setErrorOpen(false);
-  }
-
-  function handleErrorOpen() {
-    setErrorOpen(true);
-  }
+  // 
+  
+ 
 
 
 
+// modal methods coming into use
     function handleClose() {
 
         props.onClose();
@@ -157,7 +145,6 @@ function CarForm(props) {
 
 
 
-
   const onSubmitHandler = e => {
     e.preventDefault();
     axiosWithAuth()
@@ -166,8 +153,6 @@ function CarForm(props) {
         handleNext()
         setCurrentCar(res.data)
         props.fetchCars();
-        // props.onClose();
-        handlefullOpen()
       })
       .catch(err => {
       });

@@ -12,26 +12,7 @@ function CarMaintenceShow(props) {
 
 
 
-  const [carFixes, setCarFixes] = useState([])
-
-  // const [modalStyle] = useState(getModalStyle);
-  // const [fullopen, setFullOpen] = useState(false);
-  // const [errorOpen, setErrorOpen] = useState(false);
-
-  // const handlefullOpen = () => {
-  //   setFullOpen(true);
-  // };
-  // const handlefullClose = () => {
-  //   setFullOpen(false);
-  // };
-
-  // function handleErrorClose() {
-  //   setErrorOpen(false);
-  // }
-
-  // function handleErrorOpen() {
-  //   setErrorOpen(true);
-  // }
+const [carFixes, setCarFixes] = useState([])
 
   useEffect(() => {
     props.fetchFixes(props.car.id)

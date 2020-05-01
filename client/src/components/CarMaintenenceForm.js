@@ -21,7 +21,6 @@ import { connect } from 'react-redux';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import CarFixImgUpload from './CarFixImgUpload'
 
@@ -125,6 +124,7 @@ function CarMaintenenceForm(props) {
   const classes = useStyles();
 
   const [fullopen, setFullOpen] = useState(false);
+  // modal methods coming from props
   const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
   const [errorOpen, setErrorOpen] = useState(false);
   const [currentMaintenence, setcurrentMaintenence] = useState({})
@@ -135,11 +135,12 @@ function CarMaintenenceForm(props) {
     fix_description: '',
     fix_date: new Date().toLocaleString()
   });
+  // for stepper 
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
 
-
+// stepper methods 
   function getSteps() {
     return ['Create Car', 'Add Images'];
   }
@@ -167,30 +168,15 @@ function CarMaintenenceForm(props) {
   const handleReset = () => {
     setActiveStep(0);
   };
+// 
 
-
-
+// modal method being used 
   function handleClose() {
 
     props.onClose();
     handleReset()
 }
 
-
-const handlefullOpen = () => {
-  setFullOpen(true);
-};
-const handlefullClose = () => {
-  setFullOpen(false);
-};
-
-function handleErrorClose() {
-  setErrorOpen(false);
-}
-
-function handleErrorOpen() {
-  setErrorOpen(true);
-}
 
   const handleChange2 = name => event => {
     setValues({ ...values, [name]: event.target.checked });
@@ -216,15 +202,12 @@ function handleErrorOpen() {
         handleNext()
         setcurrentMaintenence(res.data)
         props.fetchFixes(props.car.id);
-        handlefullOpen()
-        // props.handleClose();
 
       })
       .catch(err => {
       });
   };
 
-  console.log(currentMaintenence, "curentMaintence")
 
   return (
     <>

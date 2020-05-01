@@ -29,13 +29,14 @@ const useStyles = makeStyles(theme => ({
 function Comment(props) {
 
   const classes = useStyles();
-
   const [usernameforpost, setUsernameforpost] = useState()
+
+
   useEffect(() => {
     fetchCommentUserName()
   }, [])
 
-
+// fetches indivial username per posts 
   const fetchCommentUserName = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/users/username/${props.comment.user_id}`)
@@ -46,6 +47,7 @@ function Comment(props) {
       });
   };
 
+  
   function incrementLike() {
     axiosWithAuth()
       .patch(`/comment/inc/${props.comment.id}`)

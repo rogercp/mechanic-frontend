@@ -21,6 +21,7 @@ const initialState = {
   addingPost: false,
   posts: [],
   filteredPosts: [],
+  // state to keep track of the search bar and if its in use
   searchToggle: false,
   currentPost: {},
   order: null,
@@ -29,7 +30,6 @@ const initialState = {
   currentTermForFilter:null
 }
 
-console.log(initialState.filteredPosts,"posts in")
 
 const postReducer = (state = initialState, action) => {
 

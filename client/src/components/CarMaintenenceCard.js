@@ -6,17 +6,13 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from '@material-ui/core/styles';
 import BuildIcon from '@material-ui/icons/Build';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
-import ImageCarousel from './ImageCarousel';
-import DescriptionIcon from '@material-ui/icons/Description';
 import { fetchFixes } from "../store/actions/carMaintenenceActions";
 import { connect } from 'react-redux';
-import { Button as Button2 } from 'react-bootstrap';
 import Typography from '@material-ui/core/Typography';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -89,13 +85,12 @@ function CarMaintenceCard(props) {
   const classes = useStyles();
   const [fullopen, setFullOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
-
   const [expanded, setExpanded] = React.useState('panel1');
   const [open, setOpen] = useState(false);
  
 
 
-
+// modal methods
   function handleOpen() {
       setOpen(true);
   }
@@ -108,7 +103,7 @@ function CarMaintenceCard(props) {
   function handleErrorClose() {
       setErrorOpen(false);
   }
-
+// 
 
   const handleChange = panel => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -161,26 +156,10 @@ function CarMaintenceCard(props) {
   }
 
 
-  const handlefullOpen = () => {
-    setFullOpen(true);
-  };
-  const handlefullClose = () => {
-    setFullOpen(false);
-  };
-
-  function handleErrorClose() {
-    setErrorOpen(false);
-  }
-
-  function handleErrorOpen() {
-    setErrorOpen(true);
-  }
 
 
 
   return (
-
-    
 
 <div>
       <ExpansionPanel round onChange={handleChange('panel1')}>

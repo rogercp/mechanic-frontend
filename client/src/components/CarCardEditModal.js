@@ -38,17 +38,18 @@ function CarCardEditModal(props) {
 
 
   const classes = useStyles();
+  // modal methods
   const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
-
   const [state, setState] = React.useState({
     car_make: props.car.car_make,
     car_model: props.car.car_model,
     car_nickname: props.car.car_nickname,
     car_year: props.car.car_year,
   });
-
+  // changes view from form to image edit
   const [toggleView,setToggleView] = React.useState(false)
 
+  // view changer for buttons
   function toggleViewHandler(){
 
     if(toggleView){
@@ -61,13 +62,17 @@ function CarCardEditModal(props) {
     
   }
   
+  // modal methods being used 
   function handleClose() {
     onClose();
   }
-
-  function handleClick() {
-    props.history.push(redirect);
+  const closeForm = () =>{
+    props.onClose()
   }
+
+  // function handleClick() {
+  //   props.history.push(redirect);
+  // }
 
   const handleChange = name => event => {
     setState({
@@ -77,12 +82,9 @@ function CarCardEditModal(props) {
   };
 
 
-  const closeForm = () =>{
-    props.onClose()
-  }
+
 
   const onSubmitHandler = e => {
-    console.log(state, "usernamesatte")
     e.preventDefault();
     axiosWithAuth()
       .put(`cars/update/${props.car.id}`, state)

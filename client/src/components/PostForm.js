@@ -19,6 +19,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 
 import '../styles/navbar.scss';
+import { sub } from 'date-fns/esm';
 
 
 
@@ -70,7 +71,7 @@ function PostForm(props) {
   const userId = localStorage.getItem('id');
   const username = localStorage.getItem('username');
   const classes = useStyles();
-  const [currentForPost,setCurrentPostForPost] = useState()
+  // const [currentForPost,setCurrentPostForPost] = useState()
   const [state, setState] = React.useState({
     displayName: username,
     user_id: userId,
@@ -154,13 +155,22 @@ function PostForm(props) {
     e.preventDefault();
     props.addPost(state);
     props.fetchFilteredPosts();
-    setCurrentPostForPost(props.currentPost)
+    // setCurrentPostForPost(props.currentPost)
     handleNext()
+    // clears state for another post submission 
+    setState({
+      ...state,
+    displayName: username,
+    user_id: userId,
+    category: '',
+    post_text: '',
+    post_date: time,
+    });
 
     // props.onClose();
   };
 
-
+console.log(props.currentPost,"currentPost From redux")
 
   useEffect(() => {
 
@@ -236,7 +246,7 @@ function PostForm(props) {
     <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
 
 
-    <PostImageUpload post={currentForPost}isCarousel={true}   />
+    <PostImageUpload post={props.currentPost} isCarousel={true}   />
     
     <Button
       className={classes.button}

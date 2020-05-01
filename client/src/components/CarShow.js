@@ -8,10 +8,7 @@ import { axiosWithAuth } from '../helpers/index';
 import CarCard from './CarCard'
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
-
 import CarForm from './CarForm'
-// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
-// import Loader from 'react-loader-spinner'
 
 
 const useStyles = makeStyles(theme => ({
@@ -51,10 +48,8 @@ function CarShow(props) {
   const [open, setOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
 
-  /**
-   * Modal Methods
-   */
-
+ 
+// modal methods 
   function handleOpen() {
     setOpen(true);
   }
@@ -67,7 +62,7 @@ function CarShow(props) {
   function handleErrorClose() {
     setErrorOpen(false);
   }
-
+// 
 
   useEffect(() => {
 

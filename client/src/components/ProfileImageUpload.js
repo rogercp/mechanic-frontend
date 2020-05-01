@@ -21,8 +21,8 @@ function ProfileImageUpload(props) {
     const classes = useStyles();
 
     const [file, setFile] = useState({});
+    // loading wheel
     const [isLoading,setIsLoading] = useState(false)
-
     const userId = localStorage.getItem('id');
 
     // useEffect(() => {
@@ -56,10 +56,11 @@ function ProfileImageUpload(props) {
     function handleSubmitUploaderProfilePicture(e) {
         setIsLoading(true)
         e.preventDefault()
-        // Create file ref (Example: /documents/:car_id/:file_name)
+          // Create file ref for firebase
         const fileRef = imagesRef.child(`${userId}/${file.name}`)
-        // Upload file
+        // Upload file to google
         fileRef.put(file).then((snapshot) => {
+            // send reference to backend
             axiosWithAuth().post(`/users/image/${userId}`, { file_name: file.name })
                 .then(res => {
                     setIsLoading(true)

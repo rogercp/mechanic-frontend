@@ -70,7 +70,7 @@ export const fetchFilteredPosts = (term,orderTerm,currentPage) => dispatch => {
 };
 
 
-
+// toggles search 
 export const TOGGLE_SEARCH_TO_TRUE = 'TOGGLE_SEARCH_TO_TRUE';
 
 export const toggleSearchToTrue = () => dispatch => {
@@ -79,7 +79,7 @@ export const toggleSearchToTrue = () => dispatch => {
 
 };
 
-
+// toggles search
 export const TOGGLE_SEARCH_TO_FALSE = 'TOGGLE_SEARCH_TO_FALSE';
 
 export const toggleSearchToFalse = () => dispatch => {

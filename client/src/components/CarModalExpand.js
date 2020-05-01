@@ -50,17 +50,13 @@ const useStyles = makeStyles(theme => ({
 
 
 function CarModalExpand(props) {
+
   const classes = useStyles();
-
-  // const [formNotView,setFormNotView ] = useState({
-  //     toggled:false
-  // });
-
   const [open, setOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
 
 
-
+// modal methods
   function handleOpen() {
     setOpen(true);
   }
@@ -73,12 +69,7 @@ function CarModalExpand(props) {
   function handleErrorClose() {
     setErrorOpen(false);
   }
-
-
-
-  // const handleChange2 = name => event => {
-  //     setFormNotView({ ...formNotView, [name]: event.target.checked });
-  //   };
+// 
 
 
   return (

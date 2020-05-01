@@ -69,7 +69,6 @@ function Question(props) {
     }
     if(localStorage.getItem("username") === null && localStorage.getItem("token") ){
 
-
       confirmAlert({
         customUI: ({ onClose }) => {
             return (

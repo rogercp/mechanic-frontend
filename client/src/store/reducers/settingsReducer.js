@@ -6,6 +6,7 @@ import {
 
 const initialState = {
 
+  // saving user image on global variable to use in multiple locations
   userImage: null,
 
 }

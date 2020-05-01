@@ -11,10 +11,12 @@ import '../styles/dashsidenav.scss'
 
 function DashSideNav(props) {
 
-  async function filterPostHandler(term,order) {
 
+  async function filterPostHandler(term,order) {
     props.fetchFilteredPosts(term,'date',1)
+    // toggles search to false in case its true in redux 
     props.toggleSearchToFalse()
+    // for every new filter window scrolls to top of page
     window.scrollTo(0, 0);
   };
 
