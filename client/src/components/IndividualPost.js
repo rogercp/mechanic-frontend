@@ -182,6 +182,11 @@ const IndividualPost = (props) => {
         .post(`/comment/${props.post.id}`, commentState)
         .then(res => {
           fetchComments()
+          setCommentState({
+            ...commentState,
+            user_id: localStorage.getItem("id"),
+            comment_text: ''
+          });
         })
         .catch(err => {
         });
