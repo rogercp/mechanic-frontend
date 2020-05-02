@@ -87,7 +87,7 @@ function CarModalExpand(props) {
           </IconButton>
         </div>
 
-        <div style={{ backgroundColor: "rgb(210, 210, 211)", margin: "0", paddingBottom: "300px" }}>
+        <div style={{ backgroundColor: "rgb(210, 210, 211)", margin: "0", paddingBottom: "800px" }}>
           <CarMaintenenceForm
             open={open}
             car={props.car}

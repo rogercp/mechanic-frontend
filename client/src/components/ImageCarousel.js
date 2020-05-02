@@ -84,7 +84,7 @@ function ImageCarousel(props) {
 
   else if (props.isPostImageCarousel) {
     return (
-      <div style={{ width: "300px" }}  >
+      <div style={{ width: "100%" }}  >
         <Carousel interval={50000000000000000} style={{ backgroundColor: "black" }}>
           {props.postImages.map((image, index) => {
             return (

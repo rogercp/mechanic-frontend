@@ -49,7 +49,9 @@ function NavBar(props) {
     axiosWithAuth()
       .get(`/users/username/${userId}`)
       .then(res => {
-        localStorage.setItem('username', res.data)
+        if(res.data !==null){
+          localStorage.setItem('username', res.data)
+        }
 
       })
       .catch(err => {
@@ -199,10 +201,6 @@ function NavBar(props) {
 
           </Drawer>
         </div>
-
-
-
-
 
 
 
