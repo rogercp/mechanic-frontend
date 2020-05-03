@@ -11,9 +11,15 @@ import { addPost } from "../store/actions/postActions";
 import { fetchFilteredPosts } from "../store/actions/postActions";
 import { fetchProfileImage } from "../store/actions/settingsActions";
 import moment from 'moment'
-import PostImageFormModal from './PostImageFormModal'
+import PostImageUpload from './PostImageUpload'
+import { withRouter } from 'react-router-dom';
+import Dialog from '@material-ui/core/Dialog';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
 
 import '../styles/navbar.scss';
+import { sub } from 'date-fns/esm';
 
 
 
@@ -37,18 +43,35 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
+  dialog: {
+
+  },
+  paper: {
+      backgroundColor: theme.palette.background.paper,
+      border: '1px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2),
+      outline: 'none',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  title: {
+      paddingBottom: '10px',
+  },
+  body: {
+      paddingBottom: '20px',
+  },
 }));
 
 function PostForm(props) {
 
   const time = moment().format("MMMM Do YYYY, h:mma")
-
   const userId = localStorage.getItem('id');
   const username = localStorage.getItem('username');
-
-
   const classes = useStyles();
-  // const [currentPost,setCurrentPost] = useState()
+  // const [currentForPost,setCurrentPostForPost] = useState()
   const [state, setState] = React.useState({
     displayName: username,
     user_id: userId,
@@ -56,9 +79,41 @@ function PostForm(props) {
     post_text: '',
     post_date: time,
   });
-
+  const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
   const [fullopen, setFullOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
+  const [activeStep, setActiveStep] = React.useState(0);
+  const steps = getSteps();
+
+
+
+  function getSteps() {
+    return ['Create Post', 'Add Images'];
+  }
+  
+  function getStepContent(stepIndex) {
+    switch (stepIndex) {
+      case 0:
+        return 'Create Post';
+      case 1:
+        return 'Add Images';
+      default:
+        return 'Unknown stepIndex';
+    }
+  }
+    
+  
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
 
 
   const handlefullOpen = () => {
@@ -78,6 +133,16 @@ function PostForm(props) {
 
 
 
+    function handleClose() {
+
+        props.onClose();
+        handleReset();
+        props.fetchFilteredPosts('AllPosts','date',1)
+
+    }
+
+
+
 
   const handleChange = name => event => {
     setState({
@@ -91,12 +156,22 @@ function PostForm(props) {
     e.preventDefault();
     props.addPost(state);
     props.fetchFilteredPosts();
-    handlefullOpen()
+    // setCurrentPostForPost(props.currentPost)
+    handleNext()
+    // clears state for another post submission 
+    setState({
+      ...state,
+    displayName: username,
+    user_id: userId,
+    category: '',
+    post_text: '',
+    post_date: time,
+    });
 
     // props.onClose();
   };
 
-  console.log(props.currentPost, "currentPosty")
+console.log(props.currentPost,"currentPost From redux")
 
   useEffect(() => {
 
@@ -105,6 +180,19 @@ function PostForm(props) {
 
   return (
     <>
+    <Dialog open={open} onClose={handleClose} className={classes.dialog}>
+    <div className={classes.paper}>
+        <div className={classes.root}>
+      <Stepper activeStep={activeStep} alternativeLabel>
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      </div>
+
+{activeStep === 0?
       <FormControl className={classes.formControl} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} noValidate autoComplete="off" onSubmit={onSubmitHandler}>
 
         <InputLabel id="demo-simple-select-label">Category</InputLabel>
@@ -154,14 +242,38 @@ function PostForm(props) {
 
       </FormControl>
 
-      <PostImageFormModal
-        post={props.currentPost}
-        onclose={props.onClose}
-        open={fullopen}
-        handleClose={handlefullClose}
-        onClose={handlefullClose}
-        onOpen = {handlefullOpen}
-      />
+    :
+    
+    <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+
+
+    <PostImageUpload post={props.currentPost} isCarousel={true}   />
+    
+    <Button
+      className={classes.button}
+      variant="contained"
+      color="primary"
+      size="large"
+      onClick={handleClose}>
+
+      Done
+  </Button>
+
+
+
+
+
+
+
+  </FormControl>
+    }
+      </div>
+      </Dialog>
+
+
+
+
+    
     </>
   );
 };
@@ -175,5 +287,5 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   { addPost, fetchFilteredPosts, fetchProfileImage }
-)(PostForm);
+)(withRouter(PostForm));
 

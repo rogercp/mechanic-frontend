@@ -24,8 +24,9 @@ function CarFixImgUpload(props) {
 
     const [fullopen, setFullOpen] = useState(false);
     const [errorOpen, setErrorOpen] = useState(false);
+    const [isLoading,setIsLoading] = useState(false)
 
-
+    // modal methods
     const handlefullOpen = () => {
         setFullOpen(true);
     };
@@ -40,7 +41,7 @@ function CarFixImgUpload(props) {
     function handleErrorOpen() {
         setErrorOpen(true);
     }
-
+    // 
 
     // React.useCallback (()=>{
 
@@ -59,7 +60,7 @@ function CarFixImgUpload(props) {
 
         fetchFixDocuments()
 
-    }, [file]);
+    }, []);
 
     async function fetchFixDocuments() {
         let fixImages = await axiosWithAuth().get(`/car_fix/${props.carFix.id}/car_fix_images`)
@@ -83,14 +84,16 @@ function CarFixImgUpload(props) {
 
 
     function handleSubmitUploaderFixDocuments(e) {
+        setIsLoading(true)
         e.preventDefault()
-        // Create file ref (Example: /documents/:car_id/:file_name)
+        // Create file ref for firebase
         const fileRef = imagesRef.child(`${props.carFix.id}/${file.name}`)
-        // Upload file
+        // Upload file to google
         fileRef.put(file).then((snapshot) => {
-            // console.log('Upload success!', snapshot.constructor, snapshot);
+            // send reference to the backend
             axiosWithAuth().post(`/car_fix/${props.carFix.id}/car_fix_images`, { file_name: file.name })
                 .then(res => {
+                    setIsLoading(false)
                     fetchFixDocuments();
                 })
                 .catch(error => {
@@ -102,8 +105,8 @@ function CarFixImgUpload(props) {
     }
 
 
-
-    if (props.isCarousel ) {
+    // data coming from CardMaintenceForm for this first statement
+    if (props.isCarousel) {
         return (
             <>
             {carFixImages.length > 0 ?
@@ -131,7 +134,6 @@ function CarFixImgUpload(props) {
     }
 
 else{
-        
         return (
             <>
                 
@@ -147,6 +149,12 @@ else{
                 <h4>Add Image</h4>
                     <div style={{ display: 'flex', flexDirection: "column" }}>
                         <form onSubmit={handleSubmitUploaderFixDocuments} style={{display: 'flex', flexDirection: "column", maxWidth: "200px", justifyContent: "Center" }}>
+                            
+                        {isLoading ? 
+                         <div class="spinner-border" role="status">
+                         <span class="sr-only">Loading...</span>
+                         </div>
+                            :null}
                             <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
                             <Button
                                 variant="contained"

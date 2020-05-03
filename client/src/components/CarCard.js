@@ -101,34 +101,42 @@ const MediatorCard = (props) => {
   const [fullopen, setFullOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
   const [open, setOpen] = useState(false);
-
-
-  function handleOpen() {
-    setOpen(true);
-  }
-  function handleErrorOpen() {
-    setErrorOpen(true);
-  }
-  function handleClose() {
-    setOpen(false);
-  }
-  function handleErrorClose() {
-    setErrorOpen(false);
-  }
-
-
+// card flip animation
   const [flip, setFlip] = useState({
     isFlipped: false
   });
 
+  // const [checked, setChecked] = React.useState(false);
 
-  const [checked, setChecked] = React.useState(false);
-
-  const handleChange = () => {
-    setChecked(prev => !prev);
+// modal methods 
+  function handleOpen() {
+    setOpen(true);
+  }
+  
+  function handleClose() {
+    setOpen(false);
+  }
+  const handlefullOpen = () => {
+    setFullOpen(true);
+  };
+  const handlefullClose = () => {
+    setFullOpen(false);
   };
 
+  function handleErrorClose() {
+    setErrorOpen(false);
+  }
+// 
 
+  
+  // const handleChange = () => {
+  //   setChecked(prev => !prev);
+  // };
+
+
+
+
+// handles card flip 
   function flipEr(e) {
     e.preventDefault();
     setFlip(prevState => ({
@@ -140,6 +148,7 @@ const MediatorCard = (props) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
+    // saftey pop up alert for deletion of card
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
@@ -172,25 +181,6 @@ const MediatorCard = (props) => {
 
 
 
-  /**
-       * Modal functions
-       */
-
-
-  const handlefullOpen = () => {
-    setFullOpen(true);
-  };
-  const handlefullClose = () => {
-    setFullOpen(false);
-  };
-
-  function handleErrorClose() {
-    setErrorOpen(false);
-  }
-
-  function handleErrorOpen() {
-    setErrorOpen(true);
-  }
 
 
 
@@ -218,7 +208,8 @@ const MediatorCard = (props) => {
                 </Button>
               </div>
 
-              <CarImgUpload car={props.car} isForFrontCardView={true} />
+              {/* <CarImgUpload car={props.car} isForFrontCardView={true} /> */}
+              <CarImgUpload fetchCars={props.fetchCars} car={props.car}  isCarCardCarousel={true}/>
 
 
 
@@ -258,6 +249,7 @@ const MediatorCard = (props) => {
         </ReactCardFlip>
 
         <CarModalExpand
+        fetchCars={props.fetchCars}
           open={fullopen}
           handleClose={handlefullClose}
           onClose={handlefullClose}
@@ -265,6 +257,7 @@ const MediatorCard = (props) => {
         />
 
         <CarCardEditModal
+        fetchCars={props.fetchCars}
           car={props.car}
           open={open}
           onClose={handleClose}

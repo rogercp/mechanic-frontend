@@ -20,7 +20,6 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { withStyles } from '@material-ui/core/styles';
 import { fetchFixes } from "../store/actions/carMaintenenceActions";
 import { connect } from 'react-redux';
-import ImageUploadModal from './ImageUploadModal';
 
 
 
@@ -97,7 +96,21 @@ function MaintenceCardEditModal(props) {
     fix_date: props.carFix.fix_date
 
   });
+  
+  const [toggleView,setToggleView] = React.useState(false)
 
+  function toggleViewHandler(){
+
+    if(toggleView){
+      setToggleView(false)
+    }
+   else{
+    setToggleView(true)
+   }
+  
+    
+  }
+  
 
   function handleClose() {
     onClose();
@@ -121,7 +134,9 @@ function MaintenceCardEditModal(props) {
     setState({ fix_date: date })
   };
 
+const closeForm = () =>{
 
+}
   console.log(state, "carfixedits")
   const onSubmitHandler = e => {
 
@@ -129,18 +144,59 @@ function MaintenceCardEditModal(props) {
     axiosWithAuth()
       .put(`car_fix/update/${props.carFix.id}`, state)
       .then(res => {
-        window.location.reload();
+        handleClose()
+        props.fetchFixes(props.car.id)
       })
       .catch(err => {
       });
   };
+
+
+  if(toggleView){
+  return(
+    <Dialog open={open} onClose={handleClose} className={classes.dialog}>
+  <Button
+              variant="dark" 
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={toggleViewHandler}
+            >
+              Go To Edit Form
+        </Button>
+    <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+  
+        <CarFixImgUpload car={props.car} fetchFixes={props.fetchFixes} carFix={props.carFix} />
+        </FormControl>
+        <Button
+              variant="dark" 
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={handleClose}
+            >
+             Close Form
+        </Button>
+      </Dialog>
+
+  )
+}else{
+
 
   return (
     <>
 
 
       <Dialog open={open} onClose={handleClose} className={classes.dialog}>
-
+      <Button
+              variant="dark" 
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={toggleViewHandler}
+            >
+              Go To Image Edit
+        </Button>
       <FormControl className={classes.formControl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
          
 
@@ -152,7 +208,8 @@ function MaintenceCardEditModal(props) {
               inputProps={{ 'aria-label': 'checkbox with default color' }}
             /> */}
             <div>
-          <h3>Change Fields</h3>
+            
+          <h3>Edit Maintenence</h3>
           <TextField
             id="outlined-textarea"
             onChange={handleChange('fix')}
@@ -234,15 +291,31 @@ function MaintenceCardEditModal(props) {
         </Button>
 
         </div>
-            <CarFixImgUpload carFix={props.carFix} />
+           
          
 
         </FormControl>
+        <Button
+              variant="dark" 
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={handleClose}
+            >
+             Close Form
+        </Button>
       </Dialog>
 
 
     </>
   );
+  }
 };
 
-export default MaintenceCardEditModal;
+const mapStateToProps = state => ({
+  
+});
+export default connect(
+  mapStateToProps,
+  { fetchFixes }
+)(MaintenceCardEditModal);

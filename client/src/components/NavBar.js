@@ -49,7 +49,9 @@ function NavBar(props) {
     axiosWithAuth()
       .get(`/users/username/${userId}`)
       .then(res => {
-        localStorage.setItem('username', res.data)
+        if(res.data !==null){
+          localStorage.setItem('username', res.data)
+        }
 
       })
       .catch(err => {
@@ -142,8 +144,7 @@ function NavBar(props) {
     return (
       <>
 
-
-        <div className="nav" style={{ backgroundColor: "", maxWidth: "1300px" }}>
+        <div className="nav" style={{ backgroundColor:'' , maxWidth: "1300px"}}>
 
           <div>
             {props.userImage && props.userImage.length > 0 ?
@@ -200,10 +201,6 @@ function NavBar(props) {
 
           </Drawer>
         </div>
-
-
-
-
 
 
 

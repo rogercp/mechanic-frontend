@@ -5,8 +5,8 @@ import axiosWithAuth from '../helpers/axiosWithAuth';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import CarImgShow from './CarImgShow';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import ImageCarousel from './ImageCarousel'
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -18,15 +18,15 @@ const useStyles = makeStyles(theme => ({
 function CarImgUpload(props) {
 
     const classes = useStyles();
-    const [carImages, setCarImages] = useState({});
-    const [carFixImages, setCarFixImages] = useState([]);
+    const [carImages, setCarImages] = useState([]);
     const [file, setFile] = useState({});
+    // loading wheel
+    const [isLoading,setIsLoading] = useState(false)
 
     useEffect(() => {
-        if (props.car) {
-            fetchCarImages();
-        }
 
+        fetchCarImages();
+ 
     }, []);
 
 
@@ -53,16 +53,17 @@ function CarImgUpload(props) {
     }
 
     function handleSubmitUploader(e) {
+        setIsLoading(true)
         e.preventDefault()
-        // Create file ref (Example: /documents/:car_id/:file_name)
+        // Create file ref for firebase
         const fileRef = imagesRef.child(`${props.car.id}/${file.name}`)
-        // Upload file
+        // Upload file to google
         fileRef.put(file).then((snapshot) => {
-            // console.log('Upload success!', snapshot.constructor, snapshot);
+            // send reference to backend
             axiosWithAuth().post(`/cars/${props.car.id}/images`, { file_name: file.name })
-                .then(res => {
+                .then(res => { 
+                    setIsLoading(false) 
                     fetchCarImages();
-                    window.location.reload();
                 })
                 .catch(error => {
                     console.error(error);
@@ -74,18 +75,17 @@ function CarImgUpload(props) {
 
 
 
-
-    if (props.isForFrontCardView) {
+    // data for this next statement is coming from CarCard Compo9nent
+    if ( props.isCarCardCarousel) {
         return (
+
+
             <>
             {carImages.length > 0 ?
-                <>
-                {carImages.map((image, index) => {
-                    return <CarImgShow key={index} car={props.car} image={image} />
-                })}
-                </>
-                :
-                <>
+                <ImageCarousel  car={props.car} carImages={carImages}  isCarImage={true}/>
+            :
+            
+            <>
                 
                 <DriveEtaIcon style={{ fontSize: "200px" }} />
 
@@ -96,16 +96,32 @@ function CarImgUpload(props) {
          </>   
         )
     }
-
+    
     else {
         return (
             <>
+
+            <ImageCarousel
+                    style={{ backgroundColor: "red", maxWidth: "100px" }}
+                    isImageDelShowForCars={true}
+                    carImages={carImages}
+                    car={props.car}
+                    fetchCarImages={fetchCarImages}
+                />
+
                 <div style={{ height: "200px" }}>
                     
 
                     {props.isForm ? <div>
                         <form onSubmit={(handleSubmitUploader)} style={{ display: 'flex', flexDirection: "column", maxWidth: "200px", justifyContent: "Center" }}>
-                            <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
+                    
+                        {isLoading ? 
+                         <div class="spinner-border" role="status">
+                         <span class="sr-only">Loading...</span>
+                         </div>
+                            :null}
+                       
+                        <input required id="uploader" type="file" accept="image/*,.pdf,.doc" onChange={handleInputChanges}></input>
                             <Button
                                 variant="contained"
                                 name="car_type"

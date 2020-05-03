@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Add';
 import PostAddModal from './PostAddModal';
+import PostForm from './PostForm'
 import Tooltip from '@material-ui/core/Tooltip';
 import { confirmAlert } from 'react-confirm-alert';
 import { Button } from 'react-bootstrap';
@@ -47,6 +48,18 @@ function Question(props) {
    * Modal Methods
    */
 
+  function handleOpen() {
+    setOpen(true);
+  }
+  function handleErrorOpen() {
+    setErrorOpen(true);
+  }
+  function handleClose() {
+    setOpen(false);
+  }
+  function handleErrorClose() {
+    setErrorOpen(false);
+  }
 
 
   function handleOpen() {
@@ -55,7 +68,6 @@ function Question(props) {
       props.history.push('/login')
     }
     if(localStorage.getItem("username") === null && localStorage.getItem("token") ){
-
 
       confirmAlert({
         customUI: ({ onClose }) => {
@@ -76,15 +88,7 @@ function Question(props) {
   }
 
 
-  function handleErrorOpen() {
-    setErrorOpen(true);
-  }
-  function handleClose() {
-    setOpen(false);
-  }
-  function handleErrorClose() {
-    setErrorOpen(false);
-  }
+  
 
 
 
@@ -105,7 +109,7 @@ function Question(props) {
 
 
 
-      <PostAddModal
+      <PostForm
         open={open}
         onClose={handleClose}
         titleText={"Post Form"}

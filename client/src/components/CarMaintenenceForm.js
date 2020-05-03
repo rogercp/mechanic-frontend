@@ -18,8 +18,11 @@ import { axiosWithAuth } from '../helpers/index';
 import { withStyles } from '@material-ui/core/styles';
 import { fetchFixes } from "../store/actions/carMaintenenceActions";
 import { connect } from 'react-redux';
-import ImageUploadModal from './ImageUploadModal';
-
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import Dialog from '@material-ui/core/Dialog';
+import CarFixImgUpload from './CarFixImgUpload'
 
 
 const AntSwitch = withStyles(theme => ({
@@ -87,6 +90,30 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
+  instructions: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+  dialog: {
+
+  },
+  paper: {
+      backgroundColor: theme.palette.background.paper,
+      border: '1px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2),
+      outline: 'none',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  title: {
+      paddingBottom: '10px',
+  },
+  body: {
+      paddingBottom: '20px',
+  },
 }));
 
 
@@ -97,6 +124,8 @@ function CarMaintenenceForm(props) {
   const classes = useStyles();
 
   const [fullopen, setFullOpen] = useState(false);
+  // modal methods coming from props
+  const { onClose, open, titleText, bodyText, redirect, redirectText } = props;
   const [errorOpen, setErrorOpen] = useState(false);
   const [currentMaintenence, setcurrentMaintenence] = useState({})
   const [values, setValues] = React.useState({
@@ -106,23 +135,47 @@ function CarMaintenenceForm(props) {
     fix_description: '',
     fix_date: new Date().toLocaleString()
   });
+  // for stepper 
+  const [activeStep, setActiveStep] = React.useState(0);
+  const steps = getSteps();
 
 
-
-  const handlefullOpen = () => {
-    setFullOpen(true);
-  };
-  const handlefullClose = () => {
-    setFullOpen(false);
-  };
-
-  function handleErrorClose() {
-    setErrorOpen(false);
+// stepper methods 
+  function getSteps() {
+    return ['Create Car Fix', 'Add Images'];
   }
-
-  function handleErrorOpen() {
-    setErrorOpen(true);
+  
+  function getStepContent(stepIndex) {
+    switch (stepIndex) {
+      case 0:
+        return 'Create Car Fix';
+      case 1:
+        return 'Add Images';
+      default:
+        return 'Unknown stepIndex';
+    }
   }
+    
+  
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+// 
+
+// modal method being used 
+  function handleClose() {
+    props.fetchFixes(props.car.id);
+    props.onClose();
+    handleReset()
+}
 
 
   const handleChange2 = name => event => {
@@ -146,25 +199,39 @@ function CarMaintenenceForm(props) {
     axiosWithAuth()
       .post(`/car_fix/${props.car.id}`, values)
       .then(res => {
+        handleNext()
+        setValues({ ...values, 
+        
+          fix_not_maintenence: false,
+          fix: '',
+          fix_price: '',
+          fix_description: '',
+          fix_date: new Date().toLocaleString()
+        
+        });
         setcurrentMaintenence(res.data)
-        props.fetchFixes(props.car.id);
-        handlefullOpen()
-        // props.handleClose();
 
       })
       .catch(err => {
       });
   };
 
-  console.log(currentMaintenence, "curentMaintence")
 
   return (
     <>
-
+    <Dialog open={open} onClose={handleClose} className={classes.dialog}>
+      <div className={classes.paper}>
       <div className={classes.root}>
+      <Stepper activeStep={activeStep} alternativeLabel>
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      </div>
 
-        <form className={classes.container} noValidate autoComplete="off" >
-
+      {activeStep === 0?
           <FormControl fullWidth className={classes.margin} onSubmit={onSubmitHandler}>
             <p>{values.fix_not_maintenence === false ? "Maintence" : "Repair"}</p>
             <AntSwitch
@@ -245,18 +312,28 @@ function CarMaintenenceForm(props) {
         </Button>
           </FormControl>
 
-        </form>
+        :
+        <>
+        <CarFixImgUpload carFix={currentMaintenence} isForm={true} />
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={handleClose}>
+
+          Done
+      </Button>
+      </>
+      
+      }
 
 
-        <ImageUploadModal
-          isMaintenence={true}
-          currentMaintenence={currentMaintenence}
-          open={fullopen}
-          onClose={handlefullClose}
-          handleClose={handlefullClose}
-          onclose={props.onClose}
-        />
-      </div>
+   </div>
+    </Dialog>
+
+       
+     
     </>
   );
 };

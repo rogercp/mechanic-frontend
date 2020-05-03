@@ -16,7 +16,7 @@ function UserCars(props) {
     return (
         <>
 
-            <div style={{ backgroundColor: "rgb(210, 210, 211)", maxWidth: "1300px", paddingBottom: "700px" }}>
+            <div style={{ backgroundColor: "rgb(210, 210, 211)", maxWidth: "1300px", paddingBottom: "800px" }}>
                 <CarShow />
             </div>
 

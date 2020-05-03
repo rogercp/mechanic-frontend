@@ -4,14 +4,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { green } from '@material-ui/core/colors';
-import CarAddModal from './CarAddModal';
 import { axiosWithAuth } from '../helpers/index';
 import CarCard from './CarCard'
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
-
-// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
-// import Loader from 'react-loader-spinner'
+import CarForm from './CarForm'
 
 
 const useStyles = makeStyles(theme => ({
@@ -51,10 +48,8 @@ function CarShow(props) {
   const [open, setOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
 
-  /**
-   * Modal Methods
-   */
-
+ 
+// modal methods 
   function handleOpen() {
     setOpen(true);
   }
@@ -67,7 +62,7 @@ function CarShow(props) {
   function handleErrorClose() {
     setErrorOpen(false);
   }
-
+// 
 
   useEffect(() => {
 
@@ -94,7 +89,7 @@ function CarShow(props) {
         </Fab>
       </Tooltip>
 
-      <CarAddModal
+      <CarForm
         fetchCars={fetchCars}
         open={open}
         onClose={handleClose}
@@ -116,7 +111,7 @@ function CarShow(props) {
           {cars.map(c => {
             return (
               <>
-                <CarCard fetchCarsFunction={fetchCars} car={c} key={caches.uid} fetchCars={c.fetchCars} />
+                <CarCard fetchCarsFunction={fetchCars} car={c} key={caches.uid} fetchCars={fetchCars} />
               </>
             );
           })}

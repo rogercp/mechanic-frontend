@@ -101,13 +101,17 @@ const IndividualPost = (props) => {
   // const [likesFetch,setLikeFetch] = useState(null)
 
   useEffect(() => {
+
+    setCommentFetch(null)
+
     fetchComments()
+
     // fetchPostbyId(props.post.id)
     // setLikeFetch(prevState =>({
     //   ...prevState.likes,
     //   likes:props.post.like,
     // }))
-  }, [])
+  }, [props.post])
 
 
   const fetchSpecificPost = () =>{
@@ -178,6 +182,11 @@ const IndividualPost = (props) => {
         .post(`/comment/${props.post.id}`, commentState)
         .then(res => {
           fetchComments()
+          setCommentState({
+            ...commentState,
+            user_id: localStorage.getItem("id"),
+            comment_text: ''
+          });
         })
         .catch(err => {
         });
@@ -297,25 +306,24 @@ const IndividualPost = (props) => {
           <p style={{ alignSelf: "flex-end" }}>{props.post.post_date}</p>
 
 
-
-
         </div>
 
 
 
 
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" ,width:'100%'}}>
+ 
+         
 
-          {/* <div>
-            <PostImageUpload post={props.post} />
-          </div>
-          <div>
+             {/* <PostImageUpload post={props.post} /> */}
+           
+         
 
-            <PostImageUpload post={props.post} isCarouselForPost={true} />
-          </div> */}
-          <div>
+             <PostImageUpload post={props.post} isCarouselForPost={true} />
+          
+    <div>
             <p>{props.post.post_text}</p>
-          </div>
+           </div>
         </div>
 
 
@@ -324,7 +332,7 @@ const IndividualPost = (props) => {
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
 
           <div style={{ margin: "0", display: "flex", flexDirection: "row" }}>
-            <CommentIcon className={classes.margin} onClick={toggleComments} /> <p style={{ marginTop: "8px" }}>{commentFetch.length}</p>
+            <CommentIcon className={classes.margin} onClick={toggleComments} /> <p style={{ marginTop: "8px" }}>{commentFetch ?commentFetch.length:null}</p>
           </div>
 
           <div style={{ marginRight: "0", display: "flex", justifyContent: "space-between", alignItems: "space-between" }}>

@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { green } from '@material-ui/core/colors';
-import CarFixAddModal from './CarFixAddModal';
+import CarMaintenenceForm from './CarMaintenenceForm';
 import Tooltip from '@material-ui/core/Tooltip';
 
 
@@ -50,17 +50,13 @@ const useStyles = makeStyles(theme => ({
 
 
 function CarModalExpand(props) {
+
   const classes = useStyles();
-
-  // const [formNotView,setFormNotView ] = useState({
-  //     toggled:false
-  // });
-
   const [open, setOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
 
 
-
+// modal methods
   function handleOpen() {
     setOpen(true);
   }
@@ -73,12 +69,7 @@ function CarModalExpand(props) {
   function handleErrorClose() {
     setErrorOpen(false);
   }
-
-
-
-  // const handleChange2 = name => event => {
-  //     setFormNotView({ ...formNotView, [name]: event.target.checked });
-  //   };
+// 
 
 
   return (
@@ -96,8 +87,8 @@ function CarModalExpand(props) {
           </IconButton>
         </div>
 
-        <div style={{ backgroundColor: "rgb(210, 210, 211)", margin: "0", paddingBottom: "300px" }}>
-          <CarFixAddModal
+        <div style={{ backgroundColor: "rgb(210, 210, 211)", margin: "0", paddingBottom: "800px" }}>
+          <CarMaintenenceForm
             open={open}
             car={props.car}
             onClose={handleClose}

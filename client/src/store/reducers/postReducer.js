@@ -10,19 +10,26 @@ import {
   FETCH_FILTEREDPOST_FAILURE,
   TOGGLE_SEARCH_TO_TRUE,
   TOGGLE_SEARCH_TO_FALSE,
-  CHANGE_ORDER_POSTS
+  CHANGE_ORDER_POSTS,
+  UPDATE_PAGE_NUMBER,
+  // CURRENT_PAGE_FOR_ORDERED_POSTS,
+CURRENT_TERM_FOR_FILTER,
+
 } from '../actions/postActions';
 
 const initialState = {
   addingPost: false,
   posts: [],
   filteredPosts: [],
+  // state to keep track of the search bar and if its in use
   searchToggle: false,
   currentPost: {},
-  order: null 
+  order: null,
+  currentpage : 1,
+  // currentpageForOrderedPosts:1,
+  currentTermForFilter:null
 }
 
-console.log(initialState.filteredPosts,"posts in")
 
 const postReducer = (state = initialState, action) => {
 
@@ -53,13 +60,30 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         searchToggle: true
-      }
+      };
 
     case TOGGLE_SEARCH_TO_FALSE:
       return {
         ...state,
         searchToggle: false
-      }
+      };
+      case UPDATE_PAGE_NUMBER:
+      return {
+        ...state,
+        currentpage: action.payload
+      };
+  
+  // case CURRENT_PAGE_FOR_ORDERED_POSTS:
+  //     return {
+  //       ...state,
+  //       currentpageForOrderedPosts: action.payload
+  //     }
+
+case CURRENT_TERM_FOR_FILTER:
+      return {
+        ...state,
+        currentTermForFilter: action.payload
+      };
 
     default:
       return state

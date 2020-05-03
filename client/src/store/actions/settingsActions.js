@@ -10,7 +10,6 @@ export const fetchProfileImage = userid => dispatch => {
   return axiosWithAuth()
     .get(`/users/image/${userid}`)
     .then(res => {
-
       dispatch({ type: GET_IMG_SUCCESS, payload: res.data });
     })
     .catch(err => {
