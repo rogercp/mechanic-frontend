@@ -67,6 +67,7 @@ function CarCardEditModal(props) {
     onClose();
   }
   const closeForm = () =>{
+    props.fetchCars()
     props.onClose()
   }
 

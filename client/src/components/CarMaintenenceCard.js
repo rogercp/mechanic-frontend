@@ -204,6 +204,8 @@ function CarMaintenceCard(props) {
 
 
       <MaintenceCardEditModal
+                    car={props.car}
+                    fetchFixes={props.fetchFixes}
                     carFix={props.carFix}
                     open={open}
                     onClose={handleClose}

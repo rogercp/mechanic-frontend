@@ -142,13 +142,13 @@ function CarMaintenenceForm(props) {
 
 // stepper methods 
   function getSteps() {
-    return ['Create Car', 'Add Images'];
+    return ['Create Car Fix', 'Add Images'];
   }
   
   function getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return 'Create Car';
+        return 'Create Car Fix';
       case 1:
         return 'Add Images';
       default:
@@ -172,7 +172,7 @@ function CarMaintenenceForm(props) {
 
 // modal method being used 
   function handleClose() {
-
+    props.fetchFixes(props.car.id);
     props.onClose();
     handleReset()
 }
@@ -200,8 +200,16 @@ function CarMaintenenceForm(props) {
       .post(`/car_fix/${props.car.id}`, values)
       .then(res => {
         handleNext()
+        setValues({ ...values, 
+        
+          fix_not_maintenence: false,
+          fix: '',
+          fix_price: '',
+          fix_description: '',
+          fix_date: new Date().toLocaleString()
+        
+        });
         setcurrentMaintenence(res.data)
-        props.fetchFixes(props.car.id);
 
       })
       .catch(err => {

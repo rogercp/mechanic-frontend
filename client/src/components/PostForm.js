@@ -136,7 +136,8 @@ function PostForm(props) {
     function handleClose() {
 
         props.onClose();
-        handleReset()
+        handleReset();
+        props.fetchFilteredPosts('AllPosts','date',1)
 
     }
 

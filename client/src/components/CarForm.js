@@ -126,12 +126,14 @@ function CarForm(props) {
 
 // modal methods coming into use
     function handleClose() {
-
+      props.fetchCars()
         props.onClose();
         handleReset()
+       
 
-        props.fetchCars()
     }
+
+    
 
 
 
@@ -152,7 +154,7 @@ function CarForm(props) {
       .then(res => {
         handleNext()
         setCurrentCar(res.data)
-        props.fetchCars();
+        // props.fetchCars();
       })
       .catch(err => {
       });
