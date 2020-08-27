@@ -5,14 +5,14 @@ In addition you can also upload posts where other users can see your questions o
 
 
 Technology Used:
-Javascript
-REACT
-MaterialUI
-SASS
-NodeJS
-SQL
-KNEX
-GoogleAuth
+Javascript,
+REACT,
+MaterialUI,
+SASS,
+NodeJS,
+SQL,
+KNEX,
+GoogleAuth,
 Firebase Storage for Images
 
 
