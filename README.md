@@ -81,9 +81,6 @@ This API is used to authenticate the individuals, mediators and admin to log int
 SendGrid allows us to send secure emails. For example when a user forgets their password and needs to reset or when they need to receive email reminders or notifications.
 
 
-#### Intergration Testing API - [Cypress](https://docs.cypress.io/guides/overview/why-cypress.html)
-
-This API enables end to end intergration testing. A fake web browser is set up, and Cypress runs the tests live while showing you what happens every step of the way. It can also take screen shots and recordings when unexpected behavior is found. 
 
 ## Environment Variables
 
