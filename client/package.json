@@ -14,7 +14,7 @@
     "dotenv": "^8.2.0",
     "firebase": "^7.13.1",
     "firebaseui": "^4.5.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-card-flip": "^1.0.10",
